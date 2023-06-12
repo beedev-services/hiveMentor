@@ -15,8 +15,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: black;
-  color: white;
+  background-color: #9c9ceb;
+  color: black;
 }
 body header {
   display: flex;

@@ -1,3 +1,13 @@
 from django.db import models
 
-# Create your models here.
+class Week:
+    pass
+
+class Day:
+    pass
+
+class Journal:
+    pass
+
+class Sleep:
+    pass

@@ -53,6 +53,7 @@ class User(models.Model):
     username = models.CharField(max_length=45, unique=True)
     password = models.CharField(max_length=255)
     level = models.IntegerField(default=0)
+    role = models.CharField(max_length=255, default='General')
 
     objects = UserManager()
 
@@ -79,3 +80,8 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         User.objects.create(user=instance)
         post_save.connect(create_user_profile, sender=User)
+
+class Code(models.Model):
+    code = models.CharField(max_length=255)
+    role = models.CharField(max_length=255)
+    creator = models.ForeignKey(User, related_name='theCreator', on_delete=CASCADE)

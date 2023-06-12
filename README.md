@@ -1,70 +1,32 @@
 # hiveMentor
 Guiding programmers toward better mental well-being.
 
+Users have 2 options when they 1st log in.  Chat and Health
+
+Chat gives the user a save space to talk to a mentor.  Mentors can not diagnose users they are there to allow the user a save place to vent and offer moral support.  General advice is allowed but it is just that advice or suggestions.  Mentors are there as a shoulder to listen
+
+Also on the chat side will be groups.  Places where like users can post topic specific questions and be connected to others with similar interests.  These are not live interactions but more forum based
+
+Health side gives the user a place to keep track of different things (they can opt into some extras) as well as keep a journal of sorts.  They can grant access to their provider if they have an account (they can also give their provider the link)  They can alternatively print out their desired logs as a pdf to give to their provider
+
+Mentors have the ability to talk to general users, they must be approved after some training on how to listen.  They will have the ability to alert the user's provider (if one was granted by the user) if they see certain concerning items.  If  not provider is present for the user the alert goes to a SuperAdmin The alert system is for safety of the user
+
 # Parts of the App
 
 ## UserApp
 - Contains all basic user functionality
-- Is part of Django Admin
+- Is viewable in Django Admin
 - Also contains public facing pages
-
-### Levels
-- Admin
-    - Enable users access to other levels
-- General User
-    - Access to general user side of chat
-    - Access to log side of app
-- Mentor User
-    - Access to mentor side of chat
-    - Access to log side of app
-    - Ability to see if general user has granted provider access (not who provider is just a check box)
-- Training User
-    - Access to Mentor training
-- Duel User
-    - Has access to both general user and mentor user side of chat
-        - Must have logic for on login they chose the side they wish and can only see those sides.
-- Provider User
-    - Access to specific user's logs (user grants access to logs they wish to share)
-    - Simplified Messaging system between their granted users
-
-### Attributes
-- First Name
-- Last Name
-- Username
-- Password
-- Level
-- Last Logged On Date
-- Profile
-    - Image
-    - Available Logs - Sugar / Sleep / Food
 
 ## ChatApp
 - Contains the chat portion of the app
-    - 2 sides General User and Mentor User
-    - Can only see 1 side at a time if a duel user
-    - Mentors can flag general users to admin / provider if one is assigned
-        - Have some sort of integration to crisis centers?
-    - Chats are not saved outside of session unless general user chooses to or chat is flagged. 
-- Partially part of Django Admin
+- Possibly viewable in Django Admin
+- Initial chat will not be live chat but message based for quicker release
 
 ## LogApp
 - Contains the log or journal side of the app
-    - Sleep Tracker
-    - Sugar Tracker
-    - Mental check in 1-4 scale
-    - Notes
-- Allow provider access
-    - Chose from list
-    - Deselect from list
-    - Generate printout
-    - message between provider and user
-    - chose which logs to share
-- Provider access
-    - Can only see those users that have selected them
-    - requires access code to gain provider access
-        - Access code granted upon question verification
-            - Eventualy needs better verification
-    - If alerted regarding a user enables message communication between Mentor and Provider (username based only)
+- Provider access / ability
+- Not in Django Admin
 
 # Styling of app
 
@@ -87,6 +49,9 @@ Guiding programmers toward better mental well-being.
 
 ## V4
 - Alert system from chat to provider/admin
+
+## V5
+- Live chat
 
 
 # Backlog ideas

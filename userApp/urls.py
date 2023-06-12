@@ -5,10 +5,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index),
-    # path('logReg/', views.logReg),
+    path('about/', views.about),
+    path('contact/', views.contact),
+    path('logReg/', views.logReg),
     # path('login/', views.login),
     # path('reg/', views.reg),
-    # path('logout/', views.logout),
+    path('logout/', views.logout),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
