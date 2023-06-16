@@ -45,14 +45,7 @@ def logReg(request):
         }
         return render(request, 'logReg.html', context)
     else:
-        user = User.objects.filter(id = 'user_id')
-        if user.level > 1:
-            if 'role' not in request.session:
-                return redirect('/choseRole')
-            else:
-                return redirect('/dashboard')
-        else:
-            return redirect('/dashboard')
+        return redirect('/choseRole/')
 
 def login(request):
     user = User.objects.filter(username = request.POST['username'])
@@ -60,19 +53,22 @@ def login(request):
         userLogin = user[0]
         if bcrypt.checkpw(request.POST['password'].encode(), userLogin.password.encode()):
             request.session['user_id'] = userLogin.id
-            if userLogin.level > 1:
-                return redirect('/choseRole')
-            else:
-                return redirect('/dashboard')
+            if userLogin.id == 1:
+                messages.error(request, f'Welcome back Admin {userLogin.firstName}')
+            return redirect('/choseRole/')
+        messages.error(request, 'Invalid Credentials')
+        return redirect('/logReg/')
+    messages.error(request, 'That Username is not in our system, please register for an account')
+    return redirect('/logReg/')
 
 def reg(request):
     if request.method == 'GET':
-        return redirect('/logReg')
+        return redirect('/logReg/')
     errors = User.objects.validate(request.POST)
     if errors:
         for err in errors.values():
             messages.error(request, err)
-        return redirect('/logReg')
+        return redirect('/logReg/')
     hashedPw = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
     newUser = User.objects.create(
         firstName = request.POST['firstName'],
@@ -83,29 +79,39 @@ def reg(request):
     )
     request.session['user_id'] = newUser.id
     if newUser.id == 1:
-        toUpdate = User.objects.get(id=request.session['user_d'])
-        toUpdate.level=24
+        toUpdate = User.objects.get(id=request.session['user_id'])
+        toUpdate.level=10
         toUpdate.save()
-        messages.error(request, 'Welcome Admin')
+        messages.error(request, f'Welcome {newUser.firstName}')
         return redirect('/')
     else:
         messages.error(request, 'Welcome')
+        return redirect('/choseRole/')
 
 def logout(request):
     request.session.clear()
     messages.error(request, 'You have been logged out')
     return redirect('/')
 
-def dashboard(request):
-    if 'user_id' not in request.session:
-        return redirect('/logReg')
-    else:
-        user = User.objects.filter(id = 'user_id')
-        pass
+# def dashboard(request):
+#     if 'user_id' not in request.session:
+#         return redirect('/logReg/')
+#     else:
+#         user = User.objects.filter(id=request.session['user_id'])
+#         pass
 
 def choseRole(request):
     if 'user_id' not in request.session:
-        return redirect('/logReg')
+        return redirect('/logReg/')
     else:
-        user = User.objects.filter(id = 'user_id')
-        pass
+        user = User.objects.filter(id=request.session['user_id'])
+        print('I am user', user)
+        title = {
+            'title': 'Chose Site',
+            'header': 'Chose the side of the site you wish to visit today',
+        }
+        context = {
+            'user': user,
+            'title': title,
+        }
+        return render(request, 'choseRole.html', context)

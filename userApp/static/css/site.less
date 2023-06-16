@@ -5,12 +5,43 @@ body {
     .flexcolumn();
     background-color: @bg;
     color: @font;
+    font-family: 'Raleway', sans-serif;
+    margin: 2em auto ;
 
     header {
         .flexcolumn();
+        margin: 1em;
+    }
+    div {
+        .messages {
+            .flexcolumn();
+            background-color: @red;
+            color: #fff;
+            padding: 1em;
+            margin: .5em;
+        }
     }
     main {
         .flexcolumn();
+        
+        .row {
+            .flexrow();
+
+            #reg {
+                display: none;
+            }
+            form {
+                .flexcolumn();
+                font-size: 1.4em;
+
+                section {
+                    .flexcolumn();
+                }
+                button {
+                    font-size: .8em;
+                }
+            }
+        }
     }
     footer {
         .flexcolumn();

@@ -6,7 +6,48 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
+        <div class="popup">
+            {% if user.level > 9 %}
+                <button><a href="/logs/">Load Logs</a></button>
+                <button><a href="/chat/">Load Member Chat</a></button>
+                <button><a href="/chat/">Load Training</a></button>
+                <button><a href="/chat/">Load Mentor Chat</a></button>
+                <button><a href="/chat/">Load Chat Admin</a></button>
+                <button><a href="/theAdmin/">Load Site Admin</a></button>
+                <button><a href="/admin/">Django Site Admin</a></button>
+            {% elif user.level > 7 %}
+                <button><a href="/logs/">Load Logs</a></button>
+                <button><a href="/chat/">Load Member Chat</a></button>
+                <button><a href="/chat/">Load Training</a></button>
+                <button><a href="/chat/">Load Mentor Chat</a></button>
+                <button><a href="/chat/">Load Chat Admin</a></button>
+                <button><a href="/theAdmin/">Load Site Admin</a></button>
+            {% elif user.level > 5%}
+                <button><a href="/logs/">Load Logs</a></button>
+                <button><a href="/chat/">Load Member Chat</a></button>
+                <button><a href="/chat/">Load Training</a></button>
+                <button><a href="/chat/">Load Mentor Chat</a></button>
+                <button><a href="/chat/">Load Chat Admin</a></button>
+            {% elif user.level > 3 %}
 
+                {% if user.role == 'Mentor' %}
+                    <button><a href="/logs/">Load Logs</a></button>
+                    <button><a href="/chat/">Load Member Chat</a></button>
+                    <button><a href="/chat/">Load Training</a></button>
+                    <button><a href="/chat/">Load Mentor Chat</a></button>
+                {% else %}
+                    <button><a href="/logs/">Load Logs</a></button>
+                    <button><a href="/logs/">Load Provider</a></button>
+                {% endif %}
+            {% elif user.level > 1 %}
+                <button><a href="/logs/">Load Logs</a></button>
+                <button><a href="/chat/">Load Member Chat</a></button>
+                <button><a href="/chat/">Load Trainer Chat</a></button>
+            {% else %}
+                <button><a href="/logs/">Load Logs</a></button>
+                <button><a href="/chat/">Load Chat</a></button>
+            {% endif %}
+        </div>
         
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
