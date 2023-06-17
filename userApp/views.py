@@ -105,10 +105,11 @@ def choseRole(request):
         return redirect('/logReg/')
     else:
         user = User.objects.filter(id=request.session['user_id'])
+        user = user[0]
         print('I am user', user)
         title = {
             'title': 'Chose Site',
-            'header': 'Chose the side of the site you wish to visit today',
+            'header': '',
         }
         context = {
             'user': user,
