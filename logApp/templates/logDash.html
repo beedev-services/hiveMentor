@@ -6,8 +6,12 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
-        <h1>About</h1>
-        
+        <h1>Welcome {{user.fullName}}</h1>
+        {{site}}
+        <div class="column deskColumm">
+            <button><a href="/logs/newWeek/">Create Week</a></button>
+        </div>
+        <div class="column mobColumn"></div>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
 </body>

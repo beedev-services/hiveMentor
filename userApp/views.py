@@ -9,19 +9,46 @@ def index(request):
         'title': 'Index',
         'header': 'Hive Mentor',
     }
-    context = {
-        'title': title,
-    }
-    return render(request, 'temp.html', context)
+    request.session['site'] = 'null'
+    site = request.session['site']
+    if 'user_id' not in request.session:
+        user = False
+        context = {
+            'title': title,
+            'user': user,
+            'site': site,
+        }
+    else:
+        user = User.objects.filter(id=request.session['user_id'])
+        user = user[0]
+        context = {
+                'user': user,
+                'title': title,
+                'site': site
+            }
+    return render(request, 'index.html', context)
 
 def about(request):
     title = {
         'title': 'About',
         'header': 'About Hive Mentor'
     }
-    context = {
-        'title':title,
-    }
+    site = request.session['site']
+    if 'user_id' not in request.session:
+        user = False
+        context = {
+            'title': title,
+            'user': user,
+            'site': site
+        }
+    else:
+        user = User.objects.filter(id=request.session['user_id'])
+        user = user[0]
+        context = {
+                'user': user,
+                'title': title,
+                'site': site
+            }
     return render(request, 'about.html', context)
 
 def contact(request):
@@ -29,9 +56,22 @@ def contact(request):
         'title': 'Contact',
         'header': 'Contact - Hive Mentor'
     }
-    context = {
-        'title':title
-    }
+    site = request.session['site']
+    if 'user_id' not in request.session:
+        user = False
+        context = {
+            'title': title,
+            'user': user,
+            'site': site
+        }
+    else:
+        user = User.objects.filter(id=request.session['user_id'])
+        user = user[0]
+        context = {
+                'user': user,
+                'title': title,
+                'site': site
+            }
     return render(request, 'contact.html', context)
 
 def logReg(request):
@@ -39,9 +79,13 @@ def logReg(request):
         'title': 'Login & Registration',
         'header': 'Sign in To Hive Mentor or Create an account'
     }
+    site = request.session['site']
     if 'user_id' not in request.session:
+        user = False
         context = {
-            'title':title
+            'title':title,
+            'user': user,
+            'site': site
         }
         return render(request, 'logReg.html', context)
     else:
@@ -107,6 +151,7 @@ def choseRole(request):
         user = User.objects.filter(id=request.session['user_id'])
         user = user[0]
         print('I am user', user)
+        site = request.session['site']
         title = {
             'title': 'Chose Site',
             'header': '',
@@ -114,5 +159,6 @@ def choseRole(request):
         context = {
             'user': user,
             'title': title,
+            'site': site
         }
         return render(request, 'choseRole.html', context)

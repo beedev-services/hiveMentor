@@ -57,10 +57,22 @@ class Mood(models.Model):
     feeler = models.ForeignKey(User, related_name='theFeeler', on_delete=CASCADE)
 
 class Sleep:
-    pass
+    date = models.DateField()
+    sleep = models.TimeField()
+    wake = models.TimeField()
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    sleeper = models.ForeignKey(User, related_name='theSleeper', on_delete=CASCADE)
+    night = models.ForeignKey(Day, related_name='theNight', on_delete=CASCADE)
 
-class Food:
-    pass
+class Food(models.Model):
+    food = models.CharField(max_length=255)
+    calories = models.CharField(max_length=255, default=0)
+    date = models.DateTimeField()
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    record = models.ForeignKey(Day, related_name='theRecord', on_delete=CASCADE)
+    person = models.ForeignKey(User, related_name='thePerson', on_delete=CASCADE)
 
 class Medication(models.Model):
     when = models.DateTimeField()
