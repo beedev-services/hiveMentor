@@ -7,9 +7,34 @@
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
         <h1>Welcome {{user.fullName}}</h1>
-        {{site}}
+        <span>{{site}}</span>
         <div class="column deskColumm">
             <button><a href="/logs/newWeek/">Create Week</a></button>
+            <h2>Your Weeks</h2>
+            <div class="row">
+                {% for week in weeks %}
+                    <div class="column">
+                        <h3>{{week.title}}</h3>
+                        <p>Created: {{week.createdAt}}</p>
+                        <div class="row">
+                            <button><a href="/logs/week/{{week.id}}/">View Week</a></button>
+                            <button><a href="/logs/week/edit/{{week.id}}/">Edit Week</a></button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <!-- Pagination links -->
+                {% if weeks.has_previous %}
+                    <!-- <button><a href="?page=1">First</a></button> -->
+                    <button><a href="?page={{ weeks.previous_page_number }}">Previous</a></button>
+                {% endif %}
+                <span>{{ weeks.number }}</span>
+                {% if weeks.has_next %}
+                    <button><a href="?page={{ weeks.next_page_number }}">Next</a></button>
+                    <!-- <button><a href="?page={{ weeks.paginator.num_pages }}">Last</a></button> -->
+                {% endif %}
+            </div>
         </div>
         <div class="column mobColumn"></div>
     </main>

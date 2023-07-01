@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'block/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'block/header.html' %} {% endblock header %}
+    {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
+    <main>
+        <span>{{site}}</span>
+        <button><a href="/logs/week/{{week.id}}/addDay/">Add Day</a></button>
+        <div class="row">
+            {% for day in day %}
+                <div class="column">
+                    <h3>{{day.day}} - {{day.date}}</h3>
+                    <div class="row">
+                        <!-- buttons to view / edit day -->
+                        <button><a href="/logs/week/{{week.id}}/view/{{day.id}}/">View Day</a></button>
+                        <button><a href="/logs.week/{{week.id}}/ edit/{{day.id}}/">Edit Day Journal</a></button>
+                    </div>
+                    <div class="row">
+                        <!-- buttons to add entries to each day -->
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
+</body>
+</html>

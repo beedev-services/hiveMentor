@@ -130,6 +130,31 @@ body main .row form section {
 body main .row form button {
   font-size: 0.8em;
 }
+body main .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body main .column .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body main .column .row .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 4px groove #C0DFEB;
+}
+body main .column .row .column .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 body footer {
   display: flex;
   flex-direction: column;

@@ -43,6 +43,22 @@ body {
                 }
             }
         }
+        .column {
+            .flexcolumn();
+
+            .row {
+                .flexrow();
+
+                .column {
+                    .flexcolumn();
+                    border: 4px groove @blue;
+
+                    .row {
+                        .flexrow();
+                    }
+                }
+            }
+        }
     }
     footer {
         .flexcolumn();
