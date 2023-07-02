@@ -72,6 +72,9 @@
 .cnt223 .x:hover {
   cursor: pointer;
 }
+body main .column #hideCreateWeek {
+  display: none;
+}
 body {
   display: flex;
   flex-direction: column;

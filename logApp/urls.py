@@ -4,10 +4,23 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    # Main Landing for Logs
     path('', views.logDash),
-    path('newWeek/', views.newWeek),
+    # create week
     path('createWeek/', views.createWeek),
-    path('week/<int:week_id>/', views.viewWeek)
+    # view week
+    path('week/<int:week_id>/', views.viewWeek),
+    # edit week form
+    path('week/<int:week_id>/edit/', views.editWeek),
+    # edit week
+    path('week/<int:week_id>/update/', views.updateWeek),
+    # delete week function
+    path('week/<int:week_id>/delete/', views.deleteWeek),
+    # create day
+    path('week/<int:week_id>/createDay/', views.createDay),
+    # view day
+    path('week/<int:week_id>/day/<int:day_id>/', views.viewDay),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

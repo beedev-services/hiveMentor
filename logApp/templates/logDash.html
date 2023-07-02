@@ -9,7 +9,24 @@
         <h1>Welcome {{user.fullName}}</h1>
         <span>{{site}}</span>
         <div class="column deskColumm">
-            <button><a href="/logs/newWeek/">Create Week</a></button>
+            <button id="showCreateWeek">Create New Week</button>
+            <div id="hideCreateWeek">
+                <form action="/logs/createWeek/" method='post' class="create">
+                    {% csrf_token %}
+                    <section>
+                        <label for="title">Title</label>
+                        <input type="text" name="title">
+                    </section>
+                    <section>
+                        <input type="hidden" name="writer" value="{{user.id}}">
+                    </section>
+                    <button>Create Week</button>
+                </form>
+                <div class="calendar">
+                    <iframe src="//widget.calendarlabs.com/v1/calendar.php?cid=1001&ver=1.2&uid=4034957853&c=8&l=en&cbg=F9E3FA66&cfg=000000&hfg=000000&hfg1=000000&ct=1&cb=1&cbc=F9E3FA&cf=verdana&cp=bottom&sw=0&hp=t&ib=0&ibc=&i=" width="170" height="155" marginwidth=0 marginheight=0 frameborder=no scrolling=no allowtransparency='true'>Loading...</iframe>
+                    <h4>Calendar Widget by <a href="https://www.calendarlabs.com/" target="_blank" rel="nofollow">CalendarLabs</a></h4>
+                </div>
+            </div>
             <h2>Your Weeks</h2>
             <div class="row">
                 {% for week in weeks %}
@@ -18,7 +35,14 @@
                         <p>Created: {{week.createdAt}}</p>
                         <div class="row">
                             <button><a href="/logs/week/{{week.id}}/">View Week</a></button>
-                            <button><a href="/logs/week/edit/{{week.id}}/">Edit Week</a></button>
+                            <button><a href="/logs/week/{{week.id}}/edit/">Edit Week</a></button>
+                        </div>
+                        <div>
+                            {% for day in days %}
+                                {% if day.week_id == week.id %}
+                                    <p>{{day.day}} - {{day.date}} | <button><a href="/logs/week/{{week.id}}/day/view/{{day.id}}/">View</a></button><button><a href="/logs/week/{{week.id}}/day/edit/{{day.id}}/">Edit</a></button></p>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 {% endfor %}

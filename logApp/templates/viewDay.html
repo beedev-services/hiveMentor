@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'block/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'block/header.html' %} {% endblock header %}
+    {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
+    <main>
+        <h1>{{day.day}}</h1>
+        <form action="/logs/week/" method="post">
+            {% csrf_token %}
+            <section>
+                <label for="title">Title</label>
+                <input type="text" name="title" id="">
+            </section>
+            <section>
+                <label for="content">Journal Entry</label>
+                <textarea name="content" id="" cols="30" rows="10"></textarea>
+            </section>
+            <button>Add Journal Entry</button>
+        </form>
+    </main>
+    {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
+</body>
+</html>

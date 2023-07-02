@@ -11,6 +11,7 @@ from django.core.paginator import Paginator
 # context = {
 #     'title': title,
 # }
+
 def logDash(request):
     title = {
         'title': 'Log Dashboard',
@@ -39,28 +40,7 @@ def logDash(request):
     return render(request, 'logDash.html', context)
 
 
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-
-def newWeek(request):
-    title = {
-        'title':'Create Week',
-        'header': 'Hive Mentor - Create Week'
-    }
-    if 'user_id' not in request.session:
-        messages.error(request, 'Please log in to view page')
-        return redirect('/logReg/')
-    user = User.objects.filter(id=request.session['user_id'])
-    site = request.session['site']
-    context = {
-        'title': title,
-        'user': user[0],
-        'site': site
-    }
-    return render(request, 'createWeek.html', context)
-
+# ***** Week functions *****
 def createWeek(request):
     newWeek = Week.objects.create(
         title=request.POST['title'],
@@ -92,3 +72,151 @@ def viewWeek(request, week_id):
             'days': days,
         }
         return render(request, 'viewWeek.html', context)
+    
+def editWeek(request, week_id):
+    pass
+
+def updateWeek(request, week_id):
+    pass
+
+def deleteWeek(request, week_id):
+    pass
+
+# ***** Day Functions *****
+# def newDay(request, week_id):
+#     title = {
+#         'title':'Create Day',
+#         'header': 'Hive Mentor - Create Day'
+#     }
+#     if 'user_id' not in request.session:
+#         messages.error(request, 'Please log in to view page')
+#         return redirect('/logReg/')
+#     user = User.objects.filter(id=request.session['user_id'])
+#     week = Week.objects.filter(id=week_id)
+#     site = request.session['site']
+#     context = {
+#         'title': title,
+#         'week': week,
+#         'user': user,
+#         'site': site,
+#     }
+#     return render(request, 'createDay.html', context)
+
+def createDay(request, week_id):
+    newDay = Day.objects.create(
+        day = request.POST['day'],
+        week_id = week_id,
+        author = User.objects.get(id=request.session['user_id'])
+    )
+    newDay = newDay.id
+    messages.error(request, 'Day Created')
+    return redirect(f'/logs/week/{week_id}/day/{newDay}/')
+
+def viewDay(request, week_id, day_id):
+    week = Week.objects.get(id=week_id)
+    day = Day.objects.get(id=day_id)
+    weekTitle = week.title
+    dayTitle = day.day
+    title = {
+        'title': f'{dayTitle} of {weekTitle}',
+        'header': f'Hive Mentor - {dayTitle} of {weekTitle}'
+    }
+    if 'user_id' not in request.session:
+        messages.error(request, 'Please log in to view page')
+        return redirect('/logReg/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        site = request.session['site']
+        context = {
+            'title': title,
+            'week': week,
+            'user': user,
+            'site': site,
+            'day': day,
+        }
+        return render(request, 'viewDay.html', context)
+
+def deleteDay(request, day_id):
+    pass
+
+# def newJournal(request):
+#     pass
+
+def createJournal(request, week_id, day_id):
+    Journal.objects.create(
+        title = request.POST['title'],
+        content = request.POST['content'],
+        day_id = day_id,
+        writer = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Journal Entry Created')
+    return redirect(f'/logs/week/{week_id}/day/view/{day_id}/')
+
+def viewJournal(request, journal_id):
+    pass
+
+def editJournal(request, journal_id):
+    pass
+
+def updateJournal(request, journal_id):
+    pass
+
+def deleteJournal(request, journal_id):
+    pass
+
+def addSymptom(request):
+    pass
+
+def createSymptom(request):
+    pass
+
+def addMedication(request):
+    pass
+
+def createNewMed(request):
+    pass
+
+def newMood(request):
+    pass
+
+def createMood(request):
+    pass
+
+def deleteMood(request, mood_id):
+    pass
+
+def newSleep(request):
+    pass
+
+def createSleep(request):
+    pass
+
+def deleteSleep(request, sleep_id):
+    pass
+
+def newFood(request):
+    pass
+
+def createFood(request):
+    pass
+
+def deleteFood(request, food_id):
+    pass
+
+def newMed(request):
+    pass
+
+def createMed(request):
+    pass
+
+def deleteMed(request, medication_id):
+    pass
+
+def newSugar(request):
+    pass
+
+def createSugar(request):
+    pass
+
+def deleteSugar(request, sugar_id):
+    pass

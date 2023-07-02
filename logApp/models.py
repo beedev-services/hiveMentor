@@ -86,6 +86,7 @@ class Medication(models.Model):
 class Sugar(models.Model):
     time = models.DateTimeField()
     level = models.IntegerField()
+    testSite = models.CharField(max_length=255, default='Finger Stick')
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     entry = models.ForeignKey(Day, related_name='theEntry',on_delete=CASCADE, blank=True)

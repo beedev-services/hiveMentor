@@ -19,8 +19,8 @@ def index(request):
             'site': site,
         }
     else:
-        user = User.objects.filter(id=request.session['user_id'])
-        user = user[0]
+        user = User.objects.get(id=request.session['user_id'])
+        user = user
         context = {
                 'user': user,
                 'title': title,
@@ -42,8 +42,8 @@ def about(request):
             'site': site
         }
     else:
-        user = User.objects.filter(id=request.session['user_id'])
-        user = user[0]
+        user = User.objects.get(id=request.session['user_id'])
+        user = user
         context = {
                 'user': user,
                 'title': title,
@@ -65,8 +65,8 @@ def contact(request):
             'site': site
         }
     else:
-        user = User.objects.filter(id=request.session['user_id'])
-        user = user[0]
+        user = User.objects.get(id=request.session['user_id'])
+        user = user
         context = {
                 'user': user,
                 'title': title,
@@ -148,8 +148,8 @@ def choseRole(request):
     if 'user_id' not in request.session:
         return redirect('/logReg/')
     else:
-        user = User.objects.filter(id=request.session['user_id'])
-        user = user[0]
+        user = User.objects.get(id=request.session['user_id'])
+        user = user
         print('I am user', user)
         site = request.session['site']
         title = {

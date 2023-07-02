@@ -7,15 +7,31 @@
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
         <span>{{site}}</span>
-        <button><a href="/logs/week/{{week.id}}/addDay/">Add Day</a></button>
+        <!-- <button><a href="/logs/week/{{week.id}}/addDay/">Add Day</a></button> -->
+        <form action="/logs/week/{{week.id}}/createDay/" method='post' class="create">
+            {% csrf_token %}
+            <section>
+                <label for="day">Day</label>
+                <select name="day">
+                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                </select>
+            </section>
+            <button>Create Day</button>
+        </form>
         <div class="row">
             {% for day in day %}
                 <div class="column">
                     <h3>{{day.day}} - {{day.date}}</h3>
                     <div class="row">
                         <!-- buttons to view / edit day -->
-                        <button><a href="/logs/week/{{week.id}}/view/{{day.id}}/">View Day</a></button>
-                        <button><a href="/logs.week/{{week.id}}/ edit/{{day.id}}/">Edit Day Journal</a></button>
+                        <button><a href="/logs/week/{{week.id}}/{{day.id}}/">View Day</a></button>
+                        <button><a href="/logs.week/{{week.id}}/{{day.id}}/edit/">Edit Day Journal</a></button>
                     </div>
                     <div class="row">
                         <!-- buttons to add entries to each day -->
