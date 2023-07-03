@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Volkhov';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/volkhov/v17/SlGQmQieoJcKemNeQTI.ttf) format('truetype');
+}
 .flexrow {
   display: flex;
   flex-direction: row;
@@ -72,7 +86,8 @@
 .cnt223 .x:hover {
   cursor: pointer;
 }
-body main .column #hideCreateWeek {
+body main .column #hideCreateWeek,
+body main .column #hideCreateDay {
   display: none;
 }
 body {
@@ -80,24 +95,58 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #9c9ceb;
-  color: black;
+  background-color: #F5F3F5;
+  color: #080C0D;
   font-family: 'Raleway', sans-serif;
   margin: 2em auto ;
+  background-image: url(../images/ltBG.jpg);
+  background-repeat: repeat no-repeat;
+  background-attachment: fixed;
+  width: 95%;
 }
 body header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #e0d0d17a;
+  border: 1px solid #3349B9;
   margin: 1em;
+  width: 90%;
+  box-shadow: 5px 5px #3349B9;
+}
+body header .mode {
+  font-size: 1.2em;
+}
+body header .mode .change {
+  cursor: pointer;
+  border: 1px solid #CF508D;
+  border-radius: 40%;
+  width: 30px;
+  text-align: center;
+  padding: 5px;
+  margin-left: 8px;
+  box-shadow: 3px 3px #CF508D;
+}
+body header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  flex-wrap: wrap;
+  width: 85%;
+  justify-content: space-evenly;
+}
+body header nav #myLinks {
+  display: none;
 }
 body div .messages {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #D13334;
+  background-color: #991A3C;
   color: #fff;
   padding: 1em;
   margin: 0.5em;
@@ -107,6 +156,9 @@ body main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #e0d0d149;
+  width: 90%;
+  border: 1px solid #3349B9;
 }
 body main .row {
   display: flex;
@@ -139,6 +191,22 @@ body main .column {
   justify-content: center;
   align-items: center;
 }
+body main .column .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 4px groove #54F1C4;
+}
+body main .column .column .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body main .column .alt {
+  border: none;
+}
 body main .column .row {
   display: flex;
   flex-direction: row;
@@ -150,7 +218,7 @@ body main .column .row .column {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 4px groove #C0DFEB;
+  border: 4px groove #54F1C4;
 }
 body main .column .row .column .row {
   display: flex;
@@ -163,4 +231,50 @@ body footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+body.dark {
+  background-color: #080C0D;
+  background-image: url(../images/dkBG.jpg);
+  color: #E0D0D1;
+}
+body.dark header {
+  background-color: #5468677a;
+  box-shadow: 5px 5px #2294B5;
+  border: 1px solid #2294B5;
+}
+body.dark header .mode .change {
+  border: 1px solid #991A3C;
+  box-shadow: 3px 3px #991A3C;
+}
+body.dark main {
+  background-color: #54686749;
+}
+@media only screen and (min-width: 650px) {
+  body header nav .icon {
+    display: none;
+  }
+  body header nav #myLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    justify-content: space-evenly;
+  }
+  body header nav #myLinks a {
+    text-decoration: none;
+    padding: 1em;
+    border-radius: 30%;
+    box-shadow: 5px 5px #3349B9;
+    border: 1px solid #3349B9;
+    color: #080C0D;
+    font-weight: 900;
+  }
+}
+@media only screen and (min-width: 650px) {
+  body.dark header nav #myLinks a {
+    border: 1px solid #3349B9;
+    color: #E0D0D1;
+    box-shadow: 5px 5px #2294B5;
+  }
 }

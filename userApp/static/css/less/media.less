@@ -1,0 +1,46 @@
+@import './base.less';
+
+@media @650 {
+    body {
+        header {
+            nav {
+                .icon {
+                    display: none;
+                }
+                #myLinks {
+                    .flexrow();
+                    width: 95%;
+                    justify-content: space-evenly;
+                    
+                    a {
+                        text-decoration: none;
+                        padding: 1em;
+                        border-radius: 30%;
+                        box-shadow: 5px 5px @lt02;
+                        border: 1px solid @lt02;
+                        color: @ltfont;
+                        // background-color: @ltbuttonbg;
+                        font-weight: 900;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media @650 {
+    body.dark {
+        header {
+            nav {
+                #myLinks {
+                    a {
+                        border: 1px solid @lt02;
+                        color: @dkfont;
+                        box-shadow: 5px 5px @dk02;
+                        // background-color: @dkbuttonbg;
+                    }
+                }
+            }
+        }
+    }
+}

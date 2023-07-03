@@ -53,7 +53,7 @@
                     <!-- <button><a href="?page=1">First</a></button> -->
                     <button><a href="?page={{ weeks.previous_page_number }}">Previous</a></button>
                 {% endif %}
-                <span>{{ weeks.number }}</span>
+                <span>Page {{ weeks.number }}</span>
                 {% if weeks.has_next %}
                     <button><a href="?page={{ weeks.next_page_number }}">Next</a></button>
                     <!-- <button><a href="?page={{ weeks.paginator.num_pages }}">Last</a></button> -->

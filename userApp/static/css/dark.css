@@ -24,3 +24,20 @@
   justify-content: center;
   align-items: center;
 }
+body.dark {
+  background-color: #080C0D;
+  background-image: url(../images/dkBG.jpg);
+  color: #E0D0D1;
+}
+body.dark header {
+  background-color: #5468677a;
+  box-shadow: 5px 5px #2294B5;
+  border: 1px solid #2294B5;
+}
+body.dark header .mode .change {
+  border: 1px solid #991A3C;
+  box-shadow: 3px 3px #991A3C;
+}
+body.dark main {
+  background-color: #54686749;
+}

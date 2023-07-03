@@ -12,7 +12,7 @@
                 {% if user.level > 1 %}
                     <p>You are logged in with a role of {{user.role}}</p>
                 {% endif %}
-                <p>Please chose what side of the site you would like to start with today.  You can still visit other parts later</p>
+                <p>Please chose what application/side you would like to start with today.  You can always change applications later</p>
                 {% if user.level > 9 %}
                     <button><a href="/logs/">Load Logs</a></button>
                     <button><a href="/chat/">Load Member Chat</a></button>

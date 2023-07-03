@@ -3,6 +3,10 @@
     {% block head %}
     <header>
         <h1>{{title.header}}</h1>
+        <div class="mode">
+            Dark mode:            
+            <span class="change">OFF</span>
+        </div>
         {% block nav %} {% include 'block/nav.html' %} {% endblock nav %}
     </header>
     {% endblock head%}

@@ -53,6 +53,10 @@ def createWeek(request):
 def viewWeek(request, week_id):
     week = Week.objects.get(id=week_id)
     days = Day.objects.filter(week_id=week_id)
+    print(days)
+    if not days:
+        days = False
+    print('final days', days)
     weekTitle = week.title
     title = {
         'title':weekTitle,

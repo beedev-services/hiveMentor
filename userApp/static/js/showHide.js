@@ -4,4 +4,9 @@ $(document).ready(function() {
             width: 'toggle'
         })
     })
+    $('#showCreateDay').click(function() {
+        $('#hideCreateDay').animate( {
+            width: 'toggle'
+        })
+    })
 })
