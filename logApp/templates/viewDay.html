@@ -7,18 +7,42 @@
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
         <h1>{{day.day}}</h1>
-        <form action="/logs/week/" method="post">
-            {% csrf_token %}
-            <section>
-                <label for="title">Title</label>
-                <input type="text" name="title" id="">
-            </section>
-            <section>
-                <label for="content">Journal Entry</label>
-                <textarea name="content" id="" cols="30" rows="10"></textarea>
-            </section>
-            <button>Add Journal Entry</button>
-        </form>
+        {% if journal == False %}
+            <button id="showCreateJournal">Add Journal Entry</button>
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="hideCreaeJournal">
+                {% csrf_token %}
+                <section>
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="">
+                </section>
+                <section>
+                    <label for="content">Journal Entry</label>
+                    <textarea name="content" id="" cols="30" rows="10"></textarea>
+                </section>
+                <button>Add Journal Entry</button>
+            </form>
+        {% else %}
+            {% for j in journal %}
+                <button id="showUpdateJournal">Update Journal Entry</button>
+                <form action="/logs/week/{{week.id}}/day/{{day.id}}/updateJournal/" method="post" id="hideUpdateJournal">
+                    {% csrf_token %}
+                    <section>
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="" value="{{j.title}}">
+                    </section>
+                    <section>
+                        <label for="content">Journal Entry</label>
+                        <textarea name="content" id="" cols="30" rows="10">{{j.content}}</textarea>
+                    </section>
+                    <button>Update Journal Entry</button>
+                </form>
+                <div class="journal">
+                    <h3>{{j.title}}</h3>
+                    <p>{{j.content}}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
 </body>

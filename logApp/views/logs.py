@@ -121,6 +121,7 @@ def viewDay(request, week_id, day_id):
     day = Day.objects.get(id=day_id)
     weekTitle = week.title
     dayTitle = day.day
+    print(request.session['user_id'])
     title = {
         'title': f'{dayTitle} of {weekTitle}',
         'header': f'Hive Mentor - {dayTitle} of {weekTitle}'
@@ -130,6 +131,10 @@ def viewDay(request, week_id, day_id):
         return redirect('/logReg/')
     else:
         user = User.objects.get(id=request.session['user_id'])
+        journal = Journal.objects.filter(journal_id=day_id)
+        print(journal)
+        if not journal:
+            journal = False
         site = request.session['site']
         context = {
             'title': title,
@@ -137,6 +142,7 @@ def viewDay(request, week_id, day_id):
             'user': user,
             'site': site,
             'day': day,
+            'journal': journal,
         }
         return render(request, 'viewDay.html', context)
 
@@ -150,11 +156,11 @@ def createJournal(request, week_id, day_id):
     Journal.objects.create(
         title = request.POST['title'],
         content = request.POST['content'],
-        day_id = day_id,
+        journal_id = day_id,
         writer = User.objects.get(id=request.session['user_id'])
     )
     messages.error(request, 'Journal Entry Created')
-    return redirect(f'/logs/week/{week_id}/day/view/{day_id}/')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def viewJournal(request, journal_id):
     pass

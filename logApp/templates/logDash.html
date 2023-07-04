@@ -40,7 +40,7 @@
                         <div>
                             {% for day in days %}
                                 {% if day.week_id == week.id %}
-                                    <p>{{day.day}} - {{day.date}} | <button><a href="/logs/week/{{week.id}}/day/view/{{day.id}}/">View</a></button><button><a href="/logs/week/{{week.id}}/day/edit/{{day.id}}/">Edit</a></button></p>
+                                    <p>{{day.day}} - {{day.date}} | <button><a href="/logs/week/{{week.id}}/day/{{day.id}}/">View</a></button></p>
                                 {% endif %}
                             {% endfor %}
                         </div>
