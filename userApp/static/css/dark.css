@@ -24,6 +24,11 @@
   justify-content: center;
   align-items: center;
 }
+h1,
+h2,
+h3 {
+  font-weight: 900;
+}
 body.dark {
   background-color: #080C0D;
   background-image: url(../images/dkBG.jpg);
@@ -39,5 +44,8 @@ body.dark header .mode .change {
   box-shadow: 3px 3px #991A3C;
 }
 body.dark main {
-  background-color: #54686749;
+  background-color: #54686781;
+}
+body.dark main .column .row {
+  background-color: #54686781;
 }

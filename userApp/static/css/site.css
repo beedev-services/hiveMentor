@@ -24,6 +24,11 @@
   justify-content: center;
   align-items: center;
 }
+h1,
+h2,
+h3 {
+  font-weight: 900;
+}
 #overlay {
   position: fixed;
   top: 0;
@@ -156,7 +161,7 @@ body main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #e0d0d149;
+  background-color: #e0d0d197;
   width: 90%;
   border: 1px solid #3349B9;
 }
@@ -212,6 +217,7 @@ body main .column .row {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background-color: #e0d0d197;
 }
 body main .column .row .column {
   display: flex;
@@ -247,7 +253,10 @@ body.dark header .mode .change {
   box-shadow: 3px 3px #991A3C;
 }
 body.dark main {
-  background-color: #54686749;
+  background-color: #54686781;
+}
+body.dark main .column .row {
+  background-color: #54686781;
 }
 @media only screen and (min-width: 650px) {
   body header nav .icon {

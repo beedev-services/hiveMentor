@@ -72,20 +72,9 @@ WSGI_APPLICATION = 'hiveMentor.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'craftsnh_hiveMentor',
-        'USER': 'root',
-        'PASSWORD': 'HoneyBee#4',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'mysql.connector.django',
+#         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'craftsnh_hiveMentor',
 #         'USER': 'root',
 #         'PASSWORD': 'HoneyBee#4',
@@ -93,6 +82,17 @@ DATABASES = {
 #         'PORT': '3306',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'craftsnh_hiveMentor',
+        'USER': 'root',
+        'PASSWORD': 'HoneyBee#4',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
 
 
 # Password validation
