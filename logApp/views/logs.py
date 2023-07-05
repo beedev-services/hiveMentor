@@ -20,22 +20,23 @@ def logDash(request):
     if 'user_id' not in request.session:
         messages.error(request, 'Please log in to view your logs')
         return redirect('/logReg/')
-    user = User.objects.filter(id=request.session['user_id'])
+    user = User.objects.get(id=request.session['user_id'])
     theWeeks = Week.objects.filter(user_id=request.session['user_id']).order_by('-createdAt')
     paginator = Paginator(theWeeks, 5)
     pageNum = request.GET.get('page')
     weeks = paginator.get_page(pageNum)
     days = Day.objects.filter(author_id=request.session['user_id'])
-    print(weeks)
-    print('the user', user[0])
     request.session['site'] = 'logs'
+    request.session['role'] = user.role
+    role = request.session['role']
     site = request.session['site']
     context = {
         'title': title,
-        'user': user[0],
+        'user': user,
         'site': site,
         'weeks': weeks,
         'days': days,
+        'role': role,
     }
     return render(request, 'logDash.html', context)
 
@@ -67,6 +68,8 @@ def viewWeek(request, week_id):
         return redirect('/logReg/')
     else:
         user = User.objects.get(id=request.session['user_id'])
+        request.session['role'] = user.role
+        role = request.session['role']
         site = request.session['site']
         context = {
             'title': title,
@@ -74,6 +77,7 @@ def viewWeek(request, week_id):
             'user': user,
             'site': site,
             'days': days,
+            'role': role,
         }
         return render(request, 'viewWeek.html', context)
     
@@ -87,25 +91,6 @@ def deleteWeek(request, week_id):
     pass
 
 # ***** Day Functions *****
-# def newDay(request, week_id):
-#     title = {
-#         'title':'Create Day',
-#         'header': 'Hive Mentor - Create Day'
-#     }
-#     if 'user_id' not in request.session:
-#         messages.error(request, 'Please log in to view page')
-#         return redirect('/logReg/')
-#     user = User.objects.filter(id=request.session['user_id'])
-#     week = Week.objects.filter(id=week_id)
-#     site = request.session['site']
-#     context = {
-#         'title': title,
-#         'week': week,
-#         'user': user,
-#         'site': site,
-#     }
-#     return render(request, 'createDay.html', context)
-
 def createDay(request, week_id):
     newDay = Day.objects.create(
         day = request.POST['day'],
@@ -121,7 +106,6 @@ def viewDay(request, week_id, day_id):
     day = Day.objects.get(id=day_id)
     weekTitle = week.title
     dayTitle = day.day
-    print(request.session['user_id'])
     title = {
         'title': f'{dayTitle} of {weekTitle}',
         'header': f'Hive Mentor - {dayTitle} of {weekTitle}'
@@ -132,6 +116,8 @@ def viewDay(request, week_id, day_id):
     else:
         user = User.objects.get(id=request.session['user_id'])
         journal = Journal.objects.filter(journal_id=day_id)
+        request.session['role'] = user.role
+        role = request.session['role']
         print(journal)
         if not journal:
             journal = False
@@ -143,15 +129,29 @@ def viewDay(request, week_id, day_id):
             'site': site,
             'day': day,
             'journal': journal,
+            'role': role,
         }
         return render(request, 'viewDay.html', context)
 
 def deleteDay(request, day_id):
     pass
 
-# def newJournal(request):
-#     pass
+# ***** List Functions *****
+def addSymptom(request):
+    pass
 
+def createSymptom(request):
+    pass
+
+def addMedication(request):
+    pass
+
+def createNewMed(request):
+    pass
+
+# ******* Optional Functions *******
+
+# ***** Journal Functions *****
 def createJournal(request, week_id, day_id):
     Journal.objects.create(
         title = request.POST['title'],
@@ -174,18 +174,7 @@ def updateJournal(request, journal_id):
 def deleteJournal(request, journal_id):
     pass
 
-def addSymptom(request):
-    pass
-
-def createSymptom(request):
-    pass
-
-def addMedication(request):
-    pass
-
-def createNewMed(request):
-    pass
-
+# ***** Mood Functions *****
 def newMood(request):
     pass
 
@@ -195,6 +184,7 @@ def createMood(request):
 def deleteMood(request, mood_id):
     pass
 
+# ***** Sleep Functions *****
 def newSleep(request):
     pass
 
@@ -204,6 +194,7 @@ def createSleep(request):
 def deleteSleep(request, sleep_id):
     pass
 
+# ***** Food Functions *****
 def newFood(request):
     pass
 
@@ -213,6 +204,8 @@ def createFood(request):
 def deleteFood(request, food_id):
     pass
 
+
+# ***** Med Functions *****
 def newMed(request):
     pass
 
@@ -222,6 +215,7 @@ def createMed(request):
 def deleteMed(request, medication_id):
     pass
 
+# ***** Diabetic Functions *****
 def newSugar(request):
     pass
 

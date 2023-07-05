@@ -10,28 +10,37 @@
         <nav id="myLinks">
             {% if site == 'logs' %}
                 <a href="/logs">Log Dashboard</a>
-                <a href="/choseRole/">Change site application</a>
+                <a href="/profile/">Profile</a>
             {% elif site == 'pLogs' %}
                 <a href="/logs">Provider Log Dashboard</a>
+                <a href="/profile/">Profile</a>
             {% elif site == 'chat' %}
                 <a href="/chat">Chat Dashboard</a>
+                <a href="/profile/">Profile</a>
             {% elif site == 'tChat' %}
                 <a href="/chat">Trainer Dashboard</a>
+                <a href="/profile/">Profile</a>
             {% elif site == 'mChat' %}
                 <a href="/chat">Mentor Dashboard</a>
+                <a href="/profile/">Profile</a>
             {% elif site == 'aChat' %}
                 <a href="/chat">Chat Admin Dashboard</a>
+                <a href="/profile/">Profile</a>
             {% elif site == 'admin' %}
                 <a href="/theAdmin">Admin Dashboard</a>
+                <a href="/profile/">Profile</a>
             {% elif site == 'sAdmin' %}
                 <a href="/theAdmin">Admin Dashboard</a>
+                <a href="/profile/">Profile</a>
+            {% elif site == 'profile' %}
+                <a href="/profile/">Profile</a>
             {% else %}
                 <a href="/">Home</a>
             {% endif %}
             <a href="/about/">About</a>
             <a href="/contact/">Contact</a>
             {% if user %}
-                <a href="/profile/">Profile</a>
+                <a href="/choseRole/">Change site application</a>
                 <a href="/logout/">Logout</a>
             {% else %}
                 <a href="/logReg/">Login / Register</a>

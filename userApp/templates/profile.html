@@ -6,9 +6,166 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
-        <span>{{site}}</span>
-
-        
+        <span>{{site}} - {{role}}</span>
+        <div class="desktop">
+            <table>
+                <tr>
+                    <th>Full Name:</th>
+                    <td>{{user.fullName}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Username:</th>
+                    <td>{{user.username}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>{{user.email}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th colspan="3">Optional Features to Track</th>
+                </tr>
+                <tr>
+                    <th>Mood Tracking</th>
+                    <td>
+                        {% if user.profile.mood == 0 %}
+                            No
+                        {% else %}
+                            Yes
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="/profile/updateMood/" method="post">
+                            {% csrf_token %}
+                            {% if user.profile.mood == 0 %}
+                                <input type="hidden" name="mood" value="1">
+                                <button>Track Mood Information</button>
+                            {% else %}
+                                <input type="hidden" name="mood" value="0">
+                                <button>Do Not Track Mood Information</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Medication Tracking</th>
+                    <td>
+                        {% if user.profile.meds == 0 %}
+                            No
+                        {% else %}
+                            Yes
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="/profile/updateMeds/" method="post">
+                            {% csrf_token %}
+                            {% if user.profile.meds == 0 %}
+                                <input type="hidden" name="meds" value="1">
+                                <button>Track Medication Information</button>
+                            {% else %}
+                                <input type="hidden" name="meds" value="0">
+                                <button>Do Not Track Medication Information</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Journals</th>
+                    <td>
+                        {% if user.profile.journal == 0 %}
+                            No
+                        {% else %}
+                            Yes
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="/profile/updateJournal/" method="post">
+                            {% csrf_token %}
+                            {% if user.profile.journal == 0 %}
+                                <input type="hidden" name="journal" value="1">
+                                <button>Use Journals</button>
+                            {% else %}
+                                <input type="hidden" name="journal" value="0">
+                                <button>Do Not Use Journals</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Diabetic Tracking</th>
+                    <td>
+                        {% if user.profile.diabetic == 0 %}
+                            No
+                        {% else %}
+                            Yes
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="/profile/updateDiabetic/" method="post">
+                            {% csrf_token %}
+                            {% if user.profile.diabetic == 0 %}
+                                <input type="hidden" name="diabetic" value="1">
+                                <button>Track Diabetic Information</button>
+                            {% else %}
+                                <input type="hidden" name="diabetic" value="0">
+                                <button>Do Not Track Diabetic Information</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Food Tracking</th>
+                    <td>
+                        {% if user.profile.food == 0 %}
+                            No
+                        {% else %}
+                            Yes
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="/profile/updateFood/" method="post">
+                            {% csrf_token %}
+                            {% if user.profile.food == 0 %}
+                                <input type="hidden" name="food" value="1">
+                                <button>Track Food Information</button>
+                            {% else %}
+                                <input type="hidden" name="food" value="0">
+                                <button>Do Not Track Food Information</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Sleep Tracking</th>
+                    <td>
+                        {% if user.profile.sleep == 0 %}
+                            No
+                        {% else %}
+                            Yes
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="/profile/updateSleep/" method="post">
+                            {% csrf_token %}
+                            {% if user.profile.sleep == 0 %}
+                                <input type="hidden" name="sleep" value="1">
+                                <button>Track Sleep Information</button>
+                            {% else %}
+                                <input type="hidden" name="sleep" value="0">
+                                <button>Do Not Track sleep Information</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="mobile">
+            <!-- <h2>{{user.fullName}}</h2>
+            <h3>{{user.username}}</h3>
+            <h3>{{user.email}}</h3>     -->
+        </div>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
 </body>

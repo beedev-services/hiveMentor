@@ -99,6 +99,7 @@ def login(request):
             request.session['user_id'] = userLogin.id
             if userLogin.id == 1:
                 messages.error(request, f'Welcome back Admin {userLogin.firstName}')
+            request.session['role'] = userLogin.role
             return redirect('/choseRole/')
         messages.error(request, 'Invalid Credentials')
         return redirect('/logReg/')
@@ -125,11 +126,14 @@ def reg(request):
     if newUser.id == 1:
         toUpdate = User.objects.get(id=request.session['user_id'])
         toUpdate.level=10
+        toUpdate.role = 'Webmaster'
         toUpdate.save()
         messages.error(request, f'Welcome {newUser.firstName}')
+        request.session['role'] = newUser.role
         return redirect('/')
     else:
         messages.error(request, 'Welcome')
+        request.session['role'] = newUser.role
         return redirect('/choseRole/')
 
 def logout(request):
@@ -137,20 +141,13 @@ def logout(request):
     messages.error(request, 'You have been logged out')
     return redirect('/')
 
-# def dashboard(request):
-#     if 'user_id' not in request.session:
-#         return redirect('/logReg/')
-#     else:
-#         user = User.objects.filter(id=request.session['user_id'])
-#         pass
-
 def choseRole(request):
     if 'user_id' not in request.session:
         return redirect('/logReg/')
     else:
         user = User.objects.get(id=request.session['user_id'])
-        user = user
-        print('I am user', user)
+        request.session['role'] = user.role
+        role = request.session['role']
         site = request.session['site']
         title = {
             'title': 'Chose Site',
@@ -159,6 +156,71 @@ def choseRole(request):
         context = {
             'user': user,
             'title': title,
-            'site': site
+            'site': site,
+            'role': role,
         }
         return render(request, 'choseRole.html', context)
+
+def profile(request):
+    if 'user_id' not in request.session:
+        messages.error(request, "you need to be logged in to view this page")
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        request.session['role'] = user.role
+        role = request.session['role']
+        theUser = user.firstName
+        request.session['site'] = 'profile'
+        site = request.session['site']
+        title = {
+            'title': 'Profile',
+            'header': f'Your information {theUser}'
+        }
+        context = {
+            'user': user,
+            'title': title,
+            'site': site,
+            'role': role,
+        }
+        return render(request, 'profile.html', context)
+    
+def updateDiabetic(request):
+    toUpdate=User.objects.get(id=request.session['user_id'])
+    toUpdate.profile.diabetic=request.POST['diabetic']
+    toUpdate.save()
+    messages.error(request, 'Updated Diabetic Question')
+    return redirect('/profile/')
+
+def updateFood(request):
+    toUpdate=User.objects.get(id=request.session['user_id'])
+    toUpdate.profile.food=request.POST['food']
+    toUpdate.save()
+    messages.error(request, 'Updated Food Question')
+    return redirect('/profile/')
+
+def updateSleep(request):
+    toUpdate=User.objects.get(id=request.session['user_id'])
+    toUpdate.profile.sleep=request.POST['sleep']
+    toUpdate.save()
+    messages.error(request, 'Updated Sleep Question')
+    return redirect('/profile/')
+
+def updateMood(request):
+    toUpdate=User.objects.get(id=request.session['user_id'])
+    toUpdate.profile.mood=request.POST['mood']
+    toUpdate.save()
+    messages.error(request, 'Updated Mood Question')
+    return redirect('/profile/')
+
+def updateMeds(request):
+    toUpdate=User.objects.get(id=request.session['user_id'])
+    toUpdate.profile.meds=request.POST['meds']
+    toUpdate.save()
+    messages.error(request, 'Updated Medication Question')
+    return redirect('/profile/')
+
+def updateJournal(request):
+    toUpdate=User.objects.get(id=request.session['user_id'])
+    toUpdate.profile.journal=request.POST['journal']
+    toUpdate.save()
+    messages.error(request, 'Updated Journal Question')
+    return redirect('/profile/')

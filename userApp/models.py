@@ -69,10 +69,12 @@ class User(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
+    mood = models.BooleanField(default=1)
+    meds = models.BooleanField(default=0)
+    journal = models.BooleanField(default=0)
     diabetic = models.BooleanField(default=0)
     food = models.BooleanField(default=0)
     sleep = models.BooleanField(default=0)
-    sleepApp = models.BooleanField(default=0)
     def __str__(self):
         return f'{self.user.username} Profile'
 

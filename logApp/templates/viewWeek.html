@@ -6,11 +6,11 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
-        <span>{{site}}</span>
+        <span>{{site}} - {{role}}</span>
         <div class="column">
             {% if days == False %}
                 <div class="column alt">
-                    <h3>You currently have no days logged for this week why not add one</h3>
+                    <h3>You currently have no logs or days created for this week why not add one</h3>
                     <button id="showCreateDay">Add a Day</button>
                     <form action="/logs/week/{{week.id}}/createDay/" method='post' class="create" id="hideCreateDay">
                         {% csrf_token %}
@@ -53,10 +53,28 @@
                             <div class="row">
                                 <!-- buttons to view / edit day -->
                                 <button><a href="/logs/week/{{week.id}}/day/{{day.id}}/">View Day</a></button>
-                                <button><a href="/logs.week/{{week.id}}/day/{{day.id}}/edit/">Journal Entry</a></button>
                             </div>
                             <div class="row">
                                 <!-- buttons to add entries to each day -->
+                                {% if user.profile.mood == 1 %}
+                                    <button>Track/Add Mood</button>
+                                {% endif %}
+                                {% if user.profile.meds == 1 %}
+                                    <button>Track/Add Meds Taken</button>
+                                {% endif %}
+                                {% if user.profile.journal == 1 %}
+                                    <button>Add/View Journal Entry</button>
+                                {% endif %}
+                                <br>
+                                {% if user.profile.diabetic == 1 %}
+                                    <button>Track/Add Sugar Levels</button>
+                                {% endif %}
+                                {% if user.profile.food == 1 %}
+                                    <button>Track/Add Foods Eaten</button>
+                                {% endif %}
+                                {% if user.profile.sleep == 1 %}
+                                    <button>Track/Add Sleep Record</button>
+                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}

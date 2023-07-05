@@ -6,41 +6,44 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
+        <span>{{site}} - {{role}}</span>
         <h1>{{day.day}}</h1>
-        {% if journal == False %}
-            <button id="showCreateJournal">Add Journal Entry</button>
-            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="hideCreaeJournal">
-                {% csrf_token %}
-                <section>
-                    <label for="title">Title</label>
-                    <input type="text" name="title" id="">
-                </section>
-                <section>
-                    <label for="content">Journal Entry</label>
-                    <textarea name="content" id="" cols="30" rows="10"></textarea>
-                </section>
-                <button>Add Journal Entry</button>
-            </form>
-        {% else %}
-            {% for j in journal %}
-                <button id="showUpdateJournal">Update Journal Entry</button>
-                <form action="/logs/week/{{week.id}}/day/{{day.id}}/updateJournal/" method="post" id="hideUpdateJournal">
+        {% if user.profile.journal == 1 %}
+            {% if journal == False %}
+                <button id="showCreateJournal">Add Journal Entry</button>
+                <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="hideCreaeJournal">
                     {% csrf_token %}
                     <section>
                         <label for="title">Title</label>
-                        <input type="text" name="title" id="" value="{{j.title}}">
+                        <input type="text" name="title" id="">
                     </section>
                     <section>
                         <label for="content">Journal Entry</label>
-                        <textarea name="content" id="" cols="30" rows="10">{{j.content}}</textarea>
+                        <textarea name="content" id="" cols="30" rows="10"></textarea>
                     </section>
-                    <button>Update Journal Entry</button>
+                    <button>Add Journal Entry</button>
                 </form>
-                <div class="journal">
-                    <h3>{{j.title}}</h3>
-                    <p>{{j.content}}</p>
-                </div>
-            {% endfor %}
+            {% else %}
+                {% for j in journal %}
+                    <button id="showUpdateJournal">Update Journal Entry</button>
+                    <form action="/logs/week/{{week.id}}/day/{{day.id}}/updateJournal/" method="post" id="hideUpdateJournal">
+                        {% csrf_token %}
+                        <section>
+                            <label for="title">Title</label>
+                            <input type="text" name="title" id="" value="{{j.title}}">
+                        </section>
+                        <section>
+                            <label for="content">Journal Entry</label>
+                            <textarea name="content" id="" cols="30" rows="10">{{j.content}}</textarea>
+                        </section>
+                        <button>Update Journal Entry</button>
+                    </form>
+                    <div class="journal">
+                        <h3>{{j.title}}</h3>
+                        <p>{{j.content}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
         {% endif %}
 
     </main>

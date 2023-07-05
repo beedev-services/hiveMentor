@@ -9,52 +9,71 @@
         <div class="popup">
             <div class='cnt223'>
                 <h1>Welcome {{user.firstName}}</h1>
+                {{site}} - {{role}}
                 {% if user.level > 1 %}
                     <p>You are logged in with a role of {{user.role}}</p>
                 {% endif %}
+                {% if user.loggedOn == user.createdAt %}
+                    <p>For the best experience we recommend that you go to your profile to chose what you would like to track </p>
+                {% else %}
+                    <p>If you haven't visited your profile yet we recommend doing so to select what you would like to track.</p>
+                {% endif %}
                 <p>Please chose what application/side you would like to start with today.  You can always change applications later</p>
                 {% if user.level > 9 %}
-                    <button><a href="/logs/">Load Logs</a></button>
-                    <button><a href="/chat/">Load Member Chat</a></button>
-                    <button><a href="/chat/">Load Training</a></button>
-                    <button><a href="/chat/">Load Mentor Chat</a></button>
-                    <button><a href="/chat/">Load Chat Admin</a></button>
+                <!-- Role = Webmaster -->
+                    <button><a href="/profile/">Profile</a></button><br>
                     <button><a href="/theAdmin/">Load Site Admin</a></button>
-                    <button><a href="/admin/">Django Site Admin</a></button>
+                    <button><a href="/admin/">Django Site Admin</a></button><br>
+                    <button><a href="/logs/">Load Logs</a></button><br>
+                    <button><a href="/chat/">Load Member Chat</a></button>
+                    <button><a href="/chat/training/">Load Training</a></button>
+                    <button><a href="/chat/mentor/">Load Mentor Chat</a></button>
+                    <button><a href="/chat/admin/">Load Chat Admin</a></button>
                 {% elif user.level > 7 %}
-                    <button><a href="/logs/">Load Logs</a></button>
+                <!-- Role = SuperAdmin -->
+                    <button><a href="/profile/">Profile</a></button><br>
+                    <button><a href="/theAdmin/">Load Site Admin</a></button><br>
+                    <button><a href="/logs/">Load Logs</a></button><br>
                     <button><a href="/chat/">Load Member Chat</a></button>
-                    <button><a href="/chat/">Load Training</a></button>
-                    <button><a href="/chat/">Load Mentor Chat</a></button>
-                    <button><a href="/chat/">Load Chat Admin</a></button>
-                    <button><a href="/theAdmin/">Load Site Admin</a></button>
+                    <button><a href="/chat/training/">Load Training</a></button>
+                    <button><a href="/chat/mentor/">Load Mentor Chat</a></button>
+                    <button><a href="/chat/admin/">Load Chat Admin</a></button>
                 {% elif user.level > 5%}
-                    <button><a href="/logs/">Load Logs</a></button>
+                <!-- Role = ChatAdmin -->
+                    <button><a href="/profile/">Profile</a></button><br>
+                    <button><a href="/logs/">Load Logs</a></button><br>
                     <button><a href="/chat/">Load Member Chat</a></button>
-                    <button><a href="/chat/">Load Training</a></button>
-                    <button><a href="/chat/">Load Mentor Chat</a></button>
-                    <button><a href="/chat/">Load Chat Admin</a></button>
+                    <button><a href="/chat/training/">Load Training</a></button>
+                    <button><a href="/chat/mentor/">Load Mentor Chat</a></button>
+                    <button><a href="/chat/admin/">Load Chat Admin</a></button>
                 {% elif user.level > 3 %}
                     {% if user.role == 'Mentor' %}
-                        <button><a href="/logs/">Load Logs</a></button>
+                    <!-- Role = Mentor -->
+                        <button><a href="/profile/">Profile</a></button><br>
+                        <button><a href="/logs/">Load Logs</a></button><br>
                         <button><a href="/chat/">Load Member Chat</a></button>
-                        <button><a href="/chat/">Load Training</a></button>
-                        <button><a href="/chat/">Load Mentor Chat</a></button>
+                        <button><a href="/chat/training/">Load Training</a></button>
+                        <button><a href="/chat/mentor/">Load Mentor Chat</a></button>
                     {% else %}
+                    <!-- Role = Provider -->
+                        <button><a href="/profile/">Profile</a></button><br>
                         <button><a href="/logs/">Load Logs</a></button>
-                        <button><a href="/logs/">Load Provider</a></button>
+                        <button><a href="/logs/provider/">Load Provider</a></button>
                     {% endif %}
                 {% elif user.level > 1 %}
+                <!-- Role = Trainer -->
+                    <button><a href="/profile/">Profile</a></button><br>
                     <button><a href="/logs/">Load Logs</a></button>
                     <button><a href="/chat/">Load Member Chat</a></button>
-                    <button><a href="/chat/">Load Trainer Chat</a></button>
+                    <button><a href="/chat/training/">Load Trainer Chat</a></button>
                 {% else %}
+                <!-- Role = General -->
+                    <button><a href="/profile/">Profile</a></button>
                     <button><a href="/logs/">Load Logs</a></button>
                     <button><a href="/chat/">Load Chat</a></button>
                 {% endif %}
             </div>
         </div>
-        
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
     <script src="{% static 'js/popup.js' %}"></script>

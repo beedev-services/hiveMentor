@@ -7,7 +7,7 @@
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
         <h1>Welcome {{user.fullName}}</h1>
-        <span>{{site}}</span>
+        <span>{{site}} - {{role}}</span>
         <div class="column deskColumm">
             <button id="showCreateWeek">Create New Week</button>
             <div id="hideCreateWeek">
