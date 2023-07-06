@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'block/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'block/header.html' %} {% endblock header %}
+    {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
+    <main>
+        <span>{{site}} - {{role}}</span>
+        {% if user.role > 6 %}
+            <form action="/theAdmin/createCode/" method="post">
+                {% csrf_token %}
+                <section>
+                    <input type="text" name="code" disabled value="{{theCode}}">
+                </section>
+                <section>
+                    <label for="role">Role</label>
+                    <select name="role" id="">
+                        <option value="Trainer">Trainer</option>
+                        <option value="Mentor">Mentor</option>
+                        <option value="Provider">Provider</option>
+                        <option value="ChatAdmin">Chat Admin</option>
+                        <option value="SuperAdmin">Super Admin</option>
+                        <option value="Webmaster">Webmaster</option>
+                    </select>
+                </section>
+                <button>Add New Code</button>
+            </form>
+        {% endif %}
+        <h2>Current codes</h2>
+        <table>
+            <tr>
+                <th>Role</th>
+                <th>Code</th>
+                <th>Last Used</th>
+                <th># of Uses</th>
+            </tr>
+        </table>
+    </main>
+    {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
+</body>
+</html>

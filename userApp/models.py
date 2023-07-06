@@ -87,3 +87,6 @@ class Code(models.Model):
     code = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
     creator = models.ForeignKey(User, related_name='theCreator', on_delete=CASCADE)
+    used = models.IntegerField(default=0)
+    usedOn = models.DateTimeField(auto_now=True)
+    createdAt = models.DateTimeField(auto_now_add=True)

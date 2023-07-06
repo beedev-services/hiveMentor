@@ -56,7 +56,7 @@ class Mood(models.Model):
     log = models.ForeignKey(Day, related_name='theLog',on_delete=CASCADE, blank=True)
     feeler = models.ForeignKey(User, related_name='theFeeler', on_delete=CASCADE)
 
-class Sleep:
+class Sleep(models.Model):
     date = models.DateField()
     sleep = models.TimeField()
     wake = models.TimeField()

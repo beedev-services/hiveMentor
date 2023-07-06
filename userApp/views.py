@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from userApp.models import *
 import bcrypt
+import string
+import random
 
 
 def index(request):
@@ -164,6 +166,7 @@ def choseRole(request):
 def profile(request):
     if 'user_id' not in request.session:
         messages.error(request, "you need to be logged in to view this page")
+        return redirect('/logReg/')
     else:
         user = User.objects.get(id=request.session['user_id'])
         request.session['role'] = user.role
@@ -224,3 +227,42 @@ def updateJournal(request):
     toUpdate.save()
     messages.error(request, 'Updated Journal Question')
     return redirect('/profile/')
+
+
+def theCodes(request):
+    if 'user_id' not in request.session:
+        messages.error(request, 'You must be logged in to view')
+        return redirect('/logReg/')
+    user = User.objects.get(id=request.session['user_id'])
+    if user.level < 6:
+        messages.error(request, 'You do not have permissions to view this page')
+    else:
+        codes = Code.objects.values().all()
+        N = 12
+        res = ''.join(random.choices(string.ascii_letters, k=N))
+        theCode = str(res)
+        role = request.session['role']
+        request.session['site'] = 'admin'
+        site = request.session['site']
+        title = {
+            'title': 'Codes',
+            'header': 'Upgrading Codes'
+        }
+        context = {
+            'user': user,
+            'title': title,
+            'site': site,
+            'role': role,
+            'theCode': theCode,
+            'codes': codes,
+        }
+        return render(request, 'theCodes.html', context)
+
+def createCode(request):
+    Code.objects.create(
+        code = request.POST['code'],
+        role = request.POST['role'],
+        creator = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'New Code Generated')
+    return redirect('/theAdmin/theCodes/')
