@@ -36,6 +36,7 @@ def about(request):
         'title': 'About',
         'header': 'About Hive Mentor'
     }
+    request.session['site'] = 'null'
     site = request.session['site']
     if 'user_id' not in request.session:
         user = False
@@ -59,6 +60,7 @@ def contact(request):
         'title': 'Contact',
         'header': 'Contact - Hive Mentor'
     }
+    request.session['site'] = 'null'
     site = request.session['site']
     if 'user_id' not in request.session:
         user = False
@@ -82,6 +84,7 @@ def logReg(request):
         'title': 'Login & Registration',
         'header': 'Sign in To Hive Mentor or Create an account'
     }
+    request.session['site'] = 'null'
     site = request.session['site']
     if 'user_id' not in request.session:
         user = False
@@ -131,13 +134,9 @@ def reg(request):
         toUpdate.level=10
         toUpdate.role = 'Webmaster'
         toUpdate.save()
-        messages.error(request, f'Welcome {newUser.firstName}')
-        request.session['role'] = newUser.role
-        return redirect('/')
-    else:
-        messages.error(request, 'Welcome')
-        request.session['role'] = newUser.role
-        return redirect('/choseRole/')
+    messages.error(request, f'Welcome {newUser.firstName}')
+    request.session['role'] = newUser.role
+    return redirect('/choseRole/')
 
 def logout(request):
     request.session.clear()

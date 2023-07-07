@@ -68,11 +68,19 @@ class Sleep(models.Model):
 class Food(models.Model):
     food = models.CharField(max_length=255)
     calories = models.CharField(max_length=255, default=0)
-    date = models.DateTimeField()
+    comments = models.TextField(blank=True)
+    meal = models.CharField(max_length=255, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     record = models.ForeignKey(Day, related_name='theRecord', on_delete=CASCADE)
     person = models.ForeignKey(User, related_name='thePerson', on_delete=CASCADE)
+
+class Water(models.Model):
+    water = models.IntegerField(blank=True)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    note = models.ForeignKey(Day, related_name='theNote', on_delete=CASCADE)
+    drinker = models.ForeignKey(User, related_name='theDrinker', on_delete=CASCADE)
 
 class Medication(models.Model):
     when = models.DateTimeField()
