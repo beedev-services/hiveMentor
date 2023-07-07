@@ -160,6 +160,15 @@
                     </td>
                 </tr>
             </table>
+            <h2>Have a Registration / Upgrade Code?</h2>
+            <form action="/profile/upgradeAccount/" method="post">
+                {% csrf_token %}
+                <section>
+                    <label for="code">Enter Provided Code</label>
+                    <input type="text" name="code" id="">
+                </section>
+                <button>Upgrade Account</button>
+            </form>
         </div>
         <div class="mobile">
             <!-- <h2>{{user.fullName}}</h2>

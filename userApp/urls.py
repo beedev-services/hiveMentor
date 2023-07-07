@@ -19,6 +19,10 @@ urlpatterns = [
     path('profile/updateMood/', views.updateMood),
     path('profile/updateMeds/', views.updateMeds),
     path('profile/updateJournal/', views.updateJournal),
+    path('profile/upgradeAccount/', views.upgradeAccount),
+    path('theAdmin/', views.theAdmin),
+    path('theAdmin/theCodes/', views.theCodes),
+    path('theAdmin/createCode/', views.createCode),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

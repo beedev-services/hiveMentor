@@ -7,11 +7,11 @@
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
         <span>{{site}} - {{role}}</span>
-        {% if user.role > 6 %}
+        {% if user.level > 6 %}
             <form action="/theAdmin/createCode/" method="post">
                 {% csrf_token %}
                 <section>
-                    <input type="text" name="code" disabled value="{{theCode}}">
+                    <input type="text" name="code" value="{{theCode}}">
                 </section>
                 <section>
                     <label for="role">Role</label>
@@ -35,6 +35,22 @@
                 <th>Last Used</th>
                 <th># of Uses</th>
             </tr>
+            {% for c in codes %}
+                <tr>
+                    <td>{{c.role}}</td>
+                    <td>{{c.code}}</td>
+                    <td>
+                        {% if c.createdAt == c.usedOn %}
+                            Never Used
+                        {% else %}
+                            {{c.usedOn}}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{c.used}}
+                    </td>
+                </tr>
+            {% endfor %}
         </table>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
