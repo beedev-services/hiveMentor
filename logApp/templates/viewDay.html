@@ -6,7 +6,6 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
-        <span>{{site}} - {{role}}</span>
         <h1>{{day.day}}</h1>
         {% if user.profile.journal == 1 %}
             {% if journal == False %}

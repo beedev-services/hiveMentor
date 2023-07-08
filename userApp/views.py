@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from userApp.models import *
+from logApp.models import *
 import bcrypt
 import string
 import random
@@ -14,20 +15,25 @@ def index(request):
     }
     request.session['site'] = 'null'
     site = request.session['site']
+    request.session['role'] = 'null'
+    role = request.session['role']
     if 'user_id' not in request.session:
         user = False
         context = {
             'title': title,
             'user': user,
             'site': site,
+            'role': role,
         }
     else:
         user = User.objects.get(id=request.session['user_id'])
-        user = user
+        request.session['role'] = user.role
+        role = request.session['role']
         context = {
                 'user': user,
                 'title': title,
-                'site': site
+                'site': site,
+                'role': role,
             }
     return render(request, 'index.html', context)
 
@@ -36,22 +42,25 @@ def about(request):
         'title': 'About',
         'header': 'About Hive Mentor'
     }
-    request.session['site'] = 'null'
     site = request.session['site']
+    role = request.session['role']
     if 'user_id' not in request.session:
         user = False
         context = {
             'title': title,
             'user': user,
-            'site': site
+            'site': site,
+            'role': role,
         }
     else:
         user = User.objects.get(id=request.session['user_id'])
-        user = user
+        request.session['role'] = user.role
+        role = request.session['role']
         context = {
                 'user': user,
                 'title': title,
-                'site': site
+                'site': site,
+                'role': role,
             }
     return render(request, 'about.html', context)
 
@@ -60,22 +69,25 @@ def contact(request):
         'title': 'Contact',
         'header': 'Contact - Hive Mentor'
     }
-    request.session['site'] = 'null'
     site = request.session['site']
+    role = request.session['role']
     if 'user_id' not in request.session:
         user = False
         context = {
             'title': title,
             'user': user,
-            'site': site
+            'site': site,
+            'role': role,
         }
     else:
         user = User.objects.get(id=request.session['user_id'])
-        user = user
+        request.session['role'] = user.role
+        role = request.session['role']
         context = {
                 'user': user,
                 'title': title,
-                'site': site
+                'site': site,
+                'role': role,
             }
     return render(request, 'contact.html', context)
 
@@ -84,14 +96,15 @@ def logReg(request):
         'title': 'Login & Registration',
         'header': 'Sign in To Hive Mentor or Create an account'
     }
-    request.session['site'] = 'null'
     site = request.session['site']
+    role = request.session['role']
     if 'user_id' not in request.session:
         user = False
         context = {
             'title':title,
             'user': user,
-            'site': site
+            'site': site,
+            'role': role,
         }
         return render(request, 'logReg.html', context)
     else:
@@ -169,7 +182,6 @@ def profile(request):
         return redirect('/logReg/')
     else:
         user = User.objects.get(id=request.session['user_id'])
-        request.session['role'] = user.role
         role = request.session['role']
         theUser = user.firstName
         request.session['site'] = 'profile'
@@ -236,10 +248,17 @@ def theAdmin(request):
     if user.level < 6:
         messages.error(request, 'You do not have permissions to view this page')
     else:
-        request.session['role'] = user.role
         role = request.session['role']
         request.session['site'] = 'admin'
         site = request.session['site']
+        users = User.objects.values().all()
+        weeks = Week.objects.values().all()
+        days = Day.objects.values().all()
+        counts = {
+            'users': users.count,
+            'weeks': weeks.count,
+            'days': days.count,
+        }
         title = {
             'title': 'Admin',
             'header': 'Admin'
@@ -249,6 +268,10 @@ def theAdmin(request):
             'title': title,
             'site': site,
             'role': role,
+            'users': users,
+            'weeks': weeks,
+            'days': days,
+            'counts': counts,
         }
         return render(request, 'theAdmin.html', context)
 

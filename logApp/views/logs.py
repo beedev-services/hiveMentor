@@ -27,7 +27,6 @@ def logDash(request):
     weeks = paginator.get_page(pageNum)
     days = Day.objects.filter(author_id=request.session['user_id'])
     request.session['site'] = 'logs'
-    request.session['role'] = user.role
     role = request.session['role']
     site = request.session['site']
     context = {
@@ -68,7 +67,6 @@ def viewWeek(request, week_id):
         return redirect('/logReg/')
     else:
         user = User.objects.get(id=request.session['user_id'])
-        request.session['role'] = user.role
         role = request.session['role']
         site = request.session['site']
         context = {
@@ -116,7 +114,6 @@ def viewDay(request, week_id, day_id):
     else:
         user = User.objects.get(id=request.session['user_id'])
         journal = Journal.objects.filter(journal_id=day_id)
-        request.session['role'] = user.role
         role = request.session['role']
         print(journal)
         if not journal:

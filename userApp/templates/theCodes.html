@@ -6,7 +6,6 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
-        <span>{{site}} - {{role}}</span>
         {% if user.level > 6 %}
             <form action="/theAdmin/createCode/" method="post">
                 {% csrf_token %}
