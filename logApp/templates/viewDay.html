@@ -6,23 +6,78 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
-        <h1>{{day.day}}</h1>
-        {% if user.profile.journal == 1 %}
-            {% if journal == False %}
-                <button id="showCreateJournal">Add Journal Entry</button>
-                <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="hideCreaeJournal">
-                    {% csrf_token %}
-                    <section>
-                        <label for="title">Title</label>
-                        <input type="text" name="title" id="">
-                    </section>
-                    <section>
-                        <label for="content">Journal Entry</label>
-                        <textarea name="content" id="" cols="30" rows="10"></textarea>
-                    </section>
-                    <button>Add Journal Entry</button>
-                </form>
-            {% else %}
+        <h1>Viewing - {{day.day}} of week {{week.title}}</h1>
+        <div class="row">
+            {% if user.profile.journal == 1 %}
+                {% if journal == False %}
+                    <button id="showCreateJournal">Open Journal Form</button>
+                    <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="hideCreaeJournal">
+                        {% csrf_token %}
+                        <section>
+                            <label for="title">Title</label>
+                            <input type="text" name="title" id="">
+                        </section>
+                        <section>
+                            <label for="content">Journal Entry</label>
+                            <textarea name="content" id="" cols="30" rows="10"></textarea>
+                        </section>
+                        <button>Add Journal Entry</button>
+                    </form>
+                {% endif %}
+            {% endif %}
+            {% if user.profile.mood == 1 %}
+                <button id="showCreateMood">Open Mood Form</button>
+            {% endif %}
+            {% if user.profile.meds == 1 %}
+                <button id="showCreateMed">Open Medication Taken Form</button>
+            {% endif %}
+            {% if user.profile.diabetic == 1 %}
+                <button id="showCreateSugar">Open Diabetic Form</button>
+            {% endif %}
+            {% if user.profile.food == 1 %}
+                <button id="showCreateFood">Open Food Form</button>
+            {% endif %}
+            {% if user.profile.sleep == 1 %}
+                <button id="showCreateSleep">Open Sleep Form</button>
+            {% endif %}
+        </div>
+        <table>
+            {% if user.profile.journal == 1 %}
+                <tr>
+                    <th colspan="3">Today's Journal Entry</th>
+                </tr>
+                {% for j in journal %}
+                    <tr>
+                        <th>{{j.title}}</th>
+                        <td>{{j.content}}</td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            {% if user.profile.mood == 1 %}
+                <tr>
+                    <th>Logged Moods for this day</th>
+                </tr>
+            {% endif %}
+            {% if user.profile.meds == 1 %}
+                <tr>
+                    <th>Medications Taken this day</th>
+                </tr>
+            {% endif %}
+            {% if user.profile.diabetic == 1 %}
+                <tr>
+                    <th></th>
+                </tr>
+            {% endif %}
+            {% if user.profile.food == 1 %}
+                <tr>
+                    <th></th>
+                </tr>
+            {% endif %}
+            {% if user.profile.sleep == 1 %}
+                <tr><th></th></tr>
+            {% endif %}
+        </table>
                 {% for j in journal %}
                     <button id="showUpdateJournal">Update Journal Entry</button>
                     <form action="/logs/week/{{week.id}}/day/{{day.id}}/updateJournal/" method="post" id="hideUpdateJournal">
@@ -42,8 +97,6 @@
                         <p>{{j.content}}</p>
                     </div>
                 {% endfor %}
-            {% endif %}
-        {% endif %}
 
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}

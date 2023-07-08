@@ -6,11 +6,12 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
+        <h2>Viewing week - {{week.title}}</h2>
         <div class="column">
             {% if days == False %}
                 <div class="column alt">
                     <h3>You currently have no logs or days created for this week why not add one</h3>
-                    <button id="showCreateDay">Add a Day</button>
+                    <button id="showCreateDay">Open Form</button>
                     <form action="/logs/week/{{week.id}}/createDay/" method='post' class="create" id="hideCreateDay">
                         {% csrf_token %}
                         <section>

@@ -51,6 +51,7 @@ class Mood(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     feeling = models.IntegerField(blank=True)
     symptom = models.ForeignKey(SymptomList, related_name='theSymptom',on_delete=CASCADE)
+    comments = models.TextField(blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     log = models.ForeignKey(Day, related_name='theLog',on_delete=CASCADE, blank=True)

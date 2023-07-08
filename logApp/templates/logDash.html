@@ -6,9 +6,9 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
-        <h1>Welcome {{user.fullName}}</h1>
+        <h1>Welcome {{user.fullName}} to your Log Dashboard</h1>
         <div class="column deskColumm">
-            <button id="showCreateWeek">Create New Week</button>
+            <button id="showCreateWeek">Open Form</button>
             <div id="hideCreateWeek">
                 <form action="/logs/createWeek/" method='post' class="create">
                     {% csrf_token %}

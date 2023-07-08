@@ -114,6 +114,12 @@ def viewDay(request, week_id, day_id):
     else:
         user = User.objects.get(id=request.session['user_id'])
         journal = Journal.objects.filter(journal_id=day_id)
+        moods = Mood.objects.filter(log_id=day_id)
+        sleeps = Sleep.objects.filter(night_id=day_id)
+        foods = Food.objects.filter(record_id=day_id)
+        waters = Water.objects.filter(note_id=day_id)
+        meds = Medication.objects.filter(blog_id=day_id)
+        sugars = Sugar.objects.filter(entry_id=day_id)
         role = request.session['role']
         print(journal)
         if not journal:
@@ -127,6 +133,12 @@ def viewDay(request, week_id, day_id):
             'day': day,
             'journal': journal,
             'role': role,
+            'moods': moods,
+            'sleeps': sleeps,
+            'foods': foods,
+            'waters': waters,
+            'meds': meds,
+            'sugars': sugars
         }
         return render(request, 'viewDay.html', context)
 
