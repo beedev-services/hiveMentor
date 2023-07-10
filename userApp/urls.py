@@ -21,8 +21,10 @@ urlpatterns = [
     path('profile/updateJournal/', views.updateJournal),
     path('profile/upgradeAccount/', views.upgradeAccount),
     path('theAdmin/', views.theAdmin),
+    path('theAdmin/sendUsers/', views.sendUsers),
     path('theAdmin/theCodes/', views.theCodes),
     path('theAdmin/createCode/', views.createCode),
+    # path('theAdmin/auth/', views.auth),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

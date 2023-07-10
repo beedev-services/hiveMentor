@@ -77,7 +77,8 @@ class Food(models.Model):
     person = models.ForeignKey(User, related_name='thePerson', on_delete=CASCADE)
 
 class Water(models.Model):
-    water = models.IntegerField(blank=True)
+    water = models.IntegerField(default=0)
+    comments = models.TextField(blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     note = models.ForeignKey(Day, related_name='theNote', on_delete=CASCADE)

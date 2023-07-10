@@ -8,10 +8,16 @@
     <main>
         <h1>Viewing - {{day.day}} of week {{week.title}}</h1>
         <div class="row">
+            <button id="showCreateWater">Open Water Form</button>
+            <form action="" id="hideCreateWater">
+                <section>
+                    
+                </section>
+            </form>
             {% if user.profile.journal == 1 %}
                 {% if journal == False %}
                     <button id="showCreateJournal">Open Journal Form</button>
-                    <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="hideCreaeJournal">
+                    <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="hideCreateJournal">
                         {% csrf_token %}
                         <section>
                             <label for="title">Title</label>

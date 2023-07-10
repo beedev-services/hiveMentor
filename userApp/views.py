@@ -6,6 +6,7 @@ import bcrypt
 import string
 import random
 import datetime
+from userApp.util import *
 
 
 def index(request):
@@ -149,6 +150,7 @@ def reg(request):
         toUpdate.save()
     messages.error(request, f'Welcome {newUser.firstName}')
     request.session['role'] = newUser.role
+    sendUserToChat(newUser.username, newUser.email, newUser.firstName, newUser.lastName)
     return redirect('/choseRole/')
 
 def logout(request):
@@ -274,6 +276,22 @@ def theAdmin(request):
             'counts': counts,
         }
         return render(request, 'theAdmin.html', context)
+
+def sendUsers(request):
+    if 'user_id' not in request.session:
+        messages.error(request, 'You must be logged in to view')
+        return redirect('/logReg/')
+    user = User.objects.get(id=request.session['user_id'])
+    if user.level < 8:
+        messages.error(request, 'You do not have permissions to view this page')
+    else:
+        sendCurrentUsersToChat()
+        return redirect('/theAdmin/')
+    
+# def auth(request):
+#     theUser = User.objects.get(id=request.session['user_id'])
+#     print('theUser.id', theUser.id)
+#     return redirect('/theAdmin/')
 
 def theCodes(request):
     if 'user_id' not in request.session:

@@ -6,16 +6,8 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
-        <nav>
-            <a href="/theAdmin/theCodes/">Reg Codes</a>
-        </nav>
-        <h3># of Users - {{counts.users}}</h3>
-        <h3># of Weeks - {{counts.weeks}}</h3>
-        <h3># of Days - {{counts.days}}</h3>
-        <form action="/theAdmin/sendUsers/" method="post">
-            {% csrf_token %}
-            <button>Send Users</button>
-        </form>
+        <h1>Chat with fellow Developers</h1>
+        <h2>Coming Soon</h2>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
 </body>

@@ -17,6 +17,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['hiveMental.beedev-services.com']
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://127.0.0.1:8000'
+    # Add more allowed origins as necessary
+]
 
 # Application definition
 
@@ -30,9 +35,11 @@ INSTALLED_APPS = [
     'userApp.apps.UserappConfig',
     'chatApp.apps.ChatappConfig',
     'logApp.apps.LogappConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
