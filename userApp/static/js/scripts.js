@@ -49,3 +49,13 @@ $(document).ready(function() {
         }
     });
 });
+let chatUser
+
+function enterChat() {
+    location.replace(`http://127.0.1:8000/chat/frame/${chatUser}/`)
+}
+function sendUserInfo() {
+    chatUser = document.chat.theUser.value
+    console.log(chatUser)
+    enterChat()
+}

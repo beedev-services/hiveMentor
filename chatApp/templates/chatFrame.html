@@ -6,13 +6,8 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
-        <h1>Chat with fellow Developers</h1>
-        <form name="chat">
-            <input type="hidden" name="theUser" value="{{user.id}}">
-            <input type="button" value="Enter Chat" onclick="sendUserInfo()">
-        </form>
-        <h2>Coming Soon</h2>
-        <button><a href="/chat/authenticate/">CheckAuth</a></button>
+        <span id="chat">{{user.id}}</span>
+        <iframe src="http://localhost:5173" frameborder="0"></iframe>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
 </body>

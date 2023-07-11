@@ -232,6 +232,10 @@ body main .column .row .column .row {
   justify-content: center;
   align-items: center;
 }
+body main iframe {
+  width: 600px;
+  height: 600px;
+}
 body footer {
   display: flex;
   flex-direction: column;

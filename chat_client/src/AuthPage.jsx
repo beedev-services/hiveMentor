@@ -8,13 +8,16 @@ const AuthPage = (props) => {
         console.log(value)
         axios.post(
             // 'http://localhost:3001/authenticate',
-            'http://127.0.0.1:8000/chat/authenticate/',
+            'http://localhost:8000/chat/authenticate/',
             { username: value }
         )
-        console.log('username', value, 'key', value+theKey)
+        console.log('username', value, 'secret', value+theKey)
         props.onAuth({ username: value, secret: value+theKey })
+        console.log(import.meta.env.VITE_CHAT_ENGINE_PROJECT_ID, 'progID')
+        console.log('props.username', props.user.username, 'props.secret', props.user.secret)
     }
-
+    // console.log(import.meta.env.VITE_CHAT_ENGINE_PROJECT_ID, 'progID')
+    // console.log('props.username', props.user.username, 'props.secret', props.user.secret)
     return (
         <div className="background">
             <form onSubmit={onSubmit} className="form-card">
