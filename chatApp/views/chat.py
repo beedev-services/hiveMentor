@@ -53,9 +53,7 @@ def chatDash(request):
 #     # return redirect('/chat/')
 
 def authenticate(request):
-    user =list( User.objects.filter(username=request.POST['username']))
-    user = user[0]
-    # print('theuser', user)
+
     theSecret = 'BeeDevServices'
     username = user.username
     secret = user.username+theSecret
