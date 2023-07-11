@@ -23,7 +23,7 @@ def chatDash(request):
         'header': 'Chat Dashboard - Hive Mentor'
     }
     user = User.objects.get(id=request.session['user_id'])
-    print(user)
+    # print(user)
     request.session['site'] = 'chat'
     site = request.session['site']
     request.session['role'] = user.role
@@ -52,8 +52,10 @@ def chatDash(request):
 #     return res.json()
 #     # return redirect('/chat/')
 
-def authenticate(request, id):
-    user = User.objects.get(id=id)
+def authenticate(request):
+    user =list( User.objects.filter(username=request.POST['username']))
+    user = user[0]
+    # print('theuser', user)
     theSecret = 'BeeDevServices'
     username = user.username
     secret = user.username+theSecret
@@ -62,6 +64,7 @@ def authenticate(request, id):
         'username': username,
         'secret': secret,
     }
+    # return render(request, 'newTemp.html', context)
     return JsonResponse(context, safe = False, content_type='application/json')
 
 def chatFrame(request, id):
