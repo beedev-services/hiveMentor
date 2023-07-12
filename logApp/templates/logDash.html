@@ -26,38 +26,42 @@
                     <h4>Calendar Widget by <a href="https://www.calendarlabs.com/" target="_blank" rel="nofollow">CalendarLabs</a></h4>
                 </div>
             </div>
-            <h2>Your Weeks</h2>
-            <div class="row">
-                {% for week in weeks %}
-                    <div class="column">
-                        <h3>{{week.title}}</h3>
-                        <p>Created: {{week.createdAt}}</p>
-                        <div class="row">
-                            <button><a href="/logs/week/{{week.id}}/">View Week</a></button>
-                            <button><a href="/logs/week/{{week.id}}/edit/">Edit Week</a></button>
+            {% if weeks == False %}
+                <h2>You currently have not created any weeks</h2>
+            {% else %}
+                <h2>Your Weeks</h2>
+                <div class="row">
+                    {% for week in weeks %}
+                        <div class="column">
+                            <h3>{{week.title}}</h3>
+                            <p>Created: {{week.createdAt}}</p>
+                            <div class="row">
+                                <button><a href="/logs/week/{{week.id}}/">View Week</a></button>
+                                <button><a href="/logs/week/{{week.id}}/edit/">Edit Week</a></button>
+                            </div>
+                            <div>
+                                {% for day in days %}
+                                    {% if day.week_id == week.id %}
+                                        <p>{{day.day}} - {{day.date}} | <button><a href="/logs/week/{{week.id}}/day/{{day.id}}/">View</a></button></p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
-                        <div>
-                            {% for day in days %}
-                                {% if day.week_id == week.id %}
-                                    <p>{{day.day}} - {{day.date}} | <button><a href="/logs/week/{{week.id}}/day/{{day.id}}/">View</a></button></p>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="row">
-                <!-- Pagination links -->
-                {% if weeks.has_previous %}
-                    <!-- <button><a href="?page=1">First</a></button> -->
-                    <button><a href="?page={{ weeks.previous_page_number }}">Previous</a></button>
-                {% endif %}
-                <span>Page {{ weeks.number }}</span>
-                {% if weeks.has_next %}
-                    <button><a href="?page={{ weeks.next_page_number }}">Next</a></button>
-                    <!-- <button><a href="?page={{ weeks.paginator.num_pages }}">Last</a></button> -->
-                {% endif %}
-            </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <!-- Pagination links -->
+                    {% if weeks.has_previous %}
+                        <!-- <button><a href="?page=1">First</a></button> -->
+                        <button><a href="?page={{ weeks.previous_page_number }}">Previous</a></button>
+                    {% endif %}
+                    <span>Page {{ weeks.number }}</span>
+                    {% if weeks.has_next %}
+                        <button><a href="?page={{ weeks.next_page_number }}">Next</a></button>
+                        <!-- <button><a href="?page={{ weeks.paginator.num_pages }}">Last</a></button> -->
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
         <div class="column mobColumn"></div>
     </main>

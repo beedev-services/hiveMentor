@@ -35,7 +35,7 @@ def chatDash(request):
         'user': user,
         'userVar': user.id,
     }
-    return render(request, 'tempChat.html', context)
+    return render(request, 'chatDash.html', context)
 
 def authenticate(request, id):
     user = User.objects.filter(id=id)
@@ -56,7 +56,7 @@ def chatFrame(request, id):
         'header': 'Chat - Hive Mentor'
     }
     user = User.objects.get(id=id)
-    print(user)
+    # print(user)
     request.session['site'] = 'chat'
     site = request.session['site']
     request.session['role'] = user.role

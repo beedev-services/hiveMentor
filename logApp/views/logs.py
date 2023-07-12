@@ -25,6 +25,8 @@ def logDash(request):
     paginator = Paginator(theWeeks, 5)
     pageNum = request.GET.get('page')
     weeks = paginator.get_page(pageNum)
+    if not weeks:
+        weeks = False
     days = Day.objects.filter(author_id=request.session['user_id'])
     request.session['site'] = 'logs'
     role = request.session['role']

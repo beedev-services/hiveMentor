@@ -90,3 +90,5 @@ class Code(models.Model):
     used = models.IntegerField(default=0)
     usedOn = models.DateTimeField(auto_now=True)
     createdAt = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'{self.code} - {self.role}'

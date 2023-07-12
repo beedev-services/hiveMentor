@@ -6,11 +6,7 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
-        <h1>Chat with fellow Developers</h1>
-        {{user.id}}
-        <button onclick="sendUserInfo({{user.id}})">Enter Chat</button>
-        <h2>Coming Soon</h2>
-        <button><a href="/chat/authenticate/">CheckAuth</a></button>
+
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
 </body>

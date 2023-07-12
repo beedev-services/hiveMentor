@@ -12,7 +12,7 @@
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
     <script>
         const iframe = document.getElementById('dataUser')
-        var userVar = {{user.id}}
+        var userVar = '{{user.username}}'
         console.log('theUserVar', userVar)
 
         iframe.onload = function() {
