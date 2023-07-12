@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.chatDash),
-    path('authenticate/', views.authenticate),
+    path('authenticate/<int:id>/', views.authenticate),
     path('frame/<int:id>/', views.chatFrame),
 ]
 if settings.DEBUG:

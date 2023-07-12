@@ -7,8 +7,17 @@
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
         <span id="chat">{{user.id}}</span>
-        <iframe src="http://localhost:5173" frameborder="0"></iframe>
+        <iframe src="http://localhost:5173" id="dataUser" frameborder="0"></iframe>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
+    <script>
+        const iframe = document.getElementById('dataUser')
+        var userVar = {{user.id}}
+        console.log('theUserVar', userVar)
+
+        iframe.onload = function() {
+            iframe.contentWindow.postMessage(userVar, '*')
+        }
+    </script>
 </body>
 </html>

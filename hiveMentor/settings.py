@@ -23,6 +23,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173'
     # Add more allowed origins as necessary
 ]
+CORS_ALLOWED_ALL_ORIGINS: True
 
 # Application definition
 

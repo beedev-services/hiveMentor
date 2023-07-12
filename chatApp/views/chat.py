@@ -33,27 +33,12 @@ def chatDash(request):
         'role': role,
         'site': site,
         'user': user,
+        'userVar': user.id,
     }
     return render(request, 'tempChat.html', context)
 
-# def authenticate(request):
-#     user = User.objects.get(id=request.session['user_id'])
-#     print('theUser', user)
-#     # print('from react', info)
-#     res = requests.post(#'https://api.chatengine.io/users/',
-#         data = {
-#             'username': user.username,
-#             'secret': user.username+'BeeDevServices'
-#         },
-#         headers = { theProj: theKey
-#         }
-#     )
-#     print('data sent', res)
-#     return res.json()
-#     # return redirect('/chat/')
-
-def authenticate(request):
-
+def authenticate(request, id):
+    user = User.objects.filter(id=id)
     theSecret = 'BeeDevServices'
     username = user.username
     secret = user.username+theSecret
