@@ -57,6 +57,6 @@ function enterChat(chatUser) {
 }
 function sendUserInfo(chatUser) {
     // chatUser = document.chat.theUser.value
-    console.log(chatUser)
+    console.log('from django to js',chatUser)
     enterChat(chatUser)
 }
