@@ -59,3 +59,7 @@ Mentors have the ability to talk to general users, they must be approved after s
 - Forum / Groups
 - Mobile app
 - Pagination for logs
+
+
+# Branches (as of 7/14/23)
+Officially switched to branches dev and publicPages
