@@ -49,3 +49,6 @@ body.dark main {
 body.dark main .column .row {
   background-color: #54686781;
 }
+body.dark main iframe#dataUser html body {
+  background-color: blue;
+}

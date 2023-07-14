@@ -165,6 +165,9 @@ body main {
   width: 90%;
   border: 1px solid #3349B9;
 }
+body main .enterChat {
+  display: none;
+}
 body main .row {
   display: flex;
   flex-direction: row;
@@ -233,8 +236,8 @@ body main .column .row .column .row {
   align-items: center;
 }
 body main iframe {
-  width: 600px;
-  height: 600px;
+  width: 95%;
+  min-height: 600px;
 }
 body footer {
   display: flex;
@@ -261,6 +264,9 @@ body.dark main {
 }
 body.dark main .column .row {
   background-color: #54686781;
+}
+body.dark main iframe#dataUser html body {
+  background-color: blue;
 }
 @media only screen and (min-width: 650px) {
   body header nav .icon {

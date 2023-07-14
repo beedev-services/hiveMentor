@@ -7,11 +7,15 @@
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
         <h1>Chat with fellow Developers</h1>
-        {{user.id}}
-        <button onclick="sendUserInfo({{user.id}})">Enter Chat</button>
-        <h2>Coming Soon</h2>
-        <!-- <button><a href="/chat/authenticate/">CheckAuth</a></button> -->
+        <button class="enterChat" onclick="sendUserInfo({{user.id}})">Enter Chat</button>
+        <div class="popup">
+            <div class="cnt223">
+                <h1>Coming Soon</h1>
+                <a href='/choseRole/' class='close'>Close</a>
+            </div>
+        </div>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
+    <script src="{% static 'js/popup.js' %}"></script>
 </body>
 </html>

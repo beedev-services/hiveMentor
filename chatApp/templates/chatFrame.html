@@ -12,8 +12,10 @@
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
     <script>
         const iframe = document.getElementById('dataUser')
-        var userVar = '{{user.username}}'
-        console.log('theUserVar', userVar)
+        var user = '{{user.username}}'
+        var mode = localStorage.getItem("mode");
+        var userVar = {'user': user, 'mode': mode}
+        console.log('theUser', user, 'mode', mode, 'sending userVar', userVar)
 
         iframe.onload = function() {
             iframe.contentWindow.postMessage(userVar, '*')
