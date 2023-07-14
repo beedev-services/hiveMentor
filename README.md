@@ -63,3 +63,6 @@ Mentors have the ability to talk to general users, they must be approved after s
 
 # Branches (as of 7/14/23)
 Officially switched to branches dev and publicPages
+
+## PublicPages branch
+- will contain the updates for the public pages... index, about, contact
