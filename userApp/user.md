@@ -75,3 +75,38 @@
 - Profile
     - Image
     - Available Logs - Sugar / Sleep / Food
+
+
+# Public pages write ups
+
+## About
+As we stated on the welcome page our health is important and finding ways to help keep track of it just as important.
+
+We are always looking to add new way to help our members keep track of their health and mental well-being so please feel free to use our chat bot in the lower right corner to reach out with your ideas.
+
+
+## Home
+Welcome to Hive Mentor.  A special and unique place for all Tech Enthusiasts.  Come network with other Tech Enthusiasts, but more than that find a way to manage your health including your mental health.
+
+
+Chose from the Chat side or Logs side.  You can chose from different things you wish to log or keep track of. Or chose the chat side and be taken to the main chat board.
+
+This application is still a work in progress so please see below for what is intended to be released in each version.  Nothing will be removed just maybe shifted.  
+
+
+
+
+
+
+Version 1.0 - Initial Release (Current)
+- Log Side
+    - Ability to chose from the different items to log
+    - Ability to actually start creating those logs and keeping track of things
+- Chat side
+    - Single page message board.  Where you can send a message and reply to all users of the application - NOT LIVE RENDERED
+    - One on One messaging.  Where you can send and receive messages from 1 other member.  NOT LIVE RENDERED
+
+
+Version 1.1 - Addition of training materials for chat
+- Chat side
+    - A training section for those who would like to be come mentors. Mentors are fellow Tech Enthusiasts who have gone through training in understanding how to listen and help boost moods of other members
