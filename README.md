@@ -37,28 +37,34 @@ Mentors have the ability to talk to general users, they must be approved after s
 ## V1
 - Basic log side up and running
 - User can create logs
-- User can generate pdf of logs
-- Mentor Training for chat release
 
 ## V2
-- Chat app release
-- Mobile friendly CSS
+- Chat app release - Live chat
+    Groups and DM avail. 
+- User can generate pdf of logs
 
 ## V3
-- Provider access
+- Provider access - log side only
+- Mentor Training for chat release - when user gets upgraded to mentor/trainer username in chat will become Trainer - username and Mentor - username
 
 ## V4
-- Alert system from chat to provider/admin
+- Mobile friendly CSS
+- Messaging between provider and patient... 
+
 
 ## V5
-- Live chat
+- Alert system from chat to provider/admin
+- Email alerts
+
+## V6 (potential final)
+- Mobile App
 
 
 # Backlog ideas
 - FAQ's
 - Forum / Groups
 - Mobile app
-- Pagination for logs
+- Pagination for logs - added for V1 release
 
 
 # Branches (as of 7/14/23)
