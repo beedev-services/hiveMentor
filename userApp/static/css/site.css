@@ -246,6 +246,9 @@ body main .mainSection {
   align-items: center;
   width: 85%;
 }
+body main .mainSection p {
+  font-size: 1.25em;
+}
 body footer {
   display: flex;
   flex-direction: column;
