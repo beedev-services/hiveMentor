@@ -22,6 +22,8 @@ urlpatterns = [
     path('profile/upgradeAccount/', views.upgradeAccount),
     path('theAdmin/', views.theAdmin),
     path('theAdmin/sendUsers/', views.sendUsers),
+    path('theAdmin/getUsers/', views.getUsersChat),
+    path('theAdmin/checkUser/', views.checkUser),
     path('theAdmin/theCodes/', views.theCodes),
     path('theAdmin/createCode/', views.createCode),
     # path('theAdmin/auth/', views.auth),

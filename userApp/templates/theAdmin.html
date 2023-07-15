@@ -16,6 +16,8 @@
             {% csrf_token %}
             <button>Send Users</button>
         </form>
+        <button><a href="/theAdmin/getUsers/">Get Chat Users</a></button>
+        <button><a href="/theAdmin/checkUser/">Check User</a></button>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
 </body>

@@ -288,10 +288,13 @@ def sendUsers(request):
         sendCurrentUsersToChat()
         return redirect('/theAdmin/')
     
-# def auth(request):
-#     theUser = User.objects.get(id=request.session['user_id'])
-#     print('theUser.id', theUser.id)
-#     return redirect('/theAdmin/')
+def getUsersChat(request):
+    getUsersInChat()
+    return redirect('/theAdmin/')
+
+def checkUser(request):
+    getAdminAcct()
+    return redirect('/theAdmin/')
 
 def theCodes(request):
     if 'user_id' not in request.session:
