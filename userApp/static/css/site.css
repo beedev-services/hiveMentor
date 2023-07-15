@@ -239,6 +239,13 @@ body main iframe {
   width: 95%;
   min-height: 600px;
 }
+body main .mainSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+}
 body footer {
   display: flex;
   flex-direction: column;
@@ -258,12 +265,13 @@ body.dark header {
 body.dark header .mode .change {
   border: 1px solid #991A3C;
   box-shadow: 3px 3px #991A3C;
+  background-color: #991a3c3c;
 }
 body.dark main {
-  background-color: #54686781;
+  background-color: #4b6867af;
 }
 body.dark main .column .row {
-  background-color: #54686781;
+  background-color: #4b6867af;
 }
 body.dark main iframe#dataUser html body {
   background-color: blue;
