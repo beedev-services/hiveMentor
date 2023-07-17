@@ -150,7 +150,7 @@ def reg(request):
         toUpdate.save()
     messages.error(request, f'Welcome {newUser.firstName}')
     request.session['role'] = newUser.role
-    sendUserToChat(newUser.username, newUser.email, newUser.firstName, newUser.lastName)
+    # sendUserToChat(newUser.username, newUser.email, newUser.firstName, newUser.lastName)
     return redirect('/choseRole/')
 
 def logout(request):

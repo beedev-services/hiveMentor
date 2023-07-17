@@ -22,6 +22,7 @@ urlpatterns = [
     path('week/<int:week_id>/day/<int:day_id>/', views.viewDay),
     # create journal
     path('week/<int:week_id>/day/<int:day_id>/createJournal/', views.createJournal),
+    path('addSymptom/', views.addSymptom),
 
 ]
 if settings.DEBUG:

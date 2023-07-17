@@ -8,57 +8,65 @@
     <main>
         <h1>Viewing - {{day.day}} of week {{week.title}}</h1>
         <div class="row">
-            <button id="showCreateWater">Open Water Form</button>
-            <form action="" id="hideCreateWater">
-                <section>
-                    
-                </section>
-            </form>
-            {% if user.profile.journal == 1 %}
-                {% if journal == False %}
-                    <button id="showCreateJournal">Open Journal Form</button>
-                    <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="hideCreateJournal">
-                        {% csrf_token %}
-                        <section>
-                            <label for="title">Title</label>
-                            <input type="text" name="title" id="">
-                        </section>
-                        <section>
-                            <label for="content">Journal Entry</label>
-                            <textarea name="content" id="" cols="30" rows="10"></textarea>
-                        </section>
-                        <button>Add Journal Entry</button>
-                    </form>
+            <div class="row">
+                <button id="showCreateWater">Open Water Form</button>
+                <form action="" id="hideCreateWater">
+                    {% csrf_token %}
+                    <section>
+                        
+                    </section>
+                </form>
+                {% if user.profile.journal == 1 %}
+                    {% if journal == False %}
+                        <button id="showCreateJournal">Open Journal Form</button>
+                        <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="hideCreateJournal">
+                            {% csrf_token %}
+                            <section>
+                                <label for="title">Title</label>
+                                <input type="text" name="title" id="">
+                            </section>
+                            <section>
+                                <label for="content">Journal Entry</label>
+                                <textarea name="content" id="" cols="30" rows="10"></textarea>
+                            </section>
+                            <button>Add Journal Entry</button>
+                        </form>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-            {% if user.profile.mood == 1 %}
-                <button id="showCreateMood">Open Mood Form</button>
-            {% endif %}
-            {% if user.profile.meds == 1 %}
-                <button id="showCreateMed">Open Medication Taken Form</button>
-            {% endif %}
-            {% if user.profile.diabetic == 1 %}
-                <button id="showCreateSugar">Open Diabetic Form</button>
-            {% endif %}
-            {% if user.profile.food == 1 %}
-                <button id="showCreateFood">Open Food Form</button>
-            {% endif %}
-            {% if user.profile.sleep == 1 %}
-                <button id="showCreateSleep">Open Sleep Form</button>
-            {% endif %}
+                {% if user.profile.mood == 1 %}
+                    <button id="showCreateMood">Open Mood Form</button>
+                {% endif %}
+                {% if user.profile.meds == 1 %}
+                    <button id="showCreateMed">Open Medication Taken Form</button>
+                {% endif %}
+                {% if user.profile.diabetic == 1 %}
+                    <button id="showCreateSugar">Open Diabetic Form</button>
+                {% endif %}
+                {% if user.profile.food == 1 %}
+                    <button id="showCreateFood">Open Food Form</button>
+                {% endif %}
+                {% if user.profile.sleep == 1 %}
+                    <button id="showCreateSleep">Open Sleep Form</button>
+                {% endif %}
+            </div>
+            <div class="column">
+
+            </div>
         </div>
         <table>
             {% if user.profile.journal == 1 %}
                 <tr>
                     <th colspan="3">Today's Journal Entry</th>
                 </tr>
-                {% for j in journal %}
-                    <tr>
-                        <th>{{j.title}}</th>
-                        <td>{{j.content}}</td>
-                        <td></td>
-                    </tr>
-                {% endfor %}
+                {% if journal != False %}
+                    {% for j in journal %}
+                        <tr>
+                            <th>{{j.title}}</th>
+                            <td>{{j.content}}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
             {% endif %}
             {% if user.profile.mood == 1 %}
                 <tr>
@@ -84,27 +92,31 @@
                 <tr><th></th></tr>
             {% endif %}
         </table>
-                {% for j in journal %}
-                    <button id="showUpdateJournal">Update Journal Entry</button>
-                    <form action="/logs/week/{{week.id}}/day/{{day.id}}/updateJournal/" method="post" id="hideUpdateJournal">
-                        {% csrf_token %}
-                        <section>
-                            <label for="title">Title</label>
-                            <input type="text" name="title" id="" value="{{j.title}}">
-                        </section>
-                        <section>
-                            <label for="content">Journal Entry</label>
-                            <textarea name="content" id="" cols="30" rows="10">{{j.content}}</textarea>
-                        </section>
-                        <button>Update Journal Entry</button>
-                    </form>
-                    <div class="journal">
-                        <h3>{{j.title}}</h3>
-                        <p>{{j.content}}</p>
-                    </div>
-                {% endfor %}
+                {% if journal != False %}
+                    {% for j in journal %}
+                        <button id="showUpdateJournal">Update Journal Entry</button>
+                        <form action="/logs/week/{{week.id}}/day/{{day.id}}/updateJournal/" method="post" id="hideUpdateJournal">
+                            {% csrf_token %}
+                            <section>
+                                <label for="title">Title</label>
+                                <input type="text" name="title" id="" value="{{j.title}}">
+                            </section>
+                            <section>
+                                <label for="content">Journal Entry</label>
+                                <textarea name="content" id="" cols="30" rows="10">{{j.content}}</textarea>
+                            </section>
+                            <button>Update Journal Entry</button>
+                        </form>
+                        <div class="journal">
+                            <h3>{{j.title}}</h3>
+                            <p>{{j.content}}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
 
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
 </body>
 </html>
+
+value="/logs/week/{{week.id}}/day/{{day.id}}/"

@@ -8,6 +8,8 @@
     <main>
         <h2>Viewing week - {{week.title}}</h2>
         <div class="column">
+
+            <!-- If no days logged for this week show form and saying -->
             {% if days == False %}
                 <div class="column alt">
                     <h3>You currently have no logs or days created for this week why not add one</h3>
@@ -30,6 +32,8 @@
                     </form>
                 </div>
             {% else %}
+
+            <!-- Otherwise show this form and the days created -->
                 <form action="/logs/week/{{week.id}}/createDay/" method='post' class="create">
                     {% csrf_token %}
                     <section>
@@ -46,16 +50,21 @@
                     </section>
                     <button>Create Day</button>
                 </form>
+
+                <!-- Looping through the days -->
                 <div class="row">
                     {% for day in days %}
                         <div class="column">
                             <h3>{{day.day}} - {{day.date}}</h3>
+
+
+                            <!-- buttons to view / edit day -->
                             <div class="row">
-                                <!-- buttons to view / edit day -->
                                 <button><a href="/logs/week/{{week.id}}/day/{{day.id}}/">View Day</a></button>
                             </div>
+
+                            <!-- count of entries for the day for those the user tracks -->
                             <div class="row">
-                                <!-- buttons to add entries to each day -->
                                 {% if user.profile.mood == 1 %}
                                     <button>Track/Add Mood</button>
                                 {% endif %}

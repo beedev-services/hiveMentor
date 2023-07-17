@@ -152,7 +152,14 @@ def addSymptom(request):
     pass
 
 def createSymptom(request):
-    pass
+    url = request.POST['url']
+    print('the url being passed in', url)
+    SymptomList.objects.create(
+        symptom = request.POST['symptom'],
+        info = request.POST['info']
+    )
+    messages.error(request, 'Symptom added to list')
+    return redirect(f'url')
 
 def addMedication(request):
     pass
