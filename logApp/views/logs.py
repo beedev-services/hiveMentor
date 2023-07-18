@@ -126,6 +126,8 @@ def viewDay(request, week_id, day_id):
         print(journal)
         if not journal:
             journal = False
+        else:
+            journal = journal[0]
         site = request.session['site']
         context = {
             'title': title,
@@ -142,6 +144,7 @@ def viewDay(request, week_id, day_id):
             'meds': meds,
             'sugars': sugars
         }
+        print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
 
 def deleteDay(request, day_id):

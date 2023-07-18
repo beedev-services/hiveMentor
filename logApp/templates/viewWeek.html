@@ -62,29 +62,6 @@
                             <div class="row">
                                 <button><a href="/logs/week/{{week.id}}/day/{{day.id}}/">View Day</a></button>
                             </div>
-
-                            <!-- count of entries for the day for those the user tracks -->
-                            <div class="row">
-                                {% if user.profile.mood == 1 %}
-                                    <button>Track/Add Mood</button>
-                                {% endif %}
-                                {% if user.profile.meds == 1 %}
-                                    <button>Track/Add Meds Taken</button>
-                                {% endif %}
-                                {% if user.profile.journal == 1 %}
-                                    <button>Add/View Journal Entry</button>
-                                {% endif %}
-                                <br>
-                                {% if user.profile.diabetic == 1 %}
-                                    <button>Track/Add Sugar Levels</button>
-                                {% endif %}
-                                {% if user.profile.food == 1 %}
-                                    <button>Track/Add Foods Eaten</button>
-                                {% endif %}
-                                {% if user.profile.sleep == 1 %}
-                                    <button>Track/Add Sleep Record</button>
-                                {% endif %}
-                            </div>
                         </div>
                     {% endfor %}
                 </div>
