@@ -8,7 +8,8 @@ function App() {
   const [theName, setTheName] = useState("")
   const [theSecret, setTheSecret] = useState("")
   const secret = 'BeeDevServices'
-  const proj = '34e251b1-74c5-4888-b1b1-e56e45673e6e'
+  // const proj = '34e251b1-74c5-4888-b1b1-e56e45673e6e'
+  const proj = '8b626c35-8c33-4491-a1ef-d021890a4fd3'
   const [theMode, setTheMode] = useState("")
 
   useEffect(() => {
@@ -36,10 +37,10 @@ function App() {
       
         <ChatEngine
           projectID={proj}
-          // userName={theName}
-          userName='webmaster'
-          // userSecret={theSecret}
-          userSecret='webmasterBeeDevServices'
+          userName={theName}
+          // userName='webmaster'
+          userSecret={theSecret}
+          // userSecret='webmasterBeeDevServices'
         />
         {console.log('theName', theName)}
     </div>

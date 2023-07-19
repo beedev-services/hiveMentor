@@ -12,13 +12,14 @@ secret = 'BeeDevServices'
 url = 'https://api.chatengine.io/users/'
 adminUrl = "https://api.chatengine.io/users/me/"
 
-def sendUserToChat(username, email, firstName, lastName):
+def sendUserToChat(username, email, firstName, lastName, role):
     payload = {
         'username': username,
         'email': email,
         'first_name': firstName,
         'last_name': lastName,
-        'secret': username+'BeeDevServices'
+        'secret': username+'BeeDevServices',
+        'custom_json': {'role': role}
     }
     headers = {
         'PRIVATE-KEY': theKey
@@ -28,7 +29,7 @@ def sendUserToChat(username, email, firstName, lastName):
 def sendCurrentUsersToChat():
     allUsers = User.objects.all()
     for user in allUsers:
-        sendUserToChat(user.username, user.email, user.firstName, user.lastName)
+        sendUserToChat(user.username, user.email, user.firstName, user.lastName, user.role)
 
 def getUsersInChat():
     payload={}
