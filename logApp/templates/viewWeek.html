@@ -56,8 +56,6 @@
                     {% for day in days %}
                         <div class="column">
                             <h3>{{day.day}} - {{day.date}}</h3>
-
-
                             <!-- buttons to view / edit day -->
                             <div class="row">
                                 <button><a href="/logs/week/{{week.id}}/day/{{day.id}}/">View Day</a></button>
@@ -65,6 +63,7 @@
                         </div>
                     {% endfor %}
                 </div>
+                <div class="row"></div>
             {% endif %}
         </div>
     </main>
