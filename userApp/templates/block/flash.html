@@ -2,7 +2,7 @@
 <html lang="en">
     {% block flash %}
         <div>
-            <span>{{site}} - {{role}}</span>
+            <span class="session">{{site}} - {{role}}</span>
             {% if messages %}
             <section class='messages'>
                 {% for message in messages %}

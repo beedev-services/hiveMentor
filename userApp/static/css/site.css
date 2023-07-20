@@ -146,6 +146,9 @@ body header nav {
 body header nav #myLinks {
   display: none;
 }
+body div .session {
+  display: none;
+}
 body div .messages {
   display: flex;
   flex-direction: column;
@@ -221,6 +224,7 @@ body main .column .row {
   justify-content: center;
   align-items: center;
   background-color: #e0d0d197;
+  width: 100%;
 }
 body main .column .row .column {
   display: flex;
@@ -228,6 +232,7 @@ body main .column .row .column {
   justify-content: center;
   align-items: center;
   border: 4px groove #54F1C4;
+  margin: 1em;
 }
 body main .column .row .column .row {
   display: flex;

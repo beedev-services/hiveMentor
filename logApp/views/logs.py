@@ -11,6 +11,15 @@ from django.core.paginator import Paginator
 # context = {
 #     'title': title,
 # }
+weekDays = [
+    {1: 'Sunday'},
+    {2: 'Monday'},
+    {3: 'Tuesday'},
+    {4: 'Wednesday'},
+    {5: 'Thursday'},
+    {6: 'Friday'},
+    {7: 'Saturday'}
+]
 
 def logDash(request):
     title = {
@@ -78,6 +87,7 @@ def viewWeek(request, week_id):
             'site': site,
             'days': days,
             'role': role,
+            'weekDays': weekDays,
         }
         return render(request, 'viewWeek.html', context)
     

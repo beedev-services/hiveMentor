@@ -51,6 +51,9 @@ body {
         }
     }
     div {
+        .session {
+            display: none;
+        }
         .messages {
             .flexcolumn();
             background-color: @dk01;
@@ -105,10 +108,12 @@ body {
             .row {
                 .flexrow();
                 background-color: @ltbodybg;
+                width: 100%;
 
                 .column {
                     .flexcolumn();
                     border: 4px groove @lt04;
+                    margin: 1em;
 
                     .row {
                         .flexrow();

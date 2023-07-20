@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'hiveMentor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'craftsnh_hiveMentor',
+        'NAME': 'thehives_hiveMentor',
         'USER': 'root',
         'PASSWORD': 'HoneyBee#4',
         'HOST': 'localhost',
