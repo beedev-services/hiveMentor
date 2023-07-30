@@ -75,6 +75,8 @@ class Profile(models.Model):
     diabetic = models.BooleanField(default=0)
     food = models.BooleanField(default=0)
     sleep = models.BooleanField(default=0)
+    fitness = models.BooleanField(default=0)
+    work = models.BooleanField(default=0)
     def __str__(self):
         return f'{self.user.username} Profile'
 

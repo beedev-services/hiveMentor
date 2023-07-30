@@ -15,6 +15,11 @@ class MedList(models.Model):
     
     def __str__(self):
         return f'{self.name} {self.freq}'
+    
+class FitnessList(models.Model):
+    name = models.CharField(max_length=255)
+    def __str__(self):
+        return self.name
 
 class Week(models.Model):
     title = models.CharField(max_length=255)
@@ -101,3 +106,21 @@ class Sugar(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     entry = models.ForeignKey(Day, related_name='theEntry',on_delete=CASCADE, blank=True)
     owner = models.ForeignKey(User, related_name='theOwner', on_delete=CASCADE)
+
+class Fitness(models.Model):
+    duration = models.TimeField()
+    comments = models.TextField(blank=True)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    exercise = models.ForeignKey(FitnessList, related_name='theExercise', on_delete=CASCADE)
+    workout = models.ForeignKey(Day, related_name='theWorkout', on_delete=CASCADE)
+    human = models.ForeignKey(User, related_name='theHuman', on_delete=CASCADE)
+
+class Work(models.Model):
+    duration = models.TimeField()
+    comments = models.TextField(blank=True)
+    job = models.CharField(max_length=255)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    workDay = models.ForeignKey(Day, related_name='theWorkDay', on_delete=CASCADE)
+    worker = models.ForeignKey(User, related_name='theWorker', on_delete=CASCADE)
