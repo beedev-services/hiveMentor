@@ -133,6 +133,7 @@ def viewDay(request, week_id, day_id):
         meds = Medication.objects.filter(blog_id=day_id)
         sugars = Sugar.objects.filter(entry_id=day_id)
         sList = SymptomList.objects.values().all()
+        mList = MedList.objects.values().all()
         role = request.session['role']
         print(journal)
         print(water)
@@ -160,6 +161,7 @@ def viewDay(request, week_id, day_id):
             'meds': meds,
             'sugars': sugars,
             'sList': sList,
+            'mList': mList,
         }
         # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
@@ -168,8 +170,6 @@ def deleteDay(request, day_id):
     pass
 
 # ***** List Functions *****
-def addSymptom(request):
-    pass
 
 def createSymptom(request):
     currPage = request.POST['currPage']
@@ -178,14 +178,17 @@ def createSymptom(request):
         symptom = request.POST['symptom'],
         info = request.POST['info']
     )
-    messages.error(request, 'Symptom added to list')
+    messages.error(request, 'Symptom added to Symptom Bank')
     return redirect(f'{currPage}')
 
-def addMedication(request):
-    pass
-
 def createNewMed(request):
-    pass
+    currPage = request.POST['currPage']
+    MedList.objects.create(
+        name = request.POST['name'],
+        freq = request.POST['freq'],
+    )
+    messages.error(request, "Medication added to Medication Bank")
+    return redirect(f'{currPage}')
 
 def addFitness(request):
     pass
@@ -196,9 +199,6 @@ def createNewFitness(request):
 # ******* Default Required Functions *******
 
 # ***** Mood Functions *****
-def newMood(request):
-    pass
-
 def createMood(request, week_id, day_id):
     Mood.objects.create(
         feeling = request.POST['feeling'],
@@ -220,7 +220,6 @@ def createWater(request, week_id, day_id):
         note_id = day_id,
         drinker = User.objects.get(id=request.session['user_id'])
     )
-
     messages.error(request, 'Water logged')
     return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
@@ -282,11 +281,16 @@ def deleteFood(request, food_id):
     pass
 
 # ***** Med Functions *****
-def newMed(request):
-    pass
-
-def createMed(request):
-    pass
+def createMed(request, week_id, day_id):
+    Medication.objects.create(
+        when = request.POST['when'],
+        dose = request.POST['dose'],
+        medication_id = request.POST['medication'],
+        blog_id = day_id,
+        member = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Medication logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def deleteMed(request, medication_id):
     pass

@@ -261,7 +261,8 @@ body main .mainSection p {
 body main .left {
   width: 33%;
 }
-body main .left #moodForm {
+body main .left #moodForm,
+body main .left #UserMedForm {
   display: none;
 }
 body main .left form {
@@ -269,6 +270,7 @@ body main .left form {
 }
 body main .left .lgButton {
   font-size: 1.2em;
+  margin: 0.5em;
 }
 body main .mid {
   width: 33%;
@@ -282,7 +284,8 @@ body main .mid .lgButton {
 body main .right {
   width: 33%;
 }
-body main .right #symptomForm {
+body main .right #symptomForm,
+body main .right #MedListForm {
   display: none;
 }
 body main .right .lgButton {

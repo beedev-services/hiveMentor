@@ -33,8 +33,26 @@
                     </form>
                 {% endif %}
                 {% if user.profile.meds == 1 %}
-                    <form action="">
+                    <button class="lgButton" onclick="openForm('UserMedForm')">Open Medication Form</button>
+                    <form action="/logs/week/{{week.id}}/day/{{day.id}}/createMed/" method="post" id="UserMedForm">
                         {% csrf_token %}
+                        <section>
+                            <label for="when">Time Taken</label>
+                            <input type="datetime-local" name="when" id="">
+                        </section>
+                        <section>
+                            <label for="dose">What Dose</label>
+                            <input type="text" name="dose" id="">
+                        </section>
+                        <section>
+                            <label for="Medication">Medication</label>
+                            <select name="medication" id="">
+                                <option value="">Please Chose</option>
+                                {% for m in mList %}
+                                    <option value="{{m.id}}">{{m.name}} {{m.freq}}</option>
+                                {% endfor %}
+                            </select>
+                        </section>
                         <button>Add Medication Taken</button>
                     </form>
                 {% endif %}
@@ -97,39 +115,61 @@
                         {% endif %}
                     </h3>
                     {% if user.profile.mood == 1 %}
-                    <table>
-                        <tr>
-                            <th>Mood</th>
-                            <th>Symptom</th>
-                            <th>Comments</th>
-                        </tr>
-                        {% for mood in moods %}
+                        <table>
                             <tr>
-                                <td>
-                                    {% if mood.feeling == 0 %}
-                                        <img src="{% static 'images/00.PNG'%}" alt="Bad Mood">
-                                    {% elif mood.feeling == 1 %}
-                                        <img src="{% static 'images/01.PNG'%}" alt="Poor Mood">
-                                    {% elif mood.feeling == 2 %}
-                                        <img src="{% static 'images/02.PNG'%}" alt="Ok Mood">
-                                    {% elif mood.feeling == 3 %}
-                                        <img src="{% static 'images/03.PNG'%}" alt="Good Mood">
-                                    {% else %}
-                                        <img src="{% static 'images/04.PNG'%}" alt="Great Mood">
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% for s in sList %}
-                                        {% if mood.symptom_id == s.id %}
-                                            {{s.symptom}}
-                                        {% endif %}
-                                    {% endfor %}
-                                </td>
-                                <td>{{mood.comments}}</td>
+                                <th>Mood</th>
+                                <th>Symptom</th>
+                                <th>Comments</th>
                             </tr>
-                        {% endfor %}
-                    </table>
-                {% endif %}
+                            {% for mood in moods %}
+                                <tr>
+                                    <td>
+                                        {% if mood.feeling == 0 %}
+                                            <img src="{% static 'images/00.PNG'%}" alt="Bad Mood">
+                                        {% elif mood.feeling == 1 %}
+                                            <img src="{% static 'images/01.PNG'%}" alt="Poor Mood">
+                                        {% elif mood.feeling == 2 %}
+                                            <img src="{% static 'images/02.PNG'%}" alt="Ok Mood">
+                                        {% elif mood.feeling == 3 %}
+                                            <img src="{% static 'images/03.PNG'%}" alt="Good Mood">
+                                        {% else %}
+                                            <img src="{% static 'images/04.PNG'%}" alt="Great Mood">
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% for s in sList %}
+                                            {% if mood.symptom_id == s.id %}
+                                                {{s.symptom}}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{mood.comments}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+                    {% if user.profile.meds == 1 %}
+                        <table>
+                            <tr>
+                                <th>Medication</th>
+                                <th>Dose</th>
+                                <th>Time Taken</th>
+                            </tr>
+                            {% for med in meds %}
+                                <tr>
+                                    <td>
+                                        {% for m in mList %}
+                                            {% if med.medication_id == m.id %}
+                                                {{m.name}}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{med.dose}}</td>
+                                    <td>{{med.when}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
                 </div>
                 {% if user.profile.food == 1 %}
                     <div></div>
@@ -137,9 +177,7 @@
                 {% if user.profile.diabetic == 1 %}
                     <div></div>
                 {% endif %}
-                {% if user.profile.meds == 1 %}
-                    <div></div>
-                {% endif %}
+                
                 {% if journal != False %}
                     <div>
                         <h3>{{journal.title}}</h3>
@@ -168,9 +206,21 @@
                         <button>Add New Symptom to Bank</button>
                     </form>
                 {% endif %}
-                {% if user.profile.medication == 1 %}
-                    <button>Open Medication Form</button>
-                    <div></div>
+                {% if user.profile.meds == 1 %}
+                    <button onclick="openForm('MedListForm')">Open Medication Form</button>
+                    <form action="/logs/createMedication/" method="post" id="MedListForm">
+                        {% csrf_token %}
+                        <section>
+                            <label for="name">Medication Name</label>
+                            <input type="text" name="name" id="">
+                        </section>
+                        <section>
+                            <label for="freq">Frequency Taken</label>
+                            <input type="text" name="freq" id="">
+                        </section>
+                        <input type="hidden" name="currPage" value="/logs/week/{{week.id}}/day/{{day.id}}/">
+                        <button>Add New Medication</button>
+                    </form>
                 {% endif %}
                 {% if user.profile.fitness == 1 %}
                     <button>Open Fitness Form</button>

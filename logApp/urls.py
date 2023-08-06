@@ -25,7 +25,9 @@ urlpatterns = [
     path('week/<int:week_id>/day/<int:day_id>/createWater/', views.createWater),
     path('week/<int:week_id>/day/<int:day_id>/<int:water_id>/updateWater/', views.updateWater),
     path('week/<int:week_id>/day/<int:day_id>/createMood/', views.createMood),
+    path('week/<int:week_id>/day/<int:day_id>/createMed/', views.createMed),
     path('createSymptom/', views.createSymptom),
+    path('createMedication/', views.createNewMed),
 
 ]
 if settings.DEBUG:
