@@ -14,7 +14,7 @@
                         {% if water == False %}
                             0
                         {% else %}
-                            {{water}}
+                            {{water.water}}
                         {% endif %}
                     </h3>
                     {% if water == False %}
@@ -23,8 +23,9 @@
                             <button>Drank Water</button>
                         </form>
                     {% else %}
-                        <form action="/logs/week/{{week.id}}/day/{{day.id}}{{water.id}}/updateWater">
+                        <form action="/logs/week/{{week.id}}/day/{{day.id}}/{{water.id}}/updateWater">
                             {% csrf_token %}
+                            <button>Drank More Water</button>
                         </form>
                     {% endif %}
                 </div>
@@ -100,10 +101,18 @@
                 {% endif %}
             </div>
             <div class="column right">
-                <button>Open Symptom Form</button>
-                <div></div>
-                <button>Open Medication Form</button>
-                <div></div>
+                {% if user.profile.mood == 1 %}
+                    <button>Open Symptom Form</button>
+                    <div></div>
+                {% endif %}
+                {% if user.profile.medication == 1 %}
+                    <button>Open Medication Form</button>
+                    <div></div>
+                {% endif %}
+                {% if user.profile.fitness == 1 %}
+                    <button>Open Fitness Form</button>
+                    <div></div>
+                {% endif %}
             </div>
         </div>
     </main>

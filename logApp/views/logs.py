@@ -138,7 +138,7 @@ def viewDay(request, week_id, day_id):
         if not water:
             water = False
         else:
-            water = water[0].water
+            water = water[0]
         if not journal:
             journal = False
         else:
@@ -215,10 +215,11 @@ def createWater(request, week_id, day_id):
     return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def updateWater(request, week_id, day_id, water_id):
-    water = Water.objects.filter(note_id=day_id)
-    water = water[0]
+    theWater = Water.objects.filter(note_id=day_id)
+    theWater = theWater[0].water
     toUpdate=Water.objects.get(id=water_id)
-    toUpdate.water=water+1
+    toUpdate.water=theWater+1
+    toUpdate.save()
     messages.error(request, 'Water logged')
     return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 

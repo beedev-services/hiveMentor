@@ -23,6 +23,7 @@ urlpatterns = [
     # create journal
     path('week/<int:week_id>/day/<int:day_id>/createJournal/', views.createJournal),
     path('week/<int:week_id>/day/<int:day_id>/createWater', views.createWater),
+    path('week/<int:week_id>/day/<int:day_id>/<int:water_id>/updateWater', views.updateWater),
     path('addSymptom/', views.addSymptom),
 
 ]
