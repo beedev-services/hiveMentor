@@ -25,7 +25,15 @@ function menu() {
     }
 }
 
-
+function openForm(a) {
+    let theForm = document.getElementById(a)
+    if(theForm.style.display == 'flex') {
+        theForm.style.display = 'none'
+    } else {
+        theForm.style.display = 'flex'
+    }
+    console.log('what element', theForm)
+}
 
 
 $(document).ready(function() {

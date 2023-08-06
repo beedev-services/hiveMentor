@@ -29,6 +29,9 @@ h2,
 h3 {
   font-weight: 900;
 }
+button {
+  font-size: 1.2em;
+}
 #overlay {
   position: fixed;
   top: 0;
@@ -176,6 +179,7 @@ body main .row {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 95%;
 }
 body main .row #reg {
   display: none;
@@ -194,7 +198,7 @@ body main .row form section {
   align-items: center;
 }
 body main .row form button {
-  font-size: 0.8em;
+  font-size: 0.89em;
 }
 body main .column {
   display: flex;
@@ -253,6 +257,36 @@ body main .mainSection {
 }
 body main .mainSection p {
   font-size: 1.25em;
+}
+body main .left {
+  width: 33%;
+}
+body main .left #moodForm {
+  display: none;
+}
+body main .left form {
+  margin: 0.5em;
+}
+body main .left .lgButton {
+  font-size: 1.2em;
+}
+body main .mid {
+  width: 33%;
+}
+body main .mid .column {
+  padding: 1em;
+}
+body main .mid .lgButton {
+  font-size: 1.2em;
+}
+body main .right {
+  width: 33%;
+}
+body main .right #symptomForm {
+  display: none;
+}
+body main .right .lgButton {
+  font-size: 1.2em;
 }
 body footer {
   display: flex;

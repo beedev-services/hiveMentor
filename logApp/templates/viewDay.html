@@ -9,26 +9,17 @@
         <h1>Viewing - {{day.day}} of week {{week.title}}</h1>
         <div class="row">
             <div class="column left">
-                <div class="column">
-                    <h3>Water Consumed today: 
-                        {% if water == False %}
-                            0
-                        {% else %}
-                            {{water.water}}
-                        {% endif %}
-                    </h3>
-                    {% if water == False %}
-                        <form action="/logs/week/{{week.id}}/day/{{day.id}}/createWater">
-                            {% csrf_token %}
-                            <button>Drank Water</button>
-                        </form>
-                    {% else %}
-                        <form action="/logs/week/{{week.id}}/day/{{day.id}}/{{water.id}}/updateWater">
-                            {% csrf_token %}
-                            <button>Drank More Water</button>
-                        </form>
-                    {% endif %}
-                </div>
+                {% if water == False %}
+                    <form action="/logs/week/{{week.id}}/day/{{day.id}}/createWater/" method='post'>
+                        {% csrf_token %}
+                        <button>Drank Water</button>
+                    </form>
+                {% else %}
+                    <form action="/logs/week/{{week.id}}/day/{{day.id}}/{{water.id}}/updateWater/" method='post'>
+                        {% csrf_token %}
+                        <button>Drank More Water</button>
+                    </form>
+                {% endif %}
                 {% if user.profile.food == 1 %}
                     <form action="">
                         {% csrf_token %}
@@ -48,8 +39,28 @@
                     </form>
                 {% endif %}
                 {% if user.profile.mood == 1 %}
-                    <form action="">
+                    <button class="lgButton" onclick="openForm('moodForm')">Open Mood Form</button>
+                    <form action="/logs/week/{{week.id}}/day/{{day.id}}/createMood/" method="post" id="moodForm">
                         {% csrf_token %}
+                        <section>
+                            <i class="material-icons" id="emoji">
+                                sentiment_satisfied
+                            </i>
+                            <input type="range" id="mood" name="feeling" min="0" max="4" value="2">
+                        </section>
+                        <section>
+                            <label for="symptom">Symptom Feeling</label>
+                            <select name="symptom" id="">
+                                <option value="">Please Chose</option>
+                                {% for s in sList %}
+                                    <option value="{{s.id}}">{{s.symptom}}</option>
+                                {% endfor %}
+                            </select>
+                        </section>
+                        <section>
+                            <label for="comments">Comments (not required)</label>
+                            <input type="text" name="comments" id="">
+                        </section>
                         <button>Add Mood/Symptom</button>
                     </form>
                 {% endif %}
@@ -77,7 +88,49 @@
                 {% endif %}
             </div>
             <div class="column mid">
-                <div></div>
+                <div class="column">
+                    <h3>Water Consumed today: 
+                        {% if water == False %}
+                            0
+                        {% else %}
+                            {{water.water}}
+                        {% endif %}
+                    </h3>
+                    {% if user.profile.mood == 1 %}
+                    <table>
+                        <tr>
+                            <th>Mood</th>
+                            <th>Symptom</th>
+                            <th>Comments</th>
+                        </tr>
+                        {% for mood in moods %}
+                            <tr>
+                                <td>
+                                    {% if mood.feeling == 0 %}
+                                        <img src="{% static 'images/00.PNG'%}" alt="Bad Mood">
+                                    {% elif mood.feeling == 1 %}
+                                        <img src="{% static 'images/01.PNG'%}" alt="Poor Mood">
+                                    {% elif mood.feeling == 2 %}
+                                        <img src="{% static 'images/02.PNG'%}" alt="Ok Mood">
+                                    {% elif mood.feeling == 3 %}
+                                        <img src="{% static 'images/03.PNG'%}" alt="Good Mood">
+                                    {% else %}
+                                        <img src="{% static 'images/04.PNG'%}" alt="Great Mood">
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% for s in sList %}
+                                        {% if mood.symptom_id == s.id %}
+                                            {{s.symptom}}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>{{mood.comments}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+                </div>
                 {% if user.profile.food == 1 %}
                     <div></div>
                 {% endif %}
@@ -85,9 +138,6 @@
                     <div></div>
                 {% endif %}
                 {% if user.profile.meds == 1 %}
-                    <div></div>
-                {% endif %}
-                {% if user.profile.mood == 1 %}
                     <div></div>
                 {% endif %}
                 {% if journal != False %}
@@ -102,8 +152,21 @@
             </div>
             <div class="column right">
                 {% if user.profile.mood == 1 %}
-                    <button>Open Symptom Form</button>
-                    <div></div>
+                    <button onclick="openForm('symptomForm')">Open Symptom Form</button>
+                    <form action="/logs/createSymptom/" method='post' id="symptomForm">
+                        {% csrf_token %}
+                        <h3>Please make sure the symptom you are adding is unique</h3>
+                        <section>
+                            <label for="symptom">Symptom Name</label>
+                            <input type="text" name="symptom" id="">
+                        </section>
+                        <section>
+                            <label for="info">Information</label>
+                            <textarea name="info" id="" cols="30" rows="10"></textarea>
+                        </section>
+                        <input type="hidden" name="currPage" value="/logs/week/{{week.id}}/day/{{day.id}}/">
+                        <button>Add New Symptom to Bank</button>
+                    </form>
                 {% endif %}
                 {% if user.profile.medication == 1 %}
                     <button>Open Medication Form</button>
@@ -120,4 +183,3 @@
 </body>
 </html>
 
-value="/logs/week/{{week.id}}/day/{{day.id}}/"

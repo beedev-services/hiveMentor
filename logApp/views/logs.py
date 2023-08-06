@@ -132,6 +132,7 @@ def viewDay(request, week_id, day_id):
         water = Water.objects.filter(note_id=day_id)
         meds = Medication.objects.filter(blog_id=day_id)
         sugars = Sugar.objects.filter(entry_id=day_id)
+        sList = SymptomList.objects.values().all()
         role = request.session['role']
         print(journal)
         print(water)
@@ -157,7 +158,8 @@ def viewDay(request, week_id, day_id):
             'foods': foods,
             'water': water,
             'meds': meds,
-            'sugars': sugars
+            'sugars': sugars,
+            'sList': sList,
         }
         # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
@@ -170,14 +172,14 @@ def addSymptom(request):
     pass
 
 def createSymptom(request):
-    url = request.POST['url']
-    print('the url being passed in', url)
+    currPage = request.POST['currPage']
+    print('the url being passed in', currPage)
     SymptomList.objects.create(
         symptom = request.POST['symptom'],
         info = request.POST['info']
     )
     messages.error(request, 'Symptom added to list')
-    return redirect(f'url')
+    return redirect(f'{currPage}')
 
 def addMedication(request):
     pass
@@ -197,8 +199,16 @@ def createNewFitness(request):
 def newMood(request):
     pass
 
-def createMood(request):
-    pass
+def createMood(request, week_id, day_id):
+    Mood.objects.create(
+        feeling = request.POST['feeling'],
+        symptom_id = request.POST['symptom'],
+        comments = request.POST['comments'],
+        log_id = day_id,
+        feeler = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Mood Added')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def deleteMood(request, mood_id):
     pass
