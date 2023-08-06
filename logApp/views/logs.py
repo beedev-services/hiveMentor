@@ -190,9 +190,6 @@ def createNewMed(request):
     messages.error(request, "Medication added to Medication Bank")
     return redirect(f'{currPage}')
 
-def addFitness(request):
-    pass
-
 def createNewFitness(request):
     pass
 
