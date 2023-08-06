@@ -20,9 +20,9 @@
                 <p>Please chose what application/side you would like to start with today.  You can always change applications later</p>
                 {% if user.level > 9 %}
                 <!-- Role = Webmaster -->
-                    <button><a href="/profile/">Profile</a></button><br>
-                    <button><a href="/theAdmin/">Load Site Admin</a></button>
-                    <button><a href="/admin/">Django Site Admin</a></button><br>
+                    <button><a href="/user/profile/">Profile</a></button><br>
+                    <button><a href="/user/theAdmin/">Load Site Admin</a></button>
+                    <button><a href="/user/admin/">Django Site Admin</a></button><br>
                     <button><a href="/logs/">Load Logs</a></button><br>
                     <button><a href="/chat/">Load Member Chat</a></button>
                     <button><a href="/chat/training/">Load Training</a></button>
@@ -30,8 +30,8 @@
                     <button><a href="/chat/admin/">Load Chat Admin</a></button>
                 {% elif user.level > 7 %}
                 <!-- Role = SuperAdmin -->
-                    <button><a href="/profile/">Profile</a></button><br>
-                    <button><a href="/theAdmin/">Load Site Admin</a></button><br>
+                    <button><a href="/user/profile/">Profile</a></button><br>
+                    <button><a href="/user/theAdmin/">Load Site Admin</a></button><br>
                     <button><a href="/logs/">Load Logs</a></button><br>
                     <button><a href="/chat/">Load Member Chat</a></button>
                     <button><a href="/chat/training/">Load Training</a></button>
@@ -39,7 +39,7 @@
                     <button><a href="/chat/admin/">Load Chat Admin</a></button>
                 {% elif user.level > 5%}
                 <!-- Role = ChatAdmin -->
-                    <button><a href="/profile/">Profile</a></button><br>
+                    <button><a href="/user/profile/">Profile</a></button><br>
                     <button><a href="/logs/">Load Logs</a></button><br>
                     <button><a href="/chat/">Load Member Chat</a></button>
                     <button><a href="/chat/training/">Load Training</a></button>
@@ -48,26 +48,26 @@
                 {% elif user.level > 3 %}
                     {% if user.role == 'Mentor' %}
                     <!-- Role = Mentor -->
-                        <button><a href="/profile/">Profile</a></button><br>
+                        <button><a href="/user/profile/">Profile</a></button><br>
                         <button><a href="/logs/">Load Logs</a></button><br>
                         <button><a href="/chat/">Load Member Chat</a></button>
                         <button><a href="/chat/training/">Load Training</a></button>
                         <button><a href="/chat/mentor/">Load Mentor Chat</a></button>
                     {% else %}
                     <!-- Role = Provider -->
-                        <button><a href="/profile/">Profile</a></button><br>
+                        <button><a href="/user/profile/">Profile</a></button><br>
                         <button><a href="/logs/">Load Logs</a></button>
                         <button><a href="/logs/provider/">Load Provider</a></button>
                     {% endif %}
                 {% elif user.level > 1 %}
                 <!-- Role = Trainer -->
-                    <button><a href="/profile/">Profile</a></button><br>
+                    <button><a href="/user/profile/">Profile</a></button><br>
                     <button><a href="/logs/">Load Logs</a></button>
                     <button><a href="/chat/">Load Member Chat</a></button>
                     <button><a href="/chat/training/">Load Trainer Chat</a></button>
                 {% else %}
                 <!-- Role = General -->
-                    <button><a href="/profile/">Profile</a></button>
+                    <button><a href="/user/profile/">Profile</a></button>
                     <button><a href="/logs/">Load Logs</a></button>
                     <button><a href="/chat/">Load Chat</a></button>
                 {% endif %}

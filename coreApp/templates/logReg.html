@@ -7,7 +7,7 @@
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
         <div class="row">
-            <form action='/login/' method='post' id="login">
+            <form action='/user/login/' method='post' id="login">
                 {% csrf_token %}
                 <section>
                     <label for='username'>Username</label>
@@ -19,7 +19,7 @@
                 </section>
                 <button>Sign In</button>
             </form>
-            <form action='/reg/' method='post' id="reg">
+            <form action='/user/reg/' method='post' id="reg">
                 {% csrf_token %}
                 <section>
                     <label for='firstName'>First Name:</label>

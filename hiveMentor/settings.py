@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'coreApp.apps.CoreappConfig',
     'userApp.apps.UserappConfig',
     'chatApp.apps.ChatappConfig',
     'logApp.apps.LogappConfig',

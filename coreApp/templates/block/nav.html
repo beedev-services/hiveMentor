@@ -10,36 +10,36 @@
         <nav id="myLinks">
             {% if site == 'logs' %}
                 <a href="/logs">Log Dashboard</a>
-                <a href="/profile/">Profile</a>
+                <a href="/user/profile/">Profile</a>
             {% elif site == 'pLogs' %}
             <!-- Provider Role -->
                 <a href="/logs">Provider Log Dashboard</a>
-                <a href="/profile/">Profile</a>
+                <a href="/user/profile/">Profile</a>
             {% elif site == 'chat' %}
                 <a href="/chat">Chat Dashboard</a>
-                <a href="/profile/">Profile</a>
+                <a href="/user/profile/">Profile</a>
             {% elif site == 'tChat' %}
             <!-- Trainer -->
                 <a href="/chat">Trainer Dashboard</a>
-                <a href="/profile/">Profile</a>
+                <a href="/user/profile/">Profile</a>
             {% elif site == 'mChat' %}
             <!-- Mentor -->
                 <a href="/chat">Mentor Dashboard</a>
-                <a href="/profile/">Profile</a>
+                <a href="/user/profile/">Profile</a>
             {% elif site == 'aChat' %}
             <!-- Chat Admin -->
                 <a href="/chat">Chat Admin Dashboard</a>
-                <a href="/profile/">Profile</a>
+                <a href="/user/profile/">Profile</a>
             {% elif site == 'admin' %}
             <!-- Super Admin -->
-                <a href="/theAdmin">Admin Dashboard</a>
-                <a href="/profile/">Profile</a>
+                <a href="/user/theAdmin">Admin Dashboard</a>
+                <a href="/user/profile/">Profile</a>
                 {% if user.level == 10 %}
                 <!-- Webmaster -->
                     <a href="/admin/">Root Admin</a>
                 {% endif %}
             {% elif site == 'profile' %}
-                <a href="/profile/">Profile</a>
+                <a href="/user/profile/">Profile</a>
             {% else %}
                 <a href="/">Home</a>
             {% endif %}

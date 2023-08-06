@@ -8,9 +8,11 @@ theKey = PRIVATE_KEY
 theProj = PROJECT_ID
 theUser = 'webmaster'
 secret = 'BeeDevServices'
+weatherAPI = '&appid=e2dce74ca5407e4678b17b94a72fe7df'
 
 url = 'https://api.chatengine.io/users/'
 adminUrl = "https://api.chatengine.io/users/me/"
+
 
 def sendUserToChat(username, email, firstName, lastName, role):
     payload = {
@@ -60,3 +62,9 @@ def updateUserAcct():
     response = requests.request("PATCH", adminUrl, headers=headers, data=payload)
 
     print(response.text)
+
+def latLong(theZip):
+    geoUrl = f"http://api.openweathermap.org/geo/1.0/zip?zip={theZip}{weatherAPI}"
+    response = requests.get(geoUrl)
+    res = response.json()
+    return res

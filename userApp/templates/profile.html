@@ -36,7 +36,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <form action="/profile/updateMood/" method="post">
+                        <form action="/user/profile/updateMood/" method="post">
                             {% csrf_token %}
                             {% if user.profile.mood == 0 %}
                                 <input type="hidden" name="mood" value="1">
@@ -49,6 +49,47 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>Weather Conditions Tracking</th>
+                    <td>
+                        {% if user.profile.weather == 0 %}
+                            No
+                        {% else %}
+                            Yes
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="/user/profile/updateWeather/" method="post">
+                            {% csrf_token %}
+                            {% if user.profile.weather == 0 %}
+                                <input type="hidden" name="weather" value="1">
+                                <button>Track Weather Information</button>
+                            {% else %}
+                                <input type="hidden" name="weather" value="0">
+                                <button>Do Not Track Weather Information</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                {% if user.profile.weather == 1 %}
+                    <tr>
+                        <th>Location for Weather</th>
+                        <td>
+                            {% if user.profile.zipCode == 0 %}
+                                Enter Zip
+                            {% else %}
+                               {{user.profile.zipCode}}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form action="/user/profile/addZip/" method="post">
+                                {% csrf_token %}
+                                <input type="number" name="zipCode">
+                                <button>Add Zip Code</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endif %}
+                <tr>
                     <th>Medication Tracking</th>
                     <td>
                         {% if user.profile.meds == 0 %}
@@ -58,7 +99,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <form action="/profile/updateMeds/" method="post">
+                        <form action="/user/profile/updateMeds/" method="post">
                             {% csrf_token %}
                             {% if user.profile.meds == 0 %}
                                 <input type="hidden" name="meds" value="1">
@@ -80,7 +121,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <form action="/profile/updateJournal/" method="post">
+                        <form action="/user/profile/updateJournal/" method="post">
                             {% csrf_token %}
                             {% if user.profile.journal == 0 %}
                                 <input type="hidden" name="journal" value="1">
@@ -102,7 +143,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <form action="/profile/updateDiabetic/" method="post">
+                        <form action="/user/profile/updateDiabetic/" method="post">
                             {% csrf_token %}
                             {% if user.profile.diabetic == 0 %}
                                 <input type="hidden" name="diabetic" value="1">
@@ -124,7 +165,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <form action="/profile/updateFood/" method="post">
+                        <form action="/user/profile/updateFood/" method="post">
                             {% csrf_token %}
                             {% if user.profile.food == 0 %}
                                 <input type="hidden" name="food" value="1">
@@ -146,7 +187,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <form action="/profile/updateSleep/" method="post">
+                        <form action="/user/profile/updateSleep/" method="post">
                             {% csrf_token %}
                             {% if user.profile.sleep == 0 %}
                                 <input type="hidden" name="sleep" value="1">
@@ -158,8 +199,52 @@
                         </form>
                     </td>
                 </tr>
+                <tr>
+                    <th>Fitness Tracking</th>
+                    <td>
+                        {% if user.profile.fitness == 0 %}
+                            No
+                        {% else %}
+                            Yes
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="/user/profile/updateFitness/" method="post">
+                            {% csrf_token %}
+                            {% if user.profile.fitness == 0 %}
+                                <input type="hidden" name="fitness" value="1">
+                                <button>Track Fitness Information</button>
+                            {% else %}
+                                <input type="hidden" name="fitness" value="0">
+                                <button>Do Not Track Fitness Information</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Work / Programming Hours Tracking</th>
+                    <td>
+                        {% if user.profile.work == 0 %}
+                            No
+                        {% else %}
+                            Yes
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="/user/profile/updateWork/" method="post">
+                            {% csrf_token %}
+                            {% if user.profile.work == 0 %}
+                                <input type="hidden" name="work" value="1">
+                                <button>Track Work / Programming Hours</button>
+                            {% else %}
+                                <input type="hidden" name="work" value="0">
+                                <button>Do Not Track Work / Programming Hours</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
             </table>
-            <h2>Have a Registration / Upgrade Code?</h2>
+            <!-- <h2>Have a Registration / Upgrade Code?</h2>
             <form action="/profile/upgradeAccount/" method="post">
                 {% csrf_token %}
                 <section>
@@ -167,7 +252,7 @@
                     <input type="text" name="code" id="">
                 </section>
                 <button>Upgrade Account</button>
-            </form>
+            </form> -->
         </div>
         <div class="mobile">
             <!-- <h2>{{user.fullName}}</h2>

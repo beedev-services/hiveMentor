@@ -9,10 +9,25 @@
         <h1>Viewing - {{day.day}} of week {{week.title}}</h1>
         <div class="row">
             <div class="column left">
-                <form action="">
-                    {% csrf_token %}
-                    <button>Add Water</button>
-                </form>
+                <div class="column">
+                    <h3>Water Consumed today: 
+                        {% if water == False %}
+                            0
+                        {% else %}
+                            {{water}}
+                        {% endif %}
+                    </h3>
+                    {% if water == False %}
+                        <form action="/logs/week/{{week.id}}/day/{{day.id}}/createWater">
+                            {% csrf_token %}
+                            <button>Drank Water</button>
+                        </form>
+                    {% else %}
+                        <form action="/logs/week/{{week.id}}/day/{{day.id}}{{water.id}}/updateWater">
+                            {% csrf_token %}
+                        </form>
+                    {% endif %}
+                </div>
                 {% if user.profile.food == 1 %}
                     <form action="">
                         {% csrf_token %}

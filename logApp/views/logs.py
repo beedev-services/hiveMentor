@@ -129,11 +129,16 @@ def viewDay(request, week_id, day_id):
         moods = Mood.objects.filter(log_id=day_id)
         sleeps = Sleep.objects.filter(night_id=day_id)
         foods = Food.objects.filter(record_id=day_id)
-        waters = Water.objects.filter(note_id=day_id)
+        water = Water.objects.filter(note_id=day_id)
         meds = Medication.objects.filter(blog_id=day_id)
         sugars = Sugar.objects.filter(entry_id=day_id)
         role = request.session['role']
         print(journal)
+        print(water)
+        if not water:
+            water = False
+        else:
+            water = water[0].water
         if not journal:
             journal = False
         else:
@@ -150,11 +155,11 @@ def viewDay(request, week_id, day_id):
             'moods': moods,
             'sleeps': sleeps,
             'foods': foods,
-            'waters': waters,
+            'water': water,
             'meds': meds,
             'sugars': sugars
         }
-        print('the journal', journal.title)
+        # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
 
 def deleteDay(request, day_id):
@@ -178,6 +183,46 @@ def addMedication(request):
     pass
 
 def createNewMed(request):
+    pass
+
+def addFitness(request):
+    pass
+
+def createNewFitness(request):
+    pass
+
+# ******* Default Required Functions *******
+
+# ***** Mood Functions *****
+def newMood(request):
+    pass
+
+def createMood(request):
+    pass
+
+def deleteMood(request, mood_id):
+    pass
+
+# ***** Water Functions *****
+def createWater(request, week_id, day_id):
+    Water.objects.create(
+        water = 1,
+        note_id = day_id,
+        drinker = User.objects.get(id=request.session['user_id'])
+    )
+
+    messages.error(request, 'Water logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
+def updateWater(request, week_id, day_id, water_id):
+    water = Water.objects.filter(note_id=day_id)
+    water = water[0]
+    toUpdate=Water.objects.get(id=water_id)
+    toUpdate.water=water+1
+    messages.error(request, 'Water logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
+def deleteWater(request):
     pass
 
 # ******* Optional Functions *******
@@ -205,16 +250,6 @@ def updateJournal(request, journal_id):
 def deleteJournal(request, journal_id):
     pass
 
-# ***** Mood Functions *****
-def newMood(request):
-    pass
-
-def createMood(request):
-    pass
-
-def deleteMood(request, mood_id):
-    pass
-
 # ***** Sleep Functions *****
 def newSleep(request):
     pass
@@ -234,7 +269,6 @@ def createFood(request):
 
 def deleteFood(request, food_id):
     pass
-
 
 # ***** Med Functions *****
 def newMed(request):

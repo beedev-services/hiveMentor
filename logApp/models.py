@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models.deletion import CASCADE
 from userApp.models import User
 
+# ***** List Models *****
+
 class SymptomList(models.Model):
     symptom = models.CharField(max_length=255)
     info = models.TextField(blank=True)
@@ -20,6 +22,8 @@ class FitnessList(models.Model):
     name = models.CharField(max_length=255)
     def __str__(self):
         return self.name
+
+# ***** Default Required Models *****
 
 class Week(models.Model):
     title = models.CharField(max_length=255)
@@ -40,6 +44,26 @@ class Day(models.Model):
 
     def __str__(self):
         return f'{self.day} {self.date}'
+    
+class Mood(models.Model):
+    date = models.DateTimeField(auto_now_add=True)
+    feeling = models.IntegerField(blank=True)
+    symptom = models.ForeignKey(SymptomList, related_name='theSymptom',on_delete=CASCADE)
+    comments = models.TextField(blank=True)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    log = models.ForeignKey(Day, related_name='theLog',on_delete=CASCADE, blank=True)
+    feeler = models.ForeignKey(User, related_name='theFeeler', on_delete=CASCADE)
+
+class Water(models.Model):
+    water = models.IntegerField(default=0)
+    comments = models.TextField(blank=True)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    note = models.ForeignKey(Day, related_name='theNote', on_delete=CASCADE)
+    drinker = models.ForeignKey(User, related_name='theDrinker', on_delete=CASCADE)
+
+# ***** Default Optional Models *****
 
 class Journal(models.Model):
     title = models.CharField(max_length=255)
@@ -51,16 +75,6 @@ class Journal(models.Model):
 
     def __str__(self):
         return f'{self.title} {self.journal.date}'
-    
-class Mood(models.Model):
-    date = models.DateTimeField(auto_now_add=True)
-    feeling = models.IntegerField(blank=True)
-    symptom = models.ForeignKey(SymptomList, related_name='theSymptom',on_delete=CASCADE)
-    comments = models.TextField(blank=True)
-    createdAt = models.DateTimeField(auto_now_add=True)
-    updatedAt = models.DateTimeField(auto_now=True)
-    log = models.ForeignKey(Day, related_name='theLog',on_delete=CASCADE, blank=True)
-    feeler = models.ForeignKey(User, related_name='theFeeler', on_delete=CASCADE)
 
 class Sleep(models.Model):
     date = models.DateField()
@@ -80,14 +94,6 @@ class Food(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     record = models.ForeignKey(Day, related_name='theRecord', on_delete=CASCADE)
     person = models.ForeignKey(User, related_name='thePerson', on_delete=CASCADE)
-
-class Water(models.Model):
-    water = models.IntegerField(default=0)
-    comments = models.TextField(blank=True)
-    createdAt = models.DateTimeField(auto_now_add=True)
-    updatedAt = models.DateTimeField(auto_now=True)
-    note = models.ForeignKey(Day, related_name='theNote', on_delete=CASCADE)
-    drinker = models.ForeignKey(User, related_name='theDrinker', on_delete=CASCADE)
 
 class Medication(models.Model):
     when = models.DateTimeField()
@@ -124,3 +130,12 @@ class Work(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     workDay = models.ForeignKey(Day, related_name='theWorkDay', on_delete=CASCADE)
     worker = models.ForeignKey(User, related_name='theWorker', on_delete=CASCADE)
+
+class Weather(models.Model):
+    temp = models.CharField(max_length=255)
+    pressure = models.CharField(max_length=255)
+    humidity = models.CharField(max_length=255)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    conditions = models.ForeignKey(Day, related_name='theConditions', on_delete=CASCADE)
+    userWeather = models.ForeignKey(User, related_name='theUserWeather', on_delete=CASCADE)

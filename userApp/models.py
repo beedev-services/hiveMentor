@@ -77,6 +77,10 @@ class Profile(models.Model):
     sleep = models.BooleanField(default=0)
     fitness = models.BooleanField(default=0)
     work = models.BooleanField(default=0)
+    weather = models.BooleanField(default=0)
+    zipCode = models.CharField(max_length=10, default=0)
+    lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+    lon = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     def __str__(self):
         return f'{self.user.username} Profile'
 
