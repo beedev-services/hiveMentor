@@ -15,12 +15,16 @@ DEBUG = True
 # DEBUG = False
 
 ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = ['hiveMental.beedev-services.com']
+# ALLOWED_HOSTS = ['hivementor.beedev-services.com']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:8000',
-    'http://localhost:5173'
+    'http://localhost:5173',
+    'https://hivementor.beedev-services.com',
+    'http://hivementor.beedev.services.com',
+    'https://hivechat.beedev.services.com',
+    'http://hivechat.beedev.services.com'
     # Add more allowed origins as necessary
 ]
 CORS_ALLOWED_ALL_ORIGINS: True
@@ -99,6 +103,7 @@ DATABASES = {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'thehives_hiveMentor',
         'USER': 'root',
+        # 'USER': 'thehives_mentor',
         'PASSWORD': 'HoneyBee#4',
         'HOST': 'localhost',
         'PORT': '3306',
