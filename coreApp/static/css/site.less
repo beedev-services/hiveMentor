@@ -1,0 +1,178 @@
+@import './less/base.less';
+@import './popup.less';
+@import './showHide.less';
+
+
+body {
+    .flexcolumn();
+    background-color: @ltbg;
+    color: @ltfont;
+    font-family: 'Raleway', sans-serif;
+    margin: 2em auto ;
+    background-image: url(../images/ltBG.jpg);
+    background-repeat: repeat no-repeat;
+    background-attachment: fixed;
+    width: 95%;
+
+    header {
+        .flexcolumn();
+        background-color: @ltheaderbg;
+        border: 1px solid @lt02;
+        margin: 1em;
+        width: 90%;
+        box-shadow: 5px 5px @lt02;
+
+        .mode {
+            font-size: 1.2em;
+
+            .change {
+                cursor: pointer;
+                border: 1px solid @lt01;
+                border-radius: 40%;
+                width: 30px;
+                text-align: center;
+                padding: 5px;
+                margin-left: 8px;
+                box-shadow: 3px 3px @lt01;
+            }
+        }
+
+        nav {
+            .flexrow();
+            margin: 1em;
+            flex-wrap: wrap;
+            width: 85%;
+            justify-content: space-evenly;
+
+            #myLinks {
+                display: none;
+                
+            }
+        }
+    }
+    div {
+        .session {
+            display: none;
+        }
+        .messages {
+            .flexcolumn();
+            background-color: @dk01;
+            color: #fff;
+            padding: 1em;
+            margin: .5em;
+        }
+    }
+    main {
+        .flexcolumn();
+        background-color: @ltbodybg;
+        width: 90%;
+        border: 1px solid @lt02;
+
+        .enterChat {
+            display: none;
+        }
+        
+        .row {
+            .flexrow();
+            width: 95%;
+
+            #reg {
+                display: none;
+            }
+            form {
+                .flexcolumn();
+                font-size: 1.4em;
+
+                section {
+                    .flexcolumn();
+                }
+                button {
+                    font-size: .89em;
+                }
+            }
+        }
+        .column {
+            .flexcolumn();
+
+            .column {
+                .flexcolumn();
+                border: 4px groove @lt04;
+
+                .row {
+                    .flexrow();
+                }
+            }
+            .alt {
+                border: none;
+            }
+
+            .row {
+                .flexrow();
+                background-color: @ltbodybg;
+                width: 100%;
+
+                .column {
+                    .flexcolumn();
+                    border: 4px groove @lt04;
+                    margin: 1em;
+
+                    .row {
+                        .flexrow();
+                    }
+                }
+            }
+        }
+        iframe {
+            width: 95%;
+            min-height: 600px;
+        }
+        .mainSection {
+            .flexcolumn();
+            width: 85%;
+
+            p {
+                font-size: 1.25em;
+            }
+        }
+        .left {
+            width: 33%;
+
+            #moodForm, #UserMedForm {
+                display: none;
+            }
+
+            form {
+                margin: .5em;
+            }
+            .lgButton {
+                font-size: 1.2em;
+                margin: .5em;
+            }
+        }
+        .mid {
+            width: 33%;
+
+            .column {
+                padding: 1em;
+            }
+            .lgButton {
+                font-size: 1.2em;
+            }
+        }
+        .right {
+            width: 33%;
+
+            #symptomForm, #MedListForm {
+                display: none;
+            }
+            .lgButton {
+                font-size: 1.2em;
+            }
+        }
+    }
+    footer {
+        .flexcolumn();
+    }
+}
+@import './dark.less';
+@import './less/media.less';

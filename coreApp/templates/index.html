@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'block/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'block/header.html' %} {% endblock header %}
+    {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
+    <main>
+        <h1>Welcome to Hive Mentor</h1>
+        <h2>Tech Enthusiasts helping Tech Enthusiasts with Mental Health</h2>
+        <h2>But our app isn't just about Mental Health, it's about networking and over all health too.</h2>
+        <div class="mainSection">
+            <h2>The what</h2>
+            <p>A unique place to network, talk/chat, and keep logs.</p>
+            <p>We have 2 Distinct sides.  The logs and the Chat.  Chose where to start on login and registration</p>
+        </div>
+        <div class="mainSection">
+            <h2>The Why</h2>
+            <p>Why? Yes there are tons of applications out there that can help with mental health and logging things like your mood or food intake.  But are they by geeks for geeks?  Lets face it we speak a whole different language... literally at times.  Because of this I wanted a place for us to help each other as sometimes only we know how.</p>
+        </div>
+    </main>
+    {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
+</body>
+</html>

@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Volkhov';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/volkhov/v17/SlGQmQieoJcKemNeQTI.ttf) format('truetype');
+}
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1,
+h2,
+h3 {
+  font-weight: 900;
+}
+button {
+  font-size: 1.2em;
+}
+@media only screen and (min-width: 650px) {
+  body header nav .icon {
+    display: none;
+  }
+  body header nav #myLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    justify-content: space-evenly;
+  }
+  body header nav #myLinks a {
+    text-decoration: none;
+    padding: 1em;
+    border-radius: 30%;
+    box-shadow: 5px 5px #3349B9;
+    border: 1px solid #3349B9;
+    color: #080C0D;
+    font-weight: 900;
+  }
+}
+@media only screen and (min-width: 650px) {
+  body.dark header nav #myLinks a {
+    border: 1px solid #3349B9;
+    color: #E0D0D1;
+    box-shadow: 5px 5px #2294B5;
+  }
+}

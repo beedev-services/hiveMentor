@@ -7,7 +7,7 @@
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
         {% if user.level > 6 %}
-            <form action="/theAdmin/createCode/" method="post">
+            <form action="/user/theAdmin/createCode/" method="post">
                 {% csrf_token %}
                 <section>
                     <input type="text" name="code" value="{{theCode}}">

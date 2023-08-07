@@ -8,17 +8,20 @@ theKey = PRIVATE_KEY
 theProj = PROJECT_ID
 theUser = 'webmaster'
 secret = 'BeeDevServices'
+weatherAPI = '&appid=e2dce74ca5407e4678b17b94a72fe7df'
 
 url = 'https://api.chatengine.io/users/'
 adminUrl = "https://api.chatengine.io/users/me/"
 
-def sendUserToChat(username, email, firstName, lastName):
+
+def sendUserToChat(username, email, firstName, lastName, role):
     payload = {
         'username': username,
         'email': email,
         'first_name': firstName,
         'last_name': lastName,
-        'secret': username+'BeeDevServices'
+        'secret': username+'BeeDevServices',
+        'custom_json': {'role': role}
     }
     headers = {
         'PRIVATE-KEY': theKey
@@ -28,7 +31,7 @@ def sendUserToChat(username, email, firstName, lastName):
 def sendCurrentUsersToChat():
     allUsers = User.objects.all()
     for user in allUsers:
-        sendUserToChat(user.username, user.email, user.firstName, user.lastName)
+        sendUserToChat(user.username, user.email, user.firstName, user.lastName, user.role)
 
 def getUsersInChat():
     payload={}
@@ -59,3 +62,9 @@ def updateUserAcct():
     response = requests.request("PATCH", adminUrl, headers=headers, data=payload)
 
     print(response.text)
+
+def latLong(theZip):
+    geoUrl = f"http://api.openweathermap.org/geo/1.0/zip?zip={theZip}{weatherAPI}"
+    response = requests.get(geoUrl)
+    res = response.json()
+    return res

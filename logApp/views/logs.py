@@ -11,6 +11,15 @@ from django.core.paginator import Paginator
 # context = {
 #     'title': title,
 # }
+weekDays = [
+    {1: 'Sunday'},
+    {2: 'Monday'},
+    {3: 'Tuesday'},
+    {4: 'Wednesday'},
+    {5: 'Thursday'},
+    {6: 'Friday'},
+    {7: 'Saturday'}
+]
 
 def logDash(request):
     title = {
@@ -78,6 +87,7 @@ def viewWeek(request, week_id):
             'site': site,
             'days': days,
             'role': role,
+            'weekDays': weekDays,
         }
         return render(request, 'viewWeek.html', context)
     
@@ -119,13 +129,22 @@ def viewDay(request, week_id, day_id):
         moods = Mood.objects.filter(log_id=day_id)
         sleeps = Sleep.objects.filter(night_id=day_id)
         foods = Food.objects.filter(record_id=day_id)
-        waters = Water.objects.filter(note_id=day_id)
+        water = Water.objects.filter(note_id=day_id)
         meds = Medication.objects.filter(blog_id=day_id)
         sugars = Sugar.objects.filter(entry_id=day_id)
+        sList = SymptomList.objects.values().all()
+        mList = MedList.objects.values().all()
         role = request.session['role']
         print(journal)
+        print(water)
+        if not water:
+            water = False
+        else:
+            water = water[0]
         if not journal:
             journal = False
+        else:
+            journal = journal[0]
         site = request.session['site']
         context = {
             'title': title,
@@ -138,26 +157,79 @@ def viewDay(request, week_id, day_id):
             'moods': moods,
             'sleeps': sleeps,
             'foods': foods,
-            'waters': waters,
+            'water': water,
             'meds': meds,
-            'sugars': sugars
+            'sugars': sugars,
+            'sList': sList,
+            'mList': mList,
         }
+        # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
 
 def deleteDay(request, day_id):
     pass
 
 # ***** List Functions *****
-def addSymptom(request):
-    pass
 
 def createSymptom(request):
-    pass
-
-def addMedication(request):
-    pass
+    currPage = request.POST['currPage']
+    print('the url being passed in', currPage)
+    SymptomList.objects.create(
+        symptom = request.POST['symptom'],
+        info = request.POST['info']
+    )
+    messages.error(request, 'Symptom added to Symptom Bank')
+    return redirect(f'{currPage}')
 
 def createNewMed(request):
+    currPage = request.POST['currPage']
+    MedList.objects.create(
+        name = request.POST['name'],
+        freq = request.POST['freq'],
+    )
+    messages.error(request, "Medication added to Medication Bank")
+    return redirect(f'{currPage}')
+
+def createNewFitness(request):
+    pass
+
+# ******* Default Required Functions *******
+
+# ***** Mood Functions *****
+def createMood(request, week_id, day_id):
+    Mood.objects.create(
+        feeling = request.POST['feeling'],
+        symptom_id = request.POST['symptom'],
+        comments = request.POST['comments'],
+        log_id = day_id,
+        feeler = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Mood Added')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
+def deleteMood(request, mood_id):
+    pass
+
+# ***** Water Functions *****
+def createWater(request, week_id, day_id):
+    Water.objects.create(
+        water = 1,
+        note_id = day_id,
+        drinker = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Water logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
+def updateWater(request, week_id, day_id, water_id):
+    theWater = Water.objects.filter(note_id=day_id)
+    theWater = theWater[0].water
+    toUpdate=Water.objects.get(id=water_id)
+    toUpdate.water=theWater+1
+    toUpdate.save()
+    messages.error(request, 'Water logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
+def deleteWater(request):
     pass
 
 # ******* Optional Functions *******
@@ -185,16 +257,6 @@ def updateJournal(request, journal_id):
 def deleteJournal(request, journal_id):
     pass
 
-# ***** Mood Functions *****
-def newMood(request):
-    pass
-
-def createMood(request):
-    pass
-
-def deleteMood(request, mood_id):
-    pass
-
 # ***** Sleep Functions *****
 def newSleep(request):
     pass
@@ -215,13 +277,17 @@ def createFood(request):
 def deleteFood(request, food_id):
     pass
 
-
 # ***** Med Functions *****
-def newMed(request):
-    pass
-
-def createMed(request):
-    pass
+def createMed(request, week_id, day_id):
+    Medication.objects.create(
+        when = request.POST['when'],
+        dose = request.POST['dose'],
+        medication_id = request.POST['medication'],
+        blog_id = day_id,
+        member = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Medication logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def deleteMed(request, medication_id):
     pass

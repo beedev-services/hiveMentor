@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'block/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'block/header.html' %} {% endblock header %}
+    {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
+    <main>
+        <h1>About Hive Mentor</h1>
+        <h3>Glad your here and learning about us</h3>
+        <div class="mainSection">
+            <p>You might be wondering what is it with the Bee themed, well everything.  Well it's two-fold.  At the heart of the hive is me, Melissa.  Owner and Operator of BeeDev Services.  When I was a child I found out that Melissa in Greek means HoneyBee and it just kinda stuck with me.  As I got older and more Geeky I came to like plays on words and well honeybee just sounds kinda cool as a nick name</p>
+            <p>So eventually BeeDev Services was born.  With the idea (and play on words) that I wanted to work close with clients and I would never just depend on myself, in other words use my resources, the way bee's work together as a hive to not just protect the queen but to make the home and product it's wares the idea to use Bee themes stuck.</p>
+            <p>BeeDev Services is currently still in its infancy but the ideas are still there.  As a Geek and someone who has depression although hard to do I did recognize the need to be social.  I have seen some amazing sites out there in regards to mental health, but finding one that will speak my language, that,  well thats much harder to find.  As programmers, cybertechs, IT personnelle and others we speak differently.  I started thinking how cool would it be if we had a discord or slack workspace (cause I am always on those for work) that was just for us but ment for us to help build each other up and encourage each other</p>
+        </div>
+        
+        
+    </main>
+    {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
+</body>
+</html>
