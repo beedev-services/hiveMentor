@@ -90,6 +90,35 @@ def contact(request):
             }
     return render(request, 'contact.html', context)
 
+def devNotes(request):
+    title = {
+        'title': 'Developer Notes',
+        'header': 'Hive Mentor',
+    }
+    request.session['site'] = 'null'
+    site = request.session['site']
+    request.session['role'] = 'null'
+    role = request.session['role']
+    if 'user_id' not in request.session:
+        user = False
+        context = {
+            'title': title,
+            'user': user,
+            'site': site,
+            'role': role,
+        }
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        request.session['role'] = user.role
+        role = request.session['role']
+        context = {
+                'user': user,
+                'title': title,
+                'site': site,
+                'role': role,
+            }
+    return render(request, 'devNotes.html', context)
+
 def logReg(request):
     title = {
         'title': 'Login & Registration',

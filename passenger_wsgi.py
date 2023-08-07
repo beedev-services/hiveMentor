@@ -1,0 +1,1 @@
+from hiveMentor.wsgi import application
