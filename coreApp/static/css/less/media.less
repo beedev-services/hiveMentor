@@ -1,5 +1,39 @@
 @import './base.less';
 
+@media @1050 {
+    body {
+        main {
+            .desktop {
+                display: none;
+            }
+            
+            .mobile {
+                .flexrow();
+                width: 95%;
+                justify-content: space-evenly;
+
+                .left {
+                    .altflexcolumn();
+                    width: 33%;
+                }
+                .right {
+                    width: 33%;
+                }
+            }
+        }
+    }
+}
+
+@media @730 {
+    body {
+        main {
+            .mobile {
+                .flexcolumn();
+            }
+        }
+    }
+}
+
 @media @650 {
     body {
         header {

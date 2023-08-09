@@ -48,11 +48,19 @@ body.dark header .mode .change {
   background-color: #991a3c3c;
 }
 body.dark main {
-  background-color: #4b6867af;
+  background-color: #4b6867d2;
 }
 body.dark main .column .row {
-  background-color: #4b6867af;
+  background-color: #4b6867d2;
 }
 body.dark main iframe#dataUser html body {
   background-color: blue;
+}
+body.dark footer {
+  background-color: #5468677a;
+  box-shadow: 5px 5px #2294B5;
+  border: 1px solid #2294B5;
+}
+body.dark footer a {
+  color: #E0D0D1;
 }

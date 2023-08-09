@@ -71,7 +71,9 @@ body {
         .enterChat {
             display: none;
         }
-        
+        .mobile {
+            display: none;
+        }
         .row {
             .flexrow();
             width: 95%;
@@ -172,6 +174,15 @@ body {
     }
     footer {
         .flexcolumn();
+        width: 90%;
+        background-color: @ltheaderbg;
+        border: 1px solid @lt02;
+        box-shadow: 5px 5px @lt02;
+        margin: 1em;
+
+        a {
+            color: @ltfont;
+        }
     }
 }
 @import './dark.less';

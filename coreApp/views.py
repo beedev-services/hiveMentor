@@ -103,6 +103,7 @@ def devNotes(request):
     versions = Version.objects.values().all()
     features = Feature.objects.values().all()
     statuses = Live.objects.values().all()
+    print('versions', versions, 'features', features, 'statuses', statuses)
     if 'user_id' not in request.session:
         user = False
         

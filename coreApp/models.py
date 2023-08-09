@@ -17,5 +17,5 @@ class Feature(models.Model):
 class Live(models.Model):
     liveVersion = models.ForeignKey(Version, related_name='theLiveVersion', on_delete=CASCADE)
     liveFeature = models.ForeignKey(Feature, related_name='theLiveFeature', on_delete=CASCADE)
-    dateOfRelease = models.DateField()
+    dateOfRelease = models.DateField(blank=True, null=True)
     live = models.BooleanField(default=0)

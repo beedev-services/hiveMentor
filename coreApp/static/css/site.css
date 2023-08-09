@@ -24,6 +24,18 @@
   justify-content: center;
   align-items: center;
 }
+.altflexrow {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.altflexcolumn {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
 h1,
 h2,
 h3 {
@@ -174,6 +186,9 @@ body main {
 body main .enterChat {
   display: none;
 }
+body main .mobile {
+  display: none;
+}
 body main .row {
   display: flex;
   flex-direction: row;
@@ -296,6 +311,14 @@ body footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 90%;
+  background-color: #e0d0d17a;
+  border: 1px solid #3349B9;
+  box-shadow: 5px 5px #3349B9;
+  margin: 1em;
+}
+body footer a {
+  color: #080C0D;
 }
 body.dark {
   background-color: #080C0D;
@@ -313,13 +336,52 @@ body.dark header .mode .change {
   background-color: #991a3c3c;
 }
 body.dark main {
-  background-color: #4b6867af;
+  background-color: #4b6867d2;
 }
 body.dark main .column .row {
-  background-color: #4b6867af;
+  background-color: #4b6867d2;
 }
 body.dark main iframe#dataUser html body {
   background-color: blue;
+}
+body.dark footer {
+  background-color: #5468677a;
+  box-shadow: 5px 5px #2294B5;
+  border: 1px solid #2294B5;
+}
+body.dark footer a {
+  color: #E0D0D1;
+}
+@media only screen and (max-width: 1050px) {
+  body main .desktop {
+    display: none;
+  }
+  body main .mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    justify-content: space-evenly;
+  }
+  body main .mobile .left {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+  }
+  body main .mobile .right {
+    width: 33%;
+  }
+}
+@media only screen and (max-width: 730px) {
+  body main .mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media only screen and (min-width: 650px) {
   body header nav .icon {
