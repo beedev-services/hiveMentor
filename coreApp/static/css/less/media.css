@@ -24,6 +24,18 @@
   justify-content: center;
   align-items: center;
 }
+.altflexrow {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.altflexcolumn {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
 h1,
 h2,
 h3 {
@@ -31,6 +43,37 @@ h3 {
 }
 button {
   font-size: 1.2em;
+}
+@media only screen and (max-width: 1050px) {
+  body main .desktop {
+    display: none;
+  }
+  body main .mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    justify-content: space-evenly;
+  }
+  body main .mobile .left {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+  }
+  body main .mobile .right {
+    width: 33%;
+  }
+}
+@media only screen and (min-width: 730px) {
+  body main .mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media only screen and (min-width: 650px) {
   body header nav .icon {
