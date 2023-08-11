@@ -257,8 +257,8 @@
                         </form>
                     {% endif %}
                     {% if user.profile.meds == 1 %}
-                        <button class="lgButton" onclick="openForm('UserMedForm')">Open Medication Form</button>
-                        <form action="/logs/week/{{week.id}}/day/{{day.id}}/createMed/" method="post" id="UserMedForm">
+                        <button class="lgButton" onclick="openForm('UserMedFormMobile')">Open Medication Form</button>
+                        <form action="/logs/week/{{week.id}}/day/{{day.id}}/createMed/" method="post" id="UserMedFormMobile">
                             {% csrf_token %}
                             <section>
                                 <label for="when">Time Taken</label>
@@ -281,8 +281,8 @@
                         </form>
                     {% endif %}
                     {% if user.profile.mood == 1 %}
-                        <button class="lgButton" onclick="openForm('moodForm')">Open Mood Form</button>
-                        <form action="/logs/week/{{week.id}}/day/{{day.id}}/createMood/" method="post" id="moodForm">
+                        <button class="lgButton" onclick="openForm('moodFormMobile')">Open Mood Form</button>
+                        <form action="/logs/week/{{week.id}}/day/{{day.id}}/createMood/" method="post" id="moodFormMobile">
                             {% csrf_token %}
                             <section>
                                 <i class="material-icons" id="emoji">
@@ -415,8 +415,8 @@
             </div>
             <div class="right">
                 {% if user.profile.mood == 1 %}
-                    <button onclick="openForm('symptomForm')">Open Symptom Form</button>
-                    <form action="/logs/createSymptom/" method='post' id="symptomForm">
+                    <button onclick="openForm('symptomFormMobile')">Open Symptom Form</button>
+                    <form action="/logs/createSymptom/" method='post' id="symptomFormMobile">
                         {% csrf_token %}
                         <h3>Please make sure the symptom you are adding is unique</h3>
                         <section>
@@ -432,8 +432,8 @@
                     </form>
                 {% endif %}
                 {% if user.profile.meds == 1 %}
-                    <button onclick="openForm('MedListForm')">Open Medication Form</button>
-                    <form action="/logs/createMedication/" method="post" id="MedListForm">
+                    <button onclick="openForm('MedListFormMobile')">Open Medication Form</button>
+                    <form action="/logs/createMedication/" method="post" id="MedListFormMobile">
                         {% csrf_token %}
                         <section>
                             <label for="name">Medication Name</label>

@@ -1,3 +1,7 @@
+function log(a, b) {
+    console.log(a, b)
+}
+
 function auth() {
     var l = document.getElementById('login')
     var r = document.getElementById('reg')
@@ -21,7 +25,7 @@ function menu() {
         x.style.display = none
     } else {
         x.style.display = 'flex'
-        x.style.flexDirection = 'columm'
+        x.style.flexDirection = 'column'
     }
 }
 
@@ -29,8 +33,11 @@ function openForm(a) {
     let theForm = document.getElementById(a)
     if(theForm.style.display == 'flex') {
         theForm.style.display = 'none'
+        log('open form if statement', 'triggered')
     } else {
         theForm.style.display = 'flex'
+        theForm.style.flexDirection = 'column'
+        log('open form else statement', 'triggered')
     }
     console.log('what element', theForm)
 }
