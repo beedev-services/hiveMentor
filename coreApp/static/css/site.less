@@ -9,6 +9,7 @@ body {
     color: @ltfont;
     font-family: 'Raleway', sans-serif;
     margin: 2em auto ;
+    text-align: center;
     background-image: url(../images/ltBG.jpg);
     background-repeat: repeat no-repeat;
     background-attachment: fixed;
@@ -46,6 +47,18 @@ body {
 
             #myLinks {
                 display: none;
+
+                a {
+                    text-decoration: none;
+                    padding: 1em;
+                    margin: .5em;
+                    border-radius: 30%;
+                    box-shadow: 5px 5px @lt02;
+                    border: 1px solid @lt02;
+                    color: @ltfont;
+                    background-color: @ltbgtrasnarent;
+                    font-weight: 900;
+                }
                 
             }
         }
@@ -179,6 +192,7 @@ body {
 
             p {
                 font-size: 1.25em;
+                width: 75%;
             }
         }
         .desktop {

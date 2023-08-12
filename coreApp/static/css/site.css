@@ -119,6 +119,7 @@ body {
   color: #080C0D;
   font-family: 'Raleway', sans-serif;
   margin: 2em auto ;
+  text-align: center;
   background-image: url(../images/ltBG.jpg);
   background-repeat: repeat no-repeat;
   background-attachment: fixed;
@@ -160,6 +161,17 @@ body header nav {
 }
 body header nav #myLinks {
   display: none;
+}
+body header nav #myLinks a {
+  text-decoration: none;
+  padding: 1em;
+  margin: 0.5em;
+  border-radius: 30%;
+  box-shadow: 5px 5px #3349B9;
+  border: 1px solid #3349B9;
+  color: #080C0D;
+  background-color: #f5f3f560;
+  font-weight: 900;
 }
 body div .session {
   display: none;
@@ -314,6 +326,7 @@ body main .mainSection {
 }
 body main .mainSection p {
   font-size: 1.25em;
+  width: 75%;
 }
 body main .desktop {
   display: flex;
@@ -382,6 +395,12 @@ body.dark header .mode .change {
   border: 1px solid #991A3C;
   box-shadow: 3px 3px #991A3C;
   background-color: #991a3c3c;
+}
+body.dark header nav #myLinks a {
+  border: 1px solid #3349B9;
+  color: #E0D0D1;
+  box-shadow: 5px 5px #2294B5;
+  background-color: #080c0d60;
 }
 body.dark main {
   background-color: #4b6867d2;
@@ -469,6 +488,7 @@ body.dark footer a {
   body header nav #myLinks a {
     text-decoration: none;
     padding: 1em;
+    margin: 0.5em;
     border-radius: 30%;
     box-shadow: 5px 5px #3349B9;
     border: 1px solid #3349B9;

@@ -24,6 +24,18 @@
   justify-content: center;
   align-items: center;
 }
+.altflexrow {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.altflexcolumn {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
 h1,
 h2,
 h3 {
@@ -46,6 +58,12 @@ body.dark header .mode .change {
   border: 1px solid #991A3C;
   box-shadow: 3px 3px #991A3C;
   background-color: #991a3c3c;
+}
+body.dark header nav #myLinks a {
+  border: 1px solid #3349B9;
+  color: #E0D0D1;
+  box-shadow: 5px 5px #2294B5;
+  background-color: #080c0d60;
 }
 body.dark main {
   background-color: #4b6867d2;

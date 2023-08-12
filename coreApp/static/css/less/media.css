@@ -113,6 +113,7 @@ button {
   body header nav #myLinks a {
     text-decoration: none;
     padding: 1em;
+    margin: 0.5em;
     border-radius: 30%;
     box-shadow: 5px 5px #3349B9;
     border: 1px solid #3349B9;
