@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block addToBankForms %}
+        {% if user.profile.food == 1 %}
+            <button onclick="openForm('FoodListForm')">Open Food Bank Form</button>
+            <form action="/logs/createFoodList/" method="post" id="FoodListForm">
+                {% csrf_token %}
+                <button>Add Food to Bank</button>
+            </form>
+        {% endif %}
+        {% if user.profile.mood == 1 %}
+            <button onclick="openForm('symptomForm')">Open Symptom Bank Form</button>
+            <form action="/logs/createSymptom/" method='post' id="symptomForm">
+                {% csrf_token %}
+                <h3>Please make sure the symptom you are adding is unique</h3>
+                <section>
+                    <label for="symptom">Symptom Name</label>
+                    <input type="text" name="symptom" id="">
+                </section>
+                <section>
+                    <label for="info">Information</label>
+                    <textarea name="info" id="" cols="30" rows="10"></textarea>
+                </section>
+                <input type="hidden" name="currPage" value="/logs/week/{{week.id}}/day/{{day.id}}/">
+                <button>Add New Symptom to Bank</button>
+            </form>
+        {% endif %}
+        {% if user.profile.meds == 1 %}
+            <button onclick="openForm('MedListForm')">Open Medication Bank Form</button>
+            <form action="/logs/createMedication/" method="post" id="MedListForm">
+                {% csrf_token %}
+                <section>
+                    <label for="name">Medication Name</label>
+                    <input type="text" name="name" id="">
+                </section>
+                <section>
+                    <label for="freq">Frequency Taken</label>
+                    <input type="text" name="freq" id="">
+                </section>
+                <input type="hidden" name="currPage" value="/logs/week/{{week.id}}/day/{{day.id}}/">
+                <button>Add New Medication</button>
+            </form>
+        {% endif %}
+        {% if user.profile.fitness == 1 %}
+            <button onclick="openForm('FitnessListForm')">Open Fitness Bank Form</button>
+            <form action="/logs/createWorkout/" method="post" id="FitnessListForm">
+                {% csrf_token %}
+                <button>Add Workout To Bank</button>
+            </form>
+        {% endif %}
+    {% endblock addToBankForms %}
+</body>
+</html>

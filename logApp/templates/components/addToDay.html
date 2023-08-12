@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block addToDayForms %}
+        {% if water == False %}
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createWater/" method='post'>
+                {% csrf_token %}
+                <button>Drank Water</button>
+            </form>
+        {% else %}
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/{{water.id}}/updateWater/" method='post'>
+                {% csrf_token %}
+                <button>Drank More Water</button>
+            </form>
+        {% endif %}
+        {% if user.profile.food == 1 %}
+            <button class="lgButton" onclick="openForm('UserFoodForm')">Open Food Form</button>
+            <form action="" method="post" id="UserFoodForm">
+                {% csrf_token %}
+                <button>Add Food</button>
+            </form>
+        {% endif %}
+        {% if user.profile.diabetic == 1 %}
+            <button class="lgButton" onclick="openForm('UserSugarForm')">Open Sugar Readings Form</button>
+            <form action="" method="post" id="UserSugarForm">
+                {% csrf_token %}
+                <button>Add Sugar Reading</button>
+            </form>
+        {% endif %}
+        {% if user.profile.meds == 1 %}
+            <button class="lgButton" onclick="openForm('UserMedForm')">Open Medication Form</button>
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createMed/" method="post" id="UserMedForm">
+                {% csrf_token %}
+                <section>
+                    <label for="when">Time Taken</label>
+                    <input type="datetime-local" name="when" id="">
+                </section>
+                <section>
+                    <label for="dose">What Dose</label>
+                    <input type="text" name="dose" id="">
+                </section>
+                <section>
+                    <label for="Medication">Medication</label>
+                    <select name="medication" id="">
+                        <option value="">Please Chose</option>
+                        {% for m in mList %}
+                            <option value="{{m.id}}">{{m.name}} {{m.freq}}</option>
+                        {% endfor %}
+                    </select>
+                </section>
+                <button>Add Medication Taken</button>
+            </form>
+        {% endif %}
+        {% if user.profile.mood == 1 %}
+            <button class="lgButton" onclick="openForm('moodForm')">Open Mood Form</button>
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createMood/" method="post" id="moodForm">
+                {% csrf_token %}
+                <section>
+                    <i class="material-icons" id="emoji">
+                        sentiment_satisfied
+                    </i>
+                    <input type="range" id="mood" name="feeling" min="0" max="4" value="2">
+                </section>
+                <section>
+                    <label for="symptom">Symptom Feeling</label>
+                    <select name="symptom" id="">
+                        <option value="">Please Chose</option>
+                        {% for s in sList %}
+                            <option value="{{s.id}}">{{s.symptom}}</option>
+                        {% endfor %}
+                    </select>
+                </section>
+                <section>
+                    <label for="comments">Comments (not required)</label>
+                    <input type="text" name="comments" id="">
+                </section>
+                <button>Add Mood/Symptom</button>
+            </form>
+        {% endif %}
+        {% if user.profile.journal == 1 %}
+            {% if journal == False %}
+                <button class="lgButton" onclick="openForm('UserMedJournal')">Open Journal Form</button>
+                <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="UserJournalForm">
+                    {% csrf_token %}
+                    <section>
+                        <label for="title">Title of Entry</label>
+                        <input type="text" name="title">
+                    </section>
+                    <section>
+                        <label for="content">Entry</label>
+                        <textarea name="content" id="" cols="30" rows="10"></textarea>
+                    </section>
+                    <button>Add Journal Entry</button>
+                </form>
+            {% endif %}
+        {% endif %}
+        {% if user.profile.sleep == 1 %}
+            <button class="lgButton" onclick="openForm('UserSleepForm')">Open Sleep Log Form</button>
+            <form action="">
+                {% csrf_token %}
+                <button>Add Sleep times</button>
+            </form>
+        {% endif %}
+        {% if user.profile.fitness == 1 %}
+            <button class="lgButton" onclick="openForm('UserFitnessForm')">Fitness Form</button>
+            <form action="" method="post" id="UserFitnessForm"></form>
+        {% endif %}
+        {% if user.profile.work == 1 %}
+            <button>Work Form</button>
+            <form action=""></form>
+        {% endif %}
+        {% if user.profile.weather == 1 %}
+            {% if user.profile.zipCode == 0 %}
+                <button><a href="/user/profile">Please update your Zip Code</a></button>
+            {% else %}
+                <button>Record Current Conditions</button>
+                <form action=""></form>
+            {% endif %}
+        {% endif %}
+    {% endblock addToDayForms %}
+</body>
+</html>

@@ -20,6 +20,10 @@ weekDays = [
     {6: 'Friday'},
     {7: 'Saturday'}
 ]
+meals = [
+    {1: 'Breakfast'},
+
+]
 
 def logDash(request):
     title = {
@@ -124,6 +128,7 @@ def viewDay(request, week_id, day_id):
         messages.error(request, 'Please log in to view page')
         return redirect('/logReg/')
     else:
+        url = f'/logs/week/{week_id}/'
         user = User.objects.get(id=request.session['user_id'])
         journal = Journal.objects.filter(journal_id=day_id)
         moods = Mood.objects.filter(log_id=day_id)
@@ -162,6 +167,7 @@ def viewDay(request, week_id, day_id):
             'sugars': sugars,
             'sList': sList,
             'mList': mList,
+            'url': url,
         }
         # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
