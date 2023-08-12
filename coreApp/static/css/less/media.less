@@ -15,9 +15,32 @@
                 .left {
                     .altflexcolumn();
                     width: 33%;
+
+                    #moodFormMobile, #UserMedFormMobile {
+                        display: none;
+                    }
+                    form {
+                        margin: .5em;
+                        flex-direction: column;
+                    }
+                    .lgButton {
+                        font-size: 1.2em;
+                        margin: .5em;
+                    }
                 }
                 .right {
                     width: 33%;
+
+                    #symptomFormMobile, #MedListFormMobile {
+                        display: none;
+                    }
+                    form {
+                        margin: .5em;
+                    }
+                    .lgButton {
+                        font-size: 1.2em;
+                        margin: .5em;
+                    }
                 }
             }
         }

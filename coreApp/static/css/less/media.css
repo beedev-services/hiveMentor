@@ -63,11 +63,34 @@ button {
     align-items: center;
     width: 33%;
   }
+  body main .mobile .left #moodFormMobile,
+  body main .mobile .left #UserMedFormMobile {
+    display: none;
+  }
+  body main .mobile .left form {
+    margin: 0.5em;
+    flex-direction: column;
+  }
+  body main .mobile .left .lgButton {
+    font-size: 1.2em;
+    margin: 0.5em;
+  }
   body main .mobile .right {
     width: 33%;
   }
+  body main .mobile .right #symptomFormMobile,
+  body main .mobile .right #MedListFormMobile {
+    display: none;
+  }
+  body main .mobile .right form {
+    margin: 0.5em;
+  }
+  body main .mobile .right .lgButton {
+    font-size: 1.2em;
+    margin: 0.5em;
+  }
 }
-@media only screen and (min-width: 730px) {
+@media only screen and (max-width: 730px) {
   body main .mobile {
     display: flex;
     flex-direction: column;

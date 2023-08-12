@@ -73,6 +73,32 @@ body {
         }
         .mobile {
             display: none;
+
+            .left {
+                width: 33%;
+    
+                #moodForm, #UserMedForm {
+                    display: none;
+                }
+    
+                form {
+                    margin: .5em;
+                }
+                .lgButton {
+                    font-size: 1.2em;
+                    margin: .5em;
+                }
+            }
+            .right {
+                width: 33%;
+    
+                #symptomForm, #MedListForm {
+                    display: none;
+                }
+                .lgButton {
+                    font-size: 1.2em;
+                }
+            }
         }
         .row {
             .flexrow();
@@ -107,19 +133,38 @@ body {
             .alt {
                 border: none;
             }
+            .create {
+                padding: .5em;
 
+                section {
+                    margin: .8em;
+                    
+                    label, input {
+                        margin: .5em;
+                    }
+                }
+                button {
+                    margin: .8em;
+                }
+            }
             .row {
                 .flexrow();
                 background-color: @ltbodybg;
                 width: 100%;
+                margin: .5em;
 
                 .column {
                     .flexcolumn();
                     border: 4px groove @lt04;
                     margin: 1em;
+                    padding: 1em;
 
                     .row {
                         .flexrow();
+                        
+                        button {
+                            margin: .5em;
+                        }
                     }
                 }
             }
@@ -136,39 +181,43 @@ body {
                 font-size: 1.25em;
             }
         }
-        .left {
-            width: 33%;
+        .desktop {
+            .flexrow();
 
-            #moodForm, #UserMedForm {
-                display: none;
+            .left {
+                width: 33%;
+    
+                #moodForm, #UserMedForm {
+                    display: none;
+                }
+    
+                form {
+                    margin: .5em;
+                }
+                .lgButton {
+                    font-size: 1.2em;
+                    margin: .5em;
+                }
             }
-
-            form {
-                margin: .5em;
+            .mid {
+                width: 33%;
+    
+                .column {
+                    padding: 1em;
+                }
+                .lgButton {
+                    font-size: 1.2em;
+                }
             }
-            .lgButton {
-                font-size: 1.2em;
-                margin: .5em;
-            }
-        }
-        .mid {
-            width: 33%;
-
-            .column {
-                padding: 1em;
-            }
-            .lgButton {
-                font-size: 1.2em;
-            }
-        }
-        .right {
-            width: 33%;
-
-            #symptomForm, #MedListForm {
-                display: none;
-            }
-            .lgButton {
-                font-size: 1.2em;
+            .right {
+                width: 33%;
+    
+                #symptomForm, #MedListForm {
+                    display: none;
+                }
+                .lgButton {
+                    font-size: 1.2em;
+                }
             }
         }
     }
