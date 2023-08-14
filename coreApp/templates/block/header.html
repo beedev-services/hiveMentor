@@ -4,8 +4,8 @@
     <header>
         <h1>{{title.header}}</h1>
         <div class="mode">
-            Dark mode:            
-            <span class="change">OFF</span>
+            <span id="theMode">Light mode: ON</span><span class="change">Activate Dark Mode</span>
+            
         </div>
         {% block nav %} {% include 'block/nav.html' %} {% endblock nav %}
     </header>

@@ -20,6 +20,10 @@ weekDays = [
     {6: 'Friday'},
     {7: 'Saturday'}
 ]
+meals = [
+    {1: 'Breakfast'},
+
+]
 
 def logDash(request):
     title = {
@@ -80,6 +84,31 @@ def viewWeek(request, week_id):
         user = User.objects.get(id=request.session['user_id'])
         role = request.session['role']
         site = request.session['site']
+        dayCounts = []
+        for day in days:
+            moods = Mood.objects.filter(log=day.id).count()
+            water = Water.objects.filter(note=day.id)
+            meds = Medication.objects.filter(blog=day.id).count()
+            if not moods:
+                moodCount = 0
+            if not water:
+                waterCount = 0
+            if not meds:
+                medCount = 0
+            if water:
+                waterCount = water[0].water
+            if moods:
+                moodCount = moods
+            if meds:
+                medCount = meds
+            dayCount = {
+                    'id': day.id,
+                    'moodCount': moodCount,
+                    'waterCount': waterCount,
+                    'medCount': medCount
+            }
+            dayCounts.append(dayCount)
+        print('theDayCounts:', dayCounts)
         context = {
             'title': title,
             'week': week,
@@ -88,6 +117,7 @@ def viewWeek(request, week_id):
             'days': days,
             'role': role,
             'weekDays': weekDays,
+            'dayCounts': dayCounts
         }
         return render(request, 'viewWeek.html', context)
     
@@ -124,6 +154,7 @@ def viewDay(request, week_id, day_id):
         messages.error(request, 'Please log in to view page')
         return redirect('/logReg/')
     else:
+        url = f'/logs/week/{week_id}/'
         user = User.objects.get(id=request.session['user_id'])
         journal = Journal.objects.filter(journal_id=day_id)
         moods = Mood.objects.filter(log_id=day_id)
@@ -162,6 +193,7 @@ def viewDay(request, week_id, day_id):
             'sugars': sugars,
             'sList': sList,
             'mList': mList,
+            'url': url,
         }
         # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)

@@ -16,12 +16,22 @@ class MedList(models.Model):
     freq = models.CharField(max_length=255, default='daily')
     
     def __str__(self):
+        return self.name
+    def fullMed(self):
         return f'{self.name} {self.freq}'
     
 class FitnessList(models.Model):
     name = models.CharField(max_length=255)
     def __str__(self):
         return self.name
+    
+class FoodList(models.Model):
+    food = models.CharField(max_length=255)
+    calories = models.CharField(max_length=255, default=0)
+    def __str__(self):
+        return self.food
+    def fullFood(self):
+        return f'{self.food} {self.calories}'
 
 # ***** Default Required Models *****
 
@@ -86,12 +96,12 @@ class Sleep(models.Model):
     night = models.ForeignKey(Day, related_name='theNight', on_delete=CASCADE)
 
 class Food(models.Model):
-    food = models.CharField(max_length=255)
-    calories = models.CharField(max_length=255, default=0)
-    comments = models.TextField(blank=True)
     meal = models.CharField(max_length=255, blank=True)
+    servings = models.IntegerField(default=1)
+    comments = models.TextField(blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
+    food = models.ForeignKey(FoodList, related_name='theFood', on_delete=CASCADE)
     record = models.ForeignKey(Day, related_name='theRecord', on_delete=CASCADE)
     person = models.ForeignKey(User, related_name='thePerson', on_delete=CASCADE)
 

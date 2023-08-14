@@ -60,7 +60,26 @@
                             <div class="row">
                                 <button><a href="/logs/week/{{week.id}}/day/{{day.id}}/">View Day</a></button>
                             </div>
-                        </div>
+                            <h3>Current Log Count</h3>
+                            <table>
+                                {% for count in dayCounts %}
+                                {% if count.id == day.id %}
+                                    <tr>
+                                        <th>Mood / Symptoms Logged: </th>
+                                        <td>{{count.moodCount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Water Drank: </th>
+                                        <td>{{count.waterCount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Medications Logged</th>
+                                        <td>{{count.medCount}}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </table>
+                        </div>                    
                     {% endfor %}
                 </div>
                 <div class="row"></div>
