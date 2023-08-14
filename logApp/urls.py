@@ -8,6 +8,11 @@ urlpatterns = [
     path('', views.logDash),
     # create week
     path('createWeek/', views.createWeek),
+    # Create List Bank Items
+    path('createSymptom/', views.createSymptom),
+    path('createMedication/', views.createNewMed),
+    path('createWorkout/', views.createNewFitness),
+    path('createNewFood/', views.createNewFood),
     # view week
     path('week/<int:week_id>/', views.viewWeek),
     # edit week form
@@ -26,8 +31,7 @@ urlpatterns = [
     path('week/<int:week_id>/day/<int:day_id>/<int:water_id>/updateWater/', views.updateWater),
     path('week/<int:week_id>/day/<int:day_id>/createMood/', views.createMood),
     path('week/<int:week_id>/day/<int:day_id>/createMed/', views.createMed),
-    path('createSymptom/', views.createSymptom),
-    path('createMedication/', views.createNewMed),
+
 
 ]
 if settings.DEBUG:

@@ -5,8 +5,17 @@
     {% block addToBankForms %}
         {% if user.profile.food == 1 %}
             <button onclick="openForm('FoodListForm')">Open Food Bank Form</button>
-            <form action="/logs/createFoodList/" method="post" id="FoodListForm">
+            <form action="/logs/createNewFood/" method="post" id="FoodListForm">
                 {% csrf_token %}
+                <section>
+                    <label for="food">Food Name</label>
+                    <input type="text" name="food" id="">
+                </section>
+                <section>
+                    <label for="calories">Calories per single serving</label>
+                    <input type="text" name="calories" id="">
+                </section>
+                <input type="hidden" name="currPage" value="/logs/week/{{week.id}}/day/{{day.id}}/">
                 <button>Add Food to Bank</button>
             </form>
         {% endif %}
@@ -47,6 +56,11 @@
             <button onclick="openForm('FitnessListForm')">Open Fitness Bank Form</button>
             <form action="/logs/createWorkout/" method="post" id="FitnessListForm">
                 {% csrf_token %}
+                <section>
+                    <label for="name">Workout Name</label>
+                    <input type="text" name="name" id="">
+                </section>
+                <input type="hidden" name="currPage" value="/logs/week/{{week.id}}/day/{{day.id}}/">
                 <button>Add Workout To Bank</button>
             </form>
         {% endif %}
