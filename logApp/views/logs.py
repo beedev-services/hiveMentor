@@ -84,6 +84,31 @@ def viewWeek(request, week_id):
         user = User.objects.get(id=request.session['user_id'])
         role = request.session['role']
         site = request.session['site']
+        dayCounts = []
+        for day in days:
+            moods = Mood.objects.filter(log=day.id).count()
+            water = Water.objects.filter(note=day.id)
+            meds = Medication.objects.filter(blog=day.id).count()
+            if not moods:
+                moodCount = 0
+            if not water:
+                waterCount = 0
+            if not meds:
+                medCount = 0
+            if water:
+                waterCount = water[0].water
+            if moods:
+                moodCount = moods
+            if meds:
+                medCount = meds
+            dayCount = {
+                    'id': day.id,
+                    'moodCount': moodCount,
+                    'waterCount': waterCount,
+                    'medCount': medCount
+            }
+            dayCounts.append(dayCount)
+        print('theDayCounts:', dayCounts)
         context = {
             'title': title,
             'week': week,
@@ -92,6 +117,7 @@ def viewWeek(request, week_id):
             'days': days,
             'role': role,
             'weekDays': weekDays,
+            'dayCounts': dayCounts
         }
         return render(request, 'viewWeek.html', context)
     
