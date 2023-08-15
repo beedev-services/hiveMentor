@@ -1,4 +1,35 @@
+.none {
+  display: none;
+}
+body header nav #myLinks {
+  display: none;
+}
+body div .session {
+  display: none;
+}
+body main .enterChat {
+  display: none;
+}
+body main .mobile {
+  display: none;
+}
 body main .column #hideCreateWeek,
 body main .column #hideCreateDay {
+  display: none;
+}
+body main .row #reg {
+  display: none;
+}
+body main .row .column #UserFoodForm,
+body main .row .column #moodForm,
+body main .row .column #UserMedForm,
+body main .row .column #symptomForm,
+body main .row .column #MedListForm,
+body main .row .column #FoodListForm,
+body main .row .column #FitnessListForm,
+body main .row .column #UserSugarForm,
+body main .row .column #UserJournalForm,
+body main .row .column #UserSleepForm,
+body main .row .column #UserFitnessForm {
   display: none;
 }

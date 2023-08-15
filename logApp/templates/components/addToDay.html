@@ -18,6 +18,33 @@
             <button class="lgButton" onclick="openForm('UserFoodForm')">Open Food Form</button>
             <form action="" method="post" id="UserFoodForm">
                 {% csrf_token %}
+                <section>
+                    <label for="meal">Meal Time</label>
+                    <select name="meal" id="">
+                        <option value="">Please Chose</option>
+                        {% for meal in meals %}
+                            <option value="{{meal.id}}">{{meal.name}}</option>
+                        {% endfor %}
+                    </select>
+                </section>
+                <section>
+                    (Use add Food Bank form if item not listed)
+                    <label for="food">Food Item</label>
+                    <select name="food" id="">
+                        <option value="">Please Chose</option>
+                        {% for f in fList %}
+                            <option value="f.id">{{f.food}} {{f.calories}}cal / per Serving</option>
+                        {% endfor %}
+                    </select>
+                </section>
+                <section>
+                    <label for="servings">Serving Count</label>
+                    <input type="number" name="servings">
+                </section>
+                <section>
+                    <label for="comments">Notes</label>
+                    <textarea name="comments" id="" cols="30" rows="10"></textarea>
+                </section>
                 <button>Add Food</button>
             </form>
         {% endif %}
@@ -80,7 +107,7 @@
         {% endif %}
         {% if user.profile.journal == 1 %}
             {% if journal == False %}
-                <button class="lgButton" onclick="openForm('UserMedJournal')">Open Journal Form</button>
+                <button class="lgButton" onclick="openForm('UserJournalForm')">Open Journal Form</button>
                 <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="UserJournalForm">
                     {% csrf_token %}
                     <section>
