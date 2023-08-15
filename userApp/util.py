@@ -8,7 +8,8 @@ theKey = PRIVATE_KEY
 theProj = PROJECT_ID
 theUser = 'webmaster'
 secret = 'BeeDevServices'
-weatherAPI = '&appid=e2dce74ca5407e4678b17b94a72fe7df'
+# weatherAPI = '&appid=e2dce74ca5407e4678b17b94a72fe7df'
+weatherAPI = '&appid=179fcd38509ce9a4671ca1be23eac6ba'
 
 url = 'https://api.chatengine.io/users/'
 adminUrl = "https://api.chatengine.io/users/me/"
