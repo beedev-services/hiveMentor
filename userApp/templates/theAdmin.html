@@ -7,17 +7,17 @@
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
         <nav>
-            <a href="/user/theAdmin/theCodes/">Reg Codes</a>
+            <a href="/theAdmin/theCodes/">Reg Codes</a>
         </nav>
         <h3># of Users - {{counts.users}}</h3>
         <h3># of Weeks - {{counts.weeks}}</h3>
         <h3># of Days - {{counts.days}}</h3>
-        <form action="/user/theAdmin/sendUsers/" method="post">
+        <form action="/theAdmin/sendUsers/" method="post">
             {% csrf_token %}
             <button>Send Users</button>
         </form>
-        <button><a href="/user/theAdmin/getUsers/">Get Chat Users</a></button>
-        <button><a href="/user/theAdmin/checkUser/">Check User</a></button>
+        <button><a href="/theAdmin/getUsers/">Get Chat Users</a></button>
+        <button><a href="/theAdmin/checkUser/">Check User</a></button>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
 </body>
