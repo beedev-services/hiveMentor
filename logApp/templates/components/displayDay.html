@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block displayDay %}
+        <div class="column">
+            <!-- Water -->
+            <h3>Water Consumed today: 
+                {% if water == False %}
+                    0
+                {% else %}
+                    {{water.water}}
+                {% endif %}
+            </h3>
+            <!-- Food -->
+            {% if user.profile.food == 1 %}
+                <table>
+                    <tr>
+                        <th>Meal</th>
+                        <th>Food</th>
+                        <th>Calories*Servings</th>
+                    </tr>
+                    {% for food in foods %}
+                        <tr>
+                            <td>{% for m in meals %}
+                                {% if m.name == food.meal %}
+                                    {{m.name}}
+                                {% endif %}
+                            {% endfor %}</td>
+                            {% for f in fList %}
+                                {% if f.id == food.foodItem_id %}
+                                    <td>{{f.food}}</td>
+                                    <td>{{f.calories}} * {{food.servings}} = {{food.totalCals}}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="2">Total for day</th>
+                        <td>{{sum}}</td>
+                    </tr>
+                </table>
+            {% endif %}
+        </div>
+        <div class="column">
+            <!-- Medication -->
+            {% if user.profile.meds == 1 %}
+            <table>
+                <tr>
+                    <th>Medication</th>
+                    <th>Dose</th>
+                    <th>Time Taken</th>
+                </tr>
+                {% for med in meds %}
+                    <tr>
+                        <td>
+                            {% for m in mList %}
+                                {% if med.medication_id == m.id %}
+                                    {{m.name}}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>{{med.dose}}</td>
+                        <td>{{med.when}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+            <!-- Sugar -->
+            {% if user.profile.diabetic == 1 %}
+                <table></table>
+            {% endif %}
+        </div>
+        <div class="column">
+            <!-- Journal -->
+            {% if journal != False %}
+                <div>
+                    <h3>{{journal.title}}</h3>
+                    <p>{{journal.content}}</p>
+                </div>
+            {% endif %}
+            <!-- Weather -->
+            {% if user.profile.weather == 1 %}
+                <table>
+                    <tr>
+                        <th>Temp</th>
+                        <th>Pressure</th>
+                        <th>Humidity</th>
+                    </tr>
+                    {% for o in observations %}
+                        <tr>
+                            <td>{{o.temp}}&#8457;</td>
+                            <td>{{o.pressure}}mB</td>
+                            <td>{{o.humidity}}&#8457;</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+            <!-- Mood -->
+            {% if user.profile.mood == 1 %}
+                <table>
+                    <tr>
+                        <th>Mood</th>
+                        <th>Symptom</th>
+                        <th>Comments</th>
+                    </tr>
+                    {% for mood in moods %}
+                        <tr>
+                            <td>
+                                {% if mood.feeling == 0 %}
+                                    <img src="{% static 'images/00.PNG'%}" alt="Bad Mood">
+                                {% elif mood.feeling == 1 %}
+                                    <img src="{% static 'images/01.PNG'%}" alt="Poor Mood">
+                                {% elif mood.feeling == 2 %}
+                                    <img src="{% static 'images/02.PNG'%}" alt="Ok Mood">
+                                {% elif mood.feeling == 3 %}
+                                    <img src="{% static 'images/03.PNG'%}" alt="Good Mood">
+                                {% else %}
+                                    <img src="{% static 'images/04.PNG'%}" alt="Great Mood">
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% for s in sList %}
+                                    {% if mood.symptom_id == s.id %}
+                                        {{s.symptom}}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{mood.comments}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+            <!-- Sleep -->
+            {% if user.profile.sleep == 1 %}
+                <table></table>
+            {% endif %}
+        </div>
+        <div class="column">
+            <!-- Weight -->
+            {% if user.profile.weight == 1 %}
+                <table></table>
+            {% endif %}
+            <!-- Fitness -->
+            {% if user.profile.fitness == 1 %}
+                <table></table>
+            {% endif %}
+            <!-- Work -->
+            {% if user.profile.work == 1 %}
+                <table></table>
+            {% endif %}
+        </div>
+    {% endblock displayDay %}
+</body>
+</html>

@@ -1,5 +1,62 @@
 @import './base.less';
 
+@media @1075 {
+    body {
+        main {
+            .desktop {
+                display: none;
+            }
+            
+            .mobile {
+                .flexrow();
+                width: 95%;
+                justify-content: space-evenly;
+
+                .left {
+                    .altflexcolumn();
+                    width: 33%;
+
+                    #moodFormMobile, #UserMedFormMobile {
+                        display: none;
+                    }
+                    form {
+                        margin: .5em;
+                        flex-direction: column;
+                    }
+                    .lgButton {
+                        font-size: 1.2em;
+                        margin: .5em;
+                    }
+                }
+                .right {
+                    width: 33%;
+
+                    #symptomFormMobile, #MedListFormMobile {
+                        display: none;
+                    }
+                    form {
+                        margin: .5em;
+                    }
+                    .lgButton {
+                        font-size: 1.2em;
+                        margin: .5em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media @730 {
+    body {
+        main {
+            .mobile {
+                .flexcolumn();
+            }
+        }
+    }
+}
+
 @media @650 {
     body {
         header {
@@ -15,6 +72,7 @@
                     a {
                         text-decoration: none;
                         padding: 1em;
+                        margin: .5em;
                         border-radius: 30%;
                         box-shadow: 5px 5px @lt02;
                         border: 1px solid @lt02;

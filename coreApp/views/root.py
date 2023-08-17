@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from userApp.models import *
+from coreApp.models import *
 
 # title = {
 #     'title': 'Index',
@@ -99,13 +100,21 @@ def devNotes(request):
     site = request.session['site']
     request.session['role'] = 'null'
     role = request.session['role']
+    versions = Version.objects.values().all()
+    features = Feature.objects.values().all()
+    statuses = Live.objects.values().all()
+    print('versions', versions, 'features', features, 'statuses', statuses)
     if 'user_id' not in request.session:
         user = False
+        
         context = {
             'title': title,
             'user': user,
             'site': site,
             'role': role,
+            'versions': versions,
+            'features': features,
+            'statuses': statuses,
         }
     else:
         user = User.objects.get(id=request.session['user_id'])
@@ -116,6 +125,9 @@ def devNotes(request):
                 'title': title,
                 'site': site,
                 'role': role,
+                'versions': versions,
+                'features': features,
+                'statuses': statuses,
             }
     return render(request, 'devNotes.html', context)
 

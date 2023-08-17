@@ -47,9 +47,11 @@
                 </section>
                 <button>Submit and Login</button>
             </form>
-            <a href="javascript:void(0);" class="icon button" onclick="auth()">
-                Or would you like to <span id="text">Register</span>
-            </a>
+            <button class="logReg">
+                <a href="javascript:void(0);" class="icon button" onclick="auth()">
+                    Or would you like to <span id="text">Register</span>
+                </a>
+            </button>
         </div>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}

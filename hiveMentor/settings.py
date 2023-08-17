@@ -8,7 +8,7 @@ env.read_env()
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# SECRET_KEY = 'django-insecure-t$vl2y62m^2%4u9kuwt&_9@tc^wa7pmzcb#ee*9%&6bwg_3lg2'
+# SECRET_KEY = 'django-insecure-v_ry!op)yp3_cgvw&u2=%biwi4s^uk6znfs4i@4h%hv1ih0t88'
 SECRET_KEY = 'KEY'
 
 DEBUG = True
@@ -16,6 +16,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['hivementor.beedev-services.com']
+# ALLOWED_HOSTS = ['dev.thehive-services.com']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
@@ -24,7 +25,9 @@ CORS_ALLOWED_ORIGINS = [
     'https://hivementor.beedev-services.com',
     'http://hivementor.beedev.services.com',
     'https://hivechat.beedev.services.com',
-    'http://hivechat.beedev.services.com'
+    'http://hivechat.beedev.services.com',
+    'https://dev.thehive-services.com',
+    'http://dev.thehive-services.com',
     # Add more allowed origins as necessary
 ]
 CORS_ALLOWED_ALL_ORIGINS: True
@@ -101,12 +104,15 @@ WSGI_APPLICATION = 'hiveMentor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
+        # 'ENGINE':'django.db.backends.mysql',
         'NAME': 'thehives_hiveMentor',
         'USER': 'root',
         # 'USER': 'thehives_mentor',
         'PASSWORD': 'HoneyBee#4',
+        # 'PASSWORD': 'MrTucker@22',
         'HOST': 'localhost',
         'PORT': '3306',
+        # 'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 

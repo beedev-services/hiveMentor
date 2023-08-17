@@ -24,6 +24,18 @@
   justify-content: center;
   align-items: center;
 }
+.altflexrow {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.altflexcolumn {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
 h1,
 h2,
 h3 {
@@ -31,6 +43,60 @@ h3 {
 }
 button {
   font-size: 1.2em;
+}
+@media only screen and (max-width: 1075px) {
+  body main .desktop {
+    display: none;
+  }
+  body main .mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    justify-content: space-evenly;
+  }
+  body main .mobile .left {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+  }
+  body main .mobile .left #moodFormMobile,
+  body main .mobile .left #UserMedFormMobile {
+    display: none;
+  }
+  body main .mobile .left form {
+    margin: 0.5em;
+    flex-direction: column;
+  }
+  body main .mobile .left .lgButton {
+    font-size: 1.2em;
+    margin: 0.5em;
+  }
+  body main .mobile .right {
+    width: 33%;
+  }
+  body main .mobile .right #symptomFormMobile,
+  body main .mobile .right #MedListFormMobile {
+    display: none;
+  }
+  body main .mobile .right form {
+    margin: 0.5em;
+  }
+  body main .mobile .right .lgButton {
+    font-size: 1.2em;
+    margin: 0.5em;
+  }
+}
+@media only screen and (max-width: 730px) {
+  body main .mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media only screen and (min-width: 650px) {
   body header nav .icon {
@@ -47,6 +113,7 @@ button {
   body header nav #myLinks a {
     text-decoration: none;
     padding: 1em;
+    margin: 0.5em;
     border-radius: 30%;
     box-shadow: 5px 5px #3349B9;
     border: 1px solid #3349B9;

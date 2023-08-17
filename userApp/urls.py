@@ -17,15 +17,9 @@ urlpatterns = [
     path('profile/updateWeather/', views.updateWeather),
     path('profile/updateFitness/', views.updateFitness),
     path('profile/updateWork/', views.updateWork),
+    path('profile/updateWeight/', views.updateWeight),
     path('profile/addZip/', views.addZip),
     path('profile/upgradeAccount/', views.upgradeAccount),
-    path('theAdmin/', views.theAdmin),
-    path('theAdmin/sendUsers/', views.sendUsers),
-    path('theAdmin/getUsers/', views.getUsersChat),
-    path('theAdmin/checkUser/', views.checkUser),
-    path('theAdmin/theCodes/', views.theCodes),
-    path('theAdmin/createCode/', views.createCode),
-    # path('theAdmin/auth/', views.auth),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

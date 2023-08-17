@@ -89,6 +89,13 @@ def updateWeather(request):
     messages.error(request, 'Updated Weather Question')
     return redirect('/user/profile/')
 
+def updateWeight(request):
+    toUpdate=User.objects.get(id=request.session['user_id'])
+    toUpdate.profile.weight=request.POST['weight']
+    toUpdate.save()
+    messages.error(request, 'Updated Weight Question')
+    return redirect('/user/profile/')
+
 def addZip(request):
     theZip = request.POST.get('zipCode')
     theData = latLong(theZip)
@@ -101,33 +108,35 @@ def addZip(request):
     return redirect('/user/profile/')
 
 
-
-#     api_url = f"https://api.example.com/geo/{zip_code}"  # Replace with the actual API URL
-
-#     try:
-#         # Make the API call to get latitude and longitude
-#         response = requests.get(api_url)
-#         response_data = response.json()
-
-#         # Check if the API call was successful and contains latitude and longitude
-#         if response.status_code == 200 and 'latitude' in response_data and 'longitude' in response_data:
-#             latitude = response_data['latitude']
-#             longitude = response_data['longitude']
-
-#             # Save the data to the database
-#             location = Location.objects.create(zip_code=zip_code, latitude=latitude, longitude=longitude)
-
-#             # Return the saved data in the response
-#             return JsonResponse({
-#                 'zip_code': location.zip_code,
-#                 'latitude': location.latitude,
-#                 'longitude': location.longitude
-#             })
-
-#         else:
-#             # If the API call was not successful or didn't contain latitude and longitude
-#             return HttpResponseBadRequest("Invalid API response or zip code not found.")
-
-#     except requests.exceptions.RequestException as e:
-#         # If there was an exception during the API call (e.g., network error)
-#         return HttpResponseBadRequest(f"Error occurred during API call: {e}")
+def upgradeAccount(request):
+    theCode = request.POST['code']
+    codeCheck = Code.objects.filter(code = theCode).values()
+    if codeCheck:
+        newRole = codeCheck[0]['role']
+        newUse = codeCheck[0]['used']
+        codeId = codeCheck[0]['id']
+        ifCode = Code.objects.get(id=codeId)
+        print('codeCheck', codeCheck, 'codeId',codeId, 'ifCode', ifCode, 'sessionUser', User.objects.get(id=request.session['user_id']))
+        toUpdate=Code.objects.get(id=codeId)
+        toUpdate.used = newUse+1
+        toUpdate.save()
+        if newRole == 'Trainer':
+            newLevel = 2
+        if newRole == 'Mentor':
+            newLevel = 4
+        if newRole == 'Provider':
+            newLevel = 4
+        if newRole == 'ChatAdmin':
+            newLevel = 6
+        if newRole == 'SuperAdmin':
+            newLevel = 8
+        if newRole == 'Webmaster':
+            newLevel = 10
+        toUpdate=User.objects.get(id=request.session['user_id'])
+        toUpdate.role = newRole
+        toUpdate.level = newLevel
+        toUpdate.save()
+        messages.error(request, f'Your account has been updated to {newRole}')
+    else:
+        messages.error(request, 'The code you entered is not correct')
+    return redirect('/user/profile/')

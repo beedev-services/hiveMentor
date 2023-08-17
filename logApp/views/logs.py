@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from userApp.models import *
 from logApp.models import *
+from userApp.util import *
 from django.core.paginator import Paginator
 
 # title = {
@@ -12,13 +13,35 @@ from django.core.paginator import Paginator
 #     'title': title,
 # }
 weekDays = [
-    {1: 'Sunday'},
-    {2: 'Monday'},
-    {3: 'Tuesday'},
-    {4: 'Wednesday'},
-    {5: 'Thursday'},
-    {6: 'Friday'},
-    {7: 'Saturday'}
+    {'id': 1, 'name': 'Sunday'},
+    {'id': 2, 'name': 'Monday'},
+    {'id': 3, 'name': 'Tuesday'},
+    {'id': 4, 'name': 'Wednesday'},
+    {'id': 5, 'name': 'Thursday'},
+    {'id': 6, 'name': 'Friday'},
+    {'id': 7, 'name': 'Saturday'}
+]
+meals = [
+    {'id': 1, 'name': 'Breakfast'},
+    {'id': 2, 'name': 'Lunch'},
+    {'id': 3, 'name': 'Dinner'},
+    {'id': 4, 'name': 'Morning Snack'},
+    {'id': 5, 'name': 'Afternoon Snack'},
+    {'id': 6, 'name': 'Evening Snack'},
+    {'id': 7, 'name': 'Late Night Snack'},
+    {'id': 8, 'name': 'Other'}
+]
+categories = [
+    {'id': 1, 'name': 'Grains'},
+    {'id': 2, 'name': 'Dairy'},
+    {'id': 3, 'name': 'Fruits'},
+    {'id': 4, 'name': 'Meats'},
+    {'id': 5, 'name': 'Fish & Seafood'},
+    {'id': 6, 'name': 'Vegetables'},
+    {'id': 7, 'name': 'Other Proteins'},
+    {'id': 8, 'name': 'Nuts & Seeds'},
+    {'id': 9, 'name': 'Beverages'},
+    {'id': 10, 'name': 'Other Starches'},
 ]
 
 def logDash(request):
@@ -80,6 +103,32 @@ def viewWeek(request, week_id):
         user = User.objects.get(id=request.session['user_id'])
         role = request.session['role']
         site = request.session['site']
+        dayCounts = []
+        if days != False:
+            for day in days:
+                moods = Mood.objects.filter(log=day.id).count()
+                water = Water.objects.filter(note=day.id)
+                meds = Medication.objects.filter(blog=day.id).count()
+                if not moods:
+                    moodCount = 0
+                if not water:
+                    waterCount = 0
+                if not meds:
+                    medCount = 0
+                if water:
+                    waterCount = water[0].water
+                if moods:
+                    moodCount = moods
+                if meds:
+                    medCount = meds
+                dayCount = {
+                        'id': day.id,
+                        'moodCount': moodCount,
+                        'waterCount': waterCount,
+                        'medCount': medCount
+                }
+                dayCounts.append(dayCount)
+        print('theDayCounts:', dayCounts)
         context = {
             'title': title,
             'week': week,
@@ -88,6 +137,7 @@ def viewWeek(request, week_id):
             'days': days,
             'role': role,
             'weekDays': weekDays,
+            'dayCounts': dayCounts
         }
         return render(request, 'viewWeek.html', context)
     
@@ -124,6 +174,7 @@ def viewDay(request, week_id, day_id):
         messages.error(request, 'Please log in to view page')
         return redirect('/logReg/')
     else:
+        url = f'/logs/week/{week_id}/'
         user = User.objects.get(id=request.session['user_id'])
         journal = Journal.objects.filter(journal_id=day_id)
         moods = Mood.objects.filter(log_id=day_id)
@@ -132,11 +183,22 @@ def viewDay(request, week_id, day_id):
         water = Water.objects.filter(note_id=day_id)
         meds = Medication.objects.filter(blog_id=day_id)
         sugars = Sugar.objects.filter(entry_id=day_id)
+        workouts = Fitness.objects.filter(workout_id=day_id)
+        hours = Work.objects.filter(workDay_id=day_id)
+        observations = Weather.objects.filter(conditions_id=day_id)
         sList = SymptomList.objects.values().all()
         mList = MedList.objects.values().all()
+        wList = FitnessList.objects.values().all()
+        fList = FoodList.objects.values().all()
         role = request.session['role']
         print(journal)
         print(water)
+        sum = 0
+        if foods:
+            for food in foods:
+                f = FoodList.objects.filter(id=food.foodItem_id).values()
+                sum = sum + int(food.servings) * int(f[0]['calories'])
+                print(sum)
         if not water:
             water = False
         else:
@@ -160,8 +222,17 @@ def viewDay(request, week_id, day_id):
             'water': water,
             'meds': meds,
             'sugars': sugars,
+            'workouts': workouts,
+            'hours': hours,
+            'observations': observations,
             'sList': sList,
             'mList': mList,
+            'wList': wList,
+            'fList': fList,
+            'meals': meals,
+            'url': url,
+            'sum': sum,
+            'categories': categories,
         }
         # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
@@ -191,7 +262,22 @@ def createNewMed(request):
     return redirect(f'{currPage}')
 
 def createNewFitness(request):
-    pass
+    currPage = request.POST['currPage']
+    FitnessList.objects.create(
+        name = request.POST['name']
+    )
+    messages.error(request, "Workout added to Fitness Bank")
+    return redirect(f'{currPage}')
+
+def createNewFood(request):
+    currPage = request.POST['currPage']
+    FoodList.objects.create(
+        category = request.POST['category'],
+        food = request.POST['food'],
+        calories = request.POST['calories']
+    )
+    messages.error(request, "Food added to Food Bank")
+    return redirect(f'{currPage}')
 
 # ******* Default Required Functions *******
 
@@ -268,11 +354,24 @@ def deleteSleep(request, sleep_id):
     pass
 
 # ***** Food Functions *****
-def newFood(request):
-    pass
-
-def createFood(request):
-    pass
+def createFood(request, week_id, day_id):
+    serv = request.POST['servings']
+    theFood = FoodList.objects.filter(id=request.POST['foodItem']).values()
+    cal = theFood[0]['calories']
+    total = int(serv) * int(cal)
+    # print('serv', serv, 'theFood', theFood, 'cal', cal, 'total', total)
+    Food.objects.create(
+        meal = request.POST['meal'],
+        servings = request.POST['servings'],
+        comments = request.POST['comments'],
+        totalCals = total,
+        foodCat = request.POST['foodCat'],
+        foodItem_id = request.POST['foodItem'],
+        record_id = day_id,
+        person = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Food Logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def deleteFood(request, food_id):
     pass
@@ -301,3 +400,22 @@ def createSugar(request):
 
 def deleteSugar(request, sugar_id):
     pass
+
+# ***** Weight Functions *****
+# ***** Fitness Functions *****
+# ***** Work Functions *****
+# ***** Weather Functions *****
+def createConditions(request,week_id, day_id):
+    theLat = request.POST.get('lat')
+    theLon = request.POST.get('lon')
+    theData = getConditions(theLat, theLon)
+    print(theData['current']['pressure'])
+    Weather.objects.create(
+        temp = theData['current']['temp'],
+        pressure = theData['current']['pressure'],
+        humidity = theData['current']['humidity'],
+        conditions_id = day_id,
+        userWeather = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Conditions Logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')

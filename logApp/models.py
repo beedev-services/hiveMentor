@@ -16,12 +16,23 @@ class MedList(models.Model):
     freq = models.CharField(max_length=255, default='daily')
     
     def __str__(self):
+        return self.name
+    def fullMed(self):
         return f'{self.name} {self.freq}'
     
 class FitnessList(models.Model):
     name = models.CharField(max_length=255)
     def __str__(self):
         return self.name
+    
+class FoodList(models.Model):
+    category = models.CharField(max_length=255, default='Meat')
+    food = models.CharField(max_length=255)
+    calories = models.CharField(max_length=255, default=0)
+    def __str__(self):
+        return self.food
+    def fullFood(self):
+        return f'{self.food} {self.calories}'
 
 # ***** Default Required Models *****
 
@@ -82,16 +93,18 @@ class Sleep(models.Model):
     wake = models.TimeField()
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
-    sleeper = models.ForeignKey(User, related_name='theSleeper', on_delete=CASCADE)
     night = models.ForeignKey(Day, related_name='theNight', on_delete=CASCADE)
+    sleeper = models.ForeignKey(User, related_name='theSleeper', on_delete=CASCADE)
 
 class Food(models.Model):
-    food = models.CharField(max_length=255)
-    calories = models.CharField(max_length=255, default=0)
-    comments = models.TextField(blank=True)
     meal = models.CharField(max_length=255, blank=True)
+    servings = models.IntegerField(default=1)
+    comments = models.TextField(blank=True)
+    totalCals = models.IntegerField(default=0)
+    foodCat = models.CharField(max_length=255, default='Meats')
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
+    foodItem = models.ForeignKey(FoodList, related_name='theFoodItem', on_delete=CASCADE)
     record = models.ForeignKey(Day, related_name='theRecord', on_delete=CASCADE)
     person = models.ForeignKey(User, related_name='thePerson', on_delete=CASCADE)
 
@@ -112,6 +125,14 @@ class Sugar(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     entry = models.ForeignKey(Day, related_name='theEntry',on_delete=CASCADE, blank=True)
     owner = models.ForeignKey(User, related_name='theOwner', on_delete=CASCADE)
+
+class Weight(models.Model):
+    weight = models.IntegerField()
+    unit = models.CharField(max_length=255, default='LBS')
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    day = models.ForeignKey(Day, related_name='theDay',on_delete=CASCADE)
+    userWeight = models.ForeignKey(User, related_name='theUserWeight', on_delete=CASCADE)
 
 class Fitness(models.Model):
     duration = models.TimeField()

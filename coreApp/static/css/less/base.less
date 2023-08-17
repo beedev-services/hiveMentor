@@ -17,13 +17,15 @@
 @dk03: #DBB42A;
 @dk04: #1DE172;
 @dkboxbg: #546867;
+@dkbgtrasparent: #080c0d60;
+@ltbgtrasnarent: #f5f3f560;
 
 @ltheaderbg: #e0d0d17a;
 @dkheaderbg: #5468677a;
 @ltbuttonbg: #3349b980;
 @dkbuttonbg: #2295b580;
 @ltbodybg: #e0d0d197;
-@dkbodybg: #4b6867af;
+@dkbodybg: #4b6867d2;
 @dk01button: #991a3c3c;
 
 
@@ -45,6 +47,18 @@
     justify-content: center;
     align-items: center;
 }
+.altflexrow {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+.altflexcolumn {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
 h1, h2, h3 {
     font-weight: 900;
 }
@@ -53,9 +67,9 @@ button {
 }
 
 @1250: ~"only screen and (min-width: 1250px)";
-@1000: ~"only screen and (min-width: 1000px)";
+@1075: ~"only screen and (max-width: 1075px)";
 @850: ~"only screen and (min-width: 850px)";
-@730: ~"only screen and (min-width: 730px)";
+@730: ~"only screen and (max-width: 730px)";
 @650: ~"only screen and (min-width: 650px)";
 @500: ~"only screen and (min-width: 500px)";
 @400: ~"only screen and (min-width: 400px)";

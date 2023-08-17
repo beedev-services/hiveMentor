@@ -9,6 +9,7 @@ body {
     color: @ltfont;
     font-family: 'Raleway', sans-serif;
     margin: 2em auto ;
+    text-align: center;
     background-image: url(../images/ltBG.jpg);
     background-repeat: repeat no-repeat;
     background-attachment: fixed;
@@ -45,15 +46,23 @@ body {
             justify-content: space-evenly;
 
             #myLinks {
-                display: none;
+
+                a {
+                    text-decoration: none;
+                    padding: 1em;
+                    margin: .5em;
+                    border-radius: 30%;
+                    box-shadow: 5px 5px @lt02;
+                    border: 1px solid @lt02;
+                    color: @ltfont;
+                    background-color: @ltbgtrasnarent;
+                    font-weight: 900;
+                }
                 
             }
         }
     }
     div {
-        .session {
-            display: none;
-        }
         .messages {
             .flexcolumn();
             background-color: @dk01;
@@ -68,26 +77,70 @@ body {
         width: 90%;
         border: 1px solid @lt02;
 
-        .enterChat {
-            display: none;
+        .back {
+
+            a {
+                text-decoration: none;
+                padding: 1em;
+                margin: .5em;
+                border-radius: 30%;
+                box-shadow: 5px 5px @lt02;
+                border: 1px solid @lt02;
+                color: @ltfont;
+                background-color: @ltbgtrasnarent;
+                font-weight: 900;
+            }
         }
-        
+        .mobile {
+
+            .left {
+                width: 33%;
+    
+                form {
+                    margin: .5em;
+                }
+                .lgButton {
+                    font-size: 1.2em;
+                    margin: .5em;
+                }
+            }
+            .right {
+                width: 33%;
+    
+                .lgButton {
+                    font-size: 1.2em;
+                }
+            }
+        }
         .row {
             .flexrow();
             width: 95%;
 
-            #reg {
-                display: none;
-            }
             form {
                 .flexcolumn();
                 font-size: 1.4em;
+                margin: 1em;
 
                 section {
                     .flexcolumn();
                 }
                 button {
                     font-size: .89em;
+                }
+            }
+            .logReg {
+                cursor: pointer;
+                border: 1px solid @lt01;
+                border-radius: 40%;
+                // width: 30px;
+                text-align: center;
+                padding: 15px;
+                margin-left: 8px;
+                box-shadow: 3px 3px @lt01;
+
+                a {
+                    color: @ltfont;
+                    text-decoration: none;
                 }
             }
         }
@@ -105,19 +158,38 @@ body {
             .alt {
                 border: none;
             }
+            .create {
+                padding: .5em;
 
+                section {
+                    margin: .8em;
+                    
+                    label, input {
+                        margin: .5em;
+                    }
+                }
+                button {
+                    margin: .8em;
+                }
+            }
             .row {
                 .flexrow();
                 background-color: @ltbodybg;
                 width: 100%;
+                margin: .5em;
 
                 .column {
                     .flexcolumn();
                     border: 4px groove @lt04;
                     margin: 1em;
+                    padding: 1em;
 
                     .row {
                         .flexrow();
+                        
+                        button {
+                            margin: .5em;
+                        }
                     }
                 }
             }
@@ -132,46 +204,53 @@ body {
 
             p {
                 font-size: 1.25em;
+                width: 75%;
             }
         }
-        .left {
-            width: 33%;
+        .desktop {
+            .flexrow();
 
-            #moodForm, #UserMedForm {
-                display: none;
+            .left {
+                width: 33%;
+    
+                form {
+                    margin: .5em;
+                }
+                .lgButton {
+                    font-size: 1.2em;
+                    margin: .5em;
+                }
             }
-
-            form {
-                margin: .5em;
+            .mid {
+                width: 33%;
+    
+                .column {
+                    padding: 1em;
+                }
+                .lgButton {
+                    font-size: 1.2em;
+                }
             }
-            .lgButton {
-                font-size: 1.2em;
-                margin: .5em;
-            }
-        }
-        .mid {
-            width: 33%;
-
-            .column {
-                padding: 1em;
-            }
-            .lgButton {
-                font-size: 1.2em;
-            }
-        }
-        .right {
-            width: 33%;
-
-            #symptomForm, #MedListForm {
-                display: none;
-            }
-            .lgButton {
-                font-size: 1.2em;
+            .right {
+                width: 33%;
+    
+                .lgButton {
+                    font-size: 1.2em;
+                }
             }
         }
     }
     footer {
         .flexcolumn();
+        width: 90%;
+        background-color: @ltheaderbg;
+        border: 1px solid @lt02;
+        box-shadow: 5px 5px @lt02;
+        margin: 1em;
+
+        a {
+            color: @ltfont;
+        }
     }
 }
 @import './dark.less';
