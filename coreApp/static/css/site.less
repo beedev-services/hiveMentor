@@ -46,7 +46,6 @@ body {
             justify-content: space-evenly;
 
             #myLinks {
-                display: none;
 
                 a {
                     text-decoration: none;
@@ -64,9 +63,6 @@ body {
         }
     }
     div {
-        .session {
-            display: none;
-        }
         .messages {
             .flexcolumn();
             background-color: @dk01;
@@ -81,9 +77,6 @@ body {
         width: 90%;
         border: 1px solid @lt02;
 
-        .enterChat {
-            display: none;
-        }
         .back {
 
             a {
@@ -99,14 +92,9 @@ body {
             }
         }
         .mobile {
-            display: none;
 
             .left {
                 width: 33%;
-    
-                #moodForm, #UserMedForm {
-                    display: none;
-                }
     
                 form {
                     margin: .5em;
@@ -119,9 +107,6 @@ body {
             .right {
                 width: 33%;
     
-                #symptomForm, #MedListForm {
-                    display: none;
-                }
                 .lgButton {
                     font-size: 1.2em;
                 }
@@ -131,18 +116,31 @@ body {
             .flexrow();
             width: 95%;
 
-            #reg {
-                display: none;
-            }
             form {
                 .flexcolumn();
                 font-size: 1.4em;
+                margin: 1em;
 
                 section {
                     .flexcolumn();
                 }
                 button {
                     font-size: .89em;
+                }
+            }
+            .logReg {
+                cursor: pointer;
+                border: 1px solid @lt01;
+                border-radius: 40%;
+                // width: 30px;
+                text-align: center;
+                padding: 15px;
+                margin-left: 8px;
+                box-shadow: 3px 3px @lt01;
+
+                a {
+                    color: @ltfont;
+                    text-decoration: none;
                 }
             }
         }
@@ -215,10 +213,6 @@ body {
             .left {
                 width: 33%;
     
-                #moodForm, #UserMedForm {
-                    display: none;
-                }
-    
                 form {
                     margin: .5em;
                 }
@@ -240,9 +234,6 @@ body {
             .right {
                 width: 33%;
     
-                #symptomForm, #MedListForm, #FoodListForm, #FitnessListForm {
-                    display: none;
-                }
                 .lgButton {
                     font-size: 1.2em;
                 }

@@ -106,8 +106,42 @@ button {
 .cnt223 .x:hover {
   cursor: pointer;
 }
+.none {
+  display: none;
+}
+body header nav #myLinks {
+  display: none;
+}
+body div .session {
+  display: none;
+}
+body main .enterChat {
+  display: none;
+}
+body main .mobile {
+  display: none;
+}
 body main .column #hideCreateWeek,
 body main .column #hideCreateDay {
+  display: none;
+}
+body main .row #reg {
+  display: none;
+}
+body main .row .column #UserFoodForm,
+body main .row .column #moodForm,
+body main .row .column #UserMedForm,
+body main .row .column #symptomForm,
+body main .row .column #MedListForm,
+body main .row .column #FoodListForm,
+body main .row .column #FitnessListForm,
+body main .row .column #UserSugarForm,
+body main .row .column #UserJournalForm,
+body main .row .column #UserSleepForm,
+body main .row .column #UserFitnessForm,
+body main .row .column #UserWeatherForm,
+body main .row .column #UserWeightForm,
+body main .row .column #UserWorkForm {
   display: none;
 }
 body {
@@ -159,9 +193,6 @@ body header nav {
   width: 85%;
   justify-content: space-evenly;
 }
-body header nav #myLinks {
-  display: none;
-}
 body header nav #myLinks a {
   text-decoration: none;
   padding: 1em;
@@ -172,9 +203,6 @@ body header nav #myLinks a {
   color: #080C0D;
   background-color: #f5f3f560;
   font-weight: 900;
-}
-body div .session {
-  display: none;
 }
 body div .messages {
   display: flex;
@@ -195,9 +223,6 @@ body main {
   width: 90%;
   border: 1px solid #3349B9;
 }
-body main .enterChat {
-  display: none;
-}
 body main .back a {
   text-decoration: none;
   padding: 1em;
@@ -209,15 +234,8 @@ body main .back a {
   background-color: #f5f3f560;
   font-weight: 900;
 }
-body main .mobile {
-  display: none;
-}
 body main .mobile .left {
   width: 33%;
-}
-body main .mobile .left #moodForm,
-body main .mobile .left #UserMedForm {
-  display: none;
 }
 body main .mobile .left form {
   margin: 0.5em;
@@ -229,10 +247,6 @@ body main .mobile .left .lgButton {
 body main .mobile .right {
   width: 33%;
 }
-body main .mobile .right #symptomForm,
-body main .mobile .right #MedListForm {
-  display: none;
-}
 body main .mobile .right .lgButton {
   font-size: 1.2em;
 }
@@ -243,15 +257,13 @@ body main .row {
   align-items: center;
   width: 95%;
 }
-body main .row #reg {
-  display: none;
-}
 body main .row form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 1.4em;
+  margin: 1em;
 }
 body main .row form section {
   display: flex;
@@ -261,6 +273,19 @@ body main .row form section {
 }
 body main .row form button {
   font-size: 0.89em;
+}
+body main .row .logReg {
+  cursor: pointer;
+  border: 1px solid #CF508D;
+  border-radius: 40%;
+  text-align: center;
+  padding: 15px;
+  margin-left: 8px;
+  box-shadow: 3px 3px #CF508D;
+}
+body main .row .logReg a {
+  color: #080C0D;
+  text-decoration: none;
 }
 body main .column {
   display: flex;
@@ -348,10 +373,6 @@ body main .desktop {
 body main .desktop .left {
   width: 33%;
 }
-body main .desktop .left #moodForm,
-body main .desktop .left #UserMedForm {
-  display: none;
-}
 body main .desktop .left form {
   margin: 0.5em;
 }
@@ -370,12 +391,6 @@ body main .desktop .mid .lgButton {
 }
 body main .desktop .right {
   width: 33%;
-}
-body main .desktop .right #symptomForm,
-body main .desktop .right #MedListForm,
-body main .desktop .right #FoodListForm,
-body main .desktop .right #FitnessListForm {
-  display: none;
 }
 body main .desktop .right .lgButton {
   font-size: 1.2em;
@@ -423,6 +438,14 @@ body.dark main .back a {
   color: #E0D0D1;
   box-shadow: 5px 5px #2294B5;
   background-color: #080c0d60;
+}
+body.dark main .row .logReg {
+  border: 1px solid #991A3C;
+  box-shadow: 3px 3px #991A3C;
+  background-color: #991a3c3c;
+}
+body.dark main .row .logReg a {
+  color: #E0D0D1;
 }
 body.dark main .column .row {
   background-color: #4b6867d2;

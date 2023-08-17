@@ -11,6 +11,36 @@ Health side gives the user a place to keep track of different things (they can o
 
 Mentors have the ability to talk to general users, they must be approved after some training on how to listen.  They will have the ability to alert the user's provider (if one was granted by the user) if they see certain concerning items.  If  not provider is present for the user the alert goes to a SuperAdmin The alert system is for safety of the user
 
+# Links and Release Dates/Version Live
+
+## Links
+- [Main site](https://hivementor.beedev-services.com)
+- [Dev site](https://dev.thehive-services.com)
+- Both sites access the same database but current version updates are on Dev till released
+
+## Current Version Released
+- Main Site - Version 1.0 - Launched 8/7/2023
+    - Log side only with limited logs
+        - Water Count
+        - Mood Symptoms
+        - Medication
+- Dev Site - Version 1.1 - Updated 8/17/2023
+    - Same as Main and Log sites - Plus
+        - CSS updates
+        - Food completed
+        - Weather completed
+        - Dev page updated
+    - This will remain in Dev only for testing 
+- Under development - Version 1.2 - Updated 8/17/2023
+    - Same as Main and Log sites - Plus
+        - CSS updates
+        - Food completed
+        - Weather completed
+        - Dev page updated
+
+
+
+
 # Parts of the App
 
 ## UserApp

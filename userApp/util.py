@@ -7,9 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 theKey = PRIVATE_KEY
 theProj = PROJECT_ID
 theUser = 'webmaster'
-secret = 'BeeDevServices'
-weatherAPI = '&appid=e2dce74ca5407e4678b17b94a72fe7df'
-# weatherAPI = '&appid=179fcd38509ce9a4671ca1be23eac6ba'
+secret = CHAT_SECRET
+weatherAPI = WEATHER_KEY
 
 url = 'https://api.chatengine.io/users/'
 adminUrl = "https://api.chatengine.io/users/me/"
@@ -21,7 +20,7 @@ def sendUserToChat(username, email, firstName, lastName, role):
         'email': email,
         'first_name': firstName,
         'last_name': lastName,
-        'secret': username+'BeeDevServices',
+        'secret': username+secret,
         'custom_json': {'role': role}
     }
     headers = {
@@ -37,7 +36,7 @@ def sendCurrentUsersToChat():
 def getUsersInChat():
     payload={}
     headers = {
-        'PRIVATE-KEY': 'd7e2e051-741c-4ed0-933b-9bf26f6029c2'
+        'PRIVATE-KEY': PRIVATE_KEY
     }
     response = requests.request("GET", url, headers=headers, data=payload)
     print(response.text)
@@ -67,5 +66,11 @@ def updateUserAcct():
 def latLong(theZip):
     geoUrl = f"http://api.openweathermap.org/geo/1.0/zip?zip={theZip}{weatherAPI}"
     response = requests.get(geoUrl)
+    res = response.json()
+    return res
+
+def getConditions(lat, lon):
+    weatherUrl = f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly,daily,alerts&units=imperial{weatherAPI}"
+    response = requests.get(weatherUrl)
     res = response.json()
     return res

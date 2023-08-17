@@ -74,6 +74,14 @@ body.dark main .back a {
   box-shadow: 5px 5px #2294B5;
   background-color: #080c0d60;
 }
+body.dark main .row .logReg {
+  border: 1px solid #991A3C;
+  box-shadow: 3px 3px #991A3C;
+  background-color: #991a3c3c;
+}
+body.dark main .row .logReg a {
+  color: #E0D0D1;
+}
 body.dark main .column .row {
   background-color: #4b6867d2;
 }
