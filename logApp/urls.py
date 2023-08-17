@@ -31,6 +31,7 @@ urlpatterns = [
     path('week/<int:week_id>/day/<int:day_id>/<int:water_id>/updateWater/', views.updateWater),
     path('week/<int:week_id>/day/<int:day_id>/createMood/', views.createMood),
     path('week/<int:week_id>/day/<int:day_id>/createMed/', views.createMed),
+    path('week/<int:week_id>/day/<int:day_id>/createConditions/', views.createConditions),
 
 
 ]

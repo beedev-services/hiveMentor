@@ -30,6 +30,7 @@ body main .row .column #FitnessListForm,
 body main .row .column #UserSugarForm,
 body main .row .column #UserJournalForm,
 body main .row .column #UserSleepForm,
-body main .row .column #UserFitnessForm {
+body main .row .column #UserFitnessForm,
+body main .row .column #UserWeatherForm {
   display: none;
 }

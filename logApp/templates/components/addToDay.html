@@ -3,6 +3,7 @@
 <html lang="en">
 <body>
     {% block addToDayForms %}
+        <!-- Water -->
         {% if water == False %}
             <form action="/logs/week/{{week.id}}/day/{{day.id}}/createWater/" method='post'>
                 {% csrf_token %}
@@ -14,6 +15,7 @@
                 <button>Drank More Water</button>
             </form>
         {% endif %}
+        <!-- Food -->
         {% if user.profile.food == 1 %}
             <button class="lgButton" onclick="openForm('UserFoodForm')">Open Food Form</button>
             <form action="" method="post" id="UserFoodForm">
@@ -48,13 +50,8 @@
                 <button>Add Food</button>
             </form>
         {% endif %}
-        {% if user.profile.diabetic == 1 %}
-            <button class="lgButton" onclick="openForm('UserSugarForm')">Open Sugar Readings Form</button>
-            <form action="" method="post" id="UserSugarForm">
-                {% csrf_token %}
-                <button>Add Sugar Reading</button>
-            </form>
-        {% endif %}
+
+        <!-- Medication -->
         {% if user.profile.meds == 1 %}
             <button class="lgButton" onclick="openForm('UserMedForm')">Open Medication Form</button>
             <form action="/logs/week/{{week.id}}/day/{{day.id}}/createMed/" method="post" id="UserMedForm">
@@ -79,6 +76,60 @@
                 <button>Add Medication Taken</button>
             </form>
         {% endif %}
+        <!-- Sugar -->
+        {% if user.profile.diabetic == 1 %}
+            <button class="lgButton" onclick="openForm('UserSugarForm')">Open Sugar Readings Form</button>
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createSugar" method="post" id="UserSugarForm">
+                {% csrf_token %}
+                <section>
+                    <label for="time">Time Taken</label>
+                    <input type="time" name="time" id="">
+                </section>
+                <section>
+                    <label for="level">Reading</label>
+                    <input type="number" name="level" id="">
+                </section>
+                <section>
+                    <label for="testSite">Test Site Location</label>
+                    <input type="text" name="testSite" value="Finger Stick">
+                </section>
+                <button>Add Sugar Reading</button>
+            </form>
+        {% endif %}
+    
+        <!-- Journal -->
+        {% if user.profile.journal == 1 %}
+            {% if journal == False %}
+                <button class="lgButton" onclick="openForm('UserJournalForm')">Open Journal Form</button>
+                <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="UserJournalForm">
+                    {% csrf_token %}
+                    <section>
+                        <label for="title">Title of Entry</label>
+                        <input type="text" name="title">
+                    </section>
+                    <section>
+                        <label for="content">Entry</label>
+                        <textarea name="content" id="" cols="30" rows="10"></textarea>
+                    </section>
+                    <button>Add Journal Entry</button>
+                </form>
+            {% endif %}
+        {% endif %}
+        <!-- Weather -->
+        {% if user.profile.weather == 1 %}
+            {% if user.profile.zipCode == 0 %}
+                <button><a href="/user/profile">Please update your Zip Code</a></button>
+            {% else %}
+                <button class="lgButton" onclick="openForm('UserWeatherForm')">Open Weather Form</button>
+                <form action="/logs/week/{{week.id}}/day/{{day.id}}/createConditions/" method="post" id="UserWeatherForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="lat" value="{{user.profile.lat}}">
+                    <input type="hidden" name="lon" value="{{user.profile.lon}}">
+                    <button>Record Conditions</button>
+                </form>
+            {% endif %}
+        {% endif %}
+        <!-- Mood -->
         {% if user.profile.mood == 1 %}
             <button class="lgButton" onclick="openForm('moodForm')">Open Mood Form</button>
             <form action="/logs/week/{{week.id}}/day/{{day.id}}/createMood/" method="post" id="moodForm">
@@ -105,46 +156,50 @@
                 <button>Add Mood/Symptom</button>
             </form>
         {% endif %}
-        {% if user.profile.journal == 1 %}
-            {% if journal == False %}
-                <button class="lgButton" onclick="openForm('UserJournalForm')">Open Journal Form</button>
-                <form action="/logs/week/{{week.id}}/day/{{day.id}}/createJournal/" method="post" id="UserJournalForm">
-                    {% csrf_token %}
-                    <section>
-                        <label for="title">Title of Entry</label>
-                        <input type="text" name="title">
-                    </section>
-                    <section>
-                        <label for="content">Entry</label>
-                        <textarea name="content" id="" cols="30" rows="10"></textarea>
-                    </section>
-                    <button>Add Journal Entry</button>
-                </form>
-            {% endif %}
-        {% endif %}
+        <!-- Sleep -->
         {% if user.profile.sleep == 1 %}
             <button class="lgButton" onclick="openForm('UserSleepForm')">Open Sleep Log Form</button>
-            <form action="">
+            <form action="" method="post" id="UserSleepForm">
                 {% csrf_token %}
                 <button>Add Sleep times</button>
             </form>
         {% endif %}
+        
+        <!-- Weight -->
+        {% if user.profile.weight == 1 %}
+            <button class="lgButton" onclick="openForm('UserWeightForm')">Open Weight Tracking Form</button>
+            <form action="" method="post" id="UserWeightForm">
+                {% csrf_token %}
+            </form>
+        {% endif %}
+        <!-- Fitness -->
         {% if user.profile.fitness == 1 %}
             <button class="lgButton" onclick="openForm('UserFitnessForm')">Fitness Form</button>
             <form action="" method="post" id="UserFitnessForm"></form>
         {% endif %}
+        <!-- Work -->
         {% if user.profile.work == 1 %}
-            <button>Work Form</button>
-            <form action=""></form>
+            <button class="lgButton" onclick="openForm('UserWorkForm')">Work Form</button>
+            <form action="" method="post" id="UserWorkForm">
+                {% csrf_token %}
+            </form>
         {% endif %}
-        {% if user.profile.weather == 1 %}
-            {% if user.profile.zipCode == 0 %}
-                <button><a href="/user/profile">Please update your Zip Code</a></button>
-            {% else %}
-                <button>Record Current Conditions</button>
-                <form action=""></form>
-            {% endif %}
-        {% endif %}
+    
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     {% endblock addToDayForms %}
 </body>
 </html>

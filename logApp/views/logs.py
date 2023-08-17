@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from userApp.models import *
 from logApp.models import *
+from userApp.util import *
 from django.core.paginator import Paginator
 
 # title = {
@@ -365,3 +366,22 @@ def createSugar(request):
 
 def deleteSugar(request, sugar_id):
     pass
+
+# ***** Weight Functions *****
+# ***** Fitness Functions *****
+# ***** Work Functions *****
+# ***** Weather Functions *****
+def createConditions(request,week_id, day_id):
+    theLat = request.POST.get('lat')
+    theLon = request.POST.get('lon')
+    theData = getConditions(theLat, theLon)
+    print(theData['current']['pressure'])
+    Weather.objects.create(
+        temp = theData['current']['temp'],
+        pressure = theData['current']['pressure'],
+        humidity = theData['current']['humidity'],
+        conditions_id = day_id,
+        userWeather = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Conditions Logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')

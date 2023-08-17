@@ -92,8 +92,8 @@ class Sleep(models.Model):
     wake = models.TimeField()
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
-    sleeper = models.ForeignKey(User, related_name='theSleeper', on_delete=CASCADE)
     night = models.ForeignKey(Day, related_name='theNight', on_delete=CASCADE)
+    sleeper = models.ForeignKey(User, related_name='theSleeper', on_delete=CASCADE)
 
 class Food(models.Model):
     meal = models.CharField(max_length=255, blank=True)
@@ -122,6 +122,14 @@ class Sugar(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     entry = models.ForeignKey(Day, related_name='theEntry',on_delete=CASCADE, blank=True)
     owner = models.ForeignKey(User, related_name='theOwner', on_delete=CASCADE)
+
+class Weight(models.Model):
+    weight = models.IntegerField()
+    unit = models.CharField(max_length=255, default='LBS')
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    day = models.ForeignKey(Day, related_name='theDay',on_delete=CASCADE)
+    userWeight = models.ForeignKey(User, related_name='theUserWeight', on_delete=CASCADE)
 
 class Fitness(models.Model):
     duration = models.TimeField()

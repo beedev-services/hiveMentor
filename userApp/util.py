@@ -69,3 +69,13 @@ def latLong(theZip):
     response = requests.get(geoUrl)
     res = response.json()
     return res
+
+def getConditions(lat, lon):
+    weatherUrl = f"https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly,daily,alerts&units=imperial{weatherAPI}"
+    response = requests.get(weatherUrl)
+    res = response.json()
+    return res
+
+
+
+# https://api.openweathermap.org/data/3.0/onecall?lat=41.00&lon=-76.24&exclude=minutely,hourly,daily,alerts&units=imperial&appid=179fcd38509ce9a4671ca1be23eac6ba

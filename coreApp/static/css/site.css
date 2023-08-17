@@ -138,7 +138,8 @@ body main .row .column #FitnessListForm,
 body main .row .column #UserSugarForm,
 body main .row .column #UserJournalForm,
 body main .row .column #UserSleepForm,
-body main .row .column #UserFitnessForm {
+body main .row .column #UserFitnessForm,
+body main .row .column #UserWeatherForm {
   display: none;
 }
 body {
@@ -260,6 +261,7 @@ body main .row form {
   justify-content: center;
   align-items: center;
   font-size: 1.4em;
+  margin: 1em;
 }
 body main .row form section {
   display: flex;
@@ -269,6 +271,19 @@ body main .row form section {
 }
 body main .row form button {
   font-size: 0.89em;
+}
+body main .row .logReg {
+  cursor: pointer;
+  border: 1px solid #CF508D;
+  border-radius: 40%;
+  text-align: center;
+  padding: 15px;
+  margin-left: 8px;
+  box-shadow: 3px 3px #CF508D;
+}
+body main .row .logReg a {
+  color: #080C0D;
+  text-decoration: none;
 }
 body main .column {
   display: flex;
@@ -421,6 +436,14 @@ body.dark main .back a {
   color: #E0D0D1;
   box-shadow: 5px 5px #2294B5;
   background-color: #080c0d60;
+}
+body.dark main .row .logReg {
+  border: 1px solid #991A3C;
+  box-shadow: 3px 3px #991A3C;
+  background-color: #991a3c3c;
+}
+body.dark main .row .logReg a {
+  color: #E0D0D1;
 }
 body.dark main .column .row {
   background-color: #4b6867d2;
