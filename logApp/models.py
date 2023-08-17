@@ -99,9 +99,10 @@ class Food(models.Model):
     meal = models.CharField(max_length=255, blank=True)
     servings = models.IntegerField(default=1)
     comments = models.TextField(blank=True)
+    totalCals = models.IntegerField(default=0)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
-    food = models.ForeignKey(FoodList, related_name='theFood', on_delete=CASCADE)
+    foodItem = models.ForeignKey(FoodList, related_name='theFoodItem', on_delete=CASCADE)
     record = models.ForeignKey(Day, related_name='theRecord', on_delete=CASCADE)
     person = models.ForeignKey(User, related_name='thePerson', on_delete=CASCADE)
 

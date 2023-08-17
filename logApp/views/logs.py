@@ -181,6 +181,12 @@ def viewDay(request, week_id, day_id):
         role = request.session['role']
         print(journal)
         print(water)
+        sum = 0
+        if foods:
+            for food in foods:
+                f = FoodList.objects.filter(id=food.foodItem_id).values()
+                sum = sum + int(food.servings) * int(f[0]['calories'])
+                print(sum)
         if not water:
             water = False
         else:
@@ -213,6 +219,7 @@ def viewDay(request, week_id, day_id):
             'fList': fList,
             'meals': meals,
             'url': url,
+            'sum': sum,
         }
         # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
@@ -333,11 +340,23 @@ def deleteSleep(request, sleep_id):
     pass
 
 # ***** Food Functions *****
-def newFood(request):
-    pass
-
-def createFood(request):
-    pass
+def createFood(request, week_id, day_id):
+    serv = request.POST['servings']
+    theFood = FoodList.objects.filter(id=request.POST['foodItem']).values()
+    cal = theFood[0]['calories']
+    total = int(serv) * int(cal)
+    # print('serv', serv, 'theFood', theFood, 'cal', cal, 'total', total)
+    Food.objects.create(
+        meal = request.POST['meal'],
+        servings = request.POST['servings'],
+        comments = request.POST['comments'],
+        totalCals = total,
+        foodItem_id = request.POST['foodItem'],
+        record_id = day_id,
+        person = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Food Logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def deleteFood(request, food_id):
     pass

@@ -14,7 +14,32 @@
             </h3>
             <!-- Food -->
             {% if user.profile.food == 1 %}
-                <table></table>
+                <table>
+                    <tr>
+                        <th>Meal</th>
+                        <th>Food</th>
+                        <th>Calories*Servings</th>
+                    </tr>
+                    {% for food in foods %}
+                        <tr>
+                            <td>{% for m in meals %}
+                                {% if m.name == food.meal %}
+                                    {{m.name}}
+                                {% endif %}
+                            {% endfor %}</td>
+                            {% for f in fList %}
+                                {% if f.id == food.foodItem_id %}
+                                    <td>{{f.food}}</td>
+                                    <td>{{f.calories}} * {{food.servings}} = {{food.totalCals}}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="2">Total for day</th>
+                        <td>{{sum}}</td>
+                    </tr>
+                </table>
             {% endif %}
         </div>
         <div class="column">
