@@ -18,7 +18,7 @@
         <!-- Food -->
         {% if user.profile.food == 1 %}
             <button class="lgButton" onclick="openForm('UserFoodForm')">Open Food Form</button>
-            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createFood/" method="post" id="UserFoodForm">
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createFood/" method="post" id="UserFoodForm" name="userFoodForm">
                 {% csrf_token %}
                 <section>
                     <label for="meal">Meal Time</label>
@@ -30,13 +30,19 @@
                     </select>
                 </section>
                 <section>
+                    <label for="foodCat">Choose a Food Category</label>
+                    <select name="foodCat" id="foodCat" onchange="filterFoods()">
+                        <option value="">Please Chose</option>
+                        {% for cat in categories %}
+                            <option value="{{cat.name}}" id="{{cat.id}}">{{cat.name}}</option>
+                        {% endfor %}
+                        <option value="All" id="catAll">All</option>
+                    </select>
+                </section>
+                <section>
                     (Use add Food Bank form if item not listed)
                     <label for="foodItem">Food Item</label>
-                    <select name="foodItem" id="">
-                        <option value="">Please Chose</option>
-                        {% for f in fList %}
-                            <option value="{{f.id}}">{{f.food}} {{f.calories}}cal / per Serving</option>
-                        {% endfor %}
+                    <select name="foodItem" id="foodItemSelect">
                     </select>
                 </section>
                 <section>

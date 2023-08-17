@@ -8,6 +8,15 @@
             <form action="/logs/createNewFood/" method="post" id="FoodListForm">
                 {% csrf_token %}
                 <section>
+                    <label for="category">Food Category</label>
+                    <select name="category" id="">
+                        <option value="">Please Chose</option>
+                        {% for cat in categories %}
+                            <option value="{{cat.name}}">{{cat.name}}</option>
+                        {% endfor %}
+                    </select>
+                </section>
+                <section>
                     <label for="food">Food Name</label>
                     <input type="text" name="food" id="">
                 </section>

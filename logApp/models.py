@@ -26,6 +26,7 @@ class FitnessList(models.Model):
         return self.name
     
 class FoodList(models.Model):
+    category = models.CharField(max_length=255, default='Meat')
     food = models.CharField(max_length=255)
     calories = models.CharField(max_length=255, default=0)
     def __str__(self):
@@ -100,6 +101,7 @@ class Food(models.Model):
     servings = models.IntegerField(default=1)
     comments = models.TextField(blank=True)
     totalCals = models.IntegerField(default=0)
+    foodCat = models.CharField(max_length=255, default='Meats')
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     foodItem = models.ForeignKey(FoodList, related_name='theFoodItem', on_delete=CASCADE)

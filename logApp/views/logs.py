@@ -31,6 +31,18 @@ meals = [
     {'id': 7, 'name': 'Late Night Snack'},
     {'id': 8, 'name': 'Other'}
 ]
+categories = [
+    {'id': 1, 'name': 'Grains'},
+    {'id': 2, 'name': 'Dairy'},
+    {'id': 3, 'name': 'Fruits'},
+    {'id': 4, 'name': 'Meats'},
+    {'id': 5, 'name': 'Fish & Seafood'},
+    {'id': 6, 'name': 'Vegetables'},
+    {'id': 7, 'name': 'Other Proteins'},
+    {'id': 8, 'name': 'Nuts & Seeds'},
+    {'id': 9, 'name': 'Beverages'},
+    {'id': 10, 'name': 'Other Starches'},
+]
 
 def logDash(request):
     title = {
@@ -220,6 +232,7 @@ def viewDay(request, week_id, day_id):
             'meals': meals,
             'url': url,
             'sum': sum,
+            'categories': categories,
         }
         # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
@@ -259,6 +272,7 @@ def createNewFitness(request):
 def createNewFood(request):
     currPage = request.POST['currPage']
     FoodList.objects.create(
+        category = request.POST['category'],
         food = request.POST['food'],
         calories = request.POST['calories']
     )
@@ -351,6 +365,7 @@ def createFood(request, week_id, day_id):
         servings = request.POST['servings'],
         comments = request.POST['comments'],
         totalCals = total,
+        foodCat = request.POST['foodCat'],
         foodItem_id = request.POST['foodItem'],
         record_id = day_id,
         person = User.objects.get(id=request.session['user_id'])
