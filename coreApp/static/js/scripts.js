@@ -47,8 +47,12 @@ function openForm(a) {
 function filterFoods() {
     var catId = document.getElementById('foodCat')
     var dropdown = document.getElementById('foodItemSelect')
-    allUrl = `http://127.0.0.1:8000/api/allFoodData/`
-    oneUrl = `http://127.0.0.1:8000/api/foodData/`
+    // allUrl = `http://127.0.0.1:8000/api/allFoodData/`
+    allUrl = `https://dev.thehive-services.com/api/allFoodData/`
+    // allUrl = `https://hivementor.beedev-services.com/api/allFoodData/`
+    // oneUrl = `http://127.0.0.1:8000/api/foodData/`
+    oneUrl = `https://dev.thehive-services.com/api/foodData/`
+    // oneUrl = `https://hivementor.beedev-services.com/api/foodData/`
     catId = catId.value
     console.log(catId)
     if (catId  == 'All') {
