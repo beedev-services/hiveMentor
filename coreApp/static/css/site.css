@@ -222,6 +222,7 @@ body main {
   background-color: #e0d0d197;
   width: 90%;
   border: 1px solid #3349B9;
+  height: auto;
 }
 body main .back a {
   text-decoration: none;
@@ -273,6 +274,13 @@ body main .row form section {
 }
 body main .row form button {
   font-size: 0.89em;
+}
+body main .row .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em 0;
 }
 body main .row .logReg {
   cursor: pointer;
