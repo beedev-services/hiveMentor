@@ -31,6 +31,8 @@ body main .row .column #UserSugarForm,
 body main .row .column #UserJournalForm,
 body main .row .column #UserSleepForm,
 body main .row .column #UserFitnessForm,
-body main .row .column #UserWeatherForm {
+body main .row .column #UserWeatherForm,
+body main .row .column #UserWeightForm,
+body main .row .column #UserWorkForm {
   display: none;
 }

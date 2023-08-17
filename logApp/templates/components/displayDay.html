@@ -56,7 +56,20 @@
             {% endif %}
             <!-- Weather -->
             {% if user.profile.weather == 1 %}
-                <table></table>
+                <table>
+                    <tr>
+                        <th>Temp</th>
+                        <th>Pressure</th>
+                        <th>Humidity</th>
+                    </tr>
+                    {% for o in observations %}
+                        <tr>
+                            <td>{{o.temp}}&#8457;</td>
+                            <td>{{o.pressure}}mB</td>
+                            <td>{{o.humidity}}&#8457;</td>
+                        </tr>
+                    {% endfor %}
+                </table>
             {% endif %}
             <!-- Mood -->
             {% if user.profile.mood == 1 %}

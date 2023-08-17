@@ -33,11 +33,13 @@ function openForm(a) {
     let theForm = document.getElementById(a)
     if(theForm.style.display == 'flex') {
         theForm.style.display = 'none'
-        log('open form if statement', 'triggered')
+        // log('open form if statement', 'triggered')
     } else {
         theForm.style.display = 'flex'
         theForm.style.flexDirection = 'column'
-        log('open form else statement', 'triggered')
+        theForm.style.border = '4px groove #54F1C4'
+        theForm.style.padding = '.5em'
+        // log('open form else statement', 'triggered')
     }
     console.log('what element', theForm)
 }
