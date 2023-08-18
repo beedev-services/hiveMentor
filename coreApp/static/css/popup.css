@@ -26,8 +26,7 @@
   font-size: 18px;
 }
 .cnt223 {
-  min-width: 600px;
-  width: 600px;
+  max-width: 700px;
   min-height: 150px;
   margin: 100px auto;
   background: #80BDA2;

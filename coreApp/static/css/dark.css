@@ -63,7 +63,7 @@ body.dark header nav #myLinks a {
   border: 1px solid #3349B9;
   color: #E0D0D1;
   box-shadow: 5px 5px #2294B5;
-  background-color: #080c0d60;
+  background-color: #080c0d6f;
 }
 body.dark main {
   background-color: #4b6867d2;
@@ -72,7 +72,7 @@ body.dark main .back a {
   border: 1px solid #3349B9;
   color: #E0D0D1;
   box-shadow: 5px 5px #2294B5;
-  background-color: #080c0d60;
+  background-color: #080c0d6f;
 }
 body.dark main .row .logReg {
   border: 1px solid #991A3C;

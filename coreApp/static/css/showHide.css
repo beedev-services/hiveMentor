@@ -10,7 +10,7 @@ body div .session {
 body main .enterChat {
   display: none;
 }
-body main .mobile {
+body main .table {
   display: none;
 }
 body main .column #hideCreateWeek,

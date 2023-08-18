@@ -72,8 +72,7 @@ button {
   font-size: 18px;
 }
 .cnt223 {
-  min-width: 600px;
-  width: 600px;
+  max-width: 700px;
   min-height: 150px;
   margin: 100px auto;
   background: #80BDA2;
@@ -118,7 +117,7 @@ body div .session {
 body main .enterChat {
   display: none;
 }
-body main .mobile {
+body main .table {
   display: none;
 }
 body main .column #hideCreateWeek,
@@ -172,20 +171,26 @@ body header {
 }
 body header .mode {
   font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
 }
 body header .mode .change {
   cursor: pointer;
   border: 1px solid #CF508D;
   border-radius: 40%;
-  width: 30px;
+  width: 90px;
   text-align: center;
-  padding: 5px;
-  margin-left: 8px;
+  padding: 10px;
+  margin: 0.5em;
   box-shadow: 3px 3px #CF508D;
+  font-weight: 900;
 }
 body header nav {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 1em;
@@ -201,8 +206,9 @@ body header nav #myLinks a {
   box-shadow: 5px 5px #3349B9;
   border: 1px solid #3349B9;
   color: #080C0D;
-  background-color: #f5f3f560;
+  background-color: #f5f3f56f;
   font-weight: 900;
+  font-size: 1.15em;
 }
 body div .messages {
   display: flex;
@@ -223,6 +229,7 @@ body main {
   width: 90%;
   border: 1px solid #3349B9;
   height: auto;
+  padding-bottom: 1em;
 }
 body main .back a {
   text-decoration: none;
@@ -232,24 +239,8 @@ body main .back a {
   box-shadow: 5px 5px #3349B9;
   border: 1px solid #3349B9;
   color: #080C0D;
-  background-color: #f5f3f560;
+  background-color: #f5f3f56f;
   font-weight: 900;
-}
-body main .mobile .left {
-  width: 33%;
-}
-body main .mobile .left form {
-  margin: 0.5em;
-}
-body main .mobile .left .lgButton {
-  font-size: 1.2em;
-  margin: 0.5em;
-}
-body main .mobile .right {
-  width: 33%;
-}
-body main .mobile .right .lgButton {
-  font-size: 1.2em;
 }
 body main .row {
   display: flex;
@@ -283,24 +274,16 @@ body main .row .column {
   align-items: center;
   margin: 1em 0;
 }
-body main .row .logReg {
-  cursor: pointer;
-  border: 1px solid #CF508D;
-  border-radius: 40%;
-  text-align: center;
-  padding: 15px;
-  margin-left: 8px;
-  box-shadow: 3px 3px #CF508D;
-}
-body main .row .logReg a {
-  color: #080C0D;
-  text-decoration: none;
-}
 body main .column {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+body main .column ul {
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.2em;
 }
 body main .column .column {
   display: flex;
@@ -358,6 +341,44 @@ body main .column .row .column .row {
 body main .column .row .column .row button {
   margin: 0.5em;
 }
+body main #reg {
+  display: none;
+}
+body main form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4em;
+  margin: 1em;
+}
+body main form section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body main form button {
+  font-size: 0.89em;
+  margin: 1em;
+}
+body main .logReg {
+  cursor: pointer;
+  border: 1px solid #CF508D;
+  border-radius: 40%;
+  text-align: center;
+  padding: 15px;
+  margin-left: 8px;
+  box-shadow: 3px 3px #CF508D;
+}
+body main .logReg a {
+  color: #080C0D;
+  text-decoration: none;
+}
+body main .dev {
+  border: 2px solid #3349B9;
+  margin: 0.5em;
+}
 body main iframe {
   width: 95%;
   min-height: 600px;
@@ -370,39 +391,56 @@ body main .mainSection {
   width: 85%;
 }
 body main .mainSection p {
-  font-size: 1.25em;
+  font-size: 1.3em;
+  font-weight: 600;
   width: 75%;
 }
-body main .desktop {
+body main .mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body main .mobile .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-inline-start: 0;
+  width: 95%;
+}
+body main .mobile .list li {
+  list-style: none;
+  text-align: left;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 0.5em;
+  width: 95%;
+}
+body main .mobile .list li ul {
+  padding-inline-start: 20px;
+}
+body main .mobile .list li ul li {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  justify-content: flex-start;
 }
-body main .desktop .left {
-  width: 33%;
+body main .mobile .list li ul li form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0;
 }
-body main .desktop .left form {
-  margin: 0.5em;
+body main .mobile .list li ul li form button {
+  margin: 0;
 }
-body main .desktop .left .lgButton {
-  font-size: 1.2em;
-  margin: 0.5em;
-}
-body main .desktop .mid {
-  width: 33%;
-}
-body main .desktop .mid .column {
-  padding: 1em;
-}
-body main .desktop .mid .lgButton {
-  font-size: 1.2em;
-}
-body main .desktop .right {
-  width: 33%;
-}
-body main .desktop .right .lgButton {
-  font-size: 1.2em;
+body main .mobile .tracking {
+  border: 1px solid #3349b980;
 }
 body footer {
   display: flex;
@@ -414,6 +452,7 @@ body footer {
   border: 1px solid #3349B9;
   box-shadow: 5px 5px #3349B9;
   margin: 1em;
+  font-weight: 600;
 }
 body footer a {
   color: #080C0D;
@@ -437,7 +476,7 @@ body.dark header nav #myLinks a {
   border: 1px solid #3349B9;
   color: #E0D0D1;
   box-shadow: 5px 5px #2294B5;
-  background-color: #080c0d60;
+  background-color: #080c0d6f;
 }
 body.dark main {
   background-color: #4b6867d2;
@@ -446,7 +485,7 @@ body.dark main .back a {
   border: 1px solid #3349B9;
   color: #E0D0D1;
   box-shadow: 5px 5px #2294B5;
-  background-color: #080c0d60;
+  background-color: #080c0d6f;
 }
 body.dark main .row .logReg {
   border: 1px solid #991A3C;
@@ -469,88 +508,4 @@ body.dark footer {
 }
 body.dark footer a {
   color: #E0D0D1;
-}
-@media only screen and (min-width: 1075px) {
-  body main .desktop {
-    display: none;
-  }
-  body main .mobile {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 95%;
-    justify-content: space-evenly;
-  }
-  body main .mobile .left {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
-    width: 33%;
-  }
-  body main .mobile .left #moodFormMobile,
-  body main .mobile .left #UserMedFormMobile {
-    display: none;
-  }
-  body main .mobile .left form {
-    margin: 0.5em;
-    flex-direction: column;
-  }
-  body main .mobile .left .lgButton {
-    font-size: 1.2em;
-    margin: 0.5em;
-  }
-  body main .mobile .right {
-    width: 33%;
-  }
-  body main .mobile .right #symptomFormMobile,
-  body main .mobile .right #MedListFormMobile {
-    display: none;
-  }
-  body main .mobile .right form {
-    margin: 0.5em;
-  }
-  body main .mobile .right .lgButton {
-    font-size: 1.2em;
-    margin: 0.5em;
-  }
-}
-@media only screen and (min-width: 730px) {
-  body main .mobile {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}
-@media only screen and (min-width: 650px) {
-  body header nav .icon {
-    display: none;
-  }
-  body header nav #myLinks {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 95%;
-    justify-content: space-evenly;
-  }
-  body header nav #myLinks a {
-    text-decoration: none;
-    padding: 1em;
-    margin: 0.5em;
-    border-radius: 30%;
-    box-shadow: 5px 5px #3349B9;
-    border: 1px solid #3349B9;
-    color: #080C0D;
-    font-weight: 900;
-  }
-}
-@media only screen and (min-width: 650px) {
-  body.dark header nav #myLinks a {
-    border: 1px solid #3349B9;
-    color: #E0D0D1;
-    box-shadow: 5px 5px #2294B5;
-  }
 }
