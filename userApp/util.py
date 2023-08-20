@@ -80,7 +80,7 @@ def getConditions(lat, lon):
 
 def sendSignupEmail(user):
     subject = 'Welcome to Hive Mentor'
-    message = f'Hi {user.username}, thank you for registering for Hive Mentor. I am the owner and creator.  I can not wait to get to know you!'
+    message = f'Hi {user.username}, thank you for registering for Hive Mentor. I am the owner and creator Melissa. This project has been a passion of mine for some time now I can not wait to get to know you!'
     email_from = settings.EMAIL_HOST_ALT_USER
     recipient_list = [user.email, ]
     send_mail( subject, message, email_from, recipient_list )
