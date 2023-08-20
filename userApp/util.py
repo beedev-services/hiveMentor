@@ -3,6 +3,8 @@ from userApp.keys import *
 from userApp.models import User
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from django.conf import settings
+from django.core.mail import send_mail
 
 theKey = PRIVATE_KEY
 theProj = PROJECT_ID
@@ -74,3 +76,11 @@ def getConditions(lat, lon):
     response = requests.get(weatherUrl)
     res = response.json()
     return res
+
+
+def sendSignupEmail(user):
+    subject = 'Welcome to Hive Mentor'
+    message = f'Hi {user.username}, thank you for registering for Hive Mentor. I am the owner and creator.  I can not wait to get to know you!'
+    email_from = settings.EMAIL_HOST_ALT_USER
+    recipient_list = [user.email, ]
+    send_mail( subject, message, email_from, recipient_list )
