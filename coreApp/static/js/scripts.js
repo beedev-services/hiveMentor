@@ -65,6 +65,19 @@ function openForm(a) {
     }
     console.log('what element', theForm)
 }
+function userCount(element){
+    userUrl = `http://127.0.0.1:8000/api/userCount/`
+    // userUrl = `https://dev.thehive-services.com/api/userCount/`
+    // userUrl = `https://hivementor.beedev-services.com/api/userCount/`
+    fetch(userUrl)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        // console.log(data['users'].length)
+        var theCount = data['users'].length
+        element.innerText = `${theCount} Users and Growing`
+    })
+}
 
 function filterFoods() {
     var catId = document.getElementById('foodCat')
