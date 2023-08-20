@@ -56,7 +56,8 @@ def getAdminAcct():
     print(response.text)
 
 def updateUserAcct():
-    payload = "{\n    \"username\": \"adam_la_morre\",\n    \"email\": \"adam_la_morre@chatengine.io\",\n    \"first_name\": \"Adam\",\n    \"last_name\": \"La Morre\",\n    \"custom_json\": {\n        \"custom_json\": 2001\n    }\n}"
+    payload = ""
+    # "{\n    \"username\": \"adam_la_morre\",\n    \"email\": \"adam_la_morre@chatengine.io\",\n    \"first_name\": \"Adam\",\n    \"last_name\": \"La Morre\",\n    \"custom_json\": {\n        \"custom_json\": 2001\n    }\n}"
     headers = {
     'Project-ID': theProj,
     'User-Name': theUser,
@@ -82,7 +83,7 @@ def getConditions(lat, lon):
 
 def sendSignupEmail(user):
     subject = 'Welcome to Hive Mentor'
-    message = f'Hi {user.username}, thank you for registering for Hive Mentor. I am the owner and creator Melissa. This project has been a passion of mine for some time now I can not wait to get to know you!'
+    message = f'Hi {user.username}, thank you for registering for Hive Mentor. I am the owner and creator Melissa. This project has been a passion of mine for some time now I can not wait to get to know you! Please feel free to reach out if you have any questions'
     email_from = settings.EMAIL_HOST_ALT_USER
     recipient_list = [user.email, ]
     send_mail( subject, message, email_from, recipient_list )
@@ -93,39 +94,28 @@ def marquee():
     major = Release.objects.get(releaseType='Major')
     initial = Release.objects.get(releaseType='Initial')
 
-    now = timezone.now()
-
     releaseInfo = []
-
-    timeSinceInitial = now - initial.date
-    timeSinceLast = now - current.date
-    timeTillMinor = minor.date - now
-    timeTillMajor = major.date - now
 
     releaseInitial = {
         'id': 1,
-        'time': timeSinceInitial,
         'date': initial.date,
         'version': initial.version,
         'type': initial.releaseType,
     }
     releaseCurrent = {
         'id': 2,
-        'time': timeSinceLast,
         'date': current.date,
         'version': current.version,
         'type': current.releaseType,
     }
     releaseMinor = {
         'id': 3,
-        'time': timeTillMinor,
         'date': minor.date,
         'version': minor.version,
         'type': minor.releaseType,
     }
     releaseMajor = {
         'id': 4,
-        'time': timeTillMajor,
         'date': major.date,
         'version': major.version,
         'type': major.releaseType,

@@ -66,6 +66,9 @@ class Mood(models.Model):
     log = models.ForeignKey(Day, related_name='theLog',on_delete=CASCADE, blank=True)
     feeler = models.ForeignKey(User, related_name='theFeeler', on_delete=CASCADE)
 
+    def __str__(self):
+        return f'{self.feeler.username} - {self.date}'
+
 class Water(models.Model):
     water = models.IntegerField(default=0)
     comments = models.TextField(blank=True)
@@ -73,6 +76,9 @@ class Water(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     note = models.ForeignKey(Day, related_name='theNote', on_delete=CASCADE)
     drinker = models.ForeignKey(User, related_name='theDrinker', on_delete=CASCADE)
+
+    def __str__(self):
+        return f'{self.drinker.username} - {self.water}'
 
 # ***** Default Optional Models *****
 
@@ -85,7 +91,7 @@ class Journal(models.Model):
     writer = models.ForeignKey(User, related_name='theWriter', on_delete=CASCADE)
 
     def __str__(self):
-        return f'{self.title} {self.journal.date}'
+        return f'{self.writer.username} - {self.title} {self.journal.date}'
 
 class Sleep(models.Model):
     date = models.DateField()
@@ -95,6 +101,8 @@ class Sleep(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     night = models.ForeignKey(Day, related_name='theNight', on_delete=CASCADE)
     sleeper = models.ForeignKey(User, related_name='theSleeper', on_delete=CASCADE)
+    def __str__(self):
+        return f'{self.sleeper.username} - {self.date}'
 
 class Food(models.Model):
     meal = models.CharField(max_length=255, blank=True)
@@ -107,6 +115,8 @@ class Food(models.Model):
     foodItem = models.ForeignKey(FoodList, related_name='theFoodItem', on_delete=CASCADE)
     record = models.ForeignKey(Day, related_name='theRecord', on_delete=CASCADE)
     person = models.ForeignKey(User, related_name='thePerson', on_delete=CASCADE)
+    def __str__(self):
+        return f'{self.person.username} - {self.meal} {self.totalCals}'
 
 class Medication(models.Model):
     when = models.DateTimeField()
@@ -116,6 +126,8 @@ class Medication(models.Model):
     medication = models.ForeignKey(MedList, related_name='theMed', on_delete=CASCADE)
     blog = models.ForeignKey(Day, related_name='theBlog',on_delete=CASCADE, blank=True)
     member = models.ForeignKey(User, related_name='theMember', on_delete=CASCADE)
+    def __str__(self):
+        return f'{self.member.username} - {self.when}'
 
 class Sugar(models.Model):
     time = models.DateTimeField()
@@ -125,6 +137,8 @@ class Sugar(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     entry = models.ForeignKey(Day, related_name='theEntry',on_delete=CASCADE, blank=True)
     owner = models.ForeignKey(User, related_name='theOwner', on_delete=CASCADE)
+    def __str__(self):
+        return f'{self.owner.username} - {self.time}'
 
 class Weight(models.Model):
     weight = models.IntegerField()
@@ -133,6 +147,8 @@ class Weight(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     day = models.ForeignKey(Day, related_name='theDay',on_delete=CASCADE)
     userWeight = models.ForeignKey(User, related_name='theUserWeight', on_delete=CASCADE)
+    def __str__(self):
+        return f'{self.userWeight.username} - {self.day.date}'
 
 class Fitness(models.Model):
     duration = models.TimeField()
@@ -142,6 +158,8 @@ class Fitness(models.Model):
     exercise = models.ForeignKey(FitnessList, related_name='theExercise', on_delete=CASCADE)
     workout = models.ForeignKey(Day, related_name='theWorkout', on_delete=CASCADE)
     human = models.ForeignKey(User, related_name='theHuman', on_delete=CASCADE)
+    def __str__(self):
+        return f'{self.human.username} - {self.exercise.name}'
 
 class Work(models.Model):
     duration = models.TimeField()
@@ -151,6 +169,8 @@ class Work(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     workDay = models.ForeignKey(Day, related_name='theWorkDay', on_delete=CASCADE)
     worker = models.ForeignKey(User, related_name='theWorker', on_delete=CASCADE)
+    def __str__(self):
+        return f'{self.worker.username} - {self.duration}'
 
 class Weather(models.Model):
     temp = models.CharField(max_length=255)
@@ -160,3 +180,5 @@ class Weather(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     conditions = models.ForeignKey(Day, related_name='theConditions', on_delete=CASCADE)
     userWeather = models.ForeignKey(User, related_name='theUserWeather', on_delete=CASCADE)
+    def __str__(self):
+        return f'{self.userWeather.username} - {self.pressure}'
