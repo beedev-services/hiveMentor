@@ -1,6 +1,8 @@
 import requests
 from userApp.keys import *
 from userApp.models import User
+from coreApp.models import *
+from django.utils import timezone
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from django.conf import settings
@@ -84,3 +86,53 @@ def sendSignupEmail(user):
     email_from = settings.EMAIL_HOST_ALT_USER
     recipient_list = [user.email, ]
     send_mail( subject, message, email_from, recipient_list )
+    
+def marquee():
+    current = Release.objects.get(releaseType='Current')
+    minor = Release.objects.get(releaseType='Minor')
+    major = Release.objects.get(releaseType='Major')
+    initial = Release.objects.get(releaseType='Initial')
+
+    now = timezone.now()
+
+    releaseInfo = []
+
+    timeSinceInitial = now - initial.date
+    timeSinceLast = now - current.date
+    timeTillMinor = minor.date - now
+    timeTillMajor = major.date - now
+
+    releaseInitial = {
+        'id': 1,
+        'time': timeSinceInitial,
+        'date': initial.date,
+        'version': initial.version,
+        'type': initial.releaseType,
+    }
+    releaseCurrent = {
+        'id': 2,
+        'time': timeSinceLast,
+        'date': current.date,
+        'version': current.version,
+        'type': current.releaseType,
+    }
+    releaseMinor = {
+        'id': 3,
+        'time': timeTillMinor,
+        'date': minor.date,
+        'version': minor.version,
+        'type': minor.releaseType,
+    }
+    releaseMajor = {
+        'id': 4,
+        'time': timeTillMajor,
+        'date': major.date,
+        'version': major.version,
+        'type': major.releaseType,
+    }
+    releaseInfo.append(releaseInitial)
+    releaseInfo.append(releaseCurrent)
+    releaseInfo.append(releaseMinor)
+    releaseInfo.append(releaseMajor)
+    # print('release data', releaseInfo[0]['timeSinceInitial'])
+    return releaseInfo

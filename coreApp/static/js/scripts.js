@@ -1,6 +1,28 @@
 function log(a, b) {
     console.log(a, b)
 }
+function updateTimer(clockId) {
+    let clock = document.getElementById(clockId)
+    let event = clock.innerText
+    let currDate = new Date()
+    event = new Date(event)
+    var time= event - currDate
+    // if(clockID == "minor" || clockID == "major") {
+    //     time = event - currDate
+    // } else {
+    //     time = currDate - event
+    // }
+    let days = Math.floor(time / (24*60*60*1000))
+    let hours = Math.floor((time % (24*60*60*1000)) / (60 * 60 * 1000))
+    let minutes = Math.floor((time % (60 * 60 * 1000)) / (60 * 1000))
+    clock.innerText = `${days} days`
+    // console.log(clock, event, currDate, time)
+    // clock.innerText = 'working'
+}
+updateTimer('init')
+updateTimer('curr')
+updateTimer('minor')
+updateTimer('major')
 
 function auth() {
     var l = document.getElementById('login')
@@ -42,6 +64,19 @@ function openForm(a) {
         // log('open form else statement', 'triggered')
     }
     console.log('what element', theForm)
+}
+function userCount(element){
+    userUrl = `http://127.0.0.1:8000/api/userCount/`
+    // userUrl = `https://dev.thehive-services.com/api/userCount/`
+    // userUrl = `https://hivementor.beedev-services.com/api/userCount/`
+    fetch(userUrl)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        // console.log(data['users'].length)
+        var theCount = data['users'].length
+        element.innerText = `${theCount} Users and Growing`
+    })
 }
 
 function filterFoods() {

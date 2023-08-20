@@ -14,6 +14,7 @@ def profile(request):
         theUser = user.firstName
         request.session['site'] = 'profile'
         site = request.session['site']
+        release = marquee()
         title = {
             'title': 'Profile',
             'header': f'Your information {theUser}'
@@ -23,6 +24,7 @@ def profile(request):
             'title': title,
             'site': site,
             'role': role,
+            'release': release,
         }
         return render(request, 'profile.html', context)
     

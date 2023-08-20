@@ -19,3 +19,10 @@ class Live(models.Model):
     liveFeature = models.ForeignKey(Feature, related_name='theLiveFeature', on_delete=CASCADE)
     dateOfRelease = models.DateField(blank=True, null=True)
     live = models.BooleanField(default=0)
+
+class Release(models.Model):
+    version = models.CharField(max_length=255)
+    releaseType = models.CharField(max_length=255)
+    date = models.DateTimeField()
+    def __str__(self):
+        return f'{self.releaseType} - {self.version} - {self.date}'

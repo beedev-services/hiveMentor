@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from logApp.models import *
 from logApp.views.logs import categories
+from userApp.util import *
 
 status = {
     "API Status": "Running"
@@ -11,6 +12,13 @@ status = {
 
 def apiBase(request):
     return JsonResponse(status, content_type="application.json")
+
+def userCount(request):
+    users = list(User.objects.all().values())
+    context = {
+        'users': users
+    }
+    return JsonResponse(context, content_type="application.json")
 
 def allFoodData(request):
     fList = list(FoodList.objects.all().values())
@@ -25,3 +33,7 @@ def foodData(request, cat):
         'fList': fList,
     }
     return JsonResponse(context, content_type="application.json")
+
+def releaseDates(request):
+    marqueeData = marquee()
+    return JsonResponse(marqueeData, content_type="application.json")
