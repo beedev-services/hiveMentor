@@ -2,6 +2,18 @@
 <html lang="en">
     {% block head %}
     <header>
+        <MARQUEE DIRECTION=LEFT>
+            <h3>
+                {% for r in release %}
+                    {% if r.type == 'Minor' %}
+                        Day(s) till next Minor Release (V - {{r.version}}): <span id="minor">{{r.date|date:"c"}}</span> | 
+                    {% endif %}
+                    {% if r.type == 'Major' %}
+                        Day(s) till next Major Release (V - {{r.version}}): <span id="major">{{r.date|date:"c"}}</span>
+                    {% endif %}
+                {% endfor %}
+            </h3>
+        </MARQUEE>
         <h1>{{title.header}}</h1>
         <div class="mode">
             <span id="theMode">Light mode: ON</span><span class="change">Activate Dark Mode</span>

@@ -170,6 +170,10 @@ body header {
   width: 90%;
   box-shadow: 5px 5px #3349B9;
 }
+body header MARQUEE {
+  position: fixed;
+  margin-top: -18em;
+}
 body header .mode {
   font-size: 1.2em;
 }
