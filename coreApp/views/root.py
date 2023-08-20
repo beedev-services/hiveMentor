@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from userApp.models import *
 from coreApp.models import *
+from userApp.util import *
 
 # title = {
 #     'title': 'Index',
@@ -17,6 +18,8 @@ def index(request):
     site = request.session['site']
     request.session['role'] = 'null'
     role = request.session['role']
+    release = marquee()
+    # print('release data', release)
     if 'user_id' not in request.session:
         user = False
         context = {
@@ -24,6 +27,7 @@ def index(request):
             'user': user,
             'site': site,
             'role': role,
+            'release': release,
         }
     else:
         user = User.objects.get(id=request.session['user_id'])
@@ -34,6 +38,7 @@ def index(request):
                 'title': title,
                 'site': site,
                 'role': role,
+                'release':release
             }
     return render(request, 'index.html', context)
 
@@ -44,6 +49,7 @@ def about(request):
     }
     site = request.session['site']
     role = request.session['role']
+    release = marquee()
     if 'user_id' not in request.session:
         user = False
         context = {
@@ -51,6 +57,7 @@ def about(request):
             'user': user,
             'site': site,
             'role': role,
+            'release': release,
         }
     else:
         user = User.objects.get(id=request.session['user_id'])
@@ -61,6 +68,7 @@ def about(request):
                 'title': title,
                 'site': site,
                 'role': role,
+                'release': release,
             }
     return render(request, 'about.html', context)
 
@@ -71,6 +79,7 @@ def contact(request):
     }
     site = request.session['site']
     role = request.session['role']
+    release = marquee()
     if 'user_id' not in request.session:
         user = False
         context = {
@@ -78,6 +87,7 @@ def contact(request):
             'user': user,
             'site': site,
             'role': role,
+            'release': release,
         }
     else:
         user = User.objects.get(id=request.session['user_id'])
@@ -88,6 +98,7 @@ def contact(request):
                 'title': title,
                 'site': site,
                 'role': role,
+                'release': release,
             }
     return render(request, 'contact.html', context)
 
@@ -103,6 +114,7 @@ def devNotes(request):
     versions = Version.objects.values().all()
     features = Feature.objects.values().all()
     statuses = Live.objects.values().all()
+    release = marquee()
     print('versions', versions, 'features', features, 'statuses', statuses)
     if 'user_id' not in request.session:
         user = False
@@ -115,6 +127,7 @@ def devNotes(request):
             'versions': versions,
             'features': features,
             'statuses': statuses,
+            'release': release,
         }
     else:
         user = User.objects.get(id=request.session['user_id'])
@@ -128,6 +141,7 @@ def devNotes(request):
                 'versions': versions,
                 'features': features,
                 'statuses': statuses,
+                'release': release,
             }
     return render(request, 'devNotes.html', context)
 
@@ -138,6 +152,7 @@ def logReg(request):
     }
     site = request.session['site']
     role = request.session['role']
+    release = marquee()
     if 'user_id' not in request.session:
         user = False
         context = {
@@ -145,6 +160,7 @@ def logReg(request):
             'user': user,
             'site': site,
             'role': role,
+            'release': release
         }
         return render(request, 'logReg.html', context)
     else:
@@ -163,6 +179,7 @@ def choseRole(request):
         request.session['role'] = user.role
         role = request.session['role']
         site = request.session['site']
+        release = marquee()
         title = {
             'title': 'Chose Site',
             'header': '',
@@ -172,5 +189,6 @@ def choseRole(request):
             'title': title,
             'site': site,
             'role': role,
+            'release': release
         }
         return render(request, 'choseRole.html', context)

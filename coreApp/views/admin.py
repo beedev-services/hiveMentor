@@ -20,6 +20,7 @@ def theAdmin(request):
         users = User.objects.values().all()
         weeks = Week.objects.values().all()
         days = Day.objects.values().all()
+        release= marquee()
         counts = {
             'users': users.count,
             'weeks': weeks.count,
@@ -38,6 +39,7 @@ def theAdmin(request):
             'weeks': weeks,
             'days': days,
             'counts': counts,
+            'release': release,
         }
         return render(request, 'theAdmin.html', context)
 
@@ -75,6 +77,7 @@ def theCodes(request):
         role = request.session['role']
         request.session['site'] = 'admin'
         site = request.session['site']
+        release = marquee()
         title = {
             'title': 'Codes',
             'header': 'Upgrading Codes'
@@ -86,6 +89,7 @@ def theCodes(request):
             'role': role,
             'theCode': theCode,
             'codes': codes,
+            'release': release,
         }
         return render(request, 'theCodes.html', context)
 

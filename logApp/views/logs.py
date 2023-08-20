@@ -63,6 +63,7 @@ def logDash(request):
     request.session['site'] = 'logs'
     role = request.session['role']
     site = request.session['site']
+    release = marquee()
     context = {
         'title': title,
         'user': user,
@@ -70,6 +71,7 @@ def logDash(request):
         'weeks': weeks,
         'days': days,
         'role': role,
+        'release': release,
     }
     return render(request, 'logDash.html', context)
 
@@ -129,6 +131,7 @@ def viewWeek(request, week_id):
                 }
                 dayCounts.append(dayCount)
         print('theDayCounts:', dayCounts)
+        release = marquee()
         context = {
             'title': title,
             'week': week,
@@ -137,7 +140,8 @@ def viewWeek(request, week_id):
             'days': days,
             'role': role,
             'weekDays': weekDays,
-            'dayCounts': dayCounts
+            'dayCounts': dayCounts,
+            'release': release,
         }
         return render(request, 'viewWeek.html', context)
     
@@ -208,6 +212,7 @@ def viewDay(request, week_id, day_id):
         else:
             journal = journal[0]
         site = request.session['site']
+        release = marquee()
         context = {
             'title': title,
             'week': week,
@@ -233,6 +238,7 @@ def viewDay(request, week_id, day_id):
             'url': url,
             'sum': sum,
             'categories': categories,
+            'release': release,
         }
         # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
