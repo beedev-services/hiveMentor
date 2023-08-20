@@ -5,6 +5,8 @@ from coreApp.models import *
 from django.utils import timezone
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from django.conf import settings
+from django.core.mail import send_mail
 
 theKey = PRIVATE_KEY
 theProj = PROJECT_ID
@@ -77,6 +79,14 @@ def getConditions(lat, lon):
     res = response.json()
     return res
 
+
+def sendSignupEmail(user):
+    subject = 'Welcome to Hive Mentor'
+    message = f'Hi {user.username}, thank you for registering for Hive Mentor. I am the owner and creator Melissa. This project has been a passion of mine for some time now I can not wait to get to know you!'
+    email_from = settings.EMAIL_HOST_ALT_USER
+    recipient_list = [user.email, ]
+    send_mail( subject, message, email_from, recipient_list )
+    
 def marquee():
     current = Release.objects.get(releaseType='Current')
     minor = Release.objects.get(releaseType='Minor')
