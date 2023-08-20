@@ -12,7 +12,6 @@ def login(request):
         if bcrypt.checkpw(request.POST['password'].encode(), userLogin.password.encode()):
             request.session['user_id'] = userLogin.id
             if userLogin.id == 1:
-                # sendSignupEmail(userLogin)
                 messages.error(request, f'Welcome back Admin {userLogin.firstName}')
             request.session['role'] = userLogin.role
             return redirect('/choseRole/')
