@@ -25,7 +25,11 @@ urlpatterns = [
     path('api/', views.apiBase),
     path('api/allFoodData/', views.allFoodData),
     path('api/foodData/<str:cat>/', views.foodData),
+<<<<<<< HEAD
+    path('api/releaseDate/', views.releaseDates),
+=======
     path('api/userCount/', views.userCount),
+>>>>>>> fddc3ddcc9e0a2089a6976086ca8e4a13530f56b
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

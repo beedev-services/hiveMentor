@@ -5,7 +5,16 @@
     {% block footer %}
     <footer>
         <p>App by <a href="https://beedev-services.com" target='_blank'>BeeDev Services</a> &#169; <a href="/admin">2023</a></p>
-        <h4>Version: 1.1 (as of 8/17/23)</h4>
+        <h4>
+            {% for r in release %}
+                {% if r.type == 'Initial' %}
+                    Initial Release: {{r.date}} <span id="init">{{r.date|date:"c"}}</span> Day(s) ago | 
+                {% endif %}
+                {% if r.type == 'Current' %}
+                    Current Release (V - {{r.version}}): on {{r.date}} <span id="curr">{{r.date|date:"c"}}</span> Day(s) ago | 
+                {% endif %}
+            {% endfor %}
+        </h4>
         <h4 onclick="userCount(this)">Click for Current User Count</h4>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
