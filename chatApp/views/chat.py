@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 from django.core.serializers import serialize
 from userApp.models import *
+from userApp.util import *
 # from userApp.util import authenticate
 from userApp.keys import *
 import requests
@@ -28,12 +29,14 @@ def chatDash(request):
     site = request.session['site']
     request.session['role'] = user.role
     role = request.session['role']
+    release = marquee()
     context = {
         'title': title,
         'role': role,
         'site': site,
         'user': user,
         'userVar': user.id,
+        'release': release,
     }
     return render(request, 'chatDash.html', context)
 
@@ -61,10 +64,12 @@ def chatFrame(request, id):
     site = request.session['site']
     request.session['role'] = user.role
     role = request.session['role']
+    release = marquee()
     context = {
         'title': title,
         'role': role,
         'site': site,
-        'user': user
+        'user': user,
+        'release': release,
     }
     return render(request, 'chatFrame.html', context)
