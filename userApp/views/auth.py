@@ -14,6 +14,7 @@ def login(request):
             if userLogin.id == 1:
                 messages.error(request, f'Welcome back Admin {userLogin.firstName}')
             request.session['role'] = userLogin.role
+            # sendSignupEmail(userLogin)
             return redirect('/choseRole/')
         messages.error(request, 'Invalid Credentials')
         return redirect('/logReg/')

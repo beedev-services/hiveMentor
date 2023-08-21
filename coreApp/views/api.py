@@ -5,6 +5,7 @@ from django.contrib import messages
 from logApp.models import *
 from logApp.views.logs import categories
 from userApp.util import *
+from coreApp.apiUtil import *
 
 status = {
     "API Status": "Running"
@@ -37,3 +38,10 @@ def foodData(request, cat):
 def releaseDates(request):
     marqueeData = marquee()
     return JsonResponse(marqueeData, content_type="application.json")
+
+def board(request):
+    status = projBoard()
+    data = {
+        'status': status
+    }
+    return JsonResponse(data, content_type="application.json")

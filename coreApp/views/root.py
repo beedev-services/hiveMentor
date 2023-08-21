@@ -3,6 +3,7 @@ from django.contrib import messages
 from userApp.models import *
 from coreApp.models import *
 from userApp.util import *
+from coreApp.apiUtil import *
 
 # title = {
 #     'title': 'Index',
@@ -41,6 +42,104 @@ def index(request):
                 'release':release
             }
     return render(request, 'index.html', context)
+
+def theProj(request):
+    versions = Version.objects.all().values()
+    features = Feature.objects.all().values()
+    status = Live.objects.all().values()
+    production = []
+    dev = []
+    local = []
+    back = []
+    for s in status:
+        stat = {}
+        if(s['live'] == 'Production'):
+            if(s['dateOfRelease']):
+                stat['date'] = s['dateOfRelease']
+            else:
+                stat['date'] = 'TBD'
+            stat['version'] = []
+            for v in versions:
+                vers = {}
+                if(v['id'] == s['liveVersion_id']):
+                    vers['num'] = v['versionNum']
+                    vers['info'] = v['info']
+                    stat['version'].append(vers)
+            stat['feature'] = []
+            for f in features:
+                feat = {}
+                if(f['id'] == s['liveFeature_id']):
+                    feat['name'] = f['name']
+                    feat['info'] = f['info']
+                    stat['feature'].append(feat)
+            production.append(stat)
+        if(s['live'] == 'Development'):
+            if(s['dateOfRelease']):
+                stat['date'] = s['dateOfRelease']
+            else:
+                stat['date'] = 'TBD'
+            stat['version'] = []
+            for v in versions:
+                vers = {}
+                if(v['id'] == s['liveVersion_id']):
+                    vers['num'] = v['versionNum']
+                    vers['info'] = v['info']
+                    stat['version'].append(vers)
+            stat['feature'] = []
+            for f in features:
+                feat = {}
+                if(f['id'] == s['liveFeature_id']):
+                    feat['name'] = f['name']
+                    feat['info'] = f['info']
+                    stat['feature'].append(feat)
+            dev.append(stat)
+        if(s['live'] == 'Local'):
+            if(s['dateOfRelease']):
+                stat['date'] = s['dateOfRelease']
+            else:
+                stat['date'] = 'TBD'
+            stat['version'] = []
+            for v in versions:
+                vers = {}
+                if(v['id'] == s['liveVersion_id']):
+                    vers['num'] = v['versionNum']
+                    vers['info'] = v['info']
+                    stat['version'].append(vers)
+            stat['feature'] = []
+            for f in features:
+                feat = {}
+                if(f['id'] == s['liveFeature_id']):
+                    feat['name'] = f['name']
+                    feat['info'] = f['info']
+                    stat['feature'].append(feat)
+            local.append(stat)
+        if(s['live'] == 'BackLog'):
+            if(s['dateOfRelease']):
+                stat['date'] = s['dateOfRelease']
+            else:
+                stat['date'] = 'TBD'
+            stat['version'] = []
+            for v in versions:
+                vers = {}
+                if(v['id'] == s['liveVersion_id']):
+                    vers['num'] = v['versionNum']
+                    vers['info'] = v['info']
+                    stat['version'].append(vers)
+            stat['feature'] = []
+            for f in features:
+                feat = {}
+                if(f['id'] == s['liveFeature_id']):
+                    feat['name'] = f['name']
+                    feat['info'] = f['info']
+                    stat['feature'].append(feat)
+            back.append(stat)
+    data = {
+        'production': production,
+        'dev': dev,
+        'local': local,
+        'back': back,
+    }
+    return render(request, 'theboard.html', data)
 
 def about(request):
     title = {

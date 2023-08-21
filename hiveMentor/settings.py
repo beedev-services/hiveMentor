@@ -22,6 +22,7 @@ ALLOWED_HOSTS = []
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:8000',
+    'http://127.0.0.1:5500',
     'http://localhost:5173',
     'https://hivementor.beedev-services.com',
     'http://hivementor.beedev.services.com',
@@ -163,7 +164,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 # EMAIL_PORT = 465
-EMAIL_HOST_USER = 'beedev.services@gmail.com'
+# EMAIL_HOST_USER = 'beedev.services@gmail.com'
+EMAIL_HOST_USER = 'the.kowabunga.hooker@gmail.com'
 # EMAIL_HOST_USER = 'melissa@beedev-services.com'
 EMAIL_HOST_PASSWORD = HOST_PASSWORD
 EMAIL_HOST_ALT_USER = 'melissa@beedev-services.com'

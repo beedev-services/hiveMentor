@@ -18,7 +18,9 @@ class Live(models.Model):
     liveVersion = models.ForeignKey(Version, related_name='theLiveVersion', on_delete=CASCADE)
     liveFeature = models.ForeignKey(Feature, related_name='theLiveFeature', on_delete=CASCADE)
     dateOfRelease = models.DateField(blank=True, null=True)
-    live = models.BooleanField(default=0)
+    live = models.CharField(max_length=255,default='BackLog')
+    def __str__(self):
+        return f'{self.live} - {self.liveVersion} {self.liveFeature}'
 
 class Release(models.Model):
     version = models.CharField(max_length=255)

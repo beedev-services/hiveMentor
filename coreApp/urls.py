@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/foodData/<str:cat>/', views.foodData),
     path('api/releaseDate/', views.releaseDates),
     path('api/userCount/', views.userCount),
+    path('api/trello/', views.board),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
