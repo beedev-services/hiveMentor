@@ -213,6 +213,7 @@ def devNotes(request):
     versions = Version.objects.values().all()
     features = Feature.objects.values().all()
     statuses = Live.objects.values().all()
+    updates = Release.objects.values().all()
     release = marquee()
     print('versions', versions, 'features', features, 'statuses', statuses)
     if 'user_id' not in request.session:
@@ -227,6 +228,7 @@ def devNotes(request):
             'features': features,
             'statuses': statuses,
             'release': release,
+            'updates': updates,
         }
     else:
         user = User.objects.get(id=request.session['user_id'])
@@ -241,6 +243,7 @@ def devNotes(request):
                 'features': features,
                 'statuses': statuses,
                 'release': release,
+                'updates': updates,
             }
     return render(request, 'devNotes.html', context)
 
