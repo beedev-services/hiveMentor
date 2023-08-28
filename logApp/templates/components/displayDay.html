@@ -47,6 +47,9 @@
             {% if user.profile.meds == 1 %}
             <table>
                 <tr>
+                    <th colspan="3">Medication</th>
+                </tr>
+                <tr>
                     <th>Medication</th>
                     <th>Dose</th>
                     <th>Time Taken</th>
@@ -68,7 +71,21 @@
             {% endif %}
             <!-- Sugar -->
             {% if user.profile.diabetic == 1 %}
-                <table></table>
+                <table>
+                    <tr>
+                        <th colspan="2">Sugar Readings</th>
+                    </tr>
+                    <tr>
+                        <th>Time Taken</th>
+                        <th>Level</th>
+                    </tr>
+                    {% for sugar in sugars %}
+                        <tr>
+                            <td>{{sugar.time}}</td>
+                            <td>{{sugar.level}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
             {% endif %}
         </div>
         <div class="column">
@@ -139,7 +156,14 @@
         <div class="column">
             <!-- Weight -->
             {% if user.profile.weight == 1 %}
-                <table></table>
+                <table>
+                    {% for w in weights %}
+                    <tr>
+                        <th>Weight</th>
+                        <td>{{w.weight}}{{w.unit}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             {% endif %}
             <!-- Fitness -->
             {% if user.profile.fitness == 1 %}

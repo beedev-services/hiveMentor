@@ -27,14 +27,22 @@ urlpatterns = [
     path('week/<int:week_id>/day/<int:day_id>/', views.viewDay),
     # create journal
     path('week/<int:week_id>/day/<int:day_id>/createJournal/', views.createJournal),
+    # create water
     path('week/<int:week_id>/day/<int:day_id>/createWater/', views.createWater),
+    # update water
     path('week/<int:week_id>/day/<int:day_id>/<int:water_id>/updateWater/', views.updateWater),
+    # create Mood
     path('week/<int:week_id>/day/<int:day_id>/createMood/', views.createMood),
+    # create Med
     path('week/<int:week_id>/day/<int:day_id>/createMed/', views.createMed),
+    # create Weather
     path('week/<int:week_id>/day/<int:day_id>/createConditions/', views.createConditions),
+    # create Food
     path('week/<int:week_id>/day/<int:day_id>/createFood/', views.createFood),
-
-
+    # create Sugar
+    path('week/<int:week_id>/day/<int:day_id>/createSugar/', views.createSugar),
+    # create Weight
+    path('week/<int:week_id>/day/<int:day_id>/createWeight/', views.createWeight),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

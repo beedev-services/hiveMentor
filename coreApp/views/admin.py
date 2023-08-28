@@ -5,6 +5,7 @@ from logApp.models import *
 import string
 import random
 from userApp.util import *
+from coreApp.apiUtil import *
 
 def theAdmin(request):
     if 'user_id' not in request.session:

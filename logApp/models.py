@@ -130,7 +130,7 @@ class Medication(models.Model):
         return f'{self.member.username} - {self.when}'
 
 class Sugar(models.Model):
-    time = models.DateTimeField()
+    time = models.TimeField()
     level = models.IntegerField()
     testSite = models.CharField(max_length=255, default='Finger Stick')
     createdAt = models.DateTimeField(auto_now_add=True)

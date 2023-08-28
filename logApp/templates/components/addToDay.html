@@ -85,7 +85,7 @@
         <!-- Sugar -->
         {% if user.profile.diabetic == 1 %}
             <button class="lgButton" onclick="openForm('UserSugarForm')">Open Sugar Readings Form</button>
-            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createSugar" method="post" id="UserSugarForm">
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createSugar/" method="post" id="UserSugarForm">
                 {% csrf_token %}
                 <section>
                     <label for="time">Time Taken</label>
@@ -174,8 +174,22 @@
         <!-- Weight -->
         {% if user.profile.weight == 1 %}
             <button class="lgButton" onclick="openForm('UserWeightForm')">Open Weight Tracking Form</button>
-            <form action="" method="post" id="UserWeightForm">
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createWeight/" method="post" id="UserWeightForm">
                 {% csrf_token %}
+                <section>
+                    <label for="weight">Weight</label>
+                    <input type="text" name="weight" id="">
+                </section>
+                <section>
+                    <label for="unit">Units</label>
+                    <select name="unit" id="">
+                        <option value="">Please Chose</option>
+                        {% for unit in weightUnits %}
+                            <option value="{{unit.unit}}">{{unit.unit}}</option>
+                        {% endfor %}
+                    </select>
+                </section>
+                <button>Add Weight</button>
             </form>
         {% endif %}
         <!-- Fitness -->

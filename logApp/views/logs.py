@@ -3,6 +3,7 @@ from django.contrib import messages
 from userApp.models import *
 from logApp.models import *
 from userApp.util import *
+from coreApp.apiUtil import *
 from django.core.paginator import Paginator
 
 # title = {
@@ -42,6 +43,10 @@ categories = [
     {'id': 8, 'name': 'Nuts & Seeds'},
     {'id': 9, 'name': 'Beverages'},
     {'id': 10, 'name': 'Other Starches'},
+]
+weightUnits = [
+    {'id': 1, 'unit': 'lb'},
+    {'id': 2, 'unit': 'kg'},
 ]
 
 def logDash(request):
@@ -190,6 +195,7 @@ def viewDay(request, week_id, day_id):
         workouts = Fitness.objects.filter(workout_id=day_id)
         hours = Work.objects.filter(workDay_id=day_id)
         observations = Weather.objects.filter(conditions_id=day_id)
+        weights = Weight.objects.filter(day_id=day_id)
         sList = SymptomList.objects.values().all()
         mList = MedList.objects.values().all()
         wList = FitnessList.objects.values().all()
@@ -239,6 +245,8 @@ def viewDay(request, week_id, day_id):
             'sum': sum,
             'categories': categories,
             'release': release,
+            'weightUnits': weightUnits,
+            'weights': weights,
         }
         # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
@@ -398,16 +406,31 @@ def deleteMed(request, medication_id):
     pass
 
 # ***** Diabetic Functions *****
-def newSugar(request):
-    pass
-
-def createSugar(request):
-    pass
+def createSugar(request, week_id, day_id):
+    Sugar.objects.create(
+        time = request.POST['time'],
+        level = request.POST['level'],
+        testSite = request.POST['testSite'],
+        owner = User.objects.get(id=request.session['user_id']),
+        entry_id = day_id
+    )
+    messages.error(request, 'Sugar Reading logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def deleteSugar(request, sugar_id):
     pass
 
 # ***** Weight Functions *****
+def createWeight(request, week_id, day_id):
+    Weight.objects.create(
+        userWeight = User.objects.get(id=request.session['user_id']),
+        day_id = day_id,
+        weight = request.POST['weight'],
+        unit = request.POST['unit'],
+    )
+    messages.error(request, 'Weight logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
 # ***** Fitness Functions *****
 # ***** Work Functions *****
 # ***** Weather Functions *****
