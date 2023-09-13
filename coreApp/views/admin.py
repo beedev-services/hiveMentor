@@ -53,7 +53,7 @@ def sendUsers(request):
         messages.error(request, 'You do not have permissions to view this page')
     else:
         sendCurrentUsersToChat()
-        return redirect('/user/theAdmin/')
+        return redirect('/theAdmin/')
     
 def getUsersChat(request):
     getUsersInChat()

@@ -31,11 +31,14 @@ def sendUserToChat(username, email, firstName, lastName, role):
         'PRIVATE-KEY': theKey
     }
     response = requests.post(url, json=payload, headers=headers)
+    print('response sent in send user', response)
+    return response
 
 def sendCurrentUsersToChat():
     allUsers = User.objects.all()
     for user in allUsers:
         sendUserToChat(user.username, user.email, user.firstName, user.lastName, user.role)
+    print('loop done in send current')
 
 def getUsersInChat():
     payload={}
