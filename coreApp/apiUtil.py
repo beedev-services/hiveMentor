@@ -5,38 +5,50 @@ def marquee():
     minor = Release.objects.get(releaseType='Minor')
     major = Release.objects.get(releaseType='Major')
     initial = Release.objects.get(releaseType='Initial')
-
     releaseInfo = []
-
-    releaseInitial = {
-        'id': 1,
-        'date': initial.date,
-        'version': initial.version,
-        'type': initial.releaseType,
-    }
-    releaseCurrent = {
-        'id': 2,
-        'date': current.date,
-        'version': current.version,
-        'type': current.releaseType,
-    }
-    releaseMinor = {
+    if not minor:
+        minor = False
+    else:
+        releaseMinor = {
         'id': 3,
         'date': minor.date,
         'version': minor.version,
         'type': minor.releaseType,
-    }
-    releaseMajor = {
+        }
+    releaseInfo.append(releaseMinor)
+    if not major:
+        major = False
+    else:
+        releaseMajor = {
         'id': 4,
         'date': major.date,
         'version': major.version,
         'type': major.releaseType,
-    }
-    releaseInfo.append(releaseInitial)
-    releaseInfo.append(releaseCurrent)
-    releaseInfo.append(releaseMinor)
+        }
     releaseInfo.append(releaseMajor)
+    if not initial:
+        initial = False
+    else:
+        releaseInitial = {
+        'id': 1,
+        'date': initial.date,
+        'version': initial.version,
+        'type': initial.releaseType,
+        }
+    releaseInfo.append(releaseInitial)
+    if not current:
+        current = False
+    else:
+        releaseCurrent = {
+        'id': 2,
+        'date': current.date,
+        'version': current.version,
+        'type': current.releaseType,
+        }
+    releaseInfo.append(releaseCurrent)
     # print('release data', releaseInfo[0]['timeSinceInitial'])
+    if releaseInfo[0] == False:
+        return False
     return releaseInfo
 
 def projBoard():

@@ -609,9 +609,9 @@ newMaster = [
     "HiveHeart Connections",
     "MindfulTech Beehive",
     "TechNurturers Collective",
-    "CodeCrafters Hive",
+    "CodeCrafters Hive", 
     "ResilienceBee Hub",
-    "BeeMind Professionals",
+    "BeeMind Professionals", 
     "Compassionate Coders Hive",
     "HiveSoul Engineers",
     "TechWell Community",
@@ -1199,7 +1199,7 @@ newKeyWords = [
 updatedKeyWords = [
     "Bee", "Tech", "Hive", "Network", "Squad", "Mindful", "Buzzing", "Buzz"
 ]
-print(keyWords)
+# print(keyWords)
 
 appList01 = [
     "NetworkWellness Hub",
@@ -1228,3 +1228,7 @@ appList01 = [
     "DevHiveSquad HiveSquad",
     "HiveCollective MindfulBee",
 ]
+
+a = 'Hey there'
+print("hello",a, "how are you",a)
+print(f'{a} How are you')

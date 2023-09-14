@@ -4,6 +4,7 @@ from userApp.models import *
 from logApp.models import *
 from userApp.util import *
 from coreApp.apiUtil import *
+from logApp.logUtil import *
 from django.core.paginator import Paginator
 
 # title = {
@@ -453,8 +454,16 @@ def createFitness(request, week_id, day_id):
 
 # ***** Work Functions *****
 def createWork(request, week_id, day_id):
+    hrs = request.POST['hrs']
+    mins = request.POST['mins']
+    if not hrs:
+        hrs = 0
+    if not mins:
+        mins = 0
+    duration = convertToMins(hrs, mins)
+    print('theduration',duration)
     Work.objects.create(
-        duration = request.POST['duration'],
+        duration = duration,
         comments = request.POST['comments'],
         job = request.POST['job'],
         workDay_id = day_id,

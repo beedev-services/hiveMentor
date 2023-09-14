@@ -187,7 +187,25 @@
             {% endif %}
             <!-- Work -->
             {% if user.profile.work == 1 %}
-                <table></table>
+                <table>
+                    <tr>
+                        <th>Entry #</th>
+                        <th>Hours</th>
+                        <th>Minutes</th>
+                        <th>Job</th>
+                    </tr>
+                    {% for job in hours %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+
+                            <th>{{job.job}}</th>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="2">Total Time Worked</th>
+                        <td colspan="2"></td>
+                    </tr>
+                </table>
             {% endif %}
         </div>
     {% endblock displayDay %}

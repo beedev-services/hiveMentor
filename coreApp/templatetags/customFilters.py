@@ -29,16 +29,9 @@ def updateDate(sleep):
         formatedDate = sleepEnd.strftime("%b. %d, %Y")
     return formatedDate
 
-@register.filter(name='convertToMin')
-def convertToMin(hrs, mins):
-    if hrs > 0:
-        hours = hrs * 60
-    if mins:
-        time = hours + mins
-    time = hours
-    return time
 
 @register.filter(name='convertToHoursMins')
-def convertToHoursMins(duration):
-    if duration > 60:
-        hours = duration / 60
+def convertToHoursMins(job):
+    time = job.duration
+    hours, minutes = divmod(time, 60)
+    return hours, minutes

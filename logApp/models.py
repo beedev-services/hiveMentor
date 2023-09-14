@@ -164,7 +164,6 @@ class Fitness(models.Model):
 
 class Work(models.Model):
     duration = models.CharField(max_length=255, default="4")
-    unit = models.CharField(max_length=255, default="hr")
     comments = models.TextField(blank=True)
     job = models.CharField(max_length=255)
     createdAt = models.DateTimeField(auto_now_add=True)

@@ -221,6 +221,22 @@
             <button class="lgButton" onclick="openForm('UserWorkForm')">Work Form</button>
             <form action="/logs/week/{{week.id}}/day/{{day.id}}/createWork/" method="post" id="UserWorkForm">
                 {% csrf_token %}
+                <section>
+                    <label for="hrs">Hours Worked</label>
+                    <input type="number" name="hrs" placeholder="8">
+                </section>
+                <section>
+                    <label for="mins">Minutes Worked</label>
+                    <input type="number" name="mins" placeholder="30" step="15">
+                </section>
+                <section>
+                    <label for="comments">Comments (not required)</label>
+                    <textarea name="comments" id="" cols="30" rows="10"></textarea>
+                </section>
+                <section>
+                    <label for="job">Work Done</label>
+                    <input type="text" name="job" id="">
+                </section>
                 <button>Add Hours Worked</button>
             </form>
         {% endif %}
