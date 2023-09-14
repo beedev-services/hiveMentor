@@ -1,4 +1,5 @@
 {% load static %}
+{% load customFilters %}
 <!DOCTYPE html>
 <html lang="en">
 <body>
@@ -148,12 +149,27 @@
                     {% endfor %}
                 </table>
             {% endif %}
-            <!-- Sleep -->
-            {% if user.profile.sleep == 1 %}
-                <table></table>
-            {% endif %}
         </div>
         <div class="column">
+            <!-- Sleep -->
+            {% if user.profile.sleep == 1 %}
+                {% if sleeps != False %}
+                    <table>
+                        <tr>
+                            <th>Date & Time Sleep Start</th>
+                            <th>Date & Time Sleep End</th>
+                            <th>Hours Slept</th>
+                        </tr>
+                        {% for sleep in sleeps %}
+                            <tr>
+                                <td>{{sleep.date}} {{sleep.sleep}}</td>
+                                <td>{{sleep|updateDate}} {{sleep.wake}}</td>
+                                <td>{{ sleep|hoursSlept }} hours</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            {% endif %}
             <!-- Weight -->
             {% if user.profile.weight == 1 %}
                 <table>

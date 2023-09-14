@@ -43,6 +43,12 @@ urlpatterns = [
     path('week/<int:week_id>/day/<int:day_id>/createSugar/', views.createSugar),
     # create Weight
     path('week/<int:week_id>/day/<int:day_id>/createWeight/', views.createWeight),
+    # create Sleep
+    path('week/<int:week_id>/day/<int:day_id>/createSleep/', views.createSleep),
+    # create Fitness
+    path('week/<int:week_id>/day/<int:day_id>/createFitness/', views.createFitness),
+    # create Work
+    path('week/<int:week_id>/day/<int:day_id>/createWork/', views.createWork),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

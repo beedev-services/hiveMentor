@@ -151,7 +151,8 @@ class Weight(models.Model):
         return f'{self.userWeight.username} - {self.day.date}'
 
 class Fitness(models.Model):
-    duration = models.TimeField()
+    duration = models.CharField(max_length=255, default="30")
+    unit = models.CharField(max_length=255, default="min")
     comments = models.TextField(blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
@@ -162,7 +163,8 @@ class Fitness(models.Model):
         return f'{self.human.username} - {self.exercise.name}'
 
 class Work(models.Model):
-    duration = models.TimeField()
+    duration = models.CharField(max_length=255, default="4")
+    unit = models.CharField(max_length=255, default="hr")
     comments = models.TextField(blank=True)
     job = models.CharField(max_length=255)
     createdAt = models.DateTimeField(auto_now_add=True)

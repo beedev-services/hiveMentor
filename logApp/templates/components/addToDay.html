@@ -165,8 +165,20 @@
         <!-- Sleep -->
         {% if user.profile.sleep == 1 %}
             <button class="lgButton" onclick="openForm('UserSleepForm')">Open Sleep Log Form</button>
-            <form action="" method="post" id="UserSleepForm">
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createSleep/" method="post" id="UserSleepForm">
                 {% csrf_token %}
+                <section>
+                    <label for="date">Date (Sleep Start)</label>
+                    <input type="date" name="date" id="">
+                </section>
+                <section>
+                    <label for="sleep">Time went to sleep</label>
+                    <input type="time" name="sleep" id="">
+                </section>
+                <section>
+                    <label for="wake">Time woke up</label>
+                    <input type="time" name="wake" id="">
+                </section>
                 <button>Add Sleep times</button>
             </form>
         {% endif %}
@@ -195,13 +207,21 @@
         <!-- Fitness -->
         {% if user.profile.fitness == 1 %}
             <button class="lgButton" onclick="openForm('UserFitnessForm')">Fitness Form</button>
-            <form action="" method="post" id="UserFitnessForm"></form>
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createFitness/" method="post" id="UserFitnessForm">
+                {% csrf_token %}
+                <section>
+                    <label for="duration">Length of Activity</label>
+                    <input type="duration" name="" id="">
+                </section>
+                <button>Add Fitness Log</button>
+            </form>
         {% endif %}
         <!-- Work -->
         {% if user.profile.work == 1 %}
             <button class="lgButton" onclick="openForm('UserWorkForm')">Work Form</button>
-            <form action="" method="post" id="UserWorkForm">
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createWork/" method="post" id="UserWorkForm">
                 {% csrf_token %}
+                <button>Add Hours Worked</button>
             </form>
         {% endif %}
     

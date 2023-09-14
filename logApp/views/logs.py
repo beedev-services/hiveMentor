@@ -217,6 +217,8 @@ def viewDay(request, week_id, day_id):
             journal = False
         else:
             journal = journal[0]
+        if not sleeps:
+            sleeps = False
         site = request.session['site']
         release = marquee()
         context = {
@@ -358,11 +360,17 @@ def deleteJournal(request, journal_id):
     pass
 
 # ***** Sleep Functions *****
-def newSleep(request):
-    pass
-
-def createSleep(request):
-    pass
+def createSleep(request, week_id, day_id):
+    print(request.POST['date'], request.POST['sleep'], request.POST['wake'])
+    Sleep.objects.create(
+        date = request.POST['date'],
+        sleep = request.POST['sleep'],
+        wake = request.POST['wake'],
+        night_id = day_id,
+        sleeper = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Sleep entry saved')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def deleteSleep(request, sleep_id):
     pass
@@ -432,7 +440,29 @@ def createWeight(request, week_id, day_id):
     return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 # ***** Fitness Functions *****
+def createFitness(request, week_id, day_id):
+    Fitness.objects.create(
+        duration = request.POST['duration'],
+        comments = request.POST['comments'],
+        exercise_id = request.POST['exercise'],
+        workout_id = day_id,
+        human = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Workout logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
 # ***** Work Functions *****
+def createWork(request, week_id, day_id):
+    Work.objects.create(
+        duration = request.POST['duration'],
+        comments = request.POST['comments'],
+        job = request.POST['job'],
+        workDay_id = day_id,
+        worker = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Hours Logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
 # ***** Weather Functions *****
 def createConditions(request,week_id, day_id):
     theLat = request.POST.get('lat')
