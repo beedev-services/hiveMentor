@@ -1,4 +1,6 @@
 # hiveMentor
+# !!!!! New Name / New URL !!!!!
+# BeeMindful-Buzz / beemindful-buzz.com
 Guiding programmers toward better mental well-being.
 
 Users have 2 options when they 1st log in.  Chat and Health

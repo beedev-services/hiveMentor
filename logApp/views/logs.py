@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 
 # title = {
 #     'title': 'Index',
-#     'header': 'Hive Mentor',
+#     'header': 'BeeMindful-Buzz',
 # }
 # context = {
 #     'title': title,
@@ -52,7 +52,7 @@ weightUnits = [
 def logDash(request):
     title = {
         'title': 'Log Dashboard',
-        'header': 'Hive Mentor - Log Dashboard',
+        'header': 'BeeMindful-Buzz - Log Dashboard',
     }
     if 'user_id' not in request.session:
         messages.error(request, 'Please log in to view your logs')
@@ -101,7 +101,7 @@ def viewWeek(request, week_id):
     weekTitle = week.title
     title = {
         'title':weekTitle,
-        'header': f'Hive Mentor - {weekTitle}'
+        'header': f'BeeMindful-Buzz - {weekTitle}'
     }
     if 'user_id' not in request.session:
         messages.error(request, 'Please log in to view page')
@@ -177,7 +177,7 @@ def viewDay(request, week_id, day_id):
     dayTitle = day.day
     title = {
         'title': f'{dayTitle} of {weekTitle}',
-        'header': f'Hive Mentor - {dayTitle} of {weekTitle}'
+        'header': f'BeeMindful-Buzz - {dayTitle} of {weekTitle}'
     }
     if 'user_id' not in request.session:
         messages.error(request, 'Please log in to view page')
