@@ -210,8 +210,16 @@
             <form action="/logs/week/{{week.id}}/day/{{day.id}}/createFitness/" method="post" id="UserFitnessForm">
                 {% csrf_token %}
                 <section>
+                    <label for="name">Fitness Activity</label>
+                    <input type="text" name="name" id="">
+                </section>
+                <section>
                     <label for="duration">Length of Activity</label>
-                    <input type="duration" name="" id="">
+                    <input type="number" name="duration" id="" step="15">
+                </section>
+                <section>
+                    <label for="comments">Comments (not required)</label>
+                    <textarea name="comments" id="" cols="30" rows="10"></textarea>
                 </section>
                 <button>Add Fitness Log</button>
             </form>

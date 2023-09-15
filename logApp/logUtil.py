@@ -1,6 +1,3 @@
-
-
-
 def convertToMins(hrs, mins):
     time = 0
     if not hrs:

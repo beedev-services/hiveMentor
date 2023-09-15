@@ -32,6 +32,26 @@ def updateDate(sleep):
 
 @register.filter(name='convertToHoursMins')
 def convertToHoursMins(job):
-    time = job.duration
+    time = int(job.duration)
     hours, minutes = divmod(time, 60)
-    return hours, minutes
+    return f'{hours}h : {minutes}m'
+
+
+@register.filter(name='activityTotal')
+def activityTotal(workouts):
+    total = 0
+    if workouts:
+        for w in workouts:
+            temp = int(w.duration)
+            total = total + temp
+    return total
+
+@register.filter(name='workTotal')
+def workTotal(jobs):
+    total = 0
+    if jobs:
+        for j in jobs:
+            temp = int(j.duration)
+            total = total + temp
+    hours, minutes = divmod(total, 60)
+    return f'{hours}h : {minutes}m'

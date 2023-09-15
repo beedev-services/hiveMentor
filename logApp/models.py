@@ -151,12 +151,11 @@ class Weight(models.Model):
         return f'{self.userWeight.username} - {self.day.date}'
 
 class Fitness(models.Model):
+    name = models.CharField(max_length=255)
     duration = models.CharField(max_length=255, default="30")
-    unit = models.CharField(max_length=255, default="min")
     comments = models.TextField(blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
-    exercise = models.ForeignKey(FitnessList, related_name='theExercise', on_delete=CASCADE)
     workout = models.ForeignKey(Day, related_name='theWorkout', on_delete=CASCADE)
     human = models.ForeignKey(User, related_name='theHuman', on_delete=CASCADE)
     def __str__(self):

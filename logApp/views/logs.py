@@ -443,9 +443,9 @@ def createWeight(request, week_id, day_id):
 # ***** Fitness Functions *****
 def createFitness(request, week_id, day_id):
     Fitness.objects.create(
+        name = request.POST['name'],
         duration = request.POST['duration'],
         comments = request.POST['comments'],
-        exercise_id = request.POST['exercise'],
         workout_id = day_id,
         human = User.objects.get(id=request.session['user_id'])
     )

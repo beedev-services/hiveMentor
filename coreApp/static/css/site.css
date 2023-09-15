@@ -3,7 +3,7 @@
   font-style: italic;
   font-weight: 300;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/raleway/v29/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Volkhov';
@@ -397,6 +397,41 @@ body main .desktop .mid {
 }
 body main .desktop .mid .column {
   padding: 1em;
+}
+body main .desktop .mid .column .logTable {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.2em 0;
+}
+body main .desktop .mid .column .logTable td,
+body main .desktop .mid .column .logTable th {
+  border: 1px solid #080c0d60;
+  padding: 8px;
+}
+body main .desktop .mid .column .logTable tr:nth-child(even) {
+  background-color: #E0D0D1;
+}
+body main .desktop .mid .column .logTable td {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+body main .desktop .mid .column .logTable td img {
+  border-radius: 50%;
+  max-width: 75px;
+}
+body main .desktop .mid .column .logTable .headerRow {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #080c0d60;
+  color: #E0D0D1;
+}
+body main .desktop .mid .column .logTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #DD8365;
+  color: #E0D0D1;
 }
 body main .desktop .mid .lgButton {
   font-size: 1.2em;

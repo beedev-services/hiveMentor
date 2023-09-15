@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'logApp.apps.LogappConfig',
     'corsheaders',
     'rest_framework',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.contrib.humanize.middleware.HumanizeMiddleware',
 ]
 
 ROOT_URLCONF = 'hiveMentor.urls'
