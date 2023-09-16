@@ -7,13 +7,13 @@ from coreApp.apiUtil import *
 
 # title = {
 #     'title': 'Index',
-#     'header': 'Hive Mentor',
+#     'header': 'BeeMindful-Buzz',
 # }
 
 def index(request):
     title = {
         'title': 'Index',
-        'header': 'Hive Mentor',
+        'header': 'BeeMindful-Buzz',
     }
     request.session['site'] = 'null'
     site = request.session['site']
@@ -144,7 +144,7 @@ def theProj(request):
 def about(request):
     title = {
         'title': 'About',
-        'header': 'About Hive Mentor'
+        'header': 'About BeeMindful-Buzz'
     }
     site = request.session['site']
     role = request.session['role']
@@ -174,7 +174,7 @@ def about(request):
 def contact(request):
     title = {
         'title': 'Contact',
-        'header': 'Contact - Hive Mentor'
+        'header': 'Contact - BeeMindful-Buzz'
     }
     site = request.session['site']
     role = request.session['role']
@@ -204,7 +204,7 @@ def contact(request):
 def devNotes(request):
     title = {
         'title': 'Developer Notes',
-        'header': 'Hive Mentor',
+        'header': 'BeeMindful-Buzz',
     }
     request.session['site'] = 'null'
     site = request.session['site']
@@ -250,7 +250,7 @@ def devNotes(request):
 def logReg(request):
     title = {
         'title': 'Login & Registration',
-        'header': 'Sign in To Hive Mentor or Create an account'
+        'header': 'Sign in To BeeMindful-Buzz or Create an account'
     }
     site = request.session['site']
     role = request.session['role']

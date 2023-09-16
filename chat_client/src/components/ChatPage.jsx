@@ -18,9 +18,7 @@ const ChatPage = () => {
     return (
         <>
             <ChatEngine
-                // projectID='8b626c35-8c33-4491-a1ef-d021890a4fd3'
-                projectID='34e251b1-74c5-4888-b1b1-e56e45673e6e'
-                // projectId='34e251b1-74c5-4888-b1b1-e56e45673e6e'
+                projectID='d8ef4f3b-9aca-42d6-8557-d21979acf880'
                 userName='webmaster'
                 userSecret='webmasterBeeDevServices'
             />

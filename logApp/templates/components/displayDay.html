@@ -1,24 +1,35 @@
 {% load static %}
+{% load humanize %}
+{% load customFilters %}
 <!DOCTYPE html>
 <html lang="en">
 <body>
     {% block displayDay %}
         <div class="column">
             <!-- Water -->
-            <h3>Water Consumed today: 
-                {% if water == False %}
-                    0
-                {% else %}
-                    {{water.water}}
-                {% endif %}
-            </h3>
+            <h3>Water</h3>
+            <table class="logTable">
+                <tr>
+                    <th>Consumed today</th>
+                </tr>
+                <tr>
+                    <td>
+                        {% if water == False %}
+                            0
+                        {% else %}
+                            {{water.water}}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
             <!-- Food -->
             {% if user.profile.food == 1 %}
-                <table>
+                <h3>Food</h3>
+                <table class="logTable">
                     <tr>
                         <th>Meal</th>
                         <th>Food</th>
-                        <th>Calories*Servings</th>
+                        <th>Calories x Servings</th>
                     </tr>
                     {% for food in foods %}
                         <tr>
@@ -37,7 +48,7 @@
                     {% endfor %}
                     <tr>
                         <th colspan="2">Total for day</th>
-                        <td>{{sum}}</td>
+                        <th>{{sum}}</th>
                     </tr>
                 </table>
             {% endif %}
@@ -45,10 +56,8 @@
         <div class="column">
             <!-- Medication -->
             {% if user.profile.meds == 1 %}
-            <table>
-                <tr>
-                    <th colspan="3">Medication</th>
-                </tr>
+            <h3>Medication</h3>
+            <table class="logTable">
                 <tr>
                     <th>Medication</th>
                     <th>Dose</th>
@@ -71,10 +80,8 @@
             {% endif %}
             <!-- Sugar -->
             {% if user.profile.diabetic == 1 %}
-                <table>
-                    <tr>
-                        <th colspan="2">Sugar Readings</th>
-                    </tr>
+                <h3>Sugar Readings</h3>
+                <table class="logTable">
                     <tr>
                         <th>Time Taken</th>
                         <th>Level</th>
@@ -91,14 +98,20 @@
         <div class="column">
             <!-- Journal -->
             {% if journal != False %}
-                <div>
-                    <h3>{{journal.title}}</h3>
-                    <p>{{journal.content}}</p>
-                </div>
+                <h3>Journal Entry</h3>
+                <table class="logTable">
+                    <tr>
+                        <th>{{journal.title}}</th>
+                    </tr>
+                    <tr>
+                        <td>{{journal.content}}</td>
+                    </tr>
+                </table>
             {% endif %}
             <!-- Weather -->
             {% if user.profile.weather == 1 %}
-                <table>
+                <h3>Weather Logs</h3>
+                <table class="logTable">
                     <tr>
                         <th>Temp</th>
                         <th>Pressure</th>
@@ -115,7 +128,8 @@
             {% endif %}
             <!-- Mood -->
             {% if user.profile.mood == 1 %}
-                <table>
+                <h3>Moods & Symptoms</h3>
+                <table class="logTable">
                     <tr>
                         <th>Mood</th>
                         <th>Symptom</th>
@@ -148,18 +162,37 @@
                     {% endfor %}
                 </table>
             {% endif %}
-            <!-- Sleep -->
-            {% if user.profile.sleep == 1 %}
-                <table></table>
-            {% endif %}
         </div>
         <div class="column">
+            <!-- Sleep -->
+            {% if user.profile.sleep == 1 %}
+                {% if sleeps != False %}
+                    <h3>Sleep Logs</h3>
+                    <table class="logTable">
+                        <tr>
+                            <th>Date & Time Sleep Start</th>
+                            <th>Date & Time Sleep End</th>
+                            <th>Hours Slept</th>
+                        </tr>
+                        {% for sleep in sleeps %}
+                            <tr>
+                                <td>{{sleep.date}} {{sleep.sleep}}</td>
+                                <td>{{sleep|updateDate}} {{sleep.wake}}</td>
+                                <td>{{ sleep|hoursSlept }} hours</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            {% endif %}
             <!-- Weight -->
             {% if user.profile.weight == 1 %}
-                <table>
+                    <h3>Weight</h3>
+                <table class="logTable">
+                    <tr>
+                        <th>Todays Weight</th>
+                    </tr>
                     {% for w in weights %}
                     <tr>
-                        <th>Weight</th>
                         <td>{{w.weight}}{{w.unit}}</td>
                     </tr>
                     {% endfor %}
@@ -167,13 +200,60 @@
             {% endif %}
             <!-- Fitness -->
             {% if user.profile.fitness == 1 %}
-                <table></table>
+                <h3>Fitness Logs</h3>
+                <table class="logTable">
+                    <tr>
+                        <th>Entry #</th>
+                        <th>Activity</th>
+                        <th>Duration of Activity</th>
+                    </tr>
+                    {% for workout in workouts %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{workout.name}}</td>
+                            <td>{{workout.duration}}m</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="2">Total Activity</th>
+                        <th>{{ workouts|activityTotal }}</th>
+                    </tr>
+                </table>
             {% endif %}
             <!-- Work -->
             {% if user.profile.work == 1 %}
-                <table></table>
+                <h3>Work Logs</h3>
+                <table class="logTable">
+                    <tr>
+                        <th>Entry #</th>
+                        <th>Hours</th>
+                        <th>Minutes</th>
+                        <th>Job</th>
+                    </tr>
+                    {% for job in hours %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td colspan="2">
+                                {{ job|convertToHoursMins }}
+                            </td>
+                            <td>{{job.job}}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="2">Total Time Worked</th>
+                        <th colspan="2">
+                            {{ hours|workTotal}}
+                        </th>
+                    </tr>
+                </table>
             {% endif %}
         </div>
     {% endblock displayDay %}
 </body>
 </html>
+
+
+
+
+
+

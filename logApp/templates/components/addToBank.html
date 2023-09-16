@@ -61,18 +61,6 @@
                 <button>Add New Medication</button>
             </form>
         {% endif %}
-        {% if user.profile.fitness == 1 %}
-            <button onclick="openForm('FitnessListForm')">Open Fitness Bank Form</button>
-            <form action="/logs/createWorkout/" method="post" id="FitnessListForm">
-                {% csrf_token %}
-                <section>
-                    <label for="name">Workout Name</label>
-                    <input type="text" name="name" id="">
-                </section>
-                <input type="hidden" name="currPage" value="/logs/week/{{week.id}}/day/{{day.id}}/">
-                <button>Add Workout To Bank</button>
-            </form>
-        {% endif %}
     {% endblock addToBankForms %}
 </body>
 </html>

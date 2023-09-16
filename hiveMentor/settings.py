@@ -16,8 +16,7 @@ DEBUG = True
 # DEBUG = False
 
 ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = ['hivementor.beedev-services.com']
-# ALLOWED_HOSTS = ['dev.thehive-services.com']
+# ALLOWED_HOSTS = ['hivementor.beedev-services.com', 'dev.beemindful-buzz.com', 'beemindful-buzz.com']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
@@ -30,6 +29,12 @@ CORS_ALLOWED_ORIGINS = [
     'http://hivechat.beedev.services.com',
     'https://dev.thehive-services.com',
     'http://dev.thehive-services.com',
+    'http://dev.beemindful-buzz.com',
+    'https://dev.beemindful-buzz.com',
+    'http://beemindful-buzz.com',
+    'https://beemindful-buzz.com',
+    'http://chat.beemindful-buzz.com',
+    'https://chat.beemindful-buzz.com',
     # Add more allowed origins as necessary
 ]
 CORS_ALLOWED_ALL_ORIGINS: True
@@ -49,6 +54,7 @@ INSTALLED_APPS = [
     'logApp.apps.LogappConfig',
     'corsheaders',
     'rest_framework',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.contrib.humanize.middleware.HumanizeMiddleware',
 ]
 
 ROOT_URLCONF = 'hiveMentor.urls'
@@ -165,7 +172,5 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 # EMAIL_PORT = 465
 EMAIL_HOST_USER = 'beedev.services@gmail.com'
-# EMAIL_HOST_USER = 'the.kowabunga.hooker@gmail.com'
-# EMAIL_HOST_USER = 'melissa@beedev-services.com'
 EMAIL_HOST_PASSWORD = HOST_PASSWORD
-EMAIL_HOST_ALT_USER = 'melissa@beedev-services.com'
+EMAIL_HOST_ALT_USER = 'melissa@beemindful-buzz.com'

@@ -165,8 +165,20 @@
         <!-- Sleep -->
         {% if user.profile.sleep == 1 %}
             <button class="lgButton" onclick="openForm('UserSleepForm')">Open Sleep Log Form</button>
-            <form action="" method="post" id="UserSleepForm">
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createSleep/" method="post" id="UserSleepForm">
                 {% csrf_token %}
+                <section>
+                    <label for="date">Date (Sleep Start)</label>
+                    <input type="date" name="date" id="">
+                </section>
+                <section>
+                    <label for="sleep">Time went to sleep</label>
+                    <input type="time" name="sleep" id="">
+                </section>
+                <section>
+                    <label for="wake">Time woke up</label>
+                    <input type="time" name="wake" id="">
+                </section>
                 <button>Add Sleep times</button>
             </form>
         {% endif %}
@@ -195,13 +207,45 @@
         <!-- Fitness -->
         {% if user.profile.fitness == 1 %}
             <button class="lgButton" onclick="openForm('UserFitnessForm')">Fitness Form</button>
-            <form action="" method="post" id="UserFitnessForm"></form>
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createFitness/" method="post" id="UserFitnessForm">
+                {% csrf_token %}
+                <section>
+                    <label for="name">Fitness Activity</label>
+                    <input type="text" name="name" id="">
+                </section>
+                <section>
+                    <label for="duration">Length of Activity</label>
+                    <input type="number" name="duration" id="" step="15">
+                </section>
+                <section>
+                    <label for="comments">Comments (not required)</label>
+                    <textarea name="comments" id="" cols="30" rows="10"></textarea>
+                </section>
+                <button>Add Fitness Log</button>
+            </form>
         {% endif %}
         <!-- Work -->
         {% if user.profile.work == 1 %}
             <button class="lgButton" onclick="openForm('UserWorkForm')">Work Form</button>
-            <form action="" method="post" id="UserWorkForm">
+            <form action="/logs/week/{{week.id}}/day/{{day.id}}/createWork/" method="post" id="UserWorkForm">
                 {% csrf_token %}
+                <section>
+                    <label for="hrs">Hours Worked</label>
+                    <input type="number" name="hrs" placeholder="8">
+                </section>
+                <section>
+                    <label for="mins">Minutes Worked</label>
+                    <input type="number" name="mins" placeholder="30" step="15">
+                </section>
+                <section>
+                    <label for="comments">Comments (not required)</label>
+                    <textarea name="comments" id="" cols="30" rows="10"></textarea>
+                </section>
+                <section>
+                    <label for="job">Work Done</label>
+                    <input type="text" name="job" id="">
+                </section>
+                <button>Add Hours Worked</button>
             </form>
         {% endif %}
     

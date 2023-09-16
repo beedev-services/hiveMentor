@@ -11,7 +11,7 @@ import requests
 
 # title = {
 #     'title': 'Index',
-#     'header': 'Hive Mentor',
+#     'header': 'BeeMindful-Buzz',
 # }
 # context = {
 #     'title': title,
@@ -22,7 +22,7 @@ theKey = PRIVATE_KEY
 def chatDash(request):
     title = {
         'title': 'Chat Dashboard',
-        'header': 'Chat Dashboard - Hive Mentor'
+        'header': 'Chat Dashboard - BeeMindful-Buzz'
     }
     user = User.objects.get(id=request.session['user_id'])
     # print(user)
@@ -57,7 +57,7 @@ def authenticate(request, id):
 def chatFrame(request, id):
     title = {
         'title': 'Chat',
-        'header': 'Chat - Hive Mentor'
+        'header': 'Chat - BeeMindful-Buzz'
     }
     user = User.objects.get(id=id)
     # print(user)
