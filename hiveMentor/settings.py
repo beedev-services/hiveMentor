@@ -3,11 +3,13 @@ import os
 from environ import Env
 from userApp.keys import *
 import logging
+from coreApp import handlerUtil
 
 env = Env()
 env.read_env()
 
 # BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECRET_KEY = 'django-insecure-v_ry!op)yp3_cgvw&u2=%biwi4s^uk6znfs4i@4h%hv1ih0t88'
@@ -23,23 +25,20 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+        'json_file': {
+            'level': 'DEBUG',
+            'class': 'coreApp.handlerUtil.JsonLogHandler',  # Specify the full path to your custom handler
+            'filename': os.path.join(BASE_DIR, 'json', 'logfile.json'),  # Path to where you want to store the JSON log file
         },
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'DEBUG',  # Set the desired log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',  # Set the desired log level for Django components
+            'handlers': ['json_file'],
+            'level': 'DEBUG',
             'propagate': True,
         },
     },
 }
-
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
@@ -60,7 +59,8 @@ CORS_ALLOWED_ORIGINS = [
     'https://chat.beemindful-buzz.com',
     # Add more allowed origins as necessary
 ]
-CORS_ALLOWED_ALL_ORIGINS: True
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
