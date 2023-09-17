@@ -6,6 +6,20 @@ import string
 import random
 from userApp.util import *
 from coreApp.apiUtil import *
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+# def my_view(request):
+#     # ...
+#     logger.debug('This is a debug message')
+#     logger.info('This is an info message')
+#     logger.warning('This is a warning message')
+#     logger.error('This is an error message')
+#     logger.critical('This is a critical message')
+#     # ...
+
 
 def theAdmin(request):
     if 'user_id' not in request.session:

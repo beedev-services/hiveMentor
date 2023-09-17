@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 from environ import Env
 from userApp.keys import *
+import logging
 
 env = Env()
 env.read_env()
@@ -17,6 +18,28 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['hivementor.beedev-services.com', 'dev.beemindful-buzz.com', 'beemindful-buzz.com']
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',  # Set the desired log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',  # Set the desired log level for Django components
+            'propagate': True,
+        },
+    },
+}
+
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',

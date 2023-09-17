@@ -8,6 +8,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from django.conf import settings
 from django.core.mail import send_mail
 
+import logging
+
+logger = logging.getLogger(__name__)
+# def my_view(request):
+#     # ...
+#     logger.debug('This is a debug message')
+#     logger.info('This is an info message')
+#     logger.warning('This is a warning message')
+#     logger.error('This is an error message')
+#     logger.critical('This is a critical message')
+#     # ...
+
+
 theKey = PRIVATE_KEY
 theProj = PROJECT_ID
 theUser = 'webmaster'
@@ -30,13 +43,17 @@ def sendUserToChat(username, email, firstName, lastName):
         'PRIVATE-KEY': theKey
     }
     print(payload, headers, url)
+    logger.info(payload, headers, url)
+
     try:
         response = requests.post(url, json=payload, headers=headers)
         responseData = response.json() if response.status_code == 200 else None
         print('Response:', response.status_code, responseData)
+        logger.info('Response:', response.status_code, responseData)
         return response
     except Exception as e:
         print('Error:', str(e))
+        logger.error('Error:', str(e))
         return None
 
 def sendCurrentUsersToChat():
