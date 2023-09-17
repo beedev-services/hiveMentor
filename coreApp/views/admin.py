@@ -6,6 +6,7 @@ import string
 import random
 from userApp.util import *
 from coreApp.apiUtil import *
+from coreApp.adminUtil import *
 import logging
 
 logger = logging.getLogger(__name__)
