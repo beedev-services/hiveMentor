@@ -18,26 +18,31 @@ url = 'https://api.chatengine.io/users/'
 adminUrl = "https://api.chatengine.io/users/me/"
 
 
-def sendUserToChat(username, email, firstName, lastName, role):
+def sendUserToChat(username, email, firstName, lastName):
     payload = {
         'username': username,
+        'secret': username+secret,
         'email': email,
         'first_name': firstName,
-        'last_name': lastName,
-        'secret': username+secret,
-        'custom_json': {'role': role}
+        'last_name': lastName
     }
     headers = {
         'PRIVATE-KEY': theKey
     }
-    response = requests.post(url, json=payload, headers=headers)
-    print('response sent in send user', response)
-    return response
+    print(payload, headers, url)
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        responseData = response.json() if response.status_code == 200 else None
+        print('Response:', response.status_code, responseData)
+        return response
+    except Exception as e:
+        print('Error:', str(e))
+        return None
 
 def sendCurrentUsersToChat():
     allUsers = User.objects.all()
     for user in allUsers:
-        sendUserToChat(user.username, user.email, user.firstName, user.lastName, user.role)
+        sendUserToChat(user.username, user.email, user.firstName, user.lastName)
     print('loop done in send current')
 
 def getUsersInChat():

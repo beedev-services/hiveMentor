@@ -3,34 +3,42 @@ import './App.css'
 import { ChatEngine } from 'react-chat-engine';
 import axios from 'axios'
 import loading from './assets/loading.gif';
+import IceBreaker from './components/IceBreaker';
 
 function App() {
   const [theName, setTheName] = useState("")
   const [theSecret, setTheSecret] = useState("")
-  const secret = 'BeeDevServices'
+  const secret = 'BeeDevTechSquadServices'
   // const proj = '34e251b1-74c5-4888-b1b1-e56e45673e6e'
-  const proj = '8b626c35-8c33-4491-a1ef-d021890a4fd3'
+  const proj = 'd8ef4f3b-9aca-42d6-8557-d21979acf880'
   const [theMode, setTheMode] = useState("")
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.addEventListener('message', function(event) {
-      // console.log('i am in event listener function inside useEffect')
       const userId = event.data.user;
       const mode = event.data.mode;
       console.log('event.data.user = userId', userId)
       setTheName(userId)
-      // setTheName('webmaster')
       setTheSecret(userId+secret)
       setTheMode(mode)
-      // setTheSecret('webmasterBeeDevServices')
+      console.log('in useEffect', theName, theSecret, theMode)
+      setIsLoading(false)
     })
   },[])
-  // if (!theName || !theSecret) {
-  //   return <div class=loading>
-  //     <h1>Logging you into Chat</h1>
-  //     <img src={loading} alt="Loading" />
-  //     </div>; // or any loading indicator
-  // }
+  console.log('in useEffect', theName, theSecret, theMode)
+
+  useEffect(() => {
+    // This will run whenever theName, theSecret, or theMode changes
+    console.log('State has been updated', theName, theSecret, theMode);
+  }, [theName, theSecret, theMode]);
+
+  if(isLoading) {
+    return <div>
+      <h1>Welcome to the Chat</h1>
+      <h2>Page Loading ........</h2>
+    </div>
+  }
 
   return (
     <div id="theMode" className={theMode === 'dark' ? 'dark' : ''}>
@@ -41,6 +49,8 @@ function App() {
           // userName='webmaster'
           userSecret={theSecret}
           // userSecret='webmasterBeeDevServices'
+          renderIceBreaker={(chat) => {<h1>Welcome to The Buzz, BeeMindful-Buzz 's chat</h1>}}
+          renderChatSettings={(chatAppState) => {}}
         />
         {console.log('theName', theName)}
     </div>
