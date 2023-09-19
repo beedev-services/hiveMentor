@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
-import { ChatEngine } from 'react-chat-engine';
+import { ChatEngine, ChatList } from 'react-chat-engine';
 import axios from 'axios'
 import loading from './assets/loading.gif';
 import IceBreaker from './components/IceBreaker';
@@ -46,11 +46,9 @@ function App() {
         <ChatEngine
           projectID={proj}
           userName={theName}
-          // userName='webmaster'
           userSecret={theSecret}
-          // userSecret='webmasterBeeDevServices'
-          renderIceBreaker={(chat) => {<h1>Welcome to The Buzz, BeeMindful-Buzz 's chat</h1>}}
-          renderChatSettings={(chatAppState) => {}}
+          height='100vh'
+
         />
         {console.log('theName', theName)}
     </div>
