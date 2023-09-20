@@ -4,13 +4,14 @@ import { ChatEngine, ChatList } from 'react-chat-engine';
 import axios from 'axios'
 import loading from './assets/loading.gif';
 import IceBreaker from './components/IceBreaker';
+import {VITE_CHATENGINE_PROJ, VITE_CHATENGINE_SECRET} from './key'
 
 function App() {
   const [theName, setTheName] = useState("")
   const [theSecret, setTheSecret] = useState("")
-  const secret = 'BeeDevTechSquadServices'
+  const secret = VITE_CHATENGINE_SECRET
   // const proj = '34e251b1-74c5-4888-b1b1-e56e45673e6e'
-  const proj = 'd8ef4f3b-9aca-42d6-8557-d21979acf880'
+  const proj = VITE_CHATENGINE_PROJ
   const [theMode, setTheMode] = useState("")
   const [isLoading, setIsLoading] = useState(true);
 
