@@ -14,10 +14,6 @@
                 <a href='/choseRole/' class='close'>Close</a>
             </div>
         </div>
-        <form action="/theAdmin/sendUsers/" method="post">
-            {% csrf_token %}
-            <button>Send Users</button>
-        </form>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
     <script src="{% static 'js/popup.js' %}"></script>
