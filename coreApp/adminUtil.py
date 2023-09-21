@@ -28,8 +28,9 @@ theUser = 'webmaster'
 secret = CHAT_SECRET
 weatherAPI = WEATHER_KEY
 
-url = 'https://api.chatengine.io/users/'
+user_url = 'https://api.chatengine.io/users/'
 adminUrl = "https://api.chatengine.io/users/me/"
+addUserChat_url = 'https://api.chatengine.io/chats/'
 
 
 def sendUserToChat(username, email, firstName, lastName):
@@ -43,11 +44,11 @@ def sendUserToChat(username, email, firstName, lastName):
     headers = {
         'PRIVATE-KEY': theKey
     }
-    print(payload, headers, url)
-    logger.info(payload, headers, url)
+    print(payload, headers, user_url)
+    logger.info(payload, headers, user_url)
 
     try:
-        response = requests.post(url, json=payload, headers=headers)
+        response = requests.post(user_url, json=payload, headers=headers)
         responseData = response.json() if response.status_code == 200 else None
         print('Response:', response.status_code, responseData)
         logger.info('Response:', response.status_code, responseData)
@@ -68,7 +69,7 @@ def getUsersInChat():
     headers = {
         'PRIVATE-KEY': PRIVATE_KEY
     }
-    response = requests.request("GET", url, headers=headers, data=payload)
+    response = requests.request("GET", user_url, headers=headers, data=payload)
     print(response.text)
 
 def getAdminAcct():
@@ -95,3 +96,30 @@ def updateUserAcct():
     print(response.text)
 
 
+def sendUserToGroup(username, chatID, chatAdmin):
+    addUserChat_urlFull = addUserChat_url+chatID+"/people/"
+    payload = { 'username': username }
+    headers = {
+        'Project-ID': theProj,
+        'User-Name': chatAdmin,
+        'User-Secret': chatAdmin+secret
+    }
+    print(payload, headers, addUserChat_urlFull)
+    logger.info(payload, headers, addUserChat_url)
+    try:
+        response = requests.post(addUserChat_urlFull, json=payload, headers=headers)
+        responseData = response.json() if response.status_code == 200 else None
+        print('Response:', response.status_code, responseData)
+        logger.info('Response:', response.status_code, responseData)
+        return response
+    except Exception as e:
+        print('Error:', str(e))
+        logger.error('Error:', str(e))
+        return None
+
+
+def sendCurrentUsersToGroup(chatID, chatAdmin):
+    allUsers = User.objects.all()
+    for user in allUsers:
+        sendUserToGroup(user.username, chatID, chatAdmin)
+    print('loop done in send current to group')

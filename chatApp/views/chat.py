@@ -59,9 +59,10 @@ def chatDash(request):
 
 def authenticate(request, id):
     user = User.objects.filter(id=id)
-    theSecret = 'BeeDevServices'
+    theSecret = 'BeeDevTechSquadServices'
     username = user.username
     secret = user.username+theSecret
+    chatRole = user.role
     context = {
         'user': user,
         'username': username,
