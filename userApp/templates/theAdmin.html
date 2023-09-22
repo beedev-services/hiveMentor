@@ -16,6 +16,14 @@
             {% csrf_token %}
             <button>Send Users</button>
         </form>
+        <form action="/theAdmin/sendUsersGroups/" method="post">
+            {% csrf_token %}
+            <label for="chatID">Group Chat ID</label>
+            <input type="text" name="chatID" id="">
+            <label for="chatAdmin">Chat Admin Username</label>
+            <input type="text" name="chatAdmin" id="">
+            <button>Send Users To Group</button>
+        </form>
         <button><a href="/theAdmin/getUsers/">Get Chat Users</a></button>
         <button><a href="/theAdmin/checkUser/">Check User</a></button>
     </main>
