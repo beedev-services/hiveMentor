@@ -16,6 +16,7 @@ urlpatterns = [
     # Admin Routes
     path('theAdmin/', views.theAdmin),
     path('theAdmin/sendUsers/', views.sendUsers),
+    path('theAdmin/sendUsersGroups/', views.sendUsersGroup),
     path('theAdmin/getUsers/', views.getUsersChat),
     path('theAdmin/checkUser/', views.checkUser),
     path('theAdmin/theCodes/', views.theCodes),
