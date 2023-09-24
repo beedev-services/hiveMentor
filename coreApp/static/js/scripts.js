@@ -152,11 +152,14 @@ $(document).ready(function() {
 
 let chatUser
 
-function enterChat(chatUser) {
-    location.replace(`http://127.0.1:8000/chat/frame/${chatUser}/`)
+function enterMultiChat(chatUser) {
+    location.replace(`http://127.0.1:8000/chat/multi-frame/${chatUser}/`)
+}
+function enterSingleChat(chatId, chatUser) {
+    location.replace(`http://127.0.1:8000/chat/single-frame/`)
 }
 function sendUserInfo(chatUser) {
     // chatUser = document.chat.theUser.value
     console.log('from django to js',chatUser)
-    enterChat(chatUser)
+    enterMultiChat(chatUser)
 }

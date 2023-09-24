@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.chatDash),
     path('authenticate/<int:id>/', views.authenticate),
-    path('frame/<int:id>/', views.chatFrame),
+    path('multi-frame/<int:id>/', views.multiChatFrame),
     # Chat Admin
     path('theAdmin/', views.chatAdmin),
     path('theAdmin/sendUsers/', views.sendUsers),

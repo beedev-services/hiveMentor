@@ -55,7 +55,20 @@ def getUsersInChat():
         'PRIVATE-KEY': PRIVATE_KEY
     }
     response = requests.request("GET", user_url, headers=headers, data=payload)
-    print(response.text)
+    print('response in call',response)
+    return response.text
+
+def jsonUsersInChat():
+    theUsers = getUsersInChat()
+    users = json.loads(theUsers)
+    print('theUsers', users[1])
+    for user in users:
+        # print('users custjson in jsonloop', user['custom_json'])
+        temp = json.loads(user['custom_json'].replace("'", "\""))
+        # print(temp)
+        user['custom_json'] = temp
+    print('theUsers fixed?', users[1])
+    return users
 
 def getAdminAcct():
     payload={}
@@ -125,3 +138,8 @@ def getCurrentUsersInGroup(chatID, chatAdmin):
     except Exception as e:
         print('Error:', str(e))
         return None
+
+
+def getMyChats(userId):
+    user = User.objects.get(id=userId)
+    print(user.firstName)

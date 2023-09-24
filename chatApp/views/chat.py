@@ -8,6 +8,8 @@ from coreApp.apiUtil import *
 # from userApp.util import authenticate
 from userApp.keys import *
 import requests
+from chatApp.adminUtil import *
+import json
 
 # title = {
 #     'title': 'Index',
@@ -33,6 +35,9 @@ def chatDash(request):
     request.session['role'] = user.role
     role = request.session['role']
     release = marquee()
+    users = jsonUsersInChat()
+    myChats = getMyChats(user.id)
+    print(myChats)
     context = {
         'title': title,
         'role': role,
@@ -40,6 +45,7 @@ def chatDash(request):
         'user': user,
         'userVar': user.id,
         'release': release,
+        'users': users
     }
     return render(request, 'chatDash.html', context)
 
@@ -57,7 +63,7 @@ def authenticate(request, id):
     # return render(request, 'newTemp.html', context)
     return JsonResponse(context, safe = False, content_type='application/json')
 
-def chatFrame(request, id):
+def multiChatFrame(request, id):
     title = {
         'title': 'Chat',
         'header': 'Chat - BeeMindful-Buzz'
@@ -76,4 +82,4 @@ def chatFrame(request, id):
         'user': user,
         'release': release,
     }
-    return render(request, 'chatFrame.html', context)
+    return render(request, 'chatFrameMulti.html', context)
