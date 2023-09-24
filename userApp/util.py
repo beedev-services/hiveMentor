@@ -9,20 +9,6 @@ from django.conf import settings
 from django.core.mail import send_mail
 import json
 
-import logging
-
-logger = logging.getLogger(__name__)
-# def my_view(request):
-#     # ...
-#     logger.debug('This is a debug message')
-#     logger.info('This is an info message')
-#     logger.warning('This is a warning message')
-#     logger.error('This is an error message')
-#     logger.critical('This is a critical message')
-#     # ...
-
-
-
 
 def latLong(theZip):
     geoUrl = f"http://api.openweathermap.org/geo/1.0/zip?zip={theZip}{weatherAPI}"

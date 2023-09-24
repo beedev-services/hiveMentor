@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import { ChatEngine, ChatList } from 'react-chat-engine';
 import { useMultiChatLogic, MultiChatSocket, MultiChatWindow } from "react-chat-engine-advanced";
-import axios from 'axios'
-import loading from './assets/loading.gif';
-import IceBreaker from './components/IceBreaker';
+// import MultiChat from './components/MultiChat';
 
 
 function App() {
@@ -22,15 +20,15 @@ function App() {
     window.addEventListener('message', function(event) {
       const userId = event.data.user;
       const mode = event.data.mode;
-      console.log('event.data.user = userId', userId)
+      // console.log('event.data.user = userId', userId)
       setTheName(userId)
       setTheSecret(userId+mySecret)
       setTheMode(mode)
-      console.log('in useEffect', theName, theSecret, theMode)
+      // console.log('in useEffect', theName, theSecret, theMode)
       setIsLoading(false)
     })
   },[])
-  console.log('in useEffect', theName, theSecret, theMode)
+  // console.log('in useEffect', theName, theSecret, theMode)
 
   useEffect(() => {
     // This will run whenever theName, theSecret, or theMode changes
@@ -51,40 +49,9 @@ function App() {
 
   return (
     <div id="theMode" className={theMode === 'dark' ? 'dark' : ''}>
-      
-        {/* <ChatEngine
-          projectID={proj}
-          userName={theName}
-          userSecret={theSecret}
-          height='100vh'
-
-        /> */}
-        {/* <MultiChatSocket {...chatProps} />
-
-        <MultiChatWindow 
-          chats={chatProps.chats}
-          messages={chatProps.messages}
-          activeChatId={chatProps.activeChatId}
-          username={chatProps.username}
-          peopleToInvite={chatProps.peopleToInvite}
-          hasMoreChats={chatProps.hasMoreChats}
-          hasMoreMessages={chatProps.hasMoreMessages}
-          onChatFormSubmit={chatProps.onChatFormSubmit}
-          onChatCardClick={chatProps.onChatCardClick}
-          onChatLoaderShow={chatProps.onChatLoaderShow}
-          onMessageLoaderShow={chatProps.onMessageLoaderShow}
-          onMessageLoaderHide={chatProps.onMessageLoaderHide}
-          onBottomMessageShow={chatProps.onBottomMessageShow}
-          onBottomMessageHide={chatProps.onBottomMessageHide}
-          onMessageFormSubmit={chatProps.onMessageFormSubmit}
-          onInvitePersonClick={chatProps.onInvitePersonClick}
-          onRemovePersonClick={chatProps.onRemovePersonClick}
-          onDeleteChatClick={chatProps.onDeleteChatClick}
-          style={{ height: '100vh' }} 
-        /> */}
         <MultiChatSocket {...chatProps} />
         <MultiChatWindow  {...chatProps} style={{ height: '100vh' }} />
-        {console.log('theName', theName)}
+        {/* {console.log('theName', theName)} */}
     </div>
   )
 }

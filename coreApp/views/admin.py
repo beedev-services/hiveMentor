@@ -6,20 +6,6 @@ import string
 import random
 from userApp.util import *
 from coreApp.apiUtil import *
-from coreApp.adminUtil import *
-import logging
-
-logger = logging.getLogger(__name__)
-
-
-# def my_view(request):
-#     # ...
-#     logger.debug('This is a debug message')
-#     logger.info('This is an info message')
-#     logger.warning('This is a warning message')
-#     logger.error('This is an error message')
-#     logger.critical('This is a critical message')
-#     # ...
 
 
 def theAdmin(request):
@@ -58,41 +44,6 @@ def theAdmin(request):
             'release': release,
         }
         return render(request, 'theAdmin.html', context)
-
-def sendUsers(request):
-    if 'user_id' not in request.session:
-        messages.error(request, 'You must be logged in to view')
-        return redirect('/logReg/')
-    user = User.objects.get(id=request.session['user_id'])
-    if user.level < 8:
-        messages.error(request, 'You do not have permissions to view this page')
-    else:
-        sendCurrentUsersToChat()
-        return redirect('/theAdmin/')
-<<<<<<< HEAD
-=======
-    
-def sendUsersGroup(request):
-    if 'user_id' not in request.session:
-        messages.error(request, 'You must be logged in to view')
-        return redirect('/logReg/')
-    user = User.objects.get(id=request.session['user_id'])
-    if user.level < 8:
-        messages.error(request, 'You do not have permissions to view this page')
-    else:
-        theGroup_id = request.POST['chatID']
-        chatAdmin = request.POST['chatAdmin']
-        sendCurrentUsersToGroup(theGroup_id, chatAdmin)
-        return redirect('/theAdmin/')
->>>>>>> chatMergeFix
-    
-def getUsersChat(request):
-    getUsersInChat()
-    return redirect('/user/theAdmin/')
-
-def checkUser(request):
-    getAdminAcct()
-    return redirect('/user/theAdmin/')
 
 def theCodes(request):
     if 'user_id' not in request.session:

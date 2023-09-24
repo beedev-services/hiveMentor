@@ -8,9 +8,6 @@ from coreApp.apiUtil import *
 # from userApp.util import authenticate
 from userApp.keys import *
 import requests
-import logging
-
-logger = logging.getLogger(__name__)
 
 # title = {
 #     'title': 'Index',
@@ -19,17 +16,6 @@ logger = logging.getLogger(__name__)
 # context = {
 #     'title': title,
 # }
-
-
-
-# def my_view(request):
-#     # ...
-#     logger.debug('This is a debug message')
-#     logger.info('This is an info message')
-#     logger.warning('This is a warning message')
-#     logger.error('This is an error message')
-#     logger.critical('This is a critical message')
-#     # ...
 
 
 theProj = PROJECT_ID

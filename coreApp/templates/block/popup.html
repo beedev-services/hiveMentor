@@ -14,7 +14,7 @@
             <button><a href="/chat/">Load Member Chat</a></button>
             <button><a href="/chat/">Load Training</a></button>
             <button><a href="/chat/">Load Mentor Chat</a></button>
-            <button><a href="/chat/">Load Chat Admin</a></button>
+            <button><a href="/chat/theAdmin/">Load Chat Admin</a></button>
             <button><a href="/theAdmin/">Load Site Admin</a></button>
             <button><a href="/admin/">Django Site Admin</a></button>
         {% elif user.level > 7 %}
@@ -22,14 +22,14 @@
             <button><a href="/chat/">Load Member Chat</a></button>
             <button><a href="/chat/">Load Training</a></button>
             <button><a href="/chat/">Load Mentor Chat</a></button>
-            <button><a href="/chat/">Load Chat Admin</a></button>
+            <button><a href="/chat/theAdmin/">Load Chat Admin</a></button>
             <button><a href="/theAdmin/">Load Site Admin</a></button>
         {% elif user.level > 5%}
             <button><a href="/logs/">Load Logs</a></button>
             <button><a href="/chat/">Load Member Chat</a></button>
             <button><a href="/chat/">Load Training</a></button>
             <button><a href="/chat/">Load Mentor Chat</a></button>
-            <button><a href="/chat/">Load Chat Admin</a></button>
+            <button><a href="/chat/theAdmin/">Load Chat Admin</a></button>
         {% elif user.level > 3 %}
     
             {% if user.role == 'Mentor' %}

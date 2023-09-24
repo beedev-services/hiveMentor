@@ -2,8 +2,6 @@ from pathlib import Path
 import os
 from environ import Env
 from userApp.keys import *
-import logging
-from coreApp import handlerUtil
 
 env = Env()
 env.read_env()
@@ -21,24 +19,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['hivementor.beedev-services.com', 'dev.beemindful-buzz.com', 'beemindful-buzz.com']
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'json_file': {
-            'level': 'DEBUG',
-            'class': 'coreApp.handlerUtil.JsonLogHandler',  # Specify the full path to your custom handler
-            'filename': os.path.join(BASE_DIR, 'json', 'logfile.json'),  # Path to where you want to store the JSON log file
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['json_file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',

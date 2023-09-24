@@ -7,6 +7,13 @@ urlpatterns = [
     path('', views.chatDash),
     path('authenticate/<int:id>/', views.authenticate),
     path('frame/<int:id>/', views.chatFrame),
+    # Chat Admin
+    path('theAdmin/', views.chatAdmin),
+    path('theAdmin/sendUsers/', views.sendUsers),
+    path('theAdmin/sendUsersGroups/', views.sendUsersGroup),
+    path('theAdmin/getUsers/', views.getUsersChat),
+    path('theAdmin/checkUser/', views.checkUser),
+    path('theAdmin/getGroupMembers/', views.getGroupUsers),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
