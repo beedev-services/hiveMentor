@@ -18,7 +18,7 @@ weatherAPI = WEATHER_KEY
 
 user_url = 'https://api.chatengine.io/users/'
 adminUrl = "https://api.chatengine.io/users/me/"
-groupChat_url = 'https://api.chatengine.io/chats/'
+chat_url = 'https://api.chatengine.io/chats/'
 
 
 def sendUserToChat(username, email, firstName, lastName):
@@ -33,7 +33,6 @@ def sendUserToChat(username, email, firstName, lastName):
         'PRIVATE-KEY': theKey
     }
     print(payload, headers, user_url)
-
     try:
         response = requests.post(user_url, json=payload, headers=headers)
         responseData = response.json() if response.status_code == 200 else None
@@ -58,18 +57,6 @@ def getUsersInChat():
     print('response in call',response)
     return response.text
 
-def jsonUsersInChat():
-    theUsers = getUsersInChat()
-    users = json.loads(theUsers)
-    print('theUsers', users[1])
-    for user in users:
-        # print('users custjson in jsonloop', user['custom_json'])
-        temp = json.loads(user['custom_json'].replace("'", "\""))
-        # print(temp)
-        user['custom_json'] = temp
-    print('theUsers fixed?', users[1])
-    return users
-
 def getAdminAcct():
     payload={}
     headers = {
@@ -82,20 +69,16 @@ def getAdminAcct():
 
 def updateUserAcct():
     payload = ""
-    # "{\n    \"username\": \"adam_la_morre\",\n    \"email\": \"adam_la_morre@chatengine.io\",\n    \"first_name\": \"Adam\",\n    \"last_name\": \"La Morre\",\n    \"custom_json\": {\n        \"custom_json\": 2001\n    }\n}"
     headers = {
     'Project-ID': theProj,
     'User-Name': theUser,
     'User-Secret': theUser+secret
     }
-
     response = requests.request("PATCH", adminUrl, headers=headers, data=payload)
-
     print(response.text)
 
-
 def sendUserToGroup(username, chatID, chatAdmin):
-    addUserChat_urlFull = groupChat_url+chatID+"/people/"
+    addUserChat_urlFull = chat_url+chatID+"/people/"
     payload = { 'username': username }
     headers = {
         'Project-ID': theProj,
@@ -112,17 +95,14 @@ def sendUserToGroup(username, chatID, chatAdmin):
         print('Error:', str(e))
         return None
 
-
 def sendCurrentUsersToGroup(chatID, chatAdmin):
     allUsers = User.objects.all()
     for user in allUsers:
         sendUserToGroup(user.username, chatID, chatAdmin)
     print('loop done in send current to group')
 
-
-
 def getCurrentUsersInGroup(chatID, chatAdmin):
-    fullUrl = groupChat_url+chatID+"/people/"
+    fullUrl = chat_url+chatID+"/people/"
     payload={}
     headers = {
         'Project-ID': theProj,
@@ -139,7 +119,28 @@ def getCurrentUsersInGroup(chatID, chatAdmin):
         print('Error:', str(e))
         return None
 
-
 def getMyChats(userId):
     user = User.objects.get(id=userId)
-    print(user.firstName)
+    payload={}
+    headers={
+        'Project-ID': theProj,
+        'User-Name': user.username,
+        'User-Secret': user.username+secret
+    }
+    print(chat_url, headers)
+    response = requests.request("GET", chat_url, headers=headers, data=payload)
+    print(response.text)
+    chats = json.loads(response.text)
+    return chats
+
+
+
+def jsonUsersInChat():
+    theUsers = getUsersInChat()
+    users = json.loads(theUsers)
+    print('theUsers', users[1])
+    for user in users:
+        temp = json.loads(user['custom_json'].replace("'", "\""))
+        user['custom_json'] = temp
+    print('theUsers fixed?', users[1])
+    return users

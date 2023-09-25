@@ -37,7 +37,7 @@ def chatDash(request):
     release = marquee()
     users = jsonUsersInChat()
     myChats = getMyChats(user.id)
-    print(myChats)
+    print('mychats:', myChats)
     context = {
         'title': title,
         'role': role,
@@ -45,7 +45,8 @@ def chatDash(request):
         'user': user,
         'userVar': user.id,
         'release': release,
-        'users': users
+        'users': users,
+        'myChats': myChats,
     }
     return render(request, 'chatDash.html', context)
 
@@ -83,3 +84,24 @@ def multiChatFrame(request, id):
         'release': release,
     }
     return render(request, 'chatFrameMulti.html', context)
+
+def singleChatFrame(request, id):
+    title = {
+        'title': 'Chat',
+        'header': 'Chat - BeeMindful-Buzz'
+    }
+    user = User.objects.get(id=id)
+    # print(user)
+    request.session['site'] = 'chat'
+    site = request.session['site']
+    request.session['role'] = user.role
+    role = request.session['role']
+    release = marquee()
+    context = {
+        'title': title,
+        'role': role,
+        'site': site,
+        'user': user,
+        'release': release,
+    }
+    return render(request, 'chatFrameSingle.html', context)

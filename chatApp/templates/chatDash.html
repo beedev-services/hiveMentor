@@ -58,7 +58,18 @@
                 </table>
             </div>
         </div>
-
+        <h2>My Chat Rooms</h2>
+        <table>
+            <tr>
+                <th>Room Name</th>
+                <th>Enter</th>
+            </tr>
+            {% for chat in myChats %}
+                <tr>
+                    <td>{{chat.title}}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
     <!-- <script src="{% static 'js/popup.js' %}"></script> -->
