@@ -138,9 +138,9 @@ def getMyChats(userId):
 def jsonUsersInChat():
     theUsers = getUsersInChat()
     users = json.loads(theUsers)
-    print('theUsers', users[1])
+
     for user in users:
         temp = json.loads(user['custom_json'].replace("'", "\""))
         user['custom_json'] = temp
-    print('theUsers fixed?', users[1])
+
     return users
