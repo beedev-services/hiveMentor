@@ -24,7 +24,6 @@ function MultiChat() {
         setTheSecret(userId+mySecret)
         setTheMode(mode)
         // console.log('in useEffect', theName, theSecret, theMode)
-        setIsLoading(false)
         })
     },[])
     // console.log('in useEffect', theName, theSecret, theMode)
@@ -32,12 +31,15 @@ function MultiChat() {
     useEffect(() => {
       // This will run whenever theName, theSecret, or theMode changes
         console.log('State has been updated', theName, theSecret, theMode);
+        setIsLoading(false)
     }, [theName, theSecret, theMode]);
 
     const projectId = proj
     const username = theName
     const secret = theSecret
     const chatProps = useMultiChatLogic(projectId, username, secret);
+
+
 
     if(isLoading) {
         return <div>

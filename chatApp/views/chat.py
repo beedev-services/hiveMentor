@@ -37,7 +37,17 @@ def chatDash(request):
     release = marquee()
     users = jsonUsersInChat()
     myChats = getMyChats(user.id)
-    print('mychats:', myChats)
+    # print('mychats:', myChats, 'users:', users)
+    if isinstance(myChats, list):
+        request.session['chatStatus'] = "Gkood"
+        chatStatus = request.session['chatStatus']
+    if isinstance(myChats, dict):
+        # customJson = {"user_role": user.role}
+        send = sendUserToChat(user.username, user.email, user.firstName, user.lastName)
+        request.session['chatStatus'] = "Good"
+        print(send)
+        chatStatus = request.session['chatStatus']
+        # pass
     context = {
         'title': title,
         'role': role,
@@ -47,6 +57,7 @@ def chatDash(request):
         'release': release,
         'users': users,
         'myChats': myChats,
+        'chatStatus': chatStatus,
     }
     return render(request, 'chatDash.html', context)
 

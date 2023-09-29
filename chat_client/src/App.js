@@ -12,8 +12,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Main />} path="/alt" />
-        <Route element={<MultiChat />} path="/" default />
+        <Route element={<Main />} path="/" />
+        <Route element={<MultiChat />} path="/multi/" default />
         <Route element={<SingleChat />} path="/single/" />
       </Routes>
     </BrowserRouter>

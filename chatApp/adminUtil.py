@@ -27,7 +27,8 @@ def sendUserToChat(username, email, firstName, lastName):
         'secret': username+secret,
         'email': email,
         'first_name': firstName,
-        'last_name': lastName
+        'last_name': lastName,
+        'custom_json': "{'user_role': 'General'}",
     }
     headers = {
         'PRIVATE-KEY': theKey
@@ -129,7 +130,7 @@ def getMyChats(userId):
     }
     print(chat_url, headers)
     response = requests.request("GET", chat_url, headers=headers, data=payload)
-    print(response.text)
+    print("res.text:",response.text)
     chats = json.loads(response.text)
     return chats
 
