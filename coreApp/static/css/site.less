@@ -82,6 +82,7 @@ body {
         width: 90%;
         border: 1px solid @lt02;
         height: auto;
+        padding-bottom: 2em;
 
         .back {
 
@@ -118,6 +119,20 @@ body {
                 }
             }
         }
+        .chatRooms {
+            border: @lt02 2px solid;
+            padding: .5em;
+            font-size: 1.2em;
+            background-color: @ltbodybg;
+
+            tr {
+
+                td, th {
+                    border: @lt02 2px solid;
+                    padding: .5em;
+                }
+            }
+        }
         .row {
             .flexrow();
             width: 95%;
@@ -137,6 +152,24 @@ body {
             .column {
                 .flexcolumn();
                 margin: 1em 0;
+            }
+            .chat {
+                width: 100%;
+
+                table {
+                    border: @lt02 2px solid;
+                    padding: .5em;
+                    font-size: 1.2em;
+                    background-color: @ltbodybg;
+
+                    tr {
+
+                        td, th {
+                            border: @lt02 2px solid;
+                            padding: .5em;
+                        }
+                    }
+                }
             }
             .logReg {
                 cursor: pointer;

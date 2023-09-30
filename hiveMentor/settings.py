@@ -37,6 +37,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://beemindful-buzz.com',
     'http://chat.beemindful-buzz.com',
     'https://chat.beemindful-buzz.com',
+    'https://fluffy-marigold-2a634c.netlify.app'
     # Add more allowed origins as necessary
 ]
 
@@ -69,7 +70,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'django.contrib.humanize.middleware.HumanizeMiddleware',
 ]
 
 ROOT_URLCONF = 'hiveMentor.urls'

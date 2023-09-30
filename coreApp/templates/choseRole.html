@@ -25,8 +25,8 @@
                     <button><a href="/admin/">Django Site Admin</a></button><br>
                     <button><a href="/logs/">Load Logs</a></button><br>
                     <button><a href="/chat/">Load Member Chat</a></button>
-                    <button><a href="/chat/training/">Load Training</a></button>
-                    <button><a href="/chat/mentor/">Load Mentor Chat</a></button>
+                    <!-- <button><a href="/chat/training/">Load Training</a></button> -->
+                    <!-- <button><a href="/chat/mentor/">Load Mentor Chat</a></button> -->
                     <button><a href="/chat/theAdmin/">Load Chat Admin</a></button>
                 {% elif user.level > 7 %}
                 <!-- Role = SuperAdmin -->
@@ -34,16 +34,16 @@
                     <button><a href="/user/theAdmin/">Load Site Admin</a></button><br>
                     <button><a href="/logs/">Load Logs</a></button><br>
                     <button><a href="/chat/">Load Member Chat</a></button>
-                    <button><a href="/chat/training/">Load Training</a></button>
-                    <button><a href="/chat/mentor/">Load Mentor Chat</a></button>
+                    <!-- <button><a href="/chat/training/">Load Training</a></button> -->
+                    <!-- <button><a href="/chat/mentor/">Load Mentor Chat</a></button> -->
                     <button><a href="/chat/theAdmin/">Load Chat Admin</a></button>
                 {% elif user.level > 5%}
                 <!-- Role = ChatAdmin -->
                     <button><a href="/user/profile/">Profile</a></button><br>
                     <button><a href="/logs/">Load Logs</a></button><br>
                     <button><a href="/chat/">Load Member Chat</a></button>
-                    <button><a href="/chat/training/">Load Training</a></button>
-                    <button><a href="/chat/mentor/">Load Mentor Chat</a></button>
+                    <!-- <button><a href="/chat/training/">Load Training</a></button> -->
+                    <!-- <button><a href="/chat/mentor/">Load Mentor Chat</a></button> -->
                     <button><a href="/chat/theAdmin/">Load Chat Admin</a></button>
                 {% elif user.level > 3 %}
                     {% if user.role == 'Mentor' %}
@@ -51,20 +51,20 @@
                         <button><a href="/user/profile/">Profile</a></button><br>
                         <button><a href="/logs/">Load Logs</a></button><br>
                         <button><a href="/chat/">Load Member Chat</a></button>
-                        <button><a href="/chat/training/">Load Training</a></button>
-                        <button><a href="/chat/mentor/">Load Mentor Chat</a></button>
+                        <!-- <button><a href="/chat/training/">Load Training</a></button> -->
+                        <!-- <button><a href="/chat/mentor/">Load Mentor Chat</a></button> -->
                     {% else %}
                     <!-- Role = Provider -->
                         <button><a href="/user/profile/">Profile</a></button><br>
                         <button><a href="/logs/">Load Logs</a></button>
-                        <button><a href="/logs/provider/">Load Provider</a></button>
+                        <!-- <button><a href="/logs/provider/">Load Provider</a></button> -->
                     {% endif %}
                 {% elif user.level > 1 %}
                 <!-- Role = Trainer -->
                     <button><a href="/user/profile/">Profile</a></button><br>
                     <button><a href="/logs/">Load Logs</a></button>
                     <button><a href="/chat/">Load Member Chat</a></button>
-                    <button><a href="/chat/training/">Load Trainer Chat</a></button>
+                    <!-- <button><a href="/chat/training/">Load Trainer Chat</a></button> -->
                 {% else %}
                 <!-- Role = General -->
                     <button><a href="/user/profile/">Profile</a></button>

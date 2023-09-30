@@ -67,8 +67,8 @@ function openForm(a) {
 }
 function userCount(element){
     userUrl = `http://127.0.0.1:8000/api/userCount/`
-    // userUrl = `https://dev.thehive-services.com/api/userCount/`
-    // userUrl = `https://hivementor.beedev-services.com/api/userCount/`
+    // userUrl = `https://dev.beemindful-buzz.com/api/userCount/`
+    // userUrl = `https://beemidnful-buzz.com/api/userCount/`
     fetch(userUrl)
     .then(res => res.json())
     .then(data => {
@@ -83,11 +83,11 @@ function filterFoods() {
     var catId = document.getElementById('foodCat')
     var dropdown = document.getElementById('foodItemSelect')
     allUrl = `http://127.0.0.1:8000/api/allFoodData/`
-    // allUrl = `https://dev.thehive-services.com/api/allFoodData/`
-    // allUrl = `https://hivementor.beedev-services.com/api/allFoodData/`
+    // allUrl = `https://dev.beemindful-buzz.com/api/allFoodData/`
+    // allUrl = `https://beemindful-buzz.com/api/allFoodData/`
     oneUrl = `http://127.0.0.1:8000/api/foodData/`
-    // oneUrl = `https://dev.thehive-services.com/api/foodData/`
-    // oneUrl = `https://hivementor.beedev-services.com/api/foodData/`
+    // oneUrl = `https://dev.beemidful-buzz.com/api/foodData/`
+    // oneUrl = `https://beemindful-buzz.com/api/foodData/`
     catId = catId.value
     console.log(catId)
     if (catId  == 'All') {
@@ -154,9 +154,13 @@ let chatUser
 
 function enterMultiChat(chatUser) {
     location.replace(`http://127.0.1:8000/chat/multi-frame/${chatUser}/`)
+    // location.replace(`https://dev.beemindful-buzz.com/chat/multi-frame/${chatUser}/`)
+    // location.replace(`https://beemindful-buzz/chat/multi-chat/${chatUser}/`)
 }
 function enterSingleChat(chatId, chatUser) {
     location.replace(`http://127.0.1:8000/chat/single-frame/`)
+    // location.replace(`https://dev.beemindful-buzz.com/single-frame/`)
+    // location.replace(`https://beemindful-buzz.com/single-frame/`)
 }
 function sendUserInfo(chatUser) {
     // chatUser = document.chat.theUser.value
