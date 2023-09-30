@@ -1,4 +1,6 @@
 from coreApp.models import *
+import string
+import random
 
 def marquee():
     current = Release.objects.get(releaseType='Current')
@@ -148,3 +150,10 @@ def projBoard():
         'back': back,
     }
     return data
+
+
+def randomCodeGenerator():
+    N = 12
+    res = ''.join(random.choices(string.ascii_letters, k=N))
+    theCode = str(res)
+    return theCode

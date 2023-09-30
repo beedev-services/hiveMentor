@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 import json
 
 
+
 def latLong(theZip):
     geoUrl = f"http://api.openweathermap.org/geo/1.0/zip?zip={theZip}{weatherAPI}"
     response = requests.get(geoUrl)
@@ -31,3 +32,10 @@ def sendSignupEmail(user):
     send_mail( subject, message, email_from, recipient_list )
 
 
+def forgotPasswordEmail(user, theCode):
+    url = f'https://beemindful-buzz.com/user/password-reset/'
+    subject = 'Forgot password'
+    message = f"I'm sorry {user.firstName} that you have misplaced or forgotten your password. If you requested to get a code to reset your password please use the following url {url} and enter the code below to reset your password.  However if you did not request this please be assured that your account is safe and your current password will still work.\n Forgot Password Code: {theCode}"
+    email_from = settings.EMAIL_HOST_ALT_USER
+    recipient_list = [user.email, ]
+    send_mail( subject, message, email_from, recipient_list )
