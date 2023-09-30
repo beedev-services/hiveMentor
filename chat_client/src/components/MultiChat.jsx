@@ -3,40 +3,32 @@ import { useMultiChatLogic, MultiChatSocket, MultiChatWindow } from "react-chat-
 import './key.js'
 
 
-function MultiChat() {
-    var VITE_CHATENGINE_PROJ='d8ef4f3b-9aca-42d6-8557-d21979acf880'
-    var VITE_CHATENGINE_SECRET='BeeDevTechSquadServices'
-
-    const [theName, setTheName] = useState("")
-    const [theSecret, setTheSecret] = useState("")
-    const mySecret = VITE_CHATENGINE_SECRET
+function MultiChat(props) {
+    
+    const { theUser } = props;
+    // console.log('from props', theUser.theUser)
+    const mySecret = process.env.REACT_APP_CHATENGINE_SECRET
     // const proj = '34e251b1-74c5-4888-b1b1-e56e45673e6e'
-    const proj = VITE_CHATENGINE_PROJ
+    const proj = process.env.REACT_APP_CHATENGINE_PROJ
+    // const [user, setUser] = useState('')
     const [theMode, setTheMode] = useState("")
     const [isLoading, setIsLoading] = useState(true);
-
+    // setUser(theUser)
     useEffect(() => {
         window.addEventListener('message', function(event) {
-        const userId = event.data.user;
         const mode = event.data.mode;
-        // console.log('event.data.user = userId', userId)
-        setTheName(userId)
-        setTheSecret(userId+mySecret)
         setTheMode(mode)
-        // console.log('in useEffect', theName, theSecret, theMode)
         })
     },[])
-    // console.log('in useEffect', theName, theSecret, theMode)
 
     useEffect(() => {
-      // This will run whenever theName, theSecret, or theMode changes
-        console.log('State has been updated', theName, theSecret, theMode);
+        console.log('State has been updated', theMode);
         setIsLoading(false)
-    }, [theName, theSecret, theMode]);
+    }, [theMode]);
 
     const projectId = proj
-    const username = theName
-    const secret = theSecret
+    const username = theUser['theUser']
+    const secret = theUser['theUser']+mySecret
     const chatProps = useMultiChatLogic(projectId, username, secret);
 
 

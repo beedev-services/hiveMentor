@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { SingleChatSocket, ChatFeed, useSingleChatLogic } from 'react-chat-engine-advanced';
+import { useParams } from 'react-router-dom'
 
 function MultiChat() {
 
