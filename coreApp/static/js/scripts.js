@@ -155,7 +155,7 @@ let chatUser
 function enterMultiChat(chatUser) {
     location.replace(`http://127.0.1:8000/chat/multi-frame/${chatUser}/`)
     // location.replace(`https://dev.beemindful-buzz.com/chat/multi-frame/${chatUser}/`)
-    // location.replace(`https://beemindful-buzz/chat/multi-chat/${chatUser}/`)
+    // location.replace(`https://beemindful-buzz.com/chat/multi-frame/${chatUser}/`)
 }
 function enterSingleChat(chatId, chatUser) {
     location.replace(`http://127.0.1:8000/chat/single-frame/`)
