@@ -5,6 +5,8 @@ from logApp.models import *
 import string
 import random
 from userApp.util import *
+from coreApp.apiUtil import *
+
 
 def theAdmin(request):
     if 'user_id' not in request.session:
@@ -42,25 +44,6 @@ def theAdmin(request):
             'release': release,
         }
         return render(request, 'theAdmin.html', context)
-
-def sendUsers(request):
-    if 'user_id' not in request.session:
-        messages.error(request, 'You must be logged in to view')
-        return redirect('/logReg/')
-    user = User.objects.get(id=request.session['user_id'])
-    if user.level < 8:
-        messages.error(request, 'You do not have permissions to view this page')
-    else:
-        sendCurrentUsersToChat()
-        return redirect('/user/theAdmin/')
-    
-def getUsersChat(request):
-    getUsersInChat()
-    return redirect('/user/theAdmin/')
-
-def checkUser(request):
-    getAdminAcct()
-    return redirect('/user/theAdmin/')
 
 def theCodes(request):
     if 'user_id' not in request.session:

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'block/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'block/header.html' %} {% endblock header %}
+    {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
+    <main>
+        <form action="/chat/theAdmin/sendUsers/" method="post">
+            {% csrf_token %}
+            <button>Send Users</button>
+        </form>
+        <form action="/chat/theAdmin/sendUsersGroups/" method="post">
+            {% csrf_token %}
+            <label for="chatID">Group Chat ID</label>
+            <select name="chatID" id="">
+                {% for c in chatIds %}
+                    <option value="{{c.chatID}}">{{c.title}} - {{c.chatID}}</option>
+                {% endfor %}
+            </select>
+            <label for="chatAdmin">Chat Admin Username</label>
+            <select name="chatAdmin" id="">
+                {% for c in chatIds %}
+                    <option value="{{c.adminUser}}">{{c.title}} - {{c.adminUser}}</option>
+                {% endfor %}
+            </select>
+            <button>Send Users To Group</button>
+        </form>
+        <form action="/chat/theAdmin/getGroupMembers/" method="post">
+            {% csrf_token %}
+            <label for="chatID">Group Chat ID</label>
+            <select name="chatID" id="">
+                {% for c in chatIds %}
+                    <option value="{{c.chatID}}">{{c.title}} - {{c.chatID}}</option>
+                {% endfor %}
+            </select>
+            <label for="chatAdmin">Chat Admin Username</label>
+            <select name="chatAdmin" id="">
+                {% for c in chatIds %}
+                    <option value="{{c.adminUser}}">{{c.title}} - {{c.adminUser}}</option>
+                {% endfor %}
+            </select>
+            <button>Get Group Memeber</button>
+        </form>
+        <button><a href="/chat/theAdmin/getUsers/">Get Chat Users</a></button>
+        <button><a href="/chat/theAdmin/checkUser/">Check User</a></button>
+    </main>
+    {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
+</body>
+</html>

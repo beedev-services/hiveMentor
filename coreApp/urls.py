@@ -15,9 +15,7 @@ urlpatterns = [
     path('choseRole/', views.choseRole),
     # Admin Routes
     path('theAdmin/', views.theAdmin),
-    path('theAdmin/sendUsers/', views.sendUsers),
-    path('theAdmin/getUsers/', views.getUsersChat),
-    path('theAdmin/checkUser/', views.checkUser),
+
     path('theAdmin/theCodes/', views.theCodes),
     path('theAdmin/createCode/', views.createCode),
     # path('theAdmin/auth/', views.auth),
@@ -25,11 +23,9 @@ urlpatterns = [
     path('api/', views.apiBase),
     path('api/allFoodData/', views.allFoodData),
     path('api/foodData/<str:cat>/', views.foodData),
-<<<<<<< HEAD
     path('api/releaseDate/', views.releaseDates),
-=======
     path('api/userCount/', views.userCount),
->>>>>>> fddc3ddcc9e0a2089a6976086ca8e4a13530f56b
+    path('api/trello/', views.board),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

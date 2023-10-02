@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,500');
+* {
+  outline: 0;
+}
+show {
+  display: block;
+}
+.hidden {
+  display: none !important;
+}
+body {
+  font-family: 'Rubik', sans-serif;
+}
+h1 {
+  margin: 0.25em 0;
+}
+h2, h3 {
+  margin: 0;
+}
+h4 {
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+p {
+  margin: 4px 0;
+}
+button {
+  border: 1px solid grey;
+  font-family: inherit;
+  font-size: 14px;
+}
+button:active {
+  transform: translateY(2px);
+}
+button[disabled] {
+  background: darkgrey;
+}
+textarea {
+  font-family: inherit;
+  font-size: 14px;
+}
+#project {
+  padding: 10px 5px;
+}
+#project-header {
+  display: flex;
+}
+#columnsContainer {
+  display: inline-flex;
+}
+#stageBar {
+  display: flex;
+  width: 200px;
+  height: 20px;
+  background-color: #E9E9E9;
+  margin: 10px 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.split {
+  height: 20px;
+}
+.col {
+  background-color: lightgrey;
+  margin-right: 15px;
+  padding: 5px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  width: 350px;
+  height: 400px;
+}
+.to-do-gradient {
+  background-image: linear-gradient( 135deg, #D2D2D2 10%, #BDBDBD 100%);
+}
+.to-do-border {
+  border: 2px solid #B3B3B3;
+}
+.in-progress-gradient {
+  background-image: linear-gradient( 135deg, #CE9FFC 10%, #7367F0 100%);
+}
+.in-progress-border {
+  border: 2px solid #756AE2;
+}
+.done-gradient {
+  background-image: linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%);
+}
+.done-border {
+  border: 2px solid #33BE71;
+}
+.colHeader {
+  display: flex;
+  align-items: center;
+  margin: 5px 10px;
+  cursor: move;
+}
+.col-btn, .card-btn {
+  background: transparent;
+  width: 30px;
+  height: 30px;
+  border: none;
+  padding: 2px;
+}
+.add-card-box {
+  margin: 10px;
+}
+.add-card-box > form {
+  display: flex;
+  flex-wrap: wrap;
+}
+.add-card-box > form, .new-card-text {
+  width: 100%;
+}
+.new-card-text {
+  border-radius: 5px;
+}
+.add-card-box > form > button {
+  margin-top: 10px;
+  flex-basis: 0;
+  flex-grow: 1;
+}
+.flex-btn-left {
+  margin-right: 5px;
+}
+.flex-btn-right {
+  margin-left: 5px;
+}
+.add-card-btn {
+  margin-left: auto;
+}
+#add-col-div {
+  width: 350px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed black;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.cardsContainer {
+  height: 90%;
+  overflow-y: auto;
+}
+.card {
+  display: flex;
+  align-items: flex-start;
+  background-color: #ededed;
+  margin: 10px;
+  border: 2px solid #B2B2B2;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: move;
+}
+.card p, #modal p, #modal input, #modal textarea {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.card textarea {
+  resize: vertical;
+  height: 100%;
+  width: 100%;
+}
+.card-text {
+  width: 80%;
+}
+.open-card-menu-btn {
+  margin-left: auto;
+}
+.total {
+  background-color: white;
+  margin-right: 10px;
+  padding: 4px 8px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+#new-col-title {
+  margin-bottom: 10px;
+}
+#modal {
+  background-color: #FFFFFF;
+  position: absolute;
+  top: 25%;
+  left: calc(50% - 200px);
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 51;
+  box-shadow: 0px 12px 24px 5px rgba(0,0,0, 0.7);
+}
+#modalHeader, #modalBody, #submenuHeader {
+  display: flex;
+  padding: 5px;
+}
+#modalBody {
+  flex-direction: column;
+}
+#modalBody button {
+  width: 150px;
+  margin-bottom: 10px;
+}
+#close-modal, #close-col-menu {
+  margin-left: auto;
+}
+#sub-menu {
+  position: absolute;
+  width: 115px;
+  background-color: #ededed;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 2px 0;
+  z-index: 51;
+}
+#submenuBody label {
+  font-weight: bold;
+  cursor: pointer;
+}
+#sub-menu ul {
+    margin: 0;
+    padding: 0;
+}
+#sub-menu ul li {
+  list-style: none;
+}
+#sub-menu ul li a {
+  display: block;
+  width: auto;
+  padding: 5px;
+  cursor: pointer;
+}
+#sub-menu ul li:hover, #sub-menu .optionDiv:hover {
+  color: white;
+  background-color: #0400B1;
+}
+.optionDiv {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.optionDiv > *, #choose-tracking > *, .col-btn img, .card-btn img, .col-btn svg, .card-btn svg {
+  pointer-events: none;
+}
+.checkDiv {
+  display: flex;
+}
+.trackingCheck {
+  min-width: 20px;
+  line-height: 1em;
+}
+.trackingDesc {
+  padding-left: 20px;
+  font-size: 14px;
+}
+.col-tool, .card-tool {
+  cursor: pointer;
+}
+.confirm-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+.delete-col-btn {
+  color: FIREBRICK;
+}
+.delete-col-btn:hover {
+  color: white;
+  background-color: FIREBRICK;
+}
+#overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 50;
+}
+.attributions {
+  width: 1122px;
+  margin-left: 5px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: .5em .5em 0;
+  box-sizing: border-box;
+}

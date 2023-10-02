@@ -3,11 +3,13 @@ from django.contrib import messages
 from userApp.models import *
 from logApp.models import *
 from userApp.util import *
+from coreApp.apiUtil import *
+from logApp.logUtil import *
 from django.core.paginator import Paginator
 
 # title = {
 #     'title': 'Index',
-#     'header': 'Hive Mentor',
+#     'header': 'BeeMindful-Buzz',
 # }
 # context = {
 #     'title': title,
@@ -43,11 +45,15 @@ categories = [
     {'id': 9, 'name': 'Beverages'},
     {'id': 10, 'name': 'Other Starches'},
 ]
+weightUnits = [
+    {'id': 1, 'unit': 'lb'},
+    {'id': 2, 'unit': 'kg'},
+]
 
 def logDash(request):
     title = {
         'title': 'Log Dashboard',
-        'header': 'Hive Mentor - Log Dashboard',
+        'header': 'BeeMindful-Buzz - Log Dashboard',
     }
     if 'user_id' not in request.session:
         messages.error(request, 'Please log in to view your logs')
@@ -96,7 +102,7 @@ def viewWeek(request, week_id):
     weekTitle = week.title
     title = {
         'title':weekTitle,
-        'header': f'Hive Mentor - {weekTitle}'
+        'header': f'BeeMindful-Buzz - {weekTitle}'
     }
     if 'user_id' not in request.session:
         messages.error(request, 'Please log in to view page')
@@ -172,7 +178,7 @@ def viewDay(request, week_id, day_id):
     dayTitle = day.day
     title = {
         'title': f'{dayTitle} of {weekTitle}',
-        'header': f'Hive Mentor - {dayTitle} of {weekTitle}'
+        'header': f'BeeMindful-Buzz - {dayTitle} of {weekTitle}'
     }
     if 'user_id' not in request.session:
         messages.error(request, 'Please log in to view page')
@@ -190,6 +196,7 @@ def viewDay(request, week_id, day_id):
         workouts = Fitness.objects.filter(workout_id=day_id)
         hours = Work.objects.filter(workDay_id=day_id)
         observations = Weather.objects.filter(conditions_id=day_id)
+        weights = Weight.objects.filter(day_id=day_id)
         sList = SymptomList.objects.values().all()
         mList = MedList.objects.values().all()
         wList = FitnessList.objects.values().all()
@@ -211,6 +218,8 @@ def viewDay(request, week_id, day_id):
             journal = False
         else:
             journal = journal[0]
+        if not sleeps:
+            sleeps = False
         site = request.session['site']
         release = marquee()
         context = {
@@ -239,6 +248,8 @@ def viewDay(request, week_id, day_id):
             'sum': sum,
             'categories': categories,
             'release': release,
+            'weightUnits': weightUnits,
+            'weights': weights,
         }
         # print('the journal', journal.title)
         return render(request, 'viewDay.html', context)
@@ -350,11 +361,17 @@ def deleteJournal(request, journal_id):
     pass
 
 # ***** Sleep Functions *****
-def newSleep(request):
-    pass
-
-def createSleep(request):
-    pass
+def createSleep(request, week_id, day_id):
+    print(request.POST['date'], request.POST['sleep'], request.POST['wake'])
+    Sleep.objects.create(
+        date = request.POST['date'],
+        sleep = request.POST['sleep'],
+        wake = request.POST['wake'],
+        night_id = day_id,
+        sleeper = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Sleep entry saved')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def deleteSleep(request, sleep_id):
     pass
@@ -398,18 +415,63 @@ def deleteMed(request, medication_id):
     pass
 
 # ***** Diabetic Functions *****
-def newSugar(request):
-    pass
-
-def createSugar(request):
-    pass
+def createSugar(request, week_id, day_id):
+    Sugar.objects.create(
+        time = request.POST['time'],
+        level = request.POST['level'],
+        testSite = request.POST['testSite'],
+        owner = User.objects.get(id=request.session['user_id']),
+        entry_id = day_id
+    )
+    messages.error(request, 'Sugar Reading logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
 
 def deleteSugar(request, sugar_id):
     pass
 
 # ***** Weight Functions *****
+def createWeight(request, week_id, day_id):
+    Weight.objects.create(
+        userWeight = User.objects.get(id=request.session['user_id']),
+        day_id = day_id,
+        weight = request.POST['weight'],
+        unit = request.POST['unit'],
+    )
+    messages.error(request, 'Weight logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
 # ***** Fitness Functions *****
+def createFitness(request, week_id, day_id):
+    Fitness.objects.create(
+        name = request.POST['name'],
+        duration = request.POST['duration'],
+        comments = request.POST['comments'],
+        workout_id = day_id,
+        human = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Workout logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
 # ***** Work Functions *****
+def createWork(request, week_id, day_id):
+    hrs = request.POST['hrs']
+    mins = request.POST['mins']
+    if not hrs:
+        hrs = 0
+    if not mins:
+        mins = 0
+    duration = convertToMins(hrs, mins)
+    print('theduration',duration)
+    Work.objects.create(
+        duration = duration,
+        comments = request.POST['comments'],
+        job = request.POST['job'],
+        workDay_id = day_id,
+        worker = User.objects.get(id=request.session['user_id'])
+    )
+    messages.error(request, 'Hours Logged')
+    return redirect(f'/logs/week/{week_id}/day/{day_id}/')
+
 # ***** Weather Functions *****
 def createConditions(request,week_id, day_id):
     theLat = request.POST.get('lat')

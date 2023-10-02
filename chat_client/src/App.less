@@ -30,221 +30,50 @@
 
 body {
   // .flexcolumn();
+  // justify-content: flex-start;
   height: 100vh;
   width: 100vw;
   margin: 0px;
 
   #root {
     // .flexcolumn();
+    text-align: center;
+    padding: 1em;
+    height: 100vh;
+    width: 100vw;
+    // border: 2px @lt02 groove;
 
     .loading {
-      // .flexcolumn();
+      .flexcolumn();
       color: white;
 
       img {
         max-width: 300px;
       }
     }
-    // #theMode {
-    //   background-color: @ltbg;
+    form {
+      .flexcolumn();
+      font-size: 1.2em;
 
-    //   .ce-chat-engine {
-    //     width: 800px;
-
-    //     .ce-wrapper {
-    //       background-color: blue;
-    //       width: 100%;
-
-    //       .ce-chat-list-column {
-
-
-    //         .ce-chat-list {
-
-
-    //           .ce-chats-container {
-
-
-    //             div {
-
-    //               .ce-chat-form-container {
-
-    //                 div {
-
-    //                   div {
-
-    //                     div {
-    //                       color: bisque;
-    //                     }
-    //                     .ce-primary-button {
-    //                       background-color: black;
-
-    //                       .anticon {
-    //                         background-color: black;
-    //                       }
-    //                     }
-    //                   }
-    //                 }
-    //               }
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-    // #theMode.dark {
-    //   // background-color: @dkbg;
-
-    //   .ce-chat-engine {
-    //     // background-color: @dkbg !important;
-    //     .ce-wrapper {
-    //       // background-color: @dkbg !important;
-
-    //       // .ce-chat-list-column {
-    //       //   // background-color: @dkbg !important;
-
-    //       //   // .ce-chat-list {
-    //       //   //   // background-color: @dkbg !important;
-
-    //       //   //   .ce-chats-container {
-    //       //   //     // background-color: @dkbg !important;
-    //       //   //     div {
-    //       //   //       // background-color: @dkbg;
-
-    //       //   //       // .ce-chat-form-container {
-    //       //   //       //   // background-color: @dkbg !important;
-    //       //   //       //   div {
-    //       //   //       //     // background-color: @dkbg !important;
-
-    //       //   //       //     // div {
-    //       //   //       //     //   // background-color: @dkbg !important;
-
-    //       //   //       //     //   // div {
-    //       //   //       //     //   //   color: @dkfont;
-    //       //   //       //     //   // }
-    //       //   //       //     //   // .ce-primary-button {
-    //       //   //       //     //   //   // background-color: @dkbuttonbg !important;
-
-    //       //   //       //     //   //   .anticon {
-    //       //   //       //     //   //     // background-color: @dkbuttonbg;
-
-    //       //   //       //     //   //     svg {
-    //       //   //       //     //   //       color: @dkfont;
-    //       //   //       //     //   //     }
-    //       //   //       //     //   //   }
-    //       //   //       //     //   // }
-    //       //   //       //     // }
-    //       //   //       //     // span {
-    //       //   //       //     //   // background-color: @dkbg!important;
-
-    //       //   //       //     //   // .cd-chat-card, .ce-active-chat-card  {
-    //       //   //       //     //   //   // background-color: @dkheaderbg !important;
-    //       //   //       //     //   //   padding: 1em;
-
-    //       //   //       //     //   //   .ce-chat-title-text {
-    //       //   //       //     //   //     // color: @dkfont !important;
-    //       //   //       //     //   //   }
-    //       //   //       //     //   // }
-    //       //   //       //     //   .cd-chat-card.false {
-    //       //   //       //     //     color: red !important;
-    //       //   //       //     //   }
-    //       //   //       //     // }
-    //       //   //       //   }
-    //       //   //       // }
-    //       //   //     }
-    //       //   //   }
-    //       //   // }
-    //       // }
-    //       .ce-chat-feed-column {
-    //         .flexcolumn();
-    //       }
-    //       // .ce-chat-settings-column {
-
-    //       // }
-    //     }
-    //   }
-    // }
+      label {
+        .flexcolumn();
+        margin: 1em;
+      }
+      input, select {
+        height: 2em;
+        box-shadow: 5px 5px #3349B9;
+        border: 1px solid #3349B9;
+      }
+      button {
+        text-decoration: none;
+        padding: 1em;
+        margin: 0.5em;
+        border-radius: 30%;
+        box-shadow: 5px 5px #3349B9;
+        border: 1px solid #3349B9;
+        color: #080C0D;
+        font-weight: 900;
+      }
+    }
   }
 }
-
-// .background {
-//   width: 100vw;
-//   height: 100vh;
-//   background: linear-gradient(75deg, rgb(20, 23, 33) 0%, rgb(20, 23, 33) 50%, rgba(20, 23, 33,0.8) 100%);
-//   /* Vertical center */
-//   display: table-cell;
-//   vertical-align: middle;
-// }
-
-// .form-card {
-//   width: 50%;
-//   max-width: 350px;
-//   padding: 0% 25% 0% 25%;
-// }
-
-// .form-title { 
-//   font-size: 42px; 
-//   font-family: 'Avenir'; 
-//   font-weight: 800; 
-//   letter-spacing: 0.5px; 
-//   color: #e8e8e8; 
-//   padding-bottom: 12px; 
-// }
-
-// .form-subtitle {
-//   font-size: 18px;
-//   font-family: 'Avenir';
-//   letter-spacing: 0.5px;
-//   color: #afafaf;
-//   padding-bottom: 24px;
-// }
-
-// .auth {
-//   position: relative;
-//   display: inline-block;
-//   width: 100%;
-//   padding-bottom: 12px;
-// }
-// .auth-label {
-//   position: absolute;
-//   top: 8px;
-//   left: 18px;
-//   font-size: 11px;
-//   color: rgb(175, 175, 175);
-//   font-family: Avenir;
-//   width: 100px;
-// }
-// .auth-input {
-//   background-color: #3e404b;
-//   color: white;
-//   font-family: "Avenir";
-//   outline: none;
-//   border: none;
-//   border-radius: 8px;
-//   padding: 24px 18px 12px 18px;
-//   width: calc(100% - 18px - 18px);
-//   margin-bottom: 12px;
-// }
-// .auth-button {
-//   width: 100%;
-//   height: 53px;
-//   color: white;
-//   background-color: #fa541c;
-//   border: none;
-//   outline: none;
-//   border-radius: 8px;
-//   font-family: "Avenir";
-//   cursor: pointer;
-//   transition: all .44s ease;
-//   -webkit-transition: all .44s ease;
-//   -moz-transition: all .44s ease;
-// }
-// .auth-button:hover { filter: brightness(145%); }
-
-// .chat-wrapper {
-//   height: 80vh; 
-//   width: 80%;
-//   margin-left: 10%; 
-//   color: white; 
-//   background: rgb(43, 47, 60);
-// }

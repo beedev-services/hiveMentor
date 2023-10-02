@@ -1,3 +1,4 @@
+from django.conf import settings  # Import the settings module
 from django.http import JsonResponse, HttpResponse
 from django.core.serializers import serialize
 from django.shortcuts import render, redirect
@@ -5,6 +6,9 @@ from django.contrib import messages
 from logApp.models import *
 from logApp.views.logs import categories
 from userApp.util import *
+from coreApp.apiUtil import *
+import os
+import json
 
 status = {
     "API Status": "Running"
@@ -37,3 +41,10 @@ def foodData(request, cat):
 def releaseDates(request):
     marqueeData = marquee()
     return JsonResponse(marqueeData, content_type="application.json")
+
+def board(request):
+    status = projBoard()
+    data = {
+        'status': status
+    }
+    return JsonResponse(data, content_type="application.json")

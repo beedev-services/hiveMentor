@@ -1,11 +1,13 @@
 from pathlib import Path
 import os
 from environ import Env
+from userApp.keys import *
 
 env = Env()
 env.read_env()
 
 # BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECRET_KEY = 'django-insecure-v_ry!op)yp3_cgvw&u2=%biwi4s^uk6znfs4i@4h%hv1ih0t88'
@@ -15,12 +17,13 @@ DEBUG = True
 # DEBUG = False
 
 ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = ['hivementor.beedev-services.com']
-# ALLOWED_HOSTS = ['dev.thehive-services.com']
+# ALLOWED_HOSTS = ['hivementor.beedev-services.com', 'dev.beemindful-buzz.com', 'beemindful-buzz.com']
+
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:8000',
+    'http://127.0.0.1:5500',
     'http://localhost:5173',
     'https://hivementor.beedev-services.com',
     'http://hivementor.beedev.services.com',
@@ -28,9 +31,17 @@ CORS_ALLOWED_ORIGINS = [
     'http://hivechat.beedev.services.com',
     'https://dev.thehive-services.com',
     'http://dev.thehive-services.com',
+    'http://dev.beemindful-buzz.com',
+    'https://dev.beemindful-buzz.com',
+    'http://beemindful-buzz.com',
+    'https://beemindful-buzz.com',
+    'http://chat.beemindful-buzz.com',
+    'https://chat.beemindful-buzz.com',
+    'https://fluffy-marigold-2a634c.netlify.app'
     # Add more allowed origins as necessary
 ]
-CORS_ALLOWED_ALL_ORIGINS: True
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
@@ -47,6 +58,7 @@ INSTALLED_APPS = [
     'logApp.apps.LogappConfig',
     'corsheaders',
     'rest_framework',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -155,3 +167,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST = 'mail.beedev-services.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+# EMAIL_PORT = 465
+EMAIL_HOST_USER = 'beedev.services@gmail.com'
+EMAIL_HOST_PASSWORD = HOST_PASSWORD
+EMAIL_HOST_ALT_USER = 'melissa@beemindful-buzz.com'
