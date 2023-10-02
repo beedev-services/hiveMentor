@@ -8,14 +8,71 @@
     <main>
         <h1>Chat with fellow Developers</h1>
         <button class="enterChat" onclick="sendUserInfo({{user.id}})">Enter Chat</button>
-        <div class="popup">
+        <!-- <form action="">
+            {% csrf_token %}
+
+        </form> -->
+        <!-- <div class="popup">
             <div class="cnt223">
                 <h1>Coming Soon</h1>
                 <a href='/choseRole/' class='close'>Close</a>
+            </div> -->
+        </div>
+        <h2>Users</h2>
+        <div class="row">
+            <div class="column chat">
+                <h2>Online Users</h2>
+                <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Chat with User</th>
+                    </tr>
+                    {% for user in users %}
+                        {% if user.is_online %}
+                        <tr>
+                            <th>{{user.username}}</th>
+                            <td>{{user.custom_json.user_role}}</td>
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="column chat">
+                <h2>Offline Users</h2>
+                <table>
+                    <tr>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Message User</th>
+                    </tr>
+                    {% for user in users %}
+                        {% if not user.is_online %}
+                        <tr>
+                            <th>{{user.username}}</th>
+                            <td>{{user.custom_json.user_role}}</td>
+                            <td></td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
             </div>
         </div>
+        <h2>My Chat Rooms</h2>
+        <table class="chatRooms">
+            <tr>
+                <th>Room Name</th>
+                <th>Enter</th>
+            </tr>
+            {% for chat in myChats %}
+                <tr>
+                    <td>{{chat.title}}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
-    <script src="{% static 'js/popup.js' %}"></script>
+    <!-- <script src="{% static 'js/popup.js' %}"></script> -->
 </body>
 </html>

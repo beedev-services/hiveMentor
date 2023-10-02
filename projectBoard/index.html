@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="project">
+        <h1>Project Board</h1>
+        <div id="project-header"></div>
+        <div id="stageBar"></div>
+        <div id="columnsContainer">
+            <div id="stage-1" class="col to-do-gradient to-do-border" data-track="BackLog" draggable="true">
+                <div class="colHeader">
+                    <div id="total-1" class="total to-do-border"></div>
+                    <h2 class="col-name">BackLog</h2>
+                    <button id="addCard-1" class="add-card-btn col-btn" title="Add a card to this column">
+                        <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_Plus_869750_no_attribute.svg" alt="Add a card to this column" />
+                    </button>
+                    <button id="open-col-menu-1" class="open-col-menu-btn col-btn" title="Open column edit menu">
+                        <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_ellipsis_869758_no_attribute.svg" alt="Open column edit menu" />
+                    </button>
+                </div>
+                <div id="cards-1" class="cardsContainer" data-track="to-do">
+                    <div id="card-1" class="card" draggable="true" data-card-track="to-do">
+                        <div id="card-text-1" class="card-text"></div>
+                        <button id="open-card-menu-1" class="open-card-menu-btn card-btn" title="Open card edit menu">
+                            <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_ellipsis_869758_no_attribute.svg" alt="Open card edit menu" />
+                        </button>
+                </div>
+                <div id="card-2" class="card" draggable="true" data-card-track="to-do">
+                    <div id="card-text-2" class="card-text"></div>
+                    <button id="open-card-menu-2" class="open-card-menu-btn card-btn" title="Open card edit menu">
+                        <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_ellipsis_869758_no_attribute.svg" alt="Open card edit menu" />
+                    </button>
+                </div>
+                <div id="card-3" class="card" draggable="true" data-card-track="to-do">
+                    <div id="card-text-3" class="card-text"></div>
+                    <button id="open-card-menu-3" class="open-card-menu-btn card-btn" title="Open card edit menu">
+                        <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_ellipsis_869758_no_attribute.svg" alt="Open card edit menu" />
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="stage-2" class="col in-progress-gradient in-progress-border" data-track="in-progress" draggable="true">
+            <div class="colHeader">
+                <div id="total-2" class="total in-progress-border"></div>
+                <h2 class="col-name">In Progress</h2>
+                <button id="addCard-2" class="add-card-btn col-btn" title="Add a card to this column">
+                    <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_Plus_869750_no_attribute.svg" alt="Add a card to this column" />
+                </button>
+                <button id="open-col-menu-2" class="open-col-menu-btn col-btn" title="Open column edit menu">
+                    <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_ellipsis_869758_no_attribute.svg" alt="Open column edit menu" />
+                </button>
+            </div>
+            <div id="cards-2" class="cardsContainer" data-track="in-progress">
+                <div id="card-4" class="card" draggable="true" data-card-track="in-progress">
+                    <div id="card-text-4" class="card-text">Changing column titles and column deletion functions are accessed via the column menu button.</div>
+                    <button id="open-card-menu-4" class="open-card-menu-btn card-btn" title="Open card edit menu">
+                        <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_ellipsis_869758_no_attribute.svg" alt="Open card edit menu" />
+                    </button>
+                </div>
+            </div>
+        </div>
+            <div id="stage-3" class="col done-gradient done-border" data-track="done" draggable="true">
+                <div class="colHeader">
+                    <div id="total-3" class="total done-border"></div>
+                    <h2 class="col-name">Done</h2>
+                    <button  id="addCard-3" class="add-card-btn col-btn" title="Add a card to this column">
+                        <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_Plus_869750_no_attribute.svg" alt="Add a card to this column" />
+                    </button>
+                    <button id="open-col-menu-3" class="open-col-menu-btn col-btn" title="Open column edit menu">
+                        <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_ellipsis_869758_no_attribute.svg" alt="Open column edit menu" />
+                    </button>
+                </div>
+                <div id="cards-3" class="cardsContainer" data-track="done">
+                    <div id="card-5" class="card" draggable="true" data-card-track="done">
+                        <div id="card-text-5" class="card-text">Chaning card text and card deletion functions are accessed via the card menu buttons in each card.  </div>
+                        <button id="open-card-menu-5" class="open-card-menu-btn card-btn" title="Open card edit menu">
+                            <img src="https://res.cloudinary.com/anthony-dee/image/upload/v1546548847/noun_ellipsis_869758_no_attribute.svg" alt="Open card edit menu" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="add-col-div" title="Click to add a new column">
+            + Add column
+            </div>
+        </div>
+    </div>
+    <div id="modal" hidden>
+        <div id="modalHeader">
+            <h2 id="modalTitle"></h2>
+            <button id="close-modal">&times;</button>
+        </div>
+        <div id="modalBody"></div>
+    </div>
+    <div id="sub-menu" hidden>
+        <div id="submenuHeader">
+            <h3 id="submenuTitle"></h3>
+            <button id="close-col-menu">&times;</button>
+        </div>
+        <div id="submenuBody"></div>
+    </div>
+
+    <div id="overlay" class="hidden"></div>
+    <script src="./js/script.js"></script>
+    <script src="./js/db.js"></script>
+</body>
+</html>

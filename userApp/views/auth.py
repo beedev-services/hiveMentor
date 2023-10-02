@@ -14,6 +14,7 @@ def login(request):
             if userLogin.id == 1:
                 messages.error(request, f'Welcome back Admin {userLogin.firstName}')
             request.session['role'] = userLogin.role
+            # sendSignupEmail(userLogin)
             return redirect('/choseRole/')
         messages.error(request, 'Invalid Credentials')
         return redirect('/logReg/')
@@ -44,6 +45,7 @@ def reg(request):
         toUpdate.save()
     messages.error(request, f'Welcome {newUser.firstName}')
     request.session['role'] = newUser.role
-    sendUserToChat(newUser.username, newUser.email, newUser.firstName, newUser.lastName,newUser.role)
+    sendSignupEmail(newUser)
+    # sendUserToChat(newUser.username, newUser.email, newUser.firstName, newUser.lastName,newUser.role)
     return redirect('/choseRole/')
 

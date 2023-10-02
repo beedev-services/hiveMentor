@@ -3,7 +3,7 @@
   font-style: italic;
   font-weight: 300;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/raleway/v29/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Volkhov';
@@ -233,7 +233,7 @@ body main {
   width: 90%;
   border: 1px solid #3349B9;
   height: auto;
-  padding-bottom: 1em;
+  padding-bottom: 2em;
 }
 body main .back a {
   text-decoration: none;
@@ -245,6 +245,20 @@ body main .back a {
   color: #080C0D;
   background-color: #f5f3f56f;
   font-weight: 900;
+}
+body main .lgButton {
+  font-size: 1.2em;
+}
+body main .chatRooms {
+  border: #3349B9 2px solid;
+  padding: 0.5em;
+  font-size: 1.2em;
+  background-color: #e0d0d197;
+}
+body main .chatRooms tr td,
+body main .chatRooms tr th {
+  border: #3349B9 2px solid;
+  padding: 0.5em;
 }
 body main .row {
   display: flex;
@@ -277,6 +291,33 @@ body main .row .column {
   justify-content: center;
   align-items: center;
   margin: 1em 0;
+}
+body main .row .chat {
+  width: 100%;
+}
+body main .row .chat table {
+  border: #3349B9 2px solid;
+  padding: 0.5em;
+  font-size: 1.2em;
+  background-color: #e0d0d197;
+}
+body main .row .chat table tr td,
+body main .row .chat table tr th {
+  border: #3349B9 2px solid;
+  padding: 0.5em;
+}
+body main .row .logReg {
+  cursor: pointer;
+  border: 1px solid #CF508D;
+  border-radius: 40%;
+  text-align: center;
+  padding: 15px;
+  margin-left: 8px;
+  box-shadow: 3px 3px #CF508D;
+}
+body main .row .logReg a {
+  color: #080C0D;
+  text-decoration: none;
 }
 body main .column {
   display: flex;
@@ -443,8 +484,55 @@ body main .mobile .list li ul li form {
 body main .mobile .list li ul li form button {
   margin: 0;
 }
-body main .mobile .tracking {
-  border: 1px solid #3349b980;
+body main .mobile .mid {
+  width: 33%;
+}
+body main .mobile .mid .column {
+  padding: 1em;
+}
+body main .mobile .mid .column .logTable {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.2em 0;
+}
+body main .mobile .mid .column .logTable td,
+body main .mobile .mid .column .logTable th {
+  border: 1px solid #080c0d6f;
+  padding: 8px;
+}
+body main .mobile .mid .column .logTable tr:nth-child(even) {
+  background-color: #E0D0D1;
+}
+body main .mobile .mid .column .logTable td {
+  font-weight: 600;
+  font-size: 1.1em;
+}
+body main .mobile .mid .column .logTable td img {
+  border-radius: 50%;
+  max-width: 75px;
+}
+body main .mobile .mid .column .logTable .headerRow {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #080c0d6f;
+  color: #E0D0D1;
+}
+body main .mobile .mid .column .logTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #DD8365;
+  color: #E0D0D1;
+}
+body main .mobile .mid .lgButton {
+  font-size: 1.2em;
+}
+body main .mobile .right {
+  width: 33%;
+}
+body main .mobile .right .lgButton {
+  font-size: 1.2em;
 }
 body footer {
   display: flex;

@@ -9,9 +9,49 @@ body {
   width: 100vw;
   margin: 0px;
 }
+body #root {
+  text-align: center;
+  padding: 1em;
+  height: 100vh;
+  width: 100vw;
+}
 body #root .loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
 }
 body #root .loading img {
   max-width: 300px;
+}
+body #root form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+}
+body #root form label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+body #root form input,
+body #root form select {
+  height: 2em;
+  box-shadow: 5px 5px #3349B9;
+  border: 1px solid #3349B9;
+}
+body #root form button {
+  text-decoration: none;
+  padding: 1em;
+  margin: 0.5em;
+  border-radius: 30%;
+  box-shadow: 5px 5px #3349B9;
+  border: 1px solid #3349B9;
+  color: #080C0D;
+  font-weight: 900;
 }

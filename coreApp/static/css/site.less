@@ -86,7 +86,7 @@ body {
         width: 90%;
         border: 1px solid @lt02;
         height: auto;
-        padding-bottom: 1em;
+        padding-bottom: 2em;
 
         .back {
 
@@ -101,28 +101,24 @@ body {
                 background-color: @ltbgtrasnarent;
                 font-weight: 900;
             }
-        }
-        // .mobile {
+        }    
+        .lgButton {
+            font-size: 1.2em;
+            }
+        .chatRooms {
+            border: @lt02 2px solid;
+            padding: .5em;
+            font-size: 1.2em;
+            background-color: @ltbodybg;
 
-        //     .left {
-        //         width: 33%;
-    
-        //         form {
-        //             margin: .5em;
-        //         }
-        //         .lgButton {
-        //             font-size: 1.2em;
-        //             margin: .5em;
-        //         }
-        //     }
-        //     .right {
-        //         width: 33%;
-    
-        //         .lgButton {
-        //             font-size: 1.2em;
-        //         }
-        //     }
-        // }
+            tr {
+
+                td, th {
+                    border: @lt02 2px solid;
+                    padding: .5em;
+                }
+            }
+        }
         .row {
             .flexrow();
             width: 95%;
@@ -143,6 +139,39 @@ body {
             .column {
                 .flexcolumn();
                 margin: 1em 0;
+            }
+            .chat {
+                width: 100%;
+
+                table {
+                    border: @lt02 2px solid;
+                    padding: .5em;
+                    font-size: 1.2em;
+                    background-color: @ltbodybg;
+
+                    tr {
+
+                        td, th {
+                            border: @lt02 2px solid;
+                            padding: .5em;
+                        }
+                    }
+                }
+            }
+            .logReg {
+                cursor: pointer;
+                border: 1px solid @lt01;
+                border-radius: 40%;
+                // width: 30px;
+                text-align: center;
+                padding: 15px;
+                margin-left: 8px;
+                box-shadow: 3px 3px @lt01;
+
+                a {
+                    color: @ltfont;
+                    text-decoration: none;
+                }
             }
         }
         .column {
@@ -286,8 +315,59 @@ body {
                     }
                 }
             }
-            .tracking {
-                border: 1px solid @ltbuttonbg;
+            .mid {
+                width: 33%;
+    
+                .column {
+                    padding: 1em;
+
+                    .logTable {
+                        border-collapse: collapse;
+                        width: 100%;
+                        margin: .2em 0;
+
+                        td, th {
+                            border: 1px solid @dkbgtrasparent;
+                            padding: 8px;
+                        }
+                        tr:nth-child(even) {
+                            background-color: @ltboxbg;
+                        }
+                        td {
+                            font-weight: 600;
+                            font-size: 1.1em;
+
+                            img {
+                                border-radius: 50%;
+                                max-width: 75px;
+                            }
+                        }
+                        .headerRow {
+                            padding-top: 12px;
+                            padding-bottom: 12px;
+                            text-align: center;
+                            background-color: @dkbgtrasparent;
+                            color: @dkfont;
+                        }
+                        th {
+                            padding-top: 12px;
+                            padding-bottom: 12px;
+                            text-align: left;
+                            background-color: @lt03;
+                            color: @dkfont;
+                        }
+                    }
+                }
+                .lgButton {
+                    font-size: 1.2em;
+                }
+            }
+            .right {
+                width: 33%;
+    
+                .lgButton {
+                    font-size: 1.2em;
+                }
             }
         }
 
