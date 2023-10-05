@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from userApp.models import *
 from logApp.models import *
-from userApp.util import *
-from coreApp.apiUtil import *
+from coreApp.utils import *
 
 def profile(request):
     if 'user_id' not in request.session:

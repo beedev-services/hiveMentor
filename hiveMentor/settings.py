@@ -1,36 +1,25 @@
 from pathlib import Path
 import os
 from environ import Env
-from userApp.keys import *
+from coreApp.config import *
 
 env = Env()
 env.read_env()
 
-# BASE_DIR = Path(__file__).resolve().parent.parent
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# SECRET_KEY = 'django-insecure-v_ry!op)yp3_cgvw&u2=%biwi4s^uk6znfs4i@4h%hv1ih0t88'
 SECRET_KEY = 'KEY'
 
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = ['hivementor.beedev-services.com', 'dev.beemindful-buzz.com', 'beemindful-buzz.com']
+ALLOWED_HOSTS = ['localhost:8000','127.0.0.1:8000', 'hivementor.beedev-services.com', 'dev.beemindful-buzz.com', 'beemindful-buzz.com']
 
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'http://127.0.0.1:8000',
     'http://127.0.0.1:5500',
-    'http://localhost:5173',
-    'https://hivementor.beedev-services.com',
-    'http://hivementor.beedev.services.com',
-    'https://hivechat.beedev.services.com',
-    'http://hivechat.beedev.services.com',
-    'https://dev.thehive-services.com',
-    'http://dev.thehive-services.com',
     'http://dev.beemindful-buzz.com',
     'https://dev.beemindful-buzz.com',
     'http://beemindful-buzz.com',
@@ -38,7 +27,6 @@ CORS_ALLOWED_ORIGINS = [
     'http://chat.beemindful-buzz.com',
     'https://chat.beemindful-buzz.com',
     'https://fluffy-marigold-2a634c.netlify.app'
-    # Add more allowed origins as necessary
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True

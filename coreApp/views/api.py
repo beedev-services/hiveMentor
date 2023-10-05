@@ -4,9 +4,7 @@ from django.core.serializers import serialize
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from logApp.models import *
-from logApp.views.logs import categories
-from userApp.util import *
-from coreApp.apiUtil import *
+from coreApp.utils import *
 import os
 import json
 
