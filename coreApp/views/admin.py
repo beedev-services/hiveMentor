@@ -4,8 +4,7 @@ from userApp.models import *
 from logApp.models import *
 import string
 import random
-from userApp.util import *
-from coreApp.apiUtil import *
+from coreApp.utils import *
 
 
 def theAdmin(request):

@@ -2,9 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from userApp.models import *
 from logApp.models import *
-from userApp.util import *
-from coreApp.apiUtil import *
-from logApp.logUtil import *
+from coreApp.utils import *
 from django.core.paginator import Paginator
 
 # title = {

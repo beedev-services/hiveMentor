@@ -1,0 +1,7 @@
+PROJECT_ID = 'd8ef4f3b-9aca-42d6-8557-d21979acf880'
+PRIVATE_KEY = '9b38eca8-a9ff-4347-8e7e-8152eeeb33ac'
+# weatherAPI = '&appid=e2dce74ca5407e4678b17b94a72fe7df'
+WEATHER_KEY = '&appid=179fcd38509ce9a4671ca1be23eac6ba'
+CHAT_SECRET = 'BeeDevTechSquadServices'
+HOST_PASSWORD = 'galtijsjzplbquof'
+# HOST_PASSWORD = 'MrTucker@22'
