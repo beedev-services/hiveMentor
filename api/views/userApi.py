@@ -27,3 +27,11 @@ def oneUser(request, user_id):
         'user': user
     }
     return JsonResponse(data, content_type="application.json")
+
+def loggedUser(request, username):
+    theUser = User.objects.get(username=username)
+    user = theUser.username
+    data = {
+        'user': user
+    }
+    return JsonResponse(data, content_type="application.json")

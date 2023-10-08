@@ -14,6 +14,7 @@ urlpatterns = [
     path('oneUser/<int:user_id>/', views.oneUser),
     path('trello/', views.board),
     path('testing/', views.testApi),
+    path('loggedUser/<str:username>/', views.loggedUser),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

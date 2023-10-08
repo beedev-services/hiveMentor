@@ -1,29 +1,57 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
 function Main({setTheUser}) {
 
     const [theUser, setTheUserLocal] = useState('');
+    const [theLoggedUser, setTheLoggedUser] = useState('')
     const [version, setVersion] = useState('multi'); // Default to 'multi ' version
     const navigate = useNavigate();
+    const [info, setInfo] = useState('')
+    const [invalid, setInvalid] = useState('')
+
+    useEffect(() => {
+        window.addEventListener('message', function(event) {
+        const logUser = event.data.user;
+        setTheLoggedUser(logUser)
+        })
+    },[])
 
     const handleVersionChange = (event) => {
         setVersion(event.target.value)
     }
+
+    useEffect(() => {
+        // GET request using fetch inside useEffect React hook
+        if (theLoggedUser) {
+            fetch(`http://127.0.0.1:8000/api/loggedUser/${theLoggedUser}/`)
+            .then(response => response.json())
+            .then(data => setInfo(data));
+        }
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    }, [theLoggedUser]);
+    console.log('useEffect api base',info.user)
+
     const handleSubmit = (e) => {
         e.preventDefault()
         setTheUser(theUser)
-        if (version === 'multi') {
-            navigate('/multi')
+        if(theUser === info.user) {
+            if (version === 'multi') {
+                navigate('/multi')
+            } else {
+                navigate('/single')
+            } 
         } else {
-            navigate('/single')
+            setInvalid('Invalid username')
+            console.log('updated',invalid)
         }
     }
 
     return (
         <>
         <h1>Please enter your user name to proceed to chat</h1>
+        <span className='messages'>{invalid}</span>
         <form>
             <label>
                 Username:
