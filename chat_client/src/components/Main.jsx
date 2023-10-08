@@ -26,6 +26,8 @@ function Main({setTheUser}) {
         // GET request using fetch inside useEffect React hook
         if (theLoggedUser) {
             fetch(`http://127.0.0.1:8000/api/loggedUser/${theLoggedUser}/`)
+            // fetch(`https://dev.beemindful-buzz.com/api/loggedUser/${theLoggedUser}/`)
+            // fetch(`https://beemindful-buzz.com/api/loggedUser/${theLoggedUser}/`)
             .then(response => response.json())
             .then(data => setInfo(data));
         }
