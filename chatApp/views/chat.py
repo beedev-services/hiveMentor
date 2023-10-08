@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 from django.core.serializers import serialize
 from userApp.models import *
-from userApp.util import *
 from coreApp.utils import *
 from coreApp.config import *
 import requests

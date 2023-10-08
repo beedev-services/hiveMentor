@@ -13,7 +13,7 @@ SECRET_KEY = 'KEY'
 DEBUG = True
 # DEBUG = False
 
-ALLOWED_HOSTS = ['localhost:8000','127.0.0.1:8000', 'hivementor.beedev-services.com', 'dev.beemindful-buzz.com', 'beemindful-buzz.com']
+ALLOWED_HOSTS = ['localhost:8000','127.0.0.1:8000','127.0.0.1', 'hivementor.beedev-services.com', 'dev.beemindful-buzz.com', 'beemindful-buzz.com']
 
 
 CORS_ALLOWED_ORIGINS = [
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'django.contrib.humanize',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -146,6 +147,8 @@ TIME_ZONE = 'US/Eastern'
 USE_I18N = True
 
 USE_TZ = True
+
+LOGIN_URL = '/user/login/'
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

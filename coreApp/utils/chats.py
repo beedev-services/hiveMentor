@@ -1,5 +1,5 @@
 import requests
-from business.beeDev.hiveMentor.coreApp.config.keys import *
+from coreApp.config.keys import *
 from userApp.models import User
 from coreApp.models import *
 import json
