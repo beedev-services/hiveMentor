@@ -167,3 +167,9 @@ function sendUserInfo(chatUser) {
     console.log('from django to js',chatUser)
     enterMultiChat(chatUser)
 }
+
+
+var csrfToken = document.getElementById("token");
+console.log(csrfToken.innerHTML);
+var token = document.querySelector("#token input").value;
+console.log("the token test:", token)

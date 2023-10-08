@@ -3,7 +3,7 @@ from django.contrib import messages
 from userApp.models import *
 from logApp.models import *
 import bcrypt
-from userApp.util import *
+from coreApp.utils import *
 
 def login(request):
     user = User.objects.filter(username = request.POST['username'])

@@ -1,0 +1,45 @@
+@import './less/base.less';
+
+body.dark {
+    background-color: @dkbg;
+    background-image: url(../images/dkBG.jpg);
+    color: @dkfont;
+
+    header {
+        background-color: @dkheaderbg;
+        box-shadow: 5px 5px @dk02;
+        border: 1px solid @dk02;
+
+        .mode {
+            .change {
+                border: 1px solid @dk01;
+                box-shadow: 3px 3px @dk01;
+                background-color: @dk01button;
+            }
+        }
+        nav {
+            #myLinks {
+            
+
+                a {
+                    border: 1px solid @lt02;
+                    color: @dkfont;
+                    box-shadow: 5px 5px @dk02;
+                    background-color: @dkbgtrasparent;
+                }
+            }
+        }
+    }
+    main {
+        background-color: @dkbodybg;
+    }
+    footer {
+        background-color: @dkheaderbg;
+        box-shadow: 5px 5px @dk02;
+        border: 1px solid @dk02;
+
+        a {
+            color: @dkfont;
+        }
+    }
+}
