@@ -158,7 +158,7 @@ function enterMultiChat(chatUser) {
     // location.replace(`https://beemindful-buzz.com/chat/multi-frame/${chatUser}/`)
 }
 function enterSingleChat(chatId, chatUser) {
-    location.replace(`http://127.0.1:8000/chat/single-frame/`)
+    location.replace(`http://127.0.1:8000/chat/single-frame/${chatId}/${chatUser}/`)
     // location.replace(`https://dev.beemindful-buzz.com/single-frame/`)
     // location.replace(`https://beemindful-buzz.com/single-frame/`)
 }
@@ -166,4 +166,10 @@ function sendUserInfo(chatUser) {
     // chatUser = document.chat.theUser.value
     console.log('from django to js',chatUser)
     enterMultiChat(chatUser)
+}
+
+function sendChatUserInfo(chatId, chatUser) {
+    // chatUser = document.chat.theUser.value
+    console.log('from django to js',chatId, chatUser)
+    enterMultiChat(chatId, chatUser)
 }

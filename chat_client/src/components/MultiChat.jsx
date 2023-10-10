@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useMultiChatLogic, MultiChatSocket, MultiChatWindow } from "react-chat-engine-advanced";
-import './key.js'
 
 
 function MultiChat(props) {
