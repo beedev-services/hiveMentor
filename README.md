@@ -16,8 +16,8 @@ Mentors have the ability to talk to general users, they must be approved after s
 # Links and Release Dates/Version Live
 
 ## Links
-- [Main site](https://hivementor.beedev-services.com)
-- [Dev site](https://dev.thehive-services.com)
+- [Main site](https://beemindful-buzz.com)
+- [Dev site](https://dev.beemindful-buzz.com)
 - Both sites access the same database but current version updates are on Dev till released
 
 ## Current Version Released
