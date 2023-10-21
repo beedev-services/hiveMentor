@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block head %} {% include 'block/head.html' %} {% endblock head %}
+<body>
+    {% block header %} {% include 'block/header.html' %} {% endblock header %}
+    {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
+    <main>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3>Recipe</h3>
+            {{ theRecipeForm.as_p }}
+            {{ theRecipeImageForm.management_form }}
+            
+            <h3>Recipe Image:</h3>
+            {% for form in theRecipeImageForm %}
+                {{ form.as_p }}
+            {% endfor %}
+            
+            <h3>Ingredients:</h3>
+            {{ ingredientFormset.management_form }}
+            {% for form in ingredientFormset %}
+            <div class="ingredient-form">
+                {{ form.as_table }}
+            </div>
+            {% endfor %}
+            <button type="button" id="add-ingredient">Add Ingredient</button>
+
+            
+            <h3>Instructions:</h3>
+            {{ instructionFormset.management_form }}
+            {% for form in instructionFormset %}
+                <div class="instruction-form">
+                    {{ form.as_table }}
+                </div>
+            {% endfor %}
+            <button type="button" id="add-instruction">Add Instruction</button>
+            
+            <input type="submit" value="Submit">
+        </form>
+        
+    </main>
+    {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
+    <script>
+        $(document).ready(function() {
+            $("#add-ingredient").click(function() {
+                var ingredientForm = $(".ingredient-form:first").clone();
+                ingredientForm.find('input').val(''); // Clear input values
+                ingredientForm.insertAfter(".ingredient-form:last");
+            });
+        
+            $("#add-instruction").click(function() {
+                var instructionForm = $(".instruction-form:first").clone();
+                instructionForm.find('input').val(''); // Clear input values
+                instructionForm.insertAfter(".instruction-form:last");
+            });
+        });
+        </script>
+</body>
+</html>
