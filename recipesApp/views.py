@@ -1,10 +1,30 @@
-# views.py
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from .models import *
 from .forms import *
+from coreApp.utils import *
 
 def recipeDash(request):
-    return render(request, 'recipeDash.html')
+    title = {
+        'title': 'Recipe Dashboard',
+        'header': 'BeeMindful-Buzz - Recipe Dashboard',
+    }
+    if 'user_id' not in request.session:
+        messages.error(request, 'Please log in to view your logs')
+        return redirect('/logReg/')
+    user = User.objects.get(id=request.session['user_id'])
+    request.session['site'] = 'logs'
+    role = request.session['role']
+    site = request.session['site']
+    release = marquee()
+    context = {
+        'title': title,
+        'user': user,
+        'site': site,
+        'role': role,
+        'release': release,
+    }
+    return render(request, 'recipeDash.html', context)
 
 def createRecipe(request):
     if request.method == 'POST':
