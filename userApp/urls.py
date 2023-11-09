@@ -20,6 +20,10 @@ urlpatterns = [
     path('profile/updateWeight/', views.updateWeight),
     path('profile/addZip/', views.addZip),
     path('profile/upgradeAccount/', views.upgradeAccount),
+    path('forgotpassword/', views.forgotPassword),
+    path('requestpasscode/', views.requestPassCode),
+    path('password-reset/', views.passwordReset),
+    path('reset-pass/', views.resetPass),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -17,6 +17,21 @@ function Main({setTheUser}) {
         setTheLoggedUser(logUser)
         })
     },[])
+    const [loggedUser, setLoggedUser] = useState('')
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        window.addEventListener('message', function(event) {
+            const logged = event.data.user
+            console.log(event.data)
+            setLoggedUser(logged)
+        })
+    },[])
+    useEffect(() => {
+        if(loggedUser != '') {
+            setIsLoading(false)
+        }
+    }, [loggedUser])
 
     const handleVersionChange = (event) => {
         setVersion(event.target.value)
@@ -49,11 +64,19 @@ function Main({setTheUser}) {
             console.log('updated',invalid)
         }
     }
+    console.log("loggedUser", loggedUser, 'isloading', isLoading)
+    if(isLoading) {
+        return <div>
+            <h1>Welcome to the Chat</h1>
+            <h2>Page Is Loading ........</h2>
+        </div>
+    }
 
     return (
         <>
         <h1>Please enter your user name to proceed to chat</h1>
         <span className='messages'>{invalid}</span>
+        {loggedUser}
         <form>
             <label>
                 Username:

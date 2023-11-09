@@ -1,6 +1,8 @@
 import requests
 import json
 from coreApp.models import *
+import string
+import random
 
 def marquee():
     current = Release.objects.get(releaseType='Current')
@@ -182,3 +184,8 @@ def convertToMins(hrs, mins):
     time = int(theHrs) + int(theMins)
     return time
 
+def randomCodeGenerator():
+    N = 12
+    res = ''.join(random.choices(string.ascii_letters, k=N))
+    theCode = str(res)
+    return theCode
