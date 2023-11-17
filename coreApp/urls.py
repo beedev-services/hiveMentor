@@ -3,7 +3,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-# All urls are at base /
+# ! All urls are at base /
 
 urlpatterns = [
     path('', views.index),
@@ -13,13 +13,13 @@ urlpatterns = [
     path('logReg/', views.logReg),
     path('logout/', views.logout),
     path('choseRole/', views.choseRole),
-    # Admin Routes
+    # ! Admin Routes
     path('theAdmin/', views.theAdmin),
 
     path('theAdmin/theCodes/', views.theCodes),
     path('theAdmin/createCode/', views.createCode),
     # path('theAdmin/auth/', views.auth),
-    # API Routes
+    # ! API Routes
     path('api/', views.apiBase),
     path('api/allFoodData/', views.allFoodData),
     path('api/foodData/<str:cat>/', views.foodData),
