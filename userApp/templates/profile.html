@@ -6,6 +6,7 @@
     {% block header %} {% include 'block/header.html' %} {% endblock header %}
     {% block flash %} {% include 'block/flash.html' %} {% endblock flash %}
     <main>
+        <h2>Data Control</h2>
         <div class="desktop">
             <table>
                 <tr>
@@ -22,6 +23,11 @@
                     <th>Email:</th>
                     <td>{{user.email}}</td>
                     <td></td>
+                </tr>
+                <tr>
+                    <th>Your Logs as a Printable/Downloadable PDF</th>
+                    <td></td>
+                    <td><button><a href="/user/pdfs/">View / Generate</a></button></td>
                 </tr>
                 <tr>
                     <th colspan="3">Optional Features to Track</th>
