@@ -3,7 +3,7 @@
   font-style: italic;
   font-weight: 300;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/raleway/v28/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/raleway/v29/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Volkhov';
@@ -44,7 +44,7 @@ h3 {
 button {
   font-size: 1.2em;
 }
-@media only screen and (min-width: 1075px) {
+@media only screen and (max-width: 1075px) {
   body main .desktop {
     display: none;
   }
