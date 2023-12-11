@@ -1,29 +1,82 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
 function Main({setTheUser}) {
 
     const [theUser, setTheUserLocal] = useState('');
+    const [theLoggedUser, setTheLoggedUser] = useState('')
     const [version, setVersion] = useState('multi'); // Default to 'multi ' version
     const navigate = useNavigate();
+    const [info, setInfo] = useState('')
+    const [invalid, setInvalid] = useState('')
+
+    useEffect(() => {
+        window.addEventListener('message', function(event) {
+        const logUser = event.data.user;
+        setTheLoggedUser(logUser)
+        })
+    },[])
+    const [loggedUser, setLoggedUser] = useState('')
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        window.addEventListener('message', function(event) {
+            const logged = event.data.user
+            console.log(event.data)
+            setLoggedUser(logged)
+        })
+    },[])
+    useEffect(() => {
+        if(loggedUser != '') {
+            setIsLoading(false)
+        }
+    }, [loggedUser])
 
     const handleVersionChange = (event) => {
         setVersion(event.target.value)
     }
+
+    useEffect(() => {
+        // GET request using fetch inside useEffect React hook
+        if (theLoggedUser) {
+            fetch(`http://127.0.0.1:8000/api/loggedUser/${theLoggedUser}/`)
+            // fetch(`https://dev.beemindful-buzz.com/api/loggedUser/${theLoggedUser}/`)
+            // fetch(`https://beemindful-buzz.com/api/loggedUser/${theLoggedUser}/`)
+            .then(response => response.json())
+            .then(data => setInfo(data));
+        }
+    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    }, [theLoggedUser]);
+    console.log('useEffect api base',info.user)
+
     const handleSubmit = (e) => {
         e.preventDefault()
         setTheUser(theUser)
-        if (version === 'multi') {
-            navigate('/multi')
+        if(theUser === info.user) {
+            if (version === 'multi') {
+                navigate('/multi')
+            } else {
+                navigate('/single')
+            } 
         } else {
-            navigate('/single')
+            setInvalid('Invalid username')
+            console.log('updated',invalid)
         }
+    }
+    console.log("loggedUser", loggedUser, 'isloading', isLoading)
+    if(isLoading) {
+        return <div>
+            <h1>Welcome to the Chat</h1>
+            <h2>Page Is Loading ........</h2>
+        </div>
     }
 
     return (
         <>
         <h1>Please enter your user name to proceed to chat</h1>
+        <span className='messages'>{invalid}</span>
+        {loggedUser}
         <form>
             <label>
                 Username:

@@ -11,12 +11,19 @@
         <!-- <iframe src="https://fluffy-marigold-2a634c.netlify.app/" id="dataUser" frameborder="0"></iframe> -->
         <!-- <iframe src="https://chat.beemindful-buzz.com/" id="dataUser" frameborder="0"></iframe> -->
     </main>
+    <form action="">
+        <span id="token">{% csrf_token %}</span>
+    </form>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
     <script>
+        var csrfToken = document.getElementById("token");
+        console.log(csrfToken.innerHTML);
+        var token = document.querySelector("#token input").value;
+        console.log("the token test:", token)
         const iframe = document.getElementById('dataUser')
         var user = '{{user.username}}'
         var mode = localStorage.getItem("mode");
-        var userVar = {'user': user, 'mode': mode}
+        var userVar = {'user': user, 'mode': mode, 'token': token}
         console.log('theUser', user, 'mode', mode, 'sending userVar', userVar)
 
         iframe.onload = function() {

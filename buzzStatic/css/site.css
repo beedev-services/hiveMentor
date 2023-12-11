@@ -1,0 +1,333 @@
+@font-face {
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/raleway/v29/1Pt_g8zYS_SKggPNyCgSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Volkhov';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/volkhov/v17/SlGQmQieoJcKemNeQTI.ttf) format('truetype');
+}
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.altflexrow {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.altflexcolumn {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+h1,
+h2,
+h3 {
+  font-weight: 900;
+}
+button {
+  font-size: 1.2em;
+}
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  filter: alpha(opacity=70);
+  -moz-opacity: 0.7;
+  -khtml-opacity: 0.7;
+  opacity: 0.7;
+  z-index: 100;
+}
+.cnt223 a {
+  text-decoration: none;
+}
+.popup {
+  width: 100%;
+  margin: 0 auto;
+  display: none;
+  z-index: 101;
+}
+.popup .cnt223 button {
+  padding: 1em;
+  margin: 1em;
+  font-size: 18px;
+}
+.cnt223 {
+  min-width: 600px;
+  width: 600px;
+  min-height: 150px;
+  margin: 100px auto;
+  background: #80BDA2;
+  position: relative;
+  z-index: 103;
+  padding: 15px 35px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #000;
+  text-align: center;
+}
+.cnt223 p {
+  clear: both;
+  color: #454C49;
+  /* text-align: justify; */
+  font-size: 20px;
+  font-family: sans-serif;
+}
+.cnt223 p a {
+  color: #d91900;
+  font-weight: bold;
+}
+.cnt223 .x {
+  float: right;
+  height: 35px;
+  left: 22px;
+  position: relative;
+  top: -25px;
+  width: 34px;
+}
+.cnt223 .x:hover {
+  cursor: pointer;
+}
+.none {
+  display: none;
+}
+body header nav #myLinks {
+  display: none;
+}
+body div .session {
+  display: none;
+}
+body main .mobile {
+  display: none;
+}
+body main .column #hideCreateWeek,
+body main .column #hideCreateDay {
+  display: none;
+}
+body main .row #reg {
+  display: none;
+}
+body main .row .column #UserFoodForm,
+body main .row .column #moodForm,
+body main .row .column #UserMedForm,
+body main .row .column #symptomForm,
+body main .row .column #MedListForm,
+body main .row .column #FoodListForm,
+body main .row .column #FitnessListForm,
+body main .row .column #UserSugarForm,
+body main .row .column #UserJournalForm,
+body main .row .column #UserSleepForm,
+body main .row .column #UserFitnessForm,
+body main .row .column #UserWeatherForm,
+body main .row .column #UserWeightForm,
+body main .row .column #UserWorkForm {
+  display: none;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F5F3F5;
+  color: #080C0D;
+  font-family: 'Raleway', sans-serif;
+  margin: 2em auto ;
+  text-align: center;
+  background-image: url(../images/ltBG.jpg);
+  background-repeat: repeat no-repeat;
+  background-attachment: fixed;
+  width: 95%;
+}
+body header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0d0d17a;
+  border: 1px solid #3349B9;
+  margin: 1em;
+  width: 90%;
+  box-shadow: 5px 5px #3349B9;
+}
+body header .mode {
+  font-size: 1.2em;
+}
+body header .mode .change {
+  cursor: pointer;
+  border: 1px solid #CF508D;
+  border-radius: 40%;
+  width: 30px;
+  text-align: center;
+  padding: 5px;
+  margin-left: 8px;
+  box-shadow: 3px 3px #CF508D;
+}
+body header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  flex-wrap: wrap;
+  width: 85%;
+  justify-content: space-evenly;
+}
+body main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0d0d197;
+  width: 90%;
+  border: 1px solid #3349B9;
+  height: auto;
+  padding-bottom: 2em;
+}
+body footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  background-color: #e0d0d17a;
+  border: 1px solid #3349B9;
+  box-shadow: 5px 5px #3349B9;
+  margin: 1em;
+}
+body footer a {
+  color: #080C0D;
+}
+body.dark {
+  background-color: #080C0D;
+  background-image: url(../images/dkBG.jpg);
+  color: #E0D0D1;
+}
+body.dark header {
+  background-color: #5468677a;
+  box-shadow: 5px 5px #2294B5;
+  border: 1px solid #2294B5;
+}
+body.dark header .mode .change {
+  border: 1px solid #991A3C;
+  box-shadow: 3px 3px #991A3C;
+  background-color: #991a3c3c;
+}
+body.dark header nav #myLinks a {
+  border: 1px solid #3349B9;
+  color: #E0D0D1;
+  box-shadow: 5px 5px #2294B5;
+  background-color: #080c0d60;
+}
+body.dark main {
+  background-color: #4b6867d2;
+}
+body.dark footer {
+  background-color: #5468677a;
+  box-shadow: 5px 5px #2294B5;
+  border: 1px solid #2294B5;
+}
+body.dark footer a {
+  color: #E0D0D1;
+}
+@media only screen and (max-width: 1075px) {
+  body main .desktop {
+    display: none;
+  }
+  body main .mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    justify-content: space-evenly;
+  }
+  body main .mobile .left {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 33%;
+  }
+  body main .mobile .left #moodFormMobile,
+  body main .mobile .left #UserMedFormMobile {
+    display: none;
+  }
+  body main .mobile .left form {
+    margin: 0.5em;
+    flex-direction: column;
+  }
+  body main .mobile .left .lgButton {
+    font-size: 1.2em;
+    margin: 0.5em;
+  }
+  body main .mobile .right {
+    width: 33%;
+  }
+  body main .mobile .right #symptomFormMobile,
+  body main .mobile .right #MedListFormMobile {
+    display: none;
+  }
+  body main .mobile .right form {
+    margin: 0.5em;
+  }
+  body main .mobile .right .lgButton {
+    font-size: 1.2em;
+    margin: 0.5em;
+  }
+}
+@media only screen and (max-width: 730px) {
+  body main .mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media only screen and (min-width: 650px) {
+  body header nav .icon {
+    display: none;
+  }
+  body header nav #myLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    justify-content: space-evenly;
+  }
+  body header nav #myLinks a {
+    text-decoration: none;
+    padding: 1em;
+    margin: 0.5em;
+    border-radius: 30%;
+    box-shadow: 5px 5px #3349B9;
+    border: 1px solid #3349B9;
+    color: #080C0D;
+    font-weight: 900;
+  }
+}
+@media only screen and (min-width: 650px) {
+  body.dark header nav #myLinks a {
+    border: 1px solid #3349B9;
+    color: #E0D0D1;
+    box-shadow: 5px 5px #2294B5;
+  }
+}

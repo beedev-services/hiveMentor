@@ -25,6 +25,17 @@ body #root .loading {
 body #root .loading img {
   max-width: 300px;
 }
+body #root .messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #991A3C;
+  color: #fff;
+  padding: 1em;
+  margin: 0.5em;
+  font-size: 2em;
+}
 body #root form {
   display: flex;
   flex-direction: column;

@@ -2,9 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from userApp.models import *
 from logApp.models import *
-from userApp.util import *
-from coreApp.apiUtil import *
-from chatApp.adminUtil import *
+from coreApp.utils import *
 from chatApp.models import *
 
 

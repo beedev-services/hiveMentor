@@ -3,12 +3,9 @@ from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 from django.core.serializers import serialize
 from userApp.models import *
-from userApp.util import *
-from coreApp.apiUtil import *
-# from userApp.util import authenticate
-from userApp.keys import *
+from coreApp.utils import *
+from coreApp.config import *
 import requests
-from chatApp.adminUtil import *
 import json
 
 # title = {
@@ -39,7 +36,7 @@ def chatDash(request):
     myChats = getMyChats(user.id)
     # print('mychats:', myChats, 'users:', users)
     if isinstance(myChats, list):
-        request.session['chatStatus'] = "Gkood"
+        request.session['chatStatus'] = "Good"
         chatStatus = request.session['chatStatus']
     if isinstance(myChats, dict):
         # customJson = {"user_role": user.role}

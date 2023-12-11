@@ -5,11 +5,11 @@ import { useParams } from 'react-router-dom'
 function MultiChat() {
 
     const [theName, setTheName] = useState("")
+    const [theChatId, setTheChatId] = useState("")
     const [theSecret, setTheSecret] = useState("")
-    const mySecret = import.meta.env.VITE_CHATENGINE_SECRET
-    const proj = import.meta.env.VITE_CHATENGINE_PROJ
+    const mySecret = process.env.REACT_APP_CHATENGINE_SECRET
+    const proj = process.env.REACT_APP_CHATENGINE_PROJ
     const [theMode, setTheMode] = useState("")
-    const [theChat, setTheChat] = useState("")
     const [theChatAccess, setTheChatAccess] = useState("")
     const [isLoading, setIsLoading] = useState(true);
 
@@ -23,7 +23,7 @@ function MultiChat() {
         setTheName(userId)
         setTheSecret(userId+mySecret)
         setTheMode(mode)
-        setTheChat(chatName)
+        setTheChatId(chatName)
         setTheChatAccess(chatAccess)
         // console.log('in useEffect', theName, theSecret, theMode)
         setIsLoading(false)
@@ -33,12 +33,12 @@ function MultiChat() {
 
     useEffect(() => {
       // This will run whenever theName, theSecret, or theMode changes
-        console.log('State has been updated', theName, theSecret, theMode, theChat);
-    }, [theName, theSecret, theMode, theChat, theChatAccess]);
+        console.log('State has been updated', theName, theSecret, theMode, theChatId);
+    }, [theName, theSecret, theMode, theChatId, theChatAccess]);
 
     const projectId = proj
     const chatAccessKey = theChatAccess
-    const chatId = theChat
+    const chatId = theChatId
     const senderUsername = theName
     const chatProps = useSingleChatLogic(projectId, chatId, chatAccessKey);
 

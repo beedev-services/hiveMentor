@@ -68,6 +68,7 @@
             {% for chat in myChats %}
                 <tr>
                     <td>{{chat.title}}</td>
+                    <td><button class="enterChat" onclick="sendChatUserInfo({{chat.id}}, {{user.id}})">Enter Room</button></td>
                 </tr>
             {% endfor %}
         </table>

@@ -18,6 +18,9 @@
             <h2>The Why</h2>
             <p>Why? Yes there are tons of applications out there that can help with mental health and logging things like your mood or food intake.  But are they by geeks for geeks?  Lets face it we speak a whole different language... literally at times.  Because of this I wanted a place for us to help each other as sometimes only we know how.</p>
         </div>
+        <form action="">
+            <span id="token">{% csrf_token %}</span>
+        </form>
     </main>
     {% block footer %} {% include 'block/footer.html' %} {% endblock footer %}
 </body>

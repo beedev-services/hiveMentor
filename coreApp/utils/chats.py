@@ -1,12 +1,7 @@
 import requests
-from userApp.keys import *
+from coreApp.config.keys import *
 from userApp.models import User
 from coreApp.models import *
-from django.utils import timezone
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from django.conf import settings
-from django.core.mail import send_mail
 import json
 
 
@@ -133,8 +128,6 @@ def getMyChats(userId):
     print("res.text:",response.text)
     chats = json.loads(response.text)
     return chats
-
-
 
 def jsonUsersInChat():
     theUsers = getUsersInChat()

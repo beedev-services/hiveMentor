@@ -4,8 +4,7 @@ from userApp.models import *
 from logApp.models import *
 import string
 import random
-from userApp.util import *
-from coreApp.apiUtil import *
+from coreApp.utils import *
 
 
 def theAdmin(request):
@@ -54,9 +53,7 @@ def theCodes(request):
         messages.error(request, 'You do not have permissions to view this page')
     else:
         codes = Code.objects.values().all()
-        N = 12
-        res = ''.join(random.choices(string.ascii_letters, k=N))
-        theCode = str(res)
+        theCode = randomCodeGenerator()
         role = request.session['role']
         request.session['site'] = 'admin'
         site = request.session['site']

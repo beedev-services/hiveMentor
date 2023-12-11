@@ -99,3 +99,10 @@ class Code(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f'{self.code} - {self.role}'
+    
+class PassCode(models.Model):
+    code = models.CharField(max_length=255)
+    requester = models.ForeignKey(User, related_name='theRequester', on_delete=CASCADE)
+    used = models.IntegerField(default=0)
+    usedOn = models.DateTimeField(auto_now=True)
+    createdAt = models.DateTimeField(auto_now_add=True)

@@ -3,7 +3,7 @@ from django.contrib import messages
 from userApp.models import *
 from logApp.models import *
 import bcrypt
-from userApp.util import *
+from coreApp.utils import *
 
 def login(request):
     user = User.objects.filter(username = request.POST['username'])
@@ -49,3 +49,111 @@ def reg(request):
     # sendUserToChat(newUser.username, newUser.email, newUser.firstName, newUser.lastName,newUser.role)
     return redirect('/choseRole/')
 
+def forgotPassword(request):
+    title = {
+        'title': 'ForgotPassword',
+        'header': 'ForgotPassword'
+        }
+    release = marquee()
+    site = request.session['site']
+    role = request.session['role']
+    if 'user_id' not in request.session:
+        user = False
+    context = {
+        'title':title,
+        'user': user,
+        'site': site,
+        'role': role,
+        'release': release
+    }
+    return render(request, 'forgotPassword.html', context)
+
+def requestPassCode(request):
+    if request.POST['username']:
+        theUser = User.objects.filter(username = request.POST['username'])
+        if theUser:
+            user = theUser[0]
+        else:
+            messages.error(request, 'Username not our system')
+            return redirect('/user/forgotpassword/')
+    elif request.POST['email']:
+        theUser = User.objects.filter(email = request.POST['email'])
+        if theUser:
+            user = theUser[0]
+        else:
+            messages.error(request, 'Email not in our system')
+            return redirect('/user/forgotpassword/')
+    else:
+        messages.error(request, 'Please enter your email or username')
+        return redirect('/user/forgotpassword/')
+    theCode = randomCodeGenerator()
+    PassCode.objects.create(
+        code = theCode,
+        requester = User.objects.get(id=user.id)
+    )
+    forgotPasswordEmail(user, theCode)
+    return redirect('/logReg/')
+
+def passwordReset(request):
+    title = {
+        'title': 'Reset Password',
+        'header': 'Reset Password'
+        }
+    release = marquee()
+    site = request.session['site']
+    role = request.session['role']
+    if 'user_id' not in request.session:
+        user = False
+    context = {
+        'title':title,
+        'user': user,
+        'site': site,
+        'role': role,
+        'release': release
+    }
+    return render(request, 'resetPassword.html', context)
+
+def resetPass(request):
+    if request.POST['username']:
+        theUser = User.objects.filter(username = request.POST['username'])
+        if theUser:
+            user = theUser[0]
+        else:
+            messages.error(request, 'Username not our system')
+            return redirect('/user/password-reset/')
+    elif request.POST['email']:
+        theUser = User.objects.filter(email = request.POST['email'])
+        if theUser:
+            user = theUser[0]
+        else:
+            messages.error(request, 'Email not in our system')
+            return redirect('/user/password-reset/')
+    else:
+        messages.error(request, 'Please enter your email or username')
+        return redirect('/user/password-reset/')
+    theCode = PassCode.objects.get(code=request.POST['resetCode'])
+    if theCode:
+        print('the code', theCode)
+        if theCode.requester_id != user.id:
+            messages.error(request, 'Invalid reset Code')
+            return redirect('/user/password-reset/')
+    else:
+        messages.error(request, 'Invalid reset Code')
+        return redirect('/user/password-reset/')
+    if len(request.POST['password']) < 6:
+        messages.error(request, 'Password must be at least 6 characters long')
+        return redirect('/user/password-reset/')
+    if request.POST['password'] != request.POST['confirm']:
+        messages.error(request, 'Passwords do not match')
+        return redirect('/user/password-reset/')
+    else:
+        hashedPw = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
+        toUpdate = User.objects.get(id=user.id)
+        toUpdate.password = hashedPw
+        toUpdate.save()
+        alsoUpdate = PassCode.objects.get(code=request.POST['resetCode'])
+        alsoUpdate.used=1
+        alsoUpdate.save()
+        request.session['user_id'] = user.id
+        messages.error(request, f'Password updated, welcome back, {user.firstName}')
+        return redirect('/choseRole/')
