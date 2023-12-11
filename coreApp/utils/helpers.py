@@ -1,8 +1,11 @@
 import requests
 import json
 from coreApp.models import *
+from coreApp.config import *
 import string
 import random
+
+weatherAPI = WEATHER_KEY
 
 def marquee():
     current = Release.objects.get(releaseType='Current')
