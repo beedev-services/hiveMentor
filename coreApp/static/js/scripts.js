@@ -65,16 +65,29 @@ function openForm(a) {
     }
     console.log('what element', theForm)
 }
+function userCount(element){
+    userUrl = `http://127.0.0.1:8000/api/userCount/`
+    // userUrl = `https://dev.beemindful-buzz.com/api/userCount/`
+    // userUrl = `https://beemidnful-buzz.com/api/userCount/`
+    fetch(userUrl)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        // console.log(data['users'].length)
+        var theCount = data['users'].length
+        element.innerText = `${theCount} Users and Growing`
+    })
+}
 
 function filterFoods() {
     var catId = document.getElementById('foodCat')
     var dropdown = document.getElementById('foodItemSelect')
-    // allUrl = `http://127.0.0.1:8000/api/allFoodData/`
+    allUrl = `http://127.0.0.1:8000/api/allFoodData/`
     // allUrl = `https://dev.beemindful-buzz.com/api/allFoodData/`
-    allUrl = `https://beemindful-buzz.com/api/allFoodData/`
-    // oneUrl = `http://127.0.0.1:8000/api/foodData/`
+    // allUrl = `https://beemindful-buzz.com/api/allFoodData/`
+    oneUrl = `http://127.0.0.1:8000/api/foodData/`
     // oneUrl = `https://dev.beemidful-buzz.com/api/foodData/`
-    oneUrl = `https://beemindful-buzz.com/api/foodData/`
+    // oneUrl = `https://beemindful-buzz.com/api/foodData/`
     catId = catId.value
     console.log(catId)
     if (catId  == 'All') {
@@ -140,9 +153,9 @@ $(document).ready(function() {
 let chatUser
 
 function enterMultiChat(chatUser) {
-    // location.replace(`http://127.0.1:8000/chat/multi-frame/${chatUser}/`)
+    location.replace(`http://127.0.1:8000/chat/multi-frame/${chatUser}/`)
     // location.replace(`https://dev.beemindful-buzz.com/chat/multi-frame/${chatUser}/`)
-    location.replace(`https://beemindful-buzz.com/chat/multi-frame/${chatUser}/`)
+    // location.replace(`https://beemindful-buzz.com/chat/multi-frame/${chatUser}/`)
 }
 function enterSingleChat(chatId, chatUser) {
     location.replace(`http://127.0.1:8000/chat/single-frame/${chatId}/${chatUser}/`)

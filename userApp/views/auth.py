@@ -3,7 +3,12 @@ from django.contrib import messages
 from userApp.models import *
 from logApp.models import *
 import bcrypt
+<<<<<<< HEAD
 from coreApp.utils import *
+=======
+from userApp.util import *
+from coreApp.apiUtil import *
+>>>>>>> bdd0cb018e9f1d27605f74d73b069a3840555638
 
 def login(request):
     user = User.objects.filter(username = request.POST['username'])
