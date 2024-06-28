@@ -182,3 +182,11 @@ class Weather(models.Model):
     userWeather = models.ForeignKey(User, related_name='theUserWeather', on_delete=CASCADE)
     def __str__(self):
         return f'{self.userWeather.username} - {self.pressure}'
+    
+class Step(models.Model):
+    steps = models.IntegerField()
+    floors = models.IntegerField()
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+    stepping = models.ForeignKey(Day, related_name='theSteps', on_delete=CASCADE)
+    stepper = models.ForeignKey(User, related_name='theStepper', on_delete=CASCADE)
