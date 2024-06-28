@@ -5,6 +5,7 @@ from chatApp import views as app_views
 from logApp import views as app_views
 from api import views as app_views
 from recipesApp import views as app_views
+from freeWritingApp import views as app_views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('admin/', admin.site.urls),
     path('recipes/', include('recipesApp.urls')),
+    path('writings/', include('freeWritingApp.urls')),
 ]

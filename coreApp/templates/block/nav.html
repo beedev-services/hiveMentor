@@ -8,9 +8,9 @@
             <i class="fa fa-bars"></i>
         </a>
         <nav id="myLinks">
+            <span>{{site}}</span>
             {% if site == 'logs' %}
                 <a href="/logs">Log Dashboard</a>
-                <a href="/recipes">Recipes</a>
                 <a href="/user/profile/">Profile</a>
             {% elif site == 'pLogs' %}
             <!-- Provider Role -->
@@ -40,6 +40,12 @@
                     <a href="/admin/">Root Admin</a>
                 {% endif %}
             {% elif site == 'profile' %}
+                <a href="/user/profile/">Profile</a>
+            {% elif site == 'recipes' %}
+                <a href="/recipes/">Recipes Dashbaord</a>
+                <a href="/user/profile/">Profile</a>
+            {% elif site == 'writing' %}
+                <a href="/writings/">Writings Dashboard</a>
                 <a href="/user/profile/">Profile</a>
             {% else %}
                 <a href="/">Home</a>

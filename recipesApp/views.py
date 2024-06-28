@@ -13,7 +13,7 @@ def recipeDash(request):
         messages.error(request, 'Please log in to view your logs')
         return redirect('/logReg/')
     user = User.objects.get(id=request.session['user_id'])
-    request.session['site'] = 'logs'
+    request.session['site'] = 'recipes'
     role = request.session['role']
     site = request.session['site']
     release = marquee()

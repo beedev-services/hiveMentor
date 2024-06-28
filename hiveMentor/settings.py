@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'api.apps.ApiConfig',
     'recipesApp.apps.RecipesappConfig',
+    'freeWritingApp.apps.FreewritingappConfig',
 ]
 
 MIDDLEWARE = [
